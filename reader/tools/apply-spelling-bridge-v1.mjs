@@ -51,6 +51,14 @@
 // on its card and across words, until the page lane says how such a place is
 // drawn.
 //
+// BRIDGE V1.2 (relay v220; ship 20, 23 November 2026). The list laid from is
+// v1.2, v1.1's lines with STEP's «{…}+» tags read as STEP's key says, and it is
+// proved first, as well, that each of its lines, its three added fields taken
+// off and the changes its list of changes names set back, is v1.1's line. No
+// laid place is among the 43 it mends, so no piece laid moves; each zone's
+// record names v1.2's list and the list it extends (v1.1), and is written again
+// where it named v1.1's.
+//
 // IT IS RUN BY THE ROUND, FIRST IN ITS ZONES STEP (tools/round-v1.sh), and
 // whenever the place's pieces are laid again. First, because two tools of
 // that step read a place's pieces: the line read again takes a name's lead
@@ -76,7 +84,7 @@ import { join } from "node:path";
 import { PinFault } from "./pinned-v1.mjs";
 import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 import {
-  SPELLING_BRIDGE_RULE_ID, SPELLING_BRIDGE_HOME, SPELLING_BRIDGE_TOOL, readBridge, receiptAgainst, v11Against, laidOf, findBridgePlace, carriedAt,
+  SPELLING_BRIDGE_RULE_ID, SPELLING_BRIDGE_HOME, SPELLING_BRIDGE_TOOL, readBridge, receiptAgainst, v11Against, v12Against, laidOf, findBridgePlace, carriedAt,
 } from "./spelling-bridge-v1.mjs";
 
 const arg = (name, dflt = null) => { const i = process.argv.indexOf(`--${name}`); return i > 0 ? process.argv[i + 1] : dflt; };
@@ -95,6 +103,7 @@ let bridge = null;
 try { bridge = readBridge(PIN); } catch (e) { if (!(e instanceof PinFault)) throw e; fault(e.message); refuse(); }
 for (const f of receiptAgainst(bridge)) fault(f);
 for (const f of v11Against(bridge)) fault(f);
+for (const f of v12Against(bridge)) fault(f);
 const { laid, counts, faults: listFaults } = laidOf(bridge);
 for (const f of listFaults) fault(f);
 if (faults.length) refuse();
@@ -125,10 +134,10 @@ const recordOf = (here) => ({
   rule_id: SPELLING_BRIDGE_RULE_ID,
   applied_by: SPELLING_BRIDGE_TOOL,
   pin: `${SPELLING_BRIDGE_HOME}/PIN.json`,
-  relay: bridge.pin.v1_1.relay,
-  letter: bridge.pin.v1_1.letter,
-  list: { file: `${bridge.pin.v1_1.folder}/${bridge.pin.v1_1.places.file}`, sha256: bridge.pin.v1_1.places.sha256, lines: bridge.pin.v1_1.places.lines },
-  extends: { file: `${bridge.pin.folder}/${bridge.pin.places.file}`, sha256: bridge.pin.places.sha256, relay: bridge.pin.relay },
+  relay: bridge.pin.v1_2.relay,
+  letter: bridge.pin.v1_2.letter,
+  list: { file: `${bridge.pin.v1_2.folder}/${bridge.pin.v1_2.places.file}`, sha256: bridge.pin.v1_2.places.sha256, lines: bridge.pin.v1_2.places.lines },
+  extends: { file: `${bridge.pin.v1_1.folder}/${bridge.pin.v1_1.places.file}`, sha256: bridge.pin.v1_1.places.sha256, relay: bridge.pin.v1_1.relay },
   counts: { places_laid: here.length, pieces: here.reduce((s, h) => s + h.place.pieces.length, 0) },
   here: here.map((h) => ({ ref: h.place.ref, section_word: h.found.at, word: h.place.n, reads: h.place.words })),
   what: "each of these places is spelled otherwise in our text than in the Leningrad text STEP follows, and the corpus lane's list cuts STEP's pieces onto our letters there. The word carries the place's pieces (pg): our letters as the corpus lane's list cuts them, and for each piece STEP's own words for this place, as STEP writes them, so the reader draws the place's line from them as it does at every place that carries pieces. No word, position, count, key or tag moved",
@@ -152,7 +161,7 @@ for (const { zone, zPath, here } of zones.values()) {
   typePostBuildWrite(zone, {
     tool: SPELLING_BRIDGE_TOOL,
     fields: ["emitted_from.spelling_bridge", "sections[].words[].pg"],
-    why: "the lattice the zone was projected from reads STEP under the Leningrad text's spelling and gives a place our text spells otherwise no pieces; the corpus lane's spelling bridge (relays v202 and v214) cuts STEP's pieces onto our letters, and STEP's own words for the place, as STEP writes them, give their words",
+    why: "the lattice the zone was projected from reads STEP under the Leningrad text's spelling and gives a place our text spells otherwise no pieces; the corpus lane's spelling bridge (relays v202, v214 and v220) cuts STEP's pieces onto our letters, and STEP's own words for the place, as STEP writes them, give their words",
     expires: "with this zone's projection from a lattice of the corpus lane's that gives these places pieces itself",
     stamp: STAMP,
   });

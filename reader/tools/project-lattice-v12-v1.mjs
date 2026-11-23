@@ -176,7 +176,8 @@ import { STEMS_CARRIED_RULE_ID, keysAskedWithStems } from "./stems-carried-v1.mj
 import { ENTRY_GATE_RULE_ID, ENTRY_BY_LEMMA_RULE_ID, placeEntry, placeTags, lemmaEntries, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
-import { readPinnedLines } from "./pinned-v1.mjs";
+import { PinFault } from "./pinned-v1.mjs";
+import { namePlaces } from "./name-lists-v1.mjs";
 import { RECORD_FILE } from "./row-strikes-follow-v1.mjs";
 import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 import { readKinds, restsOffIn, restsOffIds, DICTIONARY_KINDS_RECORD } from "./dictionary-kinds-v1.mjs";
@@ -575,7 +576,10 @@ const leadersAt = ({ srows, whole, gradeOfRow, attested, otherStem, nameText }, 
 // word's number in the verse as the card's head counts it (the marks not
 // counted). The list is kept under a pin in data/names/ and read only as those
 // bytes. Every word's mark is cleared first, so a place an earlier list named
-// and this one does not carries none.
+// and this one does not carries none. Since ship 20 (23 November 2026) the
+// list read is names v1's with the corpus lane's addition laid on it (relay
+// v219: Ezekiel 27:6 word 11 added, TAHOT a witness at 6 more places), as
+// tools/name-lists-v1.mjs lays it, and the receipt names both files.
 const namesDir = arg("--names", join(zonePath.replace(/data\/zones\/.*$/u, ""), "data", "names"));
 let namesSaid = null;   // what the receipt says of the list, or null where the tree holds none
 for (const sec of zone.sections || []) for (const w of sec.words || []) delete w.np;
@@ -585,8 +589,9 @@ if (existsSync(join(namesDir, "PIN.json"))) {
   const here = new Map();   // verse label -> the numbers of its words that are a name
   // the list of places stands in its own folder where the pin says so (names v1's places beside names v2's rows,
   // relay v198: «the places stay v1's»), else in the pin's
-  const placesFolder = pin.place_names.folder || pin.folder;
-  for (const l of readPinnedLines(join(namesDir, placesFolder, pin.place_names.file), pin.place_names, `${placesFolder}/${pin.place_names.file}`)) {
+  let laidPlaces;
+  try { laidPlaces = namePlaces(namesDir, pin); } catch (e) { if (e instanceof PinFault) { console.error(`the list of name places: ${e.message}`); process.exit(1); } throw e; }
+  for (const l of laidPlaces.laid) {
     if (l.book !== slug) continue;
     const cut = String(l.place).lastIndexOf(":");
     const verse = String(l.place).slice(0, cut), n = Number(String(l.place).slice(cut + 1));
@@ -601,7 +606,9 @@ if (existsSync(join(namesDir, "PIN.json"))) {
     for (const n of listed) { if (words[n - 1]) { words[n - 1].np = 1; stats.name_places_marked += 1; } }
   }
   stats.name_places_with_no_word = stats.name_places_listed - stats.name_places_marked;
+  const added = laidPlaces.addition;
   namesSaid = { rule: NAMES_GATE_RULE_ID, relay: pin.place_names.relay || pin.relay, place_names: { file: pin.place_names.file, sha256: pin.place_names.sha256, lines: pin.place_names.lines },
+    ...(added ? { additions: { relay: added.relay, file: added.file, sha256: added.sha256, lines: added.lines, places_listed: laidPlaces.laid.length } } : {}),
     listed_for_this_book: stats.name_places_listed, marked: stats.name_places_marked, with_no_word: stats.name_places_with_no_word };
 }
 // a place is a name where the list marks it; a book whose places were not read for names treats every place as one,
@@ -1029,7 +1036,8 @@ const sidecar = {
     grades: { lines_for_this_book: stats.delta_grade_lines, applied_at_a_surfaces_first_verse: stats.delta_grade_lines_applied, cards_regraded: stats.delta_cards_regraded, lines_of_a_surface_graded_at_an_earlier_verse: stats.delta_grade_lines_of_a_surface_graded_at_an_earlier_verse },
     what: "a listed entry's cards that name its verse (n, v[<verse>].n) are the delta's list in place of lattice v12's; each card the delta grades otherwise carries the page's grade in g in place of the lattice's. A line whose verse the projection held or did not find, or whose entry the store's routes do not reach, is not applied; a line for one of the lattice's own span cards is counted and not read" } } : {}),
   entry: { rule: ENTRY_GATE_RULE_ID, by_lemma: ENTRY_BY_LEMMA_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256, ...(store.index.row_entries.lists ? { lists: store.index.row_entries.lists.map((l) => ({ relay: l.relay, list_sha256: l.list.sha256 })) } : {}) } : null },
-  names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
+  names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, ...(namesSaid.additions ? { place_additions_sha256: namesSaid.additions.sha256 } : {}),
+    name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256, ...(Array.isArray(store.index.name_rows.more_lists) ? { more: store.index.name_rows.more_lists.map((x) => ({ relay: x.relay, list_sha256: x.name_rows.sha256 })) } : {}) } : null } : null,
   // rule 6: the record the leaders were baked at rest under; absent where the book does not rest shut
   ...(atRest ? { rests_off: { ...store.atRest, what: "every leader here baked from the store's rows (o.m, o.x, o.c, o.l, o.la, o.s, v[…].c, e[…], nl) read the rows that rest open under the record and no other; the lattice's own cards, grades and citations are the corpus lane's and were read whole; a word's hg (the zone's) is carried only where its card's source is not shut whole and gives that reading in a row that rests open" } } : {}),
   leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The key of a place with no tag is the entries of MACULA's lemma where the word carries them (te). The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",

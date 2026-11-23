@@ -1,0 +1,4579 @@
+{
+ "name": "spelling bridge v1.2",
+ "written": "21 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "current_effect": "NONE. Nothing served is changed; the serving lane lands the list.",
+ "rule": {
+  "file": "RULE.md",
+  "sha256": "f0ccd566bf9ce9b311ccceed87785e4b0a8e0c6fbbe1b4e10f9036597e0399dd"
+ },
+ "builder": {
+  "file": "build-bridge-v1.2.mjs",
+  "sha256": "33f85ddc674678e3ae7b24af65ec2e62129e3c6e2997d84e63dbf0e18f3e7f5a",
+  "copy_of": "bridge-v1.1/build-bridge-v1.1.mjs",
+  "changes": "RULE.md section 9, each marked v1.2 change in the code"
+ },
+ "inputs": {
+  "STEP acquisition manifest": {
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/acquisition-manifest.json",
+   "bytes": 4415,
+   "sha256": "fe5ef644c31fdcb790359f50aa162e2fb94d5ffb3d920f797807fc60321ba22d"
+  },
+  "lattice v12": {
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-lattice-ledger-v1/candidate"
+  },
+  "word numbering v1.1": {
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1"
+  },
+  "TBESH": {
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Lexicons/TBESH - Translators Brief lexicon of Extended Strongs for Hebrew - STEPBible.org CC BY.txt",
+   "bytes": 3288045,
+   "sha256": "464dccadd95fd8620dd05fa0d7a4caba58ec3c4d5db3ebf38e43d046ca25b591",
+   "manifest_agrees": true
+  },
+  "TAHOT Gen-Deu": {
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Gen-Deu - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+   "bytes": 18190455,
+   "sha256": "e9b8546ee48fe0bfc57c3b70f5f40e98d96580e803526d19026224e31753368b",
+   "manifest_agrees": true
+  },
+  "TAHOT Jos-Est": {
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Jos-Est - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+   "bytes": 24500317,
+   "sha256": "195fee1dc3653bab33701f170734eb894ed647c10cd08cc61749375fe8b73775",
+   "manifest_agrees": true
+  },
+  "TAHOT Job-Sng": {
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Job-Sng - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+   "bytes": 9540133,
+   "sha256": "84e118a97e5725e3847cdfdd593873513021c790c63cc91a0d41fca2b5db2ed5",
+   "manifest_agrees": true
+  },
+  "TAHOT Isa-Mal": {
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Isa-Mal - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+   "bytes": 17977518,
+   "sha256": "f3ded203d2a74d6368932c97ae550d1d0754b271af491dc0dedf36fe3ba0bcc5",
+   "manifest_agrees": true
+  },
+  "store": {
+   "store_version": "54416ff5785b",
+   "index_sha256": "b0316573a1afbb83fd298c6d27e1b416c13d4a6076a7ae20980c6f0d11552b3a"
+  },
+  "bridge v1": {
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-spelling-bridge-v1/bridge-v1",
+   "files": {
+    "RULE.md": {
+     "bytes": 10834,
+     "sha256": "0dcee0cef026e7d9018c15bea27bb8af8b48b1cf26b1929882e7b7a04320fc74"
+    },
+    "build-bridge-v1.mjs": {
+     "bytes": 22311,
+     "sha256": "3a4978871af4ca6cd552bf398d40b6ce66eb0fa8f612c7cfe57b03386aef0cad"
+    },
+    "bridge-places-v1.jsonl": {
+     "bytes": 1643033,
+     "sha256": "c943710322d573b5587c0b699b1c39a531fd0715cbf8b707743023ecfcfa89a3"
+    },
+    "form-rows-v1.jsonl": {
+     "bytes": 169264,
+     "sha256": "373da184148ed4c50297bae729fb77b7d8e5d7a00846505c7be16c7c339f2fc2"
+    },
+    "form-rows-not-landed-v1.jsonl": {
+     "bytes": 2764,
+     "sha256": "dc15128e612ae2099f221a4dc4a462d888176f0940806e7b39991fa2f0474cb4"
+    },
+    "receipt-v1.json": {
+     "bytes": 5813,
+     "sha256": "915aef30ab0259d0727fa45fafc02399bcdf3713a0fe78c9b05b66283f4acf10"
+    }
+   }
+  },
+  "v208 untagged places": {
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-lattice-delta-v1/delta-v13-v1/untagged-places-v1.jsonl",
+   "bytes": 1338112,
+   "sha256": "447cb1c2e96303e9df44096fec5663304e7b7758e74e2414e3f43012e652e0a1"
+  },
+  "bridge v1.1": {
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-spelling-bridge-v1/bridge-v1.1",
+   "files": {
+    "RULE.md": {
+     "bytes": 9666,
+     "sha256": "c30ff06a56b0e5c25f7a8b77475a080973ce9c7949a0a4c4146f61000e4c8f13"
+    },
+    "build-bridge-v1.1.mjs": {
+     "bytes": 36319,
+     "sha256": "89ba3e6ba518942cf2d53e0c281e0d0a41421febc48a2a56fe1f951955370098"
+    },
+    "bridge-places-v1.1.jsonl": {
+     "bytes": 1998755,
+     "sha256": "9a0dc88362101a3400fc1bd886f35606f3d230a34277cde3b3f1e64bdf134460"
+    },
+    "receipt-v1.1.json": {
+     "bytes": 38417,
+     "sha256": "7143e17fb073e97b90f1217f15c4312252139cb6fb92645ffc975f0a3af75616"
+    },
+    "verify-bridge-v1.1.mjs": {
+     "bytes": 15860,
+     "sha256": "139cf39662a14f6a6f1484853dee44db514e3f3678d7f12643e9972e85ef5b22"
+    },
+    "verify-receipt-v1.1.json": {
+     "bytes": 1636,
+     "sha256": "6471344bbd56345ec652a3cef35243259d89bdb1c50b6e7c6fd55b4652635b16"
+    }
+   }
+  }
+ },
+ "added_in_v1_1": {
+  "fields": {
+   "on_each_piece": [
+    "english_tahot_as_written",
+    "english_tahot_as_written_from"
+   ],
+   "on_each_line": [
+    "translation_columns_as_tahot_writes_them"
+   ]
+  },
+  "column_3_heading_as_step_writes_it": "Translation",
+  "lines_equal_to_v1_without_the_added_fields": {
+   "axis": "lines",
+   "lines": 1173,
+   "v1_lines": 1173,
+   "sha256_without_the_added_fields": "c943710322d573b5587c0b699b1c39a531fd0715cbf8b707743023ecfcfa89a3"
+  },
+  "form_rows_made_again_equal_v1": {
+   "form-rows-v1.jsonl": true,
+   "form-rows-not-landed-v1.jsonl": true,
+   "written_again": false
+  },
+  "marks_off_proof": {
+   "axis": "pieces",
+   "pieces": 1936,
+   "marks_off_gives_v1s_english": 1936,
+   "marks_off_does_not": 0,
+   "part_is_v1s_english_byte_for_byte": 918,
+   "part_differs_from_v1s_english_only_by_spaces_at_its_ends": 792,
+   "part_holds_a_square_bracket": 160,
+   "part_holds_an_angle_bracket": 70,
+   "part_holds_both_kinds": 4,
+   "part_holds_a_bracket_of_either_kind": 226
+  },
+  "pieces_where_marks_off_is_not_v1s_english": [],
+  "marks_in_the_parts_by_mark": {
+   "axis": "characters, over the parts of all pieces",
+   "counts": {
+    "!": 6,
+    "'": 1,
+    "-": 47,
+    ".": 18,
+    "<": 70,
+    ">": 70,
+    "?": 3,
+    "[": 163,
+    "]": 163,
+    "¿": 7
+   }
+  },
+  "breaks_at_the_pieced_places_rows": {
+   "axis": "English parts of letterless Hebrew parts",
+   "parts": 1,
+   "holding_a_letter_of_english": 0,
+   "those": []
+  },
+  "places_by_class": {
+   "axis": "places",
+   "counts": {
+    "THROUGH_ONE_LETTER": 748,
+    "STEP_WRITES_OUR_SPELLING": 236,
+    "SAME_LETTERS": 51,
+    "READ_FORM_OF_TWO_OR_MORE_WORDS": 27,
+    "HELD_TWO_OR_MORE_LETTERS": 32,
+    "HELD_ONE_LETTER_AT_A_SEAM": 26,
+    "THE_SOURCES_JOIN_OUR_WORDS": 46,
+    "NO_STEP_ROW": 1,
+    "WRITTEN_NOT_READ": 6
+   }
+  },
+  "pieces_by_class": {
+   "axis": "pieces",
+   "counts": {
+    "THROUGH_ONE_LETTER": 1310,
+    "STEP_WRITES_OUR_SPELLING": 516,
+    "SAME_LETTERS": 110
+   }
+  },
+  "places_by_class_and_use": {
+   "axis": "places",
+   "counts": {
+    "HELD_ONE_LETTER_AT_A_SEAM / NO_PIECES": 26,
+    "HELD_TWO_OR_MORE_LETTERS / NO_PIECES": 32,
+    "NO_STEP_ROW / NO_PIECES": 1,
+    "READ_FORM_OF_TWO_OR_MORE_WORDS / NO_PIECES": 27,
+    "SAME_LETTERS / BESIDE_THE_LATTICES_PIECES": 5,
+    "SAME_LETTERS / NEW_PIECES": 46,
+    "STEP_WRITES_OUR_SPELLING / BESIDE_THE_LATTICES_PIECES": 30,
+    "STEP_WRITES_OUR_SPELLING / NEW_PIECES": 206,
+    "THE_SOURCES_JOIN_OUR_WORDS / NO_PIECES": 46,
+    "THROUGH_ONE_LETTER / NEW_PIECES": 748,
+    "WRITTEN_NOT_READ / NO_PIECES": 6
+   }
+  },
+  "places_by_class_and_rows": {
+   "axis": "places",
+   "counts": {
+    "HELD_ONE_LETTER_AT_A_SEAM / 1 TAHOT rows": 26,
+    "HELD_TWO_OR_MORE_LETTERS / 1 TAHOT rows": 32,
+    "NO_STEP_ROW / 0 TAHOT rows": 1,
+    "READ_FORM_OF_TWO_OR_MORE_WORDS / 1 TAHOT rows": 16,
+    "READ_FORM_OF_TWO_OR_MORE_WORDS / 2 TAHOT rows": 10,
+    "READ_FORM_OF_TWO_OR_MORE_WORDS / 3 TAHOT rows": 1,
+    "SAME_LETTERS / 1 TAHOT rows": 5,
+    "SAME_LETTERS / 2 TAHOT rows": 46,
+    "STEP_WRITES_OUR_SPELLING / 1 TAHOT rows": 236,
+    "THE_SOURCES_JOIN_OUR_WORDS / 1 TAHOT rows": 46,
+    "THROUGH_ONE_LETTER / 1 TAHOT rows": 748,
+    "WRITTEN_NOT_READ / 1 TAHOT rows": 6
+   }
+  },
+  "reconciliation": {
+   "the_serving_lanes_794_read_as": "places of use NEW_PIECES whose class is not STEP_WRITES_OUR_SPELLING",
+   "places": 794,
+   "places_by_class": {
+    "THROUGH_ONE_LETTER": 748,
+    "SAME_LETTERS": 46
+   },
+   "places_by_class_and_rows": {
+    "THROUGH_ONE_LETTER / 1 TAHOT rows": 748,
+    "SAME_LETTERS / 2 TAHOT rows": 46
+   },
+   "pieces": 1408,
+   "pieces_holding_a_square_bracket": 134,
+   "pieces_holding_an_angle_bracket": 52,
+   "pieces_holding_a_bracket_of_either_kind": 183,
+   "places_with_a_piece_holding_a_bracket": 182,
+   "step_writes_our_spelling_by_use": {
+    "BESIDE_THE_LATTICES_PIECES": 30,
+    "NEW_PIECES": 206
+   },
+   "same_letters_by_use": {
+    "BESIDE_THE_LATTICES_PIECES": 5,
+    "NEW_PIECES": 46
+   },
+   "through_one_letter_by_use": {
+    "NEW_PIECES": 748
+   },
+   "the_difference_named": {
+    "SAME_LETTERS_beside_the_lattices_pieces": [
+     {
+      "book": "genesis",
+      "ref": "14:2",
+      "place": "14:2:16",
+      "our_form": "צְבוֹיִ֔ם",
+      "tahot_rows": [
+       "Gen.14.2#16=Q(k)"
+      ],
+      "lattice_pieces_now": 1
+     },
+     {
+      "book": "numbers",
+      "ref": "7:59",
+      "place": "7:59:17",
+      "our_form": "פְּדָהצֽוּר",
+      "tahot_rows": [
+       "Num.7.59#17=L(AH+B)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "song-of-songs",
+      "ref": "8:6",
+      "place": "8:6:18",
+      "our_form": "שַׁלְהֶ֥בֶתְיָֽה",
+      "tahot_rows": [
+       "Sng.8.6#18=L"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "i-chronicles",
+      "ref": "15:13",
+      "place": "15:13:2",
+      "our_form": "לְמַבָּרִ֥אשׁוֹנָ֖ה",
+      "tahot_rows": [
+       "1Ch.15.13#02=L"
+      ],
+      "lattice_pieces_now": 4
+     },
+     {
+      "book": "ii-chronicles",
+      "ref": "30:3",
+      "place": "30:3:11",
+      "our_form": "לְמַדַּ֔י",
+      "tahot_rows": [
+       "2Ch.30.3#11=L"
+      ],
+      "lattice_pieces_now": 3
+     }
+    ],
+    "STEP_WRITES_OUR_SPELLING_beside_the_lattices_pieces": [
+     {
+      "book": "genesis",
+      "ref": "9:21",
+      "place": "9:21:7",
+      "our_form": "אׇהֳלֹֽה",
+      "tahot_rows": [
+       "Gen.9.21#07=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "genesis",
+      "ref": "12:8",
+      "place": "12:8:8",
+      "our_form": "אׇהֳלֹ֑ה",
+      "tahot_rows": [
+       "Gen.12.8#08=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "genesis",
+      "ref": "33:4",
+      "place": "33:4:7",
+      "our_form": "צַוָּארָ֖ו",
+      "tahot_rows": [
+       "Gen.33.4#07=Q(k)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "genesis",
+      "ref": "35:21",
+      "place": "35:21:4",
+      "our_form": "אׇֽהֳלֹ֔ה",
+      "tahot_rows": [
+       "Gen.35.21#04=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "exodus",
+      "ref": "32:17",
+      "place": "32:17:6",
+      "our_form": "בְּרֵעֹ֑ה",
+      "tahot_rows": [
+       "Exo.32.17#06=Q(K)"
+      ],
+      "lattice_pieces_now": 3
+     },
+     {
+      "book": "exodus",
+      "ref": "35:11",
+      "place": "35:11:12",
+      "our_form": "בְּרִיחָ֕ו",
+      "tahot_rows": [
+       "Exo.35.11#12=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "exodus",
+      "ref": "36:21",
+      "place": "36:21:2",
+      "our_form": "אַמֹּ֖ת",
+      "tahot_rows": [
+       "Exo.36.21#02=L(abh)"
+      ],
+      "lattice_pieces_now": 1
+     },
+     {
+      "book": "leviticus",
+      "ref": "23:13",
+      "place": "23:13:11",
+      "our_form": "וְנִסְכֹּ֥ה",
+      "tahot_rows": [
+       "Lev.23.13#11=Q(K)"
+      ],
+      "lattice_pieces_now": 3
+     },
+     {
+      "book": "numbers",
+      "ref": "3:51",
+      "place": "3:51:5",
+      "our_form": "הַפְּדֻיִ֛ם",
+      "tahot_rows": [
+       "Num.3.51#05=Q(k)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "deuteronomy",
+      "ref": "27:10",
+      "place": "27:10:7",
+      "our_form": "מִצְוֺתָו֙",
+      "tahot_rows": [
+       "Deu.27.10#07=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "i-samuel",
+      "ref": "3:18",
+      "place": "3:18:14",
+      "our_form": "בְּעֵינָ֖ו",
+      "tahot_rows": [
+       "1Sa.3.18#14=Q(K)"
+      ],
+      "lattice_pieces_now": 3
+     },
+     {
+      "book": "i-samuel",
+      "ref": "18:14",
+      "place": "18:14:4",
+      "our_form": "דְּרָכָ֖ו",
+      "tahot_rows": [
+       "1Sa.18.14#04=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "i-samuel",
+      "ref": "18:22",
+      "place": "18:22:4",
+      "our_form": "עֲבָדָ֗ו",
+      "tahot_rows": [
+       "1Sa.18.22#04=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "ii-kings",
+      "ref": "10:2",
+      "place": "10:2:2",
+      "our_form": "כְּבֹ֨א",
+      "tahot_rows": [
+       "2Ki.10.2#02=LB(ah)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "ii-kings",
+      "ref": "19:23",
+      "place": "19:23:21",
+      "our_form": "קִצֹּ֔ה",
+      "tahot_rows": [
+       "2Ki.19.23#21=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "ii-kings",
+      "ref": "20:13",
+      "place": "20:13:8",
+      "our_form": "נְכֹתֹ֡ה",
+      "tahot_rows": [
+       "2Ki.20.13#08=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "jeremiah",
+      "ref": "2:3",
+      "place": "2:3:5",
+      "our_form": "תְּבוּאָתֹ֑ה",
+      "tahot_rows": [
+       "Jer.2.3#05=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "jeremiah",
+      "ref": "22:18",
+      "place": "22:18:24",
+      "our_form": "הֹדֹֽה",
+      "tahot_rows": [
+       "Jer.22.18#24=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "ezekiel",
+      "ref": "3:20",
+      "place": "3:20:18",
+      "our_form": "צִדְקֹתָו֙",
+      "tahot_rows": [
+       "Ezk.3.20#18=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "ezekiel",
+      "ref": "31:18",
+      "place": "31:18:25",
+      "our_form": "הֲמוֹנֹ֔ה",
+      "tahot_rows": [
+       "Ezk.31.18#25=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "ezekiel",
+      "ref": "32:32",
+      "place": "32:32:15",
+      "our_form": "הֲמוֹנֹ֔ה",
+      "tahot_rows": [
+       "Ezk.32.32#15=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "ezekiel",
+      "ref": "39:11",
+      "place": "39:11:24",
+      "our_form": "הֲמוֹנֹ֔ה",
+      "tahot_rows": [
+       "Ezk.39.11#24=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "ezekiel",
+      "ref": "40:31",
+      "place": "40:31:1",
+      "our_form": "וְאֵלַמָּ֗ו",
+      "tahot_rows": [
+       "Ezk.40.31#01=Q(K)"
+      ],
+      "lattice_pieces_now": 3
+     },
+     {
+      "book": "ezekiel",
+      "ref": "43:11",
+      "place": "43:11:12",
+      "our_form": "צוּרֹתָ֡ו",
+      "tahot_rows": [
+       "Ezk.43.11#12=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "habakkuk",
+      "ref": "3:4",
+      "place": "3:4:9",
+      "our_form": "עֻזֹּֽה",
+      "tahot_rows": [
+       "Hab.3.4#09=Q(K)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "zechariah",
+      "ref": "2:8",
+      "place": "2:8:2",
+      "our_form": "אֵלָ֔ו",
+      "tahot_rows": [
+       "Zec.2.4(2.8)#02=Q(k)"
+      ],
+      "lattice_pieces_now": 2
+     },
+     {
+      "book": "proverbs",
+      "ref": "6:13",
+      "place": "6:13:2",
+      "our_form": "בְּ֭עֵינָו",
+      "tahot_rows": [
+       "Pro.6.13#02=Q(K)"
+      ],
+      "lattice_pieces_now": 3
+     },
+     {
+      "book": "proverbs",
+      "ref": "6:13",
+      "place": "6:13:4",
+      "our_form": "בְּרַגְלָ֑ו",
+      "tahot_rows": [
+       "Pro.6.13#04=Q(K)"
+      ],
+      "lattice_pieces_now": 3
+     },
+     {
+      "book": "proverbs",
+      "ref": "23:3",
+      "place": "23:3:2",
+      "our_form": "תִּ֭תְאָו",
+      "tahot_rows": [
+       "Pro.23.3#02=Q(K)"
+      ],
+      "lattice_pieces_now": 1
+     },
+     {
+      "book": "lamentations",
+      "ref": "3:25",
+      "place": "3:25:3",
+      "our_form": "לְקֹוָ֔ו",
+      "tahot_rows": [
+       "Lam.3.25#03=Q(K)"
+      ],
+      "lattice_pieces_now": 3
+     }
+    ],
+    "THROUGH_ONE_LETTER_beside_the_lattices_pieces": []
+   }
+  },
+  "examples": [
+   {
+    "why_chosen": "named in the ask: 1 Samuel 26:7 word 15",
+    "book": "i-samuel",
+    "ref": "26:7",
+    "place": "26:7:15",
+    "class": "STEP_WRITES_OUR_SPELLING",
+    "use": "NEW_PIECES",
+    "our_form": "מְרַֽאֲשֹׁתָ֑ו",
+    "tahot_rows": [
+     "1Sa.26.7#15=Q(K)"
+    ],
+    "translation_columns_as_tahot_writes_them": [
+     "[the] place of head/ his"
+    ],
+    "pieces": [
+     {
+      "index": 0,
+      "hebrew": "מְרַֽאֲשֹׁתָ֑",
+      "tag": "H4763",
+      "english_tahot_v1": "the place of head",
+      "english_tahot_as_written": "[the] place of head"
+     },
+     {
+      "index": 1,
+      "hebrew": "ו",
+      "tag": "H9023",
+      "english_tahot_v1": "his",
+      "english_tahot_as_written": " his"
+     }
+    ],
+    "pieces_as_written_ends_trimmed_joined_by_plus": "[the] place of head + his"
+   },
+   {
+    "why_chosen": "of the 794: the first THROUGH_ONE_LETTER place in file order whose pieces hold a square bracket",
+    "book": "genesis",
+    "ref": "35:5",
+    "place": "35:5:8",
+    "class": "THROUGH_ONE_LETTER",
+    "use": "NEW_PIECES",
+    "our_form": "סְבִיב֣וֹתֵיהֶ֔ם",
+    "tahot_rows": [
+     "Gen.35.5#08=L"
+    ],
+    "translation_columns_as_tahot_writes_them": [
+     "[were] around/ them"
+    ],
+    "pieces": [
+     {
+      "index": 0,
+      "hebrew": "סְבִיב֣וֹתֵי",
+      "tag": "H5439G",
+      "english_tahot_v1": "were around",
+      "english_tahot_as_written": "[were] around"
+     },
+     {
+      "index": 1,
+      "hebrew": "הֶ֔ם",
+      "tag": "H9038",
+      "english_tahot_v1": "them",
+      "english_tahot_as_written": " them"
+     }
+    ],
+    "pieces_as_written_ends_trimmed_joined_by_plus": "[were] around + them"
+   },
+   {
+    "why_chosen": "of the 794: the first THROUGH_ONE_LETTER place in file order whose pieces hold an angle bracket",
+    "book": "genesis",
+    "ref": "8:20",
+    "place": "8:20:8",
+    "class": "THROUGH_ONE_LETTER",
+    "use": "NEW_PIECES",
+    "our_form": "הַטְּהֹרָ֗ה",
+    "tahot_rows": [
+     "Gen.8.20#08=L"
+    ],
+    "translation_columns_as_tahot_writes_them": [
+     "<the>/ clean"
+    ],
+    "pieces": [
+     {
+      "index": 0,
+      "hebrew": "הַ",
+      "tag": "H9009",
+      "english_tahot_v1": "the",
+      "english_tahot_as_written": "<the>"
+     },
+     {
+      "index": 1,
+      "hebrew": "טְּהֹרָ֗ה",
+      "tag": "H2889",
+      "english_tahot_v1": "clean",
+      "english_tahot_as_written": " clean"
+     }
+    ],
+    "pieces_as_written_ends_trimmed_joined_by_plus": "<the> + clean"
+   },
+   {
+    "why_chosen": "of the 794: the first SAME_LETTERS place with NEW_PIECES in file order whose pieces hold a bracket",
+    "book": "ii-samuel",
+    "ref": "16:4",
+    "place": "16:4:8",
+    "class": "SAME_LETTERS",
+    "use": "NEW_PIECES",
+    "our_form": "לִמְפִיבֹ֑שֶׁת",
+    "tahot_rows": [
+     "2Sa.16.4#08=L",
+     "2Sa.16.4#09=L"
+    ],
+    "translation_columns_as_tahot_writes_them": [
+     "[belonged] to/ Mephi-",
+     "-bosheth"
+    ],
+    "pieces": [
+     {
+      "index": 0,
+      "hebrew": "לִ",
+      "tag": "H9005",
+      "english_tahot_v1": "belonged to",
+      "english_tahot_as_written": "[belonged] to"
+     },
+     {
+      "index": 1,
+      "hebrew": "מְפִי",
+      "tag": "H4648G}+",
+      "english_tahot_v1": "Mephi-",
+      "english_tahot_as_written": " Mephi-"
+     },
+     {
+      "index": 2,
+      "hebrew": "בֹ֑שֶׁת",
+      "tag": "H4648G",
+      "english_tahot_v1": "-bosheth",
+      "english_tahot_as_written": "-bosheth"
+     }
+    ],
+    "pieces_as_written_ends_trimmed_joined_by_plus": "[belonged] to + Mephi- + -bosheth"
+   }
+  ],
+  "pieces_whose_tag_is_not_a_plain_tag": {
+   "axis": "pieces",
+   "amended": "RULE.md, the amendment after the first run",
+   "pieces": 43,
+   "places": 43,
+   "by_class_use_and_role": {
+    "SAME_LETTERS / BESIDE_THE_LATTICES_PIECES / prefix": 1,
+    "SAME_LETTERS / NEW_PIECES / core": 36,
+    "SAME_LETTERS / NEW_PIECES / suffix": 4,
+    "THROUGH_ONE_LETTER / NEW_PIECES / suffix": 2
+   },
+   "pieces_at_the_794": 42,
+   "places_at_the_794": 42,
+   "tags_v1_by_tag": {
+    "H0350}+": 1,
+    "H4444}+": 5,
+    "H4648G}+": 3,
+    "H5018}+": 1,
+    "H5371G}+": 2,
+    "H5371H}+": 1,
+    "H6100}+": 2,
+    "H6214G}+": 6,
+    "H6301}+": 3,
+    "H6701}+": 2,
+    "H7262}+": 16,
+    "H8272H}+": 1
+   },
+   "those": [
+    {
+     "book": "numbers",
+     "ref": "2:12",
+     "place": "2:12:10",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H6701}+",
+     "tag_as_tahot_writes_it": "{H6701}+",
+     "number_it_names": "H6701",
+     "english_tahot_as_written": "Zuri-"
+    },
+    {
+     "book": "numbers",
+     "ref": "7:54",
+     "place": "7:54:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H6301}+",
+     "tag_as_tahot_writes_it": "{H6301}+",
+     "number_it_names": "H6301",
+     "english_tahot_as_written": "Pedah-"
+    },
+    {
+     "book": "numbers",
+     "ref": "7:59",
+     "place": "7:59:17",
+     "class": "SAME_LETTERS",
+     "use": "BESIDE_THE_LATTICES_PIECES",
+     "index": 0,
+     "role": "prefix",
+     "tag_v1": "H6301}+",
+     "tag_as_tahot_writes_it": "{H6301}+",
+     "number_it_names": "H6301",
+     "english_tahot_as_written": "Pedah"
+    },
+    {
+     "book": "numbers",
+     "ref": "10:19",
+     "place": "10:19:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H6701}+",
+     "tag_as_tahot_writes_it": "{H6701}+",
+     "number_it_names": "H6701",
+     "english_tahot_as_written": "Zuri-"
+    },
+    {
+     "book": "numbers",
+     "ref": "10:23",
+     "place": "10:23:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H6301}+",
+     "tag_as_tahot_writes_it": "{H6301}+",
+     "number_it_names": "H6301",
+     "english_tahot_as_written": "Pedah-"
+    },
+    {
+     "book": "numbers",
+     "ref": "33:35",
+     "place": "33:35:4",
+     "class": "THROUGH_ONE_LETTER",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "role": "suffix",
+     "tag_v1": "H6100}+",
+     "tag_as_tahot_writes_it": "{H6100}+",
+     "number_it_names": "H6100",
+     "english_tahot_as_written": " Ezion"
+    },
+    {
+     "book": "numbers",
+     "ref": "33:36",
+     "place": "33:36:2",
+     "class": "THROUGH_ONE_LETTER",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "role": "suffix",
+     "tag_v1": "H6100}+",
+     "tag_as_tahot_writes_it": "{H6100}+",
+     "number_it_names": "H6100",
+     "english_tahot_as_written": " Ezion"
+    },
+    {
+     "book": "i-samuel",
+     "ref": "4:21",
+     "place": "4:21:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H0350}+",
+     "tag_as_tahot_writes_it": "{H0350}+",
+     "number_it_names": "H0350",
+     "english_tahot_as_written": "I-"
+    },
+    {
+     "book": "i-samuel",
+     "ref": "14:49",
+     "place": "14:49:6",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "role": "suffix",
+     "tag_v1": "H4444}+",
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "number_it_names": "H4444",
+     "english_tahot_as_written": " Malki-"
+    },
+    {
+     "book": "i-samuel",
+     "ref": "31:2",
+     "place": "31:2:14",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H4444}+",
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "number_it_names": "H4444",
+     "english_tahot_as_written": "Malki-"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "2:30",
+     "place": "2:30:15",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "role": "suffix",
+     "tag_v1": "H6214G}+",
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "number_it_names": "H6214G",
+     "english_tahot_as_written": " Asah-"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "3:27",
+     "place": "3:27:17",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H6214G}+",
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "number_it_names": "H6214G",
+     "english_tahot_as_written": "Asah-"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "16:1",
+     "place": "16:1:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H4648G}+",
+     "tag_as_tahot_writes_it": "{H4648G}+",
+     "number_it_names": "H4648G",
+     "english_tahot_as_written": "Mephi-"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "16:4",
+     "place": "16:4:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "role": "suffix",
+     "tag_v1": "H4648G}+",
+     "tag_as_tahot_writes_it": "{H4648G}+",
+     "number_it_names": "H4648G",
+     "english_tahot_as_written": " Mephi-"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "21:7",
+     "place": "21:7:4",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H4648G}+",
+     "tag_as_tahot_writes_it": "{H4648G}+",
+     "number_it_names": "H4648G",
+     "english_tahot_as_written": "Mephi-"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "23:24",
+     "place": "23:24:1",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H6214G}+",
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "number_it_names": "H6214G",
+     "english_tahot_as_written": "Asah-"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:17",
+     "place": "18:17:10",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:19",
+     "place": "18:19:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:26",
+     "place": "18:26:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:27",
+     "place": "18:27:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:28",
+     "place": "18:28:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:37",
+     "place": "18:37:21",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "19:4",
+     "place": "19:4:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "19:8",
+     "place": "19:8:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:2",
+     "place": "36:2:5",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:4",
+     "place": "36:4:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:11",
+     "place": "36:11:6",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:12",
+     "place": "36:12:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:13",
+     "place": "36:13:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:22",
+     "place": "36:22:22",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "isaiah",
+     "ref": "37:4",
+     "place": "37:4:7",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "isaiah",
+     "ref": "37:8",
+     "place": "37:8:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H7262}+",
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "number_it_names": "H7262",
+     "english_tahot_as_written": "[the] chief"
+    },
+    {
+     "book": "jeremiah",
+     "ref": "39:3",
+     "place": "39:3:10",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H5371G}+",
+     "tag_as_tahot_writes_it": "{H5371G}+",
+     "number_it_names": "H5371G",
+     "english_tahot_as_written": "Shar-"
+    },
+    {
+     "book": "jeremiah",
+     "ref": "39:3",
+     "place": "39:3:18",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H5371G}+",
+     "tag_as_tahot_writes_it": "{H5371G}+",
+     "number_it_names": "H5371G",
+     "english_tahot_as_written": "Shar-"
+    },
+    {
+     "book": "jeremiah",
+     "ref": "39:9",
+     "place": "39:9:16",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H5018}+",
+     "tag_as_tahot_writes_it": "{H5018}+",
+     "number_it_names": "H5018",
+     "english_tahot_as_written": "Nebuzar-"
+    },
+    {
+     "book": "jeremiah",
+     "ref": "39:13",
+     "place": "39:13:9",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H5371H}+",
+     "tag_as_tahot_writes_it": "{H5371H}+",
+     "number_it_names": "H5371H",
+     "english_tahot_as_written": "Shar-"
+    },
+    {
+     "book": "zechariah",
+     "ref": "7:2",
+     "place": "7:2:4",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H8272H}+",
+     "tag_as_tahot_writes_it": "{H8272H}+",
+     "number_it_names": "H8272H",
+     "english_tahot_as_written": "Shar-"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "2:16",
+     "place": "2:16:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "role": "suffix",
+     "tag_v1": "H6214G}+",
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "number_it_names": "H6214G",
+     "english_tahot_as_written": " Asah-"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "8:33",
+     "place": "8:33:14",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H4444}+",
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "number_it_names": "H4444",
+     "english_tahot_as_written": "Malki-"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "9:39",
+     "place": "9:39:14",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H4444}+",
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "number_it_names": "H4444",
+     "english_tahot_as_written": "Malki-"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "10:2",
+     "place": "10:2:14",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H4444}+",
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "number_it_names": "H4444",
+     "english_tahot_as_written": "Malki-"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "11:26",
+     "place": "11:26:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H6214G}+",
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "number_it_names": "H6214G",
+     "english_tahot_as_written": "Asah-"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "27:7",
+     "place": "27:7:4",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "role": "core",
+     "tag_v1": "H6214G}+",
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "number_it_names": "H6214G",
+     "english_tahot_as_written": "Asah-"
+    }
+   ]
+  },
+  "item_p_v208_third_list": {
+   "axis": "places",
+   "list_lines": 1159,
+   "list_places": 1159,
+   "not_a_bridge_place": 4,
+   "bridge_places_in_it": 1155,
+   "by_class_and_use": {
+    "HELD_ONE_LETTER_AT_A_SEAM / NO_PIECES": 26,
+    "HELD_TWO_OR_MORE_LETTERS / NO_PIECES": 32,
+    "NO_STEP_ROW / NO_PIECES": 1,
+    "READ_FORM_OF_TWO_OR_MORE_WORDS / NO_PIECES": 14,
+    "SAME_LETTERS / NEW_PIECES": 46,
+    "STEP_WRITES_OUR_SPELLING / BESIDE_THE_LATTICES_PIECES": 30,
+    "STEP_WRITES_OUR_SPELLING / NEW_PIECES": 206,
+    "THE_SOURCES_JOIN_OUR_WORDS / NO_PIECES": 46,
+    "THROUGH_ONE_LETTER / NEW_PIECES": 748,
+    "WRITTEN_NOT_READ / NO_PIECES": 6
+   },
+   "with_pieces_in_v1_1": 1030,
+   "held_without_pieces": 125,
+   "of_the_794_in_it": 794
+  }
+ },
+ "added_in_v1_2": {
+  "fields": {
+   "on_each_piece_right_after_tag": [
+    "tag_as_tahot_writes_it",
+    "tag_also_covers_the_next_hebrew_word",
+    "the_next_hebrew_word_it_covers"
+   ]
+  },
+  "mended_fields": [
+   "pieces.N.tag",
+   "pieces.N.role",
+   "main_tags",
+   "main_glosses_tbesh",
+   "store.numbers",
+   "store.under_key_ours",
+   "store.under_key_sources"
+  ],
+  "steps_key_for_its_tag_column": {
+   "line_whose_first_column_is": "dStrongs",
+   "sentences_held_byte_for_byte": [
+    "Lexical tags for each element of the Hebrew words, including prefixes and suffixes, with the Root in {curly brackets}.",
+    "A \"+\" indicates the same tag also covers the next Hebrew word."
+   ],
+   "files_holding_them": 4
+  },
+  "tag_parts_by_shape": {
+   "axis": "tag parts (a row's tag column cut at /, before any backslash, end spaces set aside)",
+   "every_tahot_row": {
+    "rows": 305652,
+    "lettered": {
+     "BRACED": 304890,
+     "BRACED_WITH_PLUS": 785,
+     "PLAIN": 163619
+    },
+    "letterless": {
+     "EMPTY": 33,
+     "PLAIN": 8
+    }
+   },
+   "the_rows_tied_to_the_bridges_lines": {
+    "rows": 1207,
+    "lettered": {
+     "BRACED": 1193,
+     "BRACED_WITH_PLUS": 43,
+     "PLAIN": 938
+    },
+    "letterless": {
+     "EMPTY": 24,
+     "PLAIN": 8
+    }
+   },
+   "the_pieces": {
+    "axis": "pieces",
+    "counts": {
+     "BRACED": 1042,
+     "BRACED_WITH_PLUS": 43,
+     "PLAIN": 851
+    }
+   }
+  },
+  "the_class": {
+   "axis": "pieces",
+   "named": "BRACED_WITH_PLUS: a lettered piece whose tag part is {H...}+",
+   "pieces": 43,
+   "places": 43,
+   "pieces_at_pieced_places": 43,
+   "pieces_at_held_places": 0,
+   "equal_to_v1_1s_named_pieces": {
+    "file": "bridge-v1.1/receipt-v1.1.json",
+    "field": "added_in_v1_1.pieces_whose_tag_is_not_a_plain_tag.those",
+    "pieces": 43,
+    "equal": true
+   },
+   "by_class_and_use": {
+    "SAME_LETTERS / BESIDE_THE_LATTICES_PIECES": 1,
+    "SAME_LETTERS / NEW_PIECES": 40,
+    "THROUGH_ONE_LETTER / NEW_PIECES": 2
+   },
+   "by_the_next_hebrew_word": {
+    "IN_THIS_PLACE_FROM_ITS_NEXT_ROW": 40,
+    "IN_THIS_PLACE_FROM_THE_SAME_ROW": 1,
+    "NOT_IN_THIS_PLACE": 2
+   },
+   "the_next_words_tag_names_the_same_number": {
+    "true": 43
+   },
+   "at_the_794": 42,
+   "those": [
+    {
+     "book": "numbers",
+     "ref": "2:12",
+     "place": "2:12:10",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H6701}+",
+     "tag_v1_1": "H6701}+",
+     "tag_v1_2": "H6701",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Num.2.12#11=L",
+      "part": 0,
+      "hebrew_tahot": "שַׁדָּֽי",
+      "tag_as_tahot_writes_it": "{H6701}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "numbers",
+     "ref": "7:54",
+     "place": "7:54:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H6301}+",
+     "tag_v1_1": "H6301}+",
+     "tag_v1_2": "H6301",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Num.7.54#09=L",
+      "part": 0,
+      "hebrew_tahot": "צֽוּר",
+      "tag_as_tahot_writes_it": "{H6301}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "numbers",
+     "ref": "7:59",
+     "place": "7:59:17",
+     "class": "SAME_LETTERS",
+     "use": "BESIDE_THE_LATTICES_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H6301}+",
+     "tag_v1_1": "H6301}+",
+     "tag_v1_2": "H6301",
+     "role_v1_1": "prefix",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Num.7.59#17=L(AH+B)",
+      "part": 2,
+      "hebrew_tahot": "צֽוּר",
+      "tag_as_tahot_writes_it": "{H6301}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_THE_SAME_ROW"
+    },
+    {
+     "book": "numbers",
+     "ref": "10:19",
+     "place": "10:19:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H6701}+",
+     "tag_v1_1": "H6701}+",
+     "tag_v1_2": "H6701",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Num.10.19#09=L",
+      "part": 0,
+      "hebrew_tahot": "שַׁדָּֽי",
+      "tag_as_tahot_writes_it": "{H6701}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "numbers",
+     "ref": "10:23",
+     "place": "10:23:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H6301}+",
+     "tag_v1_1": "H6301}+",
+     "tag_v1_2": "H6301",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Num.10.23#09=L",
+      "part": 0,
+      "hebrew_tahot": "צֽוּר",
+      "tag_as_tahot_writes_it": "{H6301}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "numbers",
+     "ref": "33:35",
+     "place": "33:35:4",
+     "class": "THROUGH_ONE_LETTER",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "tag_as_tahot_writes_it": "{H6100}+",
+     "tag_v1_1": "H6100}+",
+     "tag_v1_2": "H6100",
+     "role_v1_1": "suffix",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Num.33.35#05=L",
+      "part": 0,
+      "hebrew_tahot": "גָּֽבֶר",
+      "tag_as_tahot_writes_it": "{H6100}",
+      "names_the_same_number": true,
+      "piece_of_this_place": null
+     },
+     "the_next_hebrew_word_is": "NOT_IN_THIS_PLACE"
+    },
+    {
+     "book": "numbers",
+     "ref": "33:36",
+     "place": "33:36:2",
+     "class": "THROUGH_ONE_LETTER",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "tag_as_tahot_writes_it": "{H6100}+",
+     "tag_v1_1": "H6100}+",
+     "tag_v1_2": "H6100",
+     "role_v1_1": "suffix",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Num.33.36#03=L",
+      "part": 0,
+      "hebrew_tahot": "גָּ֑בֶר",
+      "tag_as_tahot_writes_it": "{H6100}",
+      "names_the_same_number": true,
+      "piece_of_this_place": null
+     },
+     "the_next_hebrew_word_is": "NOT_IN_THIS_PLACE"
+    },
+    {
+     "book": "i-samuel",
+     "ref": "4:21",
+     "place": "4:21:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H0350}+",
+     "tag_v1_1": "H0350}+",
+     "tag_v1_2": "H0350",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "1Sa.4.21#04=L",
+      "part": 0,
+      "hebrew_tahot": "כָבוֹד֙",
+      "tag_as_tahot_writes_it": "{H0350}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "i-samuel",
+     "ref": "14:49",
+     "place": "14:49:6",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "tag_v1_1": "H4444}+",
+     "tag_v1_2": "H4444",
+     "role_v1_1": "suffix",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "1Sa.14.49#07=L",
+      "part": 0,
+      "hebrew_tahot": "שׁ֑וּעַ",
+      "tag_as_tahot_writes_it": "{H4444}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 2
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "i-samuel",
+     "ref": "31:2",
+     "place": "31:2:14",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "tag_v1_1": "H4444}+",
+     "tag_v1_2": "H4444",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "1Sa.31.2#15=L",
+      "part": 0,
+      "hebrew_tahot": "שׁ֖וּעַ",
+      "tag_as_tahot_writes_it": "{H4444}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "2:30",
+     "place": "2:30:15",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "tag_v1_1": "H6214G}+",
+     "tag_v1_2": "H6214G",
+     "role_v1_1": "suffix",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Sa.2.30#16=L",
+      "part": 0,
+      "hebrew_tahot": "אֵֽל",
+      "tag_as_tahot_writes_it": "{H6214G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 2
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "3:27",
+     "place": "3:27:17",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "tag_v1_1": "H6214G}+",
+     "tag_v1_2": "H6214G",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Sa.3.27#18=L",
+      "part": 0,
+      "hebrew_tahot": "אֵ֥ל",
+      "tag_as_tahot_writes_it": "{H6214G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "16:1",
+     "place": "16:1:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H4648G}+",
+     "tag_v1_1": "H4648G}+",
+     "tag_v1_2": "H4648G",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Sa.16.1#09=L",
+      "part": 0,
+      "hebrew_tahot": "בֹ֖שֶׁת",
+      "tag_as_tahot_writes_it": "{H4648G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "16:4",
+     "place": "16:4:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "tag_as_tahot_writes_it": "{H4648G}+",
+     "tag_v1_1": "H4648G}+",
+     "tag_v1_2": "H4648G",
+     "role_v1_1": "suffix",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Sa.16.4#09=L",
+      "part": 0,
+      "hebrew_tahot": "בֹ֑שֶׁת",
+      "tag_as_tahot_writes_it": "{H4648G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 2
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "21:7",
+     "place": "21:7:4",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H4648G}+",
+     "tag_v1_1": "H4648G}+",
+     "tag_v1_2": "H4648G",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Sa.21.7#05=L",
+      "part": 0,
+      "hebrew_tahot": "בֹ֖שֶׁת",
+      "tag_as_tahot_writes_it": "{H4648G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-samuel",
+     "ref": "23:24",
+     "place": "23:24:1",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "tag_v1_1": "H6214G}+",
+     "tag_v1_2": "H6214G",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Sa.23.24#02=L",
+      "part": 0,
+      "hebrew_tahot": "אֵ֥ל",
+      "tag_as_tahot_writes_it": "{H6214G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:17",
+     "place": "18:17:10",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Ki.18.17#11=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֨ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:19",
+     "place": "18:19:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Ki.18.19#04=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֔ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:26",
+     "place": "18:26:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Ki.18.26#09=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֗ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:27",
+     "place": "18:27:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Ki.18.27#04=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֗ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:28",
+     "place": "18:28:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Ki.18.28#03=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֔ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "18:37",
+     "place": "18:37:21",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Ki.18.37#22=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵֽה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "19:4",
+     "place": "19:4:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Ki.19.4#09=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֗ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "ii-kings",
+     "ref": "19:8",
+     "place": "19:8:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "2Ki.19.8#03=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֔ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:2",
+     "place": "36:2:5",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Isa.36.2#06=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֨ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:4",
+     "place": "36:4:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Isa.36.4#04=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֔ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:11",
+     "place": "36:11:6",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Isa.36.11#07=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֗ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:12",
+     "place": "36:12:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Isa.36.12#03=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֗ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:13",
+     "place": "36:13:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Isa.36.13#03=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֔ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "isaiah",
+     "ref": "36:22",
+     "place": "36:22:22",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Isa.36.22#23=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵֽה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "isaiah",
+     "ref": "37:4",
+     "place": "37:4:7",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Isa.37.4#08=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֗ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "isaiah",
+     "ref": "37:8",
+     "place": "37:8:2",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H7262}+",
+     "tag_v1_1": "H7262}+",
+     "tag_v1_2": "H7262",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Isa.37.8#03=L",
+      "part": 0,
+      "hebrew_tahot": "שָׁקֵ֔ה",
+      "tag_as_tahot_writes_it": "{H7262}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "jeremiah",
+     "ref": "39:3",
+     "place": "39:3:10",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H5371G}+",
+     "tag_v1_1": "H5371G}+",
+     "tag_v1_2": "H5371G",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Jer.39.3#11=L",
+      "part": 0,
+      "hebrew_tahot": "אֶ֠צֶר",
+      "tag_as_tahot_writes_it": "{H5371G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "jeremiah",
+     "ref": "39:3",
+     "place": "39:3:18",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H5371G}+",
+     "tag_v1_1": "H5371G}+",
+     "tag_v1_2": "H5371G",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Jer.39.3#20=L",
+      "part": 0,
+      "hebrew_tahot": "אֶ֙צֶר֙",
+      "tag_as_tahot_writes_it": "{H5371G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "jeremiah",
+     "ref": "39:9",
+     "place": "39:9:16",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H5018}+",
+     "tag_v1_1": "H5018}+",
+     "tag_v1_2": "H5018",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Jer.39.9#17=L",
+      "part": 0,
+      "hebrew_tahot": "אֲדָ֥ן",
+      "tag_as_tahot_writes_it": "{H5018}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "jeremiah",
+     "ref": "39:13",
+     "place": "39:13:9",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H5371H}+",
+     "tag_v1_1": "H5371H}+",
+     "tag_v1_2": "H5371H",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Jer.39.13#10=L",
+      "part": 0,
+      "hebrew_tahot": "אֶ֖צֶר",
+      "tag_as_tahot_writes_it": "{H5371H}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "zechariah",
+     "ref": "7:2",
+     "place": "7:2:4",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H8272H}+",
+     "tag_v1_1": "H8272H}+",
+     "tag_v1_2": "H8272H",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "Zec.7.2#05=L",
+      "part": 0,
+      "hebrew_tahot": "אֶ֕צֶר",
+      "tag_as_tahot_writes_it": "{H8272H}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "2:16",
+     "place": "2:16:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 1,
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "tag_v1_1": "H6214G}+",
+     "tag_v1_2": "H6214G",
+     "role_v1_1": "suffix",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "1Ch.2.16#09=L",
+      "part": 0,
+      "hebrew_tahot": "אֵ֖ל",
+      "tag_as_tahot_writes_it": "{H6214G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 2
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "8:33",
+     "place": "8:33:14",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "tag_v1_1": "H4444}+",
+     "tag_v1_2": "H4444",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "1Ch.8.33#15=L",
+      "part": 0,
+      "hebrew_tahot": "שׁ֔וּעַ",
+      "tag_as_tahot_writes_it": "{H4444}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "9:39",
+     "place": "9:39:14",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "tag_v1_1": "H4444}+",
+     "tag_v1_2": "H4444",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "1Ch.9.39#15=L",
+      "part": 0,
+      "hebrew_tahot": "שׁ֔וּעַ",
+      "tag_as_tahot_writes_it": "{H4444}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "10:2",
+     "place": "10:2:14",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H4444}+",
+     "tag_v1_1": "H4444}+",
+     "tag_v1_2": "H4444",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "1Ch.10.2#15=L",
+      "part": 0,
+      "hebrew_tahot": "שׁ֖וּעַ",
+      "tag_as_tahot_writes_it": "{H4444}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "11:26",
+     "place": "11:26:3",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "tag_v1_1": "H6214G}+",
+     "tag_v1_2": "H6214G",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "1Ch.11.26#04=L",
+      "part": 0,
+      "hebrew_tahot": "אֵל֙",
+      "tag_as_tahot_writes_it": "{H6214G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    },
+    {
+     "book": "i-chronicles",
+     "ref": "27:7",
+     "place": "27:7:4",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "index": 0,
+     "tag_as_tahot_writes_it": "{H6214G}+",
+     "tag_v1_1": "H6214G}+",
+     "tag_v1_2": "H6214G",
+     "role_v1_1": "core",
+     "role_v1_2": "core",
+     "the_next_hebrew_word_it_covers": {
+      "row": "1Ch.27.7#05=L",
+      "part": 0,
+      "hebrew_tahot": "אֵל֙",
+      "tag_as_tahot_writes_it": "{H6214G}",
+      "names_the_same_number": true,
+      "piece_of_this_place": 1
+     },
+     "the_next_hebrew_word_is": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW"
+    }
+   ]
+  },
+  "what_moved": {
+   "axis": "places, and pieces where named",
+   "role": {
+    "places": 7,
+    "pieces": 13,
+    "at_the_794_places": 6,
+    "those": [
+     {
+      "book": "numbers",
+      "place": "7:59:17",
+      "class": "SAME_LETTERS",
+      "use": "BESIDE_THE_LATTICES_PIECES",
+      "v1_1": [
+       "prefix",
+       "core"
+      ],
+      "v1_2": [
+       "core",
+       "core"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "33:35:4",
+      "class": "THROUGH_ONE_LETTER",
+      "use": "NEW_PIECES",
+      "v1_1": [
+       "core",
+       "suffix"
+      ],
+      "v1_2": [
+       "prefix",
+       "core"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "33:36:2",
+      "class": "THROUGH_ONE_LETTER",
+      "use": "NEW_PIECES",
+      "v1_1": [
+       "core",
+       "suffix"
+      ],
+      "v1_2": [
+       "prefix",
+       "core"
+      ]
+     },
+     {
+      "book": "i-samuel",
+      "place": "14:49:6",
+      "class": "SAME_LETTERS",
+      "use": "NEW_PIECES",
+      "v1_1": [
+       "core",
+       "suffix",
+       "core"
+      ],
+      "v1_2": [
+       "prefix",
+       "core",
+       "core"
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "2:30:15",
+      "class": "SAME_LETTERS",
+      "use": "NEW_PIECES",
+      "v1_1": [
+       "core",
+       "suffix",
+       "core"
+      ],
+      "v1_2": [
+       "prefix",
+       "core",
+       "core"
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "16:4:8",
+      "class": "SAME_LETTERS",
+      "use": "NEW_PIECES",
+      "v1_1": [
+       "core",
+       "suffix",
+       "core"
+      ],
+      "v1_2": [
+       "prefix",
+       "core",
+       "core"
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "2:16:8",
+      "class": "SAME_LETTERS",
+      "use": "NEW_PIECES",
+      "v1_1": [
+       "core",
+       "suffix",
+       "core"
+      ],
+      "v1_2": [
+       "prefix",
+       "core",
+       "core"
+      ]
+     }
+    ]
+   },
+   "tag": {
+    "places": 43,
+    "pieces": 43
+   },
+   "main_tags": {
+    "places": 43,
+    "emptied_in_v1_1": [
+     {
+      "book": "numbers",
+      "place": "33:35:4",
+      "v1_2": [
+       "H6100"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "33:36:2",
+      "v1_2": [
+       "H6100"
+      ]
+     }
+    ],
+    "those": [
+     {
+      "book": "numbers",
+      "place": "2:12:10",
+      "v1_1": [
+       "H6701"
+      ],
+      "v1_2": [
+       "H6701",
+       "H6701"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "7:54:8",
+      "v1_1": [
+       "H6301"
+      ],
+      "v1_2": [
+       "H6301",
+       "H6301"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "7:59:17",
+      "v1_1": [
+       "H6301"
+      ],
+      "v1_2": [
+       "H6301",
+       "H6301"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "10:19:8",
+      "v1_1": [
+       "H6701"
+      ],
+      "v1_2": [
+       "H6701",
+       "H6701"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "10:23:8",
+      "v1_1": [
+       "H6301"
+      ],
+      "v1_2": [
+       "H6301",
+       "H6301"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "33:35:4",
+      "v1_1": [],
+      "v1_2": [
+       "H6100"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "33:36:2",
+      "v1_1": [],
+      "v1_2": [
+       "H6100"
+      ]
+     },
+     {
+      "book": "i-samuel",
+      "place": "4:21:3",
+      "v1_1": [
+       "H0350"
+      ],
+      "v1_2": [
+       "H0350",
+       "H0350"
+      ]
+     },
+     {
+      "book": "i-samuel",
+      "place": "14:49:6",
+      "v1_1": [
+       "H4444"
+      ],
+      "v1_2": [
+       "H4444",
+       "H4444"
+      ]
+     },
+     {
+      "book": "i-samuel",
+      "place": "31:2:14",
+      "v1_1": [
+       "H4444"
+      ],
+      "v1_2": [
+       "H4444",
+       "H4444"
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "2:30:15",
+      "v1_1": [
+       "H6214G"
+      ],
+      "v1_2": [
+       "H6214G",
+       "H6214G"
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "3:27:17",
+      "v1_1": [
+       "H6214G"
+      ],
+      "v1_2": [
+       "H6214G",
+       "H6214G"
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "16:1:8",
+      "v1_1": [
+       "H4648G"
+      ],
+      "v1_2": [
+       "H4648G",
+       "H4648G"
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "16:4:8",
+      "v1_1": [
+       "H4648G"
+      ],
+      "v1_2": [
+       "H4648G",
+       "H4648G"
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "21:7:4",
+      "v1_1": [
+       "H4648G"
+      ],
+      "v1_2": [
+       "H4648G",
+       "H4648G"
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "23:24:1",
+      "v1_1": [
+       "H6214G"
+      ],
+      "v1_2": [
+       "H6214G",
+       "H6214G"
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:17:10",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:19:3",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:26:8",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:27:3",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:28:2",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:37:21",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "19:4:8",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "19:8:2",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:2:5",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:4:3",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:11:6",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:12:2",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:13:2",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:22:22",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "37:4:7",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "37:8:2",
+      "v1_1": [
+       "H7262"
+      ],
+      "v1_2": [
+       "H7262",
+       "H7262"
+      ]
+     },
+     {
+      "book": "jeremiah",
+      "place": "39:3:10",
+      "v1_1": [
+       "H5371G"
+      ],
+      "v1_2": [
+       "H5371G",
+       "H5371G"
+      ]
+     },
+     {
+      "book": "jeremiah",
+      "place": "39:3:18",
+      "v1_1": [
+       "H5371G"
+      ],
+      "v1_2": [
+       "H5371G",
+       "H5371G"
+      ]
+     },
+     {
+      "book": "jeremiah",
+      "place": "39:9:16",
+      "v1_1": [
+       "H5018"
+      ],
+      "v1_2": [
+       "H5018",
+       "H5018"
+      ]
+     },
+     {
+      "book": "jeremiah",
+      "place": "39:13:9",
+      "v1_1": [
+       "H5371H"
+      ],
+      "v1_2": [
+       "H5371H",
+       "H5371H"
+      ]
+     },
+     {
+      "book": "zechariah",
+      "place": "7:2:4",
+      "v1_1": [
+       "H8272H"
+      ],
+      "v1_2": [
+       "H8272H",
+       "H8272H"
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "2:16:8",
+      "v1_1": [
+       "H6214G"
+      ],
+      "v1_2": [
+       "H6214G",
+       "H6214G"
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "8:33:14",
+      "v1_1": [
+       "H4444"
+      ],
+      "v1_2": [
+       "H4444",
+       "H4444"
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "9:39:14",
+      "v1_1": [
+       "H4444"
+      ],
+      "v1_2": [
+       "H4444",
+       "H4444"
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "10:2:14",
+      "v1_1": [
+       "H4444"
+      ],
+      "v1_2": [
+       "H4444",
+       "H4444"
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "11:26:3",
+      "v1_1": [
+       "H6214G"
+      ],
+      "v1_2": [
+       "H6214G",
+       "H6214G"
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "27:7:4",
+      "v1_1": [
+       "H6214G"
+      ],
+      "v1_2": [
+       "H6214G",
+       "H6214G"
+      ]
+     }
+    ]
+   },
+   "main_glosses_tbesh": {
+    "places": 43,
+    "those": [
+     {
+      "book": "numbers",
+      "place": "2:12:10",
+      "v1_1": [
+       {
+        "tag": "H6701",
+        "gloss": "Zurishaddai"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6701",
+        "gloss": "Zurishaddai"
+       },
+       {
+        "tag": "H6701",
+        "gloss": "Zurishaddai"
+       }
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "7:54:8",
+      "v1_1": [
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       },
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       }
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "7:59:17",
+      "v1_1": [
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       },
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       }
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "10:19:8",
+      "v1_1": [
+       {
+        "tag": "H6701",
+        "gloss": "Zurishaddai"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6701",
+        "gloss": "Zurishaddai"
+       },
+       {
+        "tag": "H6701",
+        "gloss": "Zurishaddai"
+       }
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "10:23:8",
+      "v1_1": [
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       },
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       }
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "33:35:4",
+      "v1_1": [],
+      "v1_2": [
+       {
+        "tag": "H6100",
+        "gloss": "Ezion-geber"
+       }
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "33:36:2",
+      "v1_1": [],
+      "v1_2": [
+       {
+        "tag": "H6100",
+        "gloss": "Ezion-geber"
+       }
+      ]
+     },
+     {
+      "book": "i-samuel",
+      "place": "4:21:3",
+      "v1_1": [
+       {
+        "tag": "H0350",
+        "gloss": "Ichabod"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H0350",
+        "gloss": "Ichabod"
+       },
+       {
+        "tag": "H0350",
+        "gloss": "Ichabod"
+       }
+      ]
+     },
+     {
+      "book": "i-samuel",
+      "place": "14:49:6",
+      "v1_1": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       },
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ]
+     },
+     {
+      "book": "i-samuel",
+      "place": "31:2:14",
+      "v1_1": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       },
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "2:30:15",
+      "v1_1": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       },
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "3:27:17",
+      "v1_1": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       },
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "16:1:8",
+      "v1_1": [
+       {
+        "tag": "H4648G",
+        "gloss": "Mephibosheth"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H4648G",
+        "gloss": "Mephibosheth"
+       },
+       {
+        "tag": "H4648G",
+        "gloss": "Mephibosheth"
+       }
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "16:4:8",
+      "v1_1": [
+       {
+        "tag": "H4648G",
+        "gloss": "Mephibosheth"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H4648G",
+        "gloss": "Mephibosheth"
+       },
+       {
+        "tag": "H4648G",
+        "gloss": "Mephibosheth"
+       }
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "21:7:4",
+      "v1_1": [
+       {
+        "tag": "H4648G",
+        "gloss": "Mephibosheth"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H4648G",
+        "gloss": "Mephibosheth"
+       },
+       {
+        "tag": "H4648G",
+        "gloss": "Mephibosheth"
+       }
+      ]
+     },
+     {
+      "book": "ii-samuel",
+      "place": "23:24:1",
+      "v1_1": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       },
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:17:10",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:19:3",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:26:8",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:27:3",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:28:2",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "18:37:21",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "19:4:8",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "ii-kings",
+      "place": "19:8:2",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:2:5",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:4:3",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:11:6",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:12:2",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:13:2",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "36:22:22",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "37:4:7",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "isaiah",
+      "place": "37:8:2",
+      "v1_1": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       },
+       {
+        "tag": "H7262",
+        "gloss": "Rabshakeh"
+       }
+      ]
+     },
+     {
+      "book": "jeremiah",
+      "place": "39:3:10",
+      "v1_1": [
+       {
+        "tag": "H5371G",
+        "gloss": "Nergal-sar-ezer"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H5371G",
+        "gloss": "Nergal-sar-ezer"
+       },
+       {
+        "tag": "H5371G",
+        "gloss": "Nergal-sar-ezer"
+       }
+      ]
+     },
+     {
+      "book": "jeremiah",
+      "place": "39:3:18",
+      "v1_1": [
+       {
+        "tag": "H5371G",
+        "gloss": "Nergal-sar-ezer"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H5371G",
+        "gloss": "Nergal-sar-ezer"
+       },
+       {
+        "tag": "H5371G",
+        "gloss": "Nergal-sar-ezer"
+       }
+      ]
+     },
+     {
+      "book": "jeremiah",
+      "place": "39:9:16",
+      "v1_1": [
+       {
+        "tag": "H5018",
+        "gloss": "Nebuzaradan"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H5018",
+        "gloss": "Nebuzaradan"
+       },
+       {
+        "tag": "H5018",
+        "gloss": "Nebuzaradan"
+       }
+      ]
+     },
+     {
+      "book": "jeremiah",
+      "place": "39:13:9",
+      "v1_1": [
+       {
+        "tag": "H5371H",
+        "gloss": "Nergal-sar-ezer"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H5371H",
+        "gloss": "Nergal-sar-ezer"
+       },
+       {
+        "tag": "H5371H",
+        "gloss": "Nergal-sar-ezer"
+       }
+      ]
+     },
+     {
+      "book": "zechariah",
+      "place": "7:2:4",
+      "v1_1": [
+       {
+        "tag": "H8272H",
+        "gloss": "Sharezer"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H8272H",
+        "gloss": "Sharezer"
+       },
+       {
+        "tag": "H8272H",
+        "gloss": "Sharezer"
+       }
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "2:16:8",
+      "v1_1": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       },
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "8:33:14",
+      "v1_1": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       },
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "9:39:14",
+      "v1_1": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       },
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "10:2:14",
+      "v1_1": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       },
+       {
+        "tag": "H4444",
+        "gloss": "Malchi-shua"
+       }
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "11:26:3",
+      "v1_1": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       },
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ]
+     },
+     {
+      "book": "i-chronicles",
+      "place": "27:7:4",
+      "v1_1": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       },
+       {
+        "tag": "H6214G",
+        "gloss": "Asahel"
+       }
+      ]
+     }
+    ]
+   },
+   "store_numbers": {
+    "places": 2,
+    "those": [
+     {
+      "book": "numbers",
+      "place": "33:35:4",
+      "v1_1": [],
+      "v1_2": [
+       "H6100"
+      ]
+     },
+     {
+      "book": "numbers",
+      "place": "33:36:2",
+      "v1_1": [],
+      "v1_2": [
+       "H6100"
+      ]
+     }
+    ]
+   },
+   "store_under_key_ours": {
+    "places": 1,
+    "those": [
+     {
+      "book": "numbers",
+      "place": "33:36:2",
+      "v1_1": {
+       "rows": 1,
+       "of_the_main_tags_numbers": 0
+      },
+      "v1_2": {
+       "rows": 1,
+       "of_the_main_tags_numbers": 1
+      }
+     }
+    ]
+   },
+   "store_under_key_sources": {
+    "places": 2,
+    "those": [
+     {
+      "book": "numbers",
+      "place": "33:35:4",
+      "v1_1": {
+       "rows": 2,
+       "of_the_main_tags_numbers": 0
+      },
+      "v1_2": {
+       "rows": 2,
+       "of_the_main_tags_numbers": 2
+      }
+     },
+     {
+      "book": "numbers",
+      "place": "33:36:2",
+      "v1_1": {
+       "rows": 1,
+       "of_the_main_tags_numbers": 0
+      },
+      "v1_2": {
+       "rows": 1,
+       "of_the_main_tags_numbers": 1
+      }
+     }
+    ]
+   },
+   "fields_changed_by_field": {
+    "axis": "fields changed (a piece's index written N)",
+    "counts": {
+     "main_glosses_tbesh": 43,
+     "main_tags": 43,
+     "pieces.N.role": 13,
+     "pieces.N.tag": 43,
+     "store.numbers": 2,
+     "store.under_key_ours": 1,
+     "store.under_key_sources": 2
+    }
+   }
+  },
+  "tag_parts_with_white_space_at_an_end": {
+   "axis": "pieces",
+   "note": "read with the white space set aside, as v1 reads them; nothing changed",
+   "pieces": 0,
+   "those": [],
+   "lettered_parts_at_the_rows_tied_to_the_bridges_lines": 0
+  },
+  "after_the_mend": {
+   "axis": "pieces",
+   "pieces_whose_tag_is_not_H_digits_and_letters": 0,
+   "pieces_whose_tag_is_not_the_number_named": 0
+  },
+  "set_back": {
+   "axis": "lines",
+   "lines": 1173,
+   "sha256_set_back": "9a0dc88362101a3400fc1bd886f35606f3d230a34277cde3b3f1e64bdf134460",
+   "v1_1_sha256": "9a0dc88362101a3400fc1bd886f35606f3d230a34277cde3b3f1e64bdf134460",
+   "equal": true,
+   "then_v1_1s_added_fields_off_sha256": "c943710322d573b5587c0b699b1c39a531fd0715cbf8b707743023ecfcfa89a3",
+   "v1_sha256": "c943710322d573b5587c0b699b1c39a531fd0715cbf8b707743023ecfcfa89a3",
+   "v1_1s_receipt_section_made_again_equal": true
+  },
+  "changes_file": {
+   "file": "changes-v1.2.jsonl",
+   "axis": "lines (one per place of the class)",
+   "lines": 43,
+   "fields_changed": 147
+  },
+  "v1_1_figures_as_v1_2_gives_them": {
+   "examples": [
+    {
+     "why_chosen": "named in the ask: 1 Samuel 26:7 word 15",
+     "book": "i-samuel",
+     "ref": "26:7",
+     "place": "26:7:15",
+     "class": "STEP_WRITES_OUR_SPELLING",
+     "use": "NEW_PIECES",
+     "our_form": "מְרַֽאֲשֹׁתָ֑ו",
+     "tahot_rows": [
+      "1Sa.26.7#15=Q(K)"
+     ],
+     "translation_columns_as_tahot_writes_them": [
+      "[the] place of head/ his"
+     ],
+     "pieces": [
+      {
+       "index": 0,
+       "hebrew": "מְרַֽאֲשֹׁתָ֑",
+       "tag": "H4763",
+       "english_tahot_v1": "the place of head",
+       "english_tahot_as_written": "[the] place of head"
+      },
+      {
+       "index": 1,
+       "hebrew": "ו",
+       "tag": "H9023",
+       "english_tahot_v1": "his",
+       "english_tahot_as_written": " his"
+      }
+     ],
+     "pieces_as_written_ends_trimmed_joined_by_plus": "[the] place of head + his"
+    },
+    {
+     "why_chosen": "of the 794: the first THROUGH_ONE_LETTER place in file order whose pieces hold a square bracket",
+     "book": "genesis",
+     "ref": "35:5",
+     "place": "35:5:8",
+     "class": "THROUGH_ONE_LETTER",
+     "use": "NEW_PIECES",
+     "our_form": "סְבִיב֣וֹתֵיהֶ֔ם",
+     "tahot_rows": [
+      "Gen.35.5#08=L"
+     ],
+     "translation_columns_as_tahot_writes_them": [
+      "[were] around/ them"
+     ],
+     "pieces": [
+      {
+       "index": 0,
+       "hebrew": "סְבִיב֣וֹתֵי",
+       "tag": "H5439G",
+       "english_tahot_v1": "were around",
+       "english_tahot_as_written": "[were] around"
+      },
+      {
+       "index": 1,
+       "hebrew": "הֶ֔ם",
+       "tag": "H9038",
+       "english_tahot_v1": "them",
+       "english_tahot_as_written": " them"
+      }
+     ],
+     "pieces_as_written_ends_trimmed_joined_by_plus": "[were] around + them"
+    },
+    {
+     "why_chosen": "of the 794: the first THROUGH_ONE_LETTER place in file order whose pieces hold an angle bracket",
+     "book": "genesis",
+     "ref": "8:20",
+     "place": "8:20:8",
+     "class": "THROUGH_ONE_LETTER",
+     "use": "NEW_PIECES",
+     "our_form": "הַטְּהֹרָ֗ה",
+     "tahot_rows": [
+      "Gen.8.20#08=L"
+     ],
+     "translation_columns_as_tahot_writes_them": [
+      "<the>/ clean"
+     ],
+     "pieces": [
+      {
+       "index": 0,
+       "hebrew": "הַ",
+       "tag": "H9009",
+       "english_tahot_v1": "the",
+       "english_tahot_as_written": "<the>"
+      },
+      {
+       "index": 1,
+       "hebrew": "טְּהֹרָ֗ה",
+       "tag": "H2889",
+       "english_tahot_v1": "clean",
+       "english_tahot_as_written": " clean"
+      }
+     ],
+     "pieces_as_written_ends_trimmed_joined_by_plus": "<the> + clean"
+    },
+    {
+     "why_chosen": "of the 794: the first SAME_LETTERS place with NEW_PIECES in file order whose pieces hold a bracket",
+     "book": "ii-samuel",
+     "ref": "16:4",
+     "place": "16:4:8",
+     "class": "SAME_LETTERS",
+     "use": "NEW_PIECES",
+     "our_form": "לִמְפִיבֹ֑שֶׁת",
+     "tahot_rows": [
+      "2Sa.16.4#08=L",
+      "2Sa.16.4#09=L"
+     ],
+     "translation_columns_as_tahot_writes_them": [
+      "[belonged] to/ Mephi-",
+      "-bosheth"
+     ],
+     "pieces": [
+      {
+       "index": 0,
+       "hebrew": "לִ",
+       "tag": "H9005",
+       "english_tahot_v1": "belonged to",
+       "english_tahot_as_written": "[belonged] to"
+      },
+      {
+       "index": 1,
+       "hebrew": "מְפִי",
+       "tag": "H4648G",
+       "english_tahot_v1": "Mephi-",
+       "english_tahot_as_written": " Mephi-"
+      },
+      {
+       "index": 2,
+       "hebrew": "בֹ֑שֶׁת",
+       "tag": "H4648G",
+       "english_tahot_v1": "-bosheth",
+       "english_tahot_as_written": "-bosheth"
+      }
+     ],
+     "pieces_as_written_ends_trimmed_joined_by_plus": "[belonged] to + Mephi- + -bosheth"
+    }
+   ],
+   "pieces_whose_tag_is_not_a_plain_tag": {
+    "axis": "pieces",
+    "amended": "RULE.md, the amendment after the first run",
+    "pieces": 0,
+    "places": 0,
+    "by_class_use_and_role": {},
+    "pieces_at_the_794": 0,
+    "places_at_the_794": 0,
+    "tags_v1_by_tag": {},
+    "those": []
+   },
+   "store_counts": {
+    "places_with_pieces_whose_key_ours_holds_a_row_of_a_main_tags_number": {
+     "axis": "places",
+     "v1_1": 688,
+     "v1_2": 689
+    },
+    "places_with_pieces_whose_key_sources_holds_a_row_of_a_main_tags_number": {
+     "axis": "places",
+     "v1_1": 1002,
+     "v1_2": 1004
+    }
+   }
+  },
+  "examples_by_branch": [
+   {
+    "branch": "IN_THIS_PLACE_FROM_ITS_NEXT_ROW",
+    "why_chosen": "the first place in file order whose class piece's next Hebrew word is IN_THIS_PLACE_FROM_ITS_NEXT_ROW",
+    "book": "numbers",
+    "ref": "2:12",
+    "place": "2:12:10",
+    "class": "SAME_LETTERS",
+    "use": "NEW_PIECES",
+    "our_form": "צוּרִֽישַׁדָּֽי",
+    "tahot_rows": [
+     "Num.2.12#10=L",
+     "Num.2.12#11=L"
+    ],
+    "tags_as_tahot_writes_them": "{H6701}+\\H9014 + {H6701}\\H9016",
+    "translation_columns_as_tahot_writes_them": [
+     "Zuri-",
+     "-shaddai"
+    ],
+    "main_tags": [
+     "H6701",
+     "H6701"
+    ],
+    "pieces": [
+     {
+      "index": 0,
+      "role": "core",
+      "hebrew": "צוּרִֽי",
+      "tag": "H6701",
+      "tag_as_tahot_writes_it": "{H6701}+",
+      "tag_also_covers_the_next_hebrew_word": true,
+      "the_next_hebrew_word_it_covers": {
+       "row": "Num.2.12#11=L",
+       "part": 0,
+       "hebrew_tahot": "שַׁדָּֽי",
+       "tag_as_tahot_writes_it": "{H6701}",
+       "names_the_same_number": true,
+       "piece_of_this_place": 1
+      },
+      "english_tahot_as_written": "Zuri-"
+     },
+     {
+      "index": 1,
+      "role": "core",
+      "hebrew": "שַׁדָּֽי",
+      "tag": "H6701",
+      "tag_as_tahot_writes_it": "{H6701}",
+      "tag_also_covers_the_next_hebrew_word": false,
+      "the_next_hebrew_word_it_covers": null,
+      "english_tahot_as_written": "-shaddai"
+     }
+    ],
+    "changes": [
+     {
+      "field": "main_tags",
+      "v1_1": [
+       "H6701"
+      ],
+      "v1_2": [
+       "H6701",
+       "H6701"
+      ]
+     },
+     {
+      "field": "main_glosses_tbesh",
+      "v1_1": [
+       {
+        "tag": "H6701",
+        "gloss": "Zurishaddai"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6701",
+        "gloss": "Zurishaddai"
+       },
+       {
+        "tag": "H6701",
+        "gloss": "Zurishaddai"
+       }
+      ]
+     },
+     {
+      "field": "pieces.0.tag",
+      "v1_1": "H6701}+",
+      "v1_2": "H6701"
+     }
+    ]
+   },
+   {
+    "branch": "IN_THIS_PLACE_FROM_THE_SAME_ROW",
+    "why_chosen": "the first place in file order whose class piece's next Hebrew word is IN_THIS_PLACE_FROM_THE_SAME_ROW",
+    "book": "numbers",
+    "ref": "7:59",
+    "place": "7:59:17",
+    "class": "SAME_LETTERS",
+    "use": "BESIDE_THE_LATTICES_PIECES",
+    "our_form": "פְּדָהצֽוּר",
+    "tahot_rows": [
+     "Num.7.59#17=L(AH+B)"
+    ],
+    "tags_as_tahot_writes_them": "{H6301}+/ /{H6301}\\H9016\\ \\H9017",
+    "translation_columns_as_tahot_writes_them": [
+     "Pedah/ /zur"
+    ],
+    "main_tags": [
+     "H6301",
+     "H6301"
+    ],
+    "pieces": [
+     {
+      "index": 0,
+      "role": "core",
+      "hebrew": "פְּדָה",
+      "tag": "H6301",
+      "tag_as_tahot_writes_it": "{H6301}+",
+      "tag_also_covers_the_next_hebrew_word": true,
+      "the_next_hebrew_word_it_covers": {
+       "row": "Num.7.59#17=L(AH+B)",
+       "part": 2,
+       "hebrew_tahot": "צֽוּר",
+       "tag_as_tahot_writes_it": "{H6301}",
+       "names_the_same_number": true,
+       "piece_of_this_place": 1
+      },
+      "english_tahot_as_written": "Pedah"
+     },
+     {
+      "index": 1,
+      "role": "core",
+      "hebrew": "צֽוּר",
+      "tag": "H6301",
+      "tag_as_tahot_writes_it": "{H6301}",
+      "tag_also_covers_the_next_hebrew_word": false,
+      "the_next_hebrew_word_it_covers": null,
+      "english_tahot_as_written": "zur"
+     }
+    ],
+    "changes": [
+     {
+      "field": "main_tags",
+      "v1_1": [
+       "H6301"
+      ],
+      "v1_2": [
+       "H6301",
+       "H6301"
+      ]
+     },
+     {
+      "field": "main_glosses_tbesh",
+      "v1_1": [
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       }
+      ],
+      "v1_2": [
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       },
+       {
+        "tag": "H6301",
+        "gloss": "Pedahzur"
+       }
+      ]
+     },
+     {
+      "field": "pieces.0.role",
+      "v1_1": "prefix",
+      "v1_2": "core"
+     },
+     {
+      "field": "pieces.0.tag",
+      "v1_1": "H6301}+",
+      "v1_2": "H6301"
+     }
+    ]
+   },
+   {
+    "branch": "NOT_IN_THIS_PLACE",
+    "why_chosen": "the first place in file order whose class piece's next Hebrew word is NOT_IN_THIS_PLACE",
+    "book": "numbers",
+    "ref": "33:35",
+    "place": "33:35:4",
+    "class": "THROUGH_ONE_LETTER",
+    "use": "NEW_PIECES",
+    "our_form": "בְּעֶצְיֹ֥ן",
+    "tahot_rows": [
+     "Num.33.35#04=L"
+    ],
+    "tags_as_tahot_writes_them": "H9003/{H6100}+",
+    "translation_columns_as_tahot_writes_them": [
+     "at/ Ezion"
+    ],
+    "main_tags": [
+     "H6100"
+    ],
+    "pieces": [
+     {
+      "index": 0,
+      "role": "prefix",
+      "hebrew": "בְּ",
+      "tag": "H9003",
+      "tag_as_tahot_writes_it": "H9003",
+      "tag_also_covers_the_next_hebrew_word": false,
+      "the_next_hebrew_word_it_covers": null,
+      "english_tahot_as_written": "at"
+     },
+     {
+      "index": 1,
+      "role": "core",
+      "hebrew": "עֶצְיֹ֥ן",
+      "tag": "H6100",
+      "tag_as_tahot_writes_it": "{H6100}+",
+      "tag_also_covers_the_next_hebrew_word": true,
+      "the_next_hebrew_word_it_covers": {
+       "row": "Num.33.35#05=L",
+       "part": 0,
+       "hebrew_tahot": "גָּֽבֶר",
+       "tag_as_tahot_writes_it": "{H6100}",
+       "names_the_same_number": true,
+       "piece_of_this_place": null
+      },
+      "english_tahot_as_written": " Ezion"
+     }
+    ],
+    "changes": [
+     {
+      "field": "main_tags",
+      "v1_1": [],
+      "v1_2": [
+       "H6100"
+      ]
+     },
+     {
+      "field": "main_glosses_tbesh",
+      "v1_1": [],
+      "v1_2": [
+       {
+        "tag": "H6100",
+        "gloss": "Ezion-geber"
+       }
+      ]
+     },
+     {
+      "field": "pieces.0.role",
+      "v1_1": "core",
+      "v1_2": "prefix"
+     },
+     {
+      "field": "pieces.1.role",
+      "v1_1": "suffix",
+      "v1_2": "core"
+     },
+     {
+      "field": "pieces.1.tag",
+      "v1_1": "H6100}+",
+      "v1_2": "H6100"
+     },
+     {
+      "field": "store.numbers",
+      "v1_1": [],
+      "v1_2": [
+       "H6100"
+      ]
+     },
+     {
+      "field": "store.under_key_sources",
+      "v1_1": {
+       "rows": 2,
+       "of_the_main_tags_numbers": 0
+      },
+      "v1_2": {
+       "rows": 2,
+       "of_the_main_tags_numbers": 2
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "counts": {
+  "positions": 334826,
+  "bridge_places": 1173,
+  "by_class": {
+   "THROUGH_ONE_LETTER": 748,
+   "STEP_WRITES_OUR_SPELLING": 236,
+   "SAME_LETTERS": 51,
+   "READ_FORM_OF_TWO_OR_MORE_WORDS": 27,
+   "HELD_TWO_OR_MORE_LETTERS": 32,
+   "HELD_ONE_LETTER_AT_A_SEAM": 26,
+   "THE_SOURCES_JOIN_OUR_WORDS": 46,
+   "NO_STEP_ROW": 1,
+   "WRITTEN_NOT_READ": 6
+  },
+  "by_use": {
+   "NEW_PIECES": 1000,
+   "BESIDE_THE_LATTICES_PIECES": 35
+  },
+  "lattice_kind_vs_difference": {
+   "LENINGRAD_PLUS / DROPPED": 423,
+   "MAM_PLUS / ADDED": 284,
+   "CHANGED / CHANGED": 67,
+   "TWO_OR_MORE / NONE": 29,
+   "macula / NONE": 3
+  },
+  "places_with_pieces": 1035,
+  "pieces": 1936,
+  "places_with_pieces_by_book": {
+   "genesis": 26,
+   "exodus": 31,
+   "leviticus": 17,
+   "numbers": 37,
+   "deuteronomy": 56,
+   "joshua": 12,
+   "judges": 29,
+   "i-samuel": 49,
+   "ii-samuel": 47,
+   "i-kings": 29,
+   "ii-kings": 47,
+   "isaiah": 47,
+   "jeremiah": 59,
+   "ezekiel": 100,
+   "hosea": 6,
+   "amos": 4,
+   "obadiah": 1,
+   "micah": 3,
+   "nahum": 5,
+   "habakkuk": 4,
+   "zephaniah": 1,
+   "zechariah": 9,
+   "malachi": 3,
+   "psalms": 72,
+   "proverbs": 43,
+   "job": 58,
+   "song-of-songs": 14,
+   "ruth": 10,
+   "lamentations": 15,
+   "ecclesiastes": 10,
+   "esther": 16,
+   "daniel": 67,
+   "ezra": 18,
+   "nehemiah": 23,
+   "i-chronicles": 33,
+   "ii-chronicles": 34
+  },
+  "places_with_pieces_whose_key_ours_holds_a_row_of_a_main_tags_number": 689,
+  "places_with_pieces_whose_key_sources_holds_a_row_of_a_main_tags_number": 1004,
+  "form_rows": 167,
+  "form_rows_places": 220,
+  "form_rows_keys": 149,
+  "form_rows_not_landed": 9,
+  "form_rows_not_landed_places": 16,
+  "form_row_places_facts_against_steps_same_row_under_key_sources": {
+   "agree": 196,
+   "same_n_and_its_t_holds_ours": 24,
+   "its_same_row_carries_no_facts": 2,
+   "differ": 0,
+   "no_same_row_under_key_sources": 14
+  },
+  "form_rows_by_year": {
+   "S_NO_SOURCE_YEAR": 167
+  }
+ },
+ "checks": [
+  {
+   "check": "check 1: the TAHOT files and TBESH are the manifest's bytes",
+   "failures": 0
+  },
+  {
+   "check": "check 2: every place has its word and its rows",
+   "failures": 0
+  },
+  {
+   "check": "check 3: our form's clusters are our letters",
+   "failures": 0
+  },
+  {
+   "check": "check 4: every line's pieces are our letters and our form",
+   "failures": 0
+  },
+  {
+   "check": "check 5: every place in one class",
+   "failures": 0
+  },
+  {
+   "check": "check 7: no path of this machine and no name of its owner in any file written",
+   "failures": 0
+  },
+  {
+   "check": "check 8: the four TAHOT files give one heading for column 3",
+   "failures": 0
+  },
+  {
+   "check": "check 9: v1.2 with the added fields off and the changes set back is v1.1, byte for byte; on it v1.1's check 9 holds; v1.1's receipt section and counts made from it are v1.1's",
+   "failures": 0
+  },
+  {
+   "check": "check 10: the form rows made again, under v1.2's reading, are v1's two files byte for byte",
+   "failures": 0
+  },
+  {
+   "check": "check 11: each row's English parts give its English column again",
+   "failures": 0
+  },
+  {
+   "check": "check 12: v208's third list names each place once, its surface the bridge place's",
+   "failures": 0
+  },
+  {
+   "check": "check 13: the four TAHOT files hold STEP's key line for its tag column, both sentences byte for byte",
+   "failures": 0
+  },
+  {
+   "check": "check 14: every lettered tag part of the rows tied to the bridge's lines has one of the three shapes",
+   "failures": 0
+  },
+  {
+   "check": "check 15: the class is v1.1's named pieces, piece for piece, all at pieced places, each finding its next Hebrew word",
+   "failures": 0
+  },
+  {
+   "check": "check 16: v1.2 and v1.1 differ in exactly the fields the changes name, at the class's places only",
+   "failures": 0
+  },
+  {
+   "check": "check 17: after the mend every piece's tag is the number STEP names",
+   "failures": 0
+  }
+ ],
+ "outputs": [
+  {
+   "file": "bridge-places-v1.2.jsonl",
+   "bytes": 2234102,
+   "sha256": "873c4df5ff14bb5ac2cc055d206dc3fdf49adc55405c8ecda53e9564a77d97aa"
+  },
+  {
+   "file": "changes-v1.2.jsonl",
+   "bytes": 23385,
+   "sha256": "e74cd12858bec068c9b9e5f59e01cca691c273e3e3cf716a73559dd6fbd51f59"
+  }
+ ]
+}

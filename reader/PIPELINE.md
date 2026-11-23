@@ -49,7 +49,14 @@
 > `data/names/`: since 20 November 2026 the list of name rows is names
 > v2's, relay v198, every dictionary that marks a name read by its own
 > mark, and the list of name places is still names v1's; the pin gives each
-> its own folder, rule and receipt). The round's projection writes on each word the entry that
+> its own folder, rule and receipt. Since 23 November 2026 (ship 20) the
+> rows the lane marks by the same rule in lists of their own are marked
+> beside names v2's: relay v213's, the 22 rows relays v200 and v202
+> landed, and relay v219's, 6 rows of the translation tables, each list
+> with its own rule and receipt and the way its lines find their row; and
+> the list of places read is names v1's with relay v219's addition laid
+> on it, Ezekiel 27:6 word 11 added and TAHOT a witness at 6 more places,
+> names v1's file kept as it is: `tools/name-lists-v1.mjs`). The round's projection writes on each word the entry that
 > stands at its place and whether the place is a name. The reader asks both
 > of the place before it asks the pointing: a row of another entry than the
 > word's is withheld, a row of the word's own entry stands whatever its
@@ -125,12 +132,15 @@
 > trimmed. v1.1 is read only where each of its lines, its added fields taken
 > off, is v1's line, and only where the marks taken off each part give v1's
 > English; at the 206 each form row's part is v1.1's part byte for byte, so
-> nothing laid there moves. The lattice reads STEP under the Leningrad
+> nothing laid there moves. Since 23 November (ship 20) the list laid from
+> is bridge v1.2 (relay v220), v1.1's lines with STEP's «{…}+» tags read as
+> STEP's key says, read only where each of its lines, its added fields taken
+> off and the changes it names set back, is v1.1's line; no laid place is
+> among the 43 it mends, so nothing laid moves. The lattice reads STEP under the Leningrad
 > spelling and gives these places nothing, so the line there was whatever row
 > led under the key; with the pieces it is the place's own reading, as
 > everywhere else. The pin says which of the list's kinds are laid and why
-> each of the others is not; the places whose pieces carry STEP's «}+» tag
-> wait for bridge v1.2 (relay v218), the places that are pairs keep a pair's
+> each of the others is not; the places that are pairs keep a pair's
 > line, and two kinds wait on call 4 of relay v189, read where call 4 itself
 > is read (the audit calls' pin and the list the default picks' bake reads),
 > never listed (22 November 2026): the places call 4 holds as they rest
@@ -139,7 +149,10 @@
 > reading stand keep it: the page asks STEP's reading before the place's
 > pieces, so laid there the pieces read the place a second way beside the
 > line, on its card and across words, until the page lane says how such a
-> place is drawn. The rule's id and the pin's shape keep their
+> place is drawn (the owner ruled on 23 November 2026, «steps is fine»: STEP's
+> reading governs there). The 42 places of new pieces held for STEP's «}+»
+> tag until bridge v1.2 stand under these two holds now: 40 that call 4
+> holds as they rest, 2 where STEP's reading stands. The rule's id and the pin's shape keep their
 > versions (22 November 2026): no rule of the house asks either to move when a
 > pin lays more of a list it names; the id's words name the class it was first
 > laid at, and the pin names every class laid now. The round lays the pieces
