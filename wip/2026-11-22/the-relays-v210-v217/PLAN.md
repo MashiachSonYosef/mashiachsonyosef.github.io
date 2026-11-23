@@ -37,4 +37,7 @@ Each as always: the round from the start, every resting line against live, the g
 - **Ship 17: in its round** on ship 16. 729 new places laid; 5 lines move at rest; the «}+» places, the pairs and call 4's bare places held.
 - Next: v218 (`b`, the 22 name marks, bridge v1.2), then v219 and v220.
 - **Ship 17: live** (`main` e0a5cb8d7c, Pages run 1386, live check 84). Bridge v1.1: 211 places; 5 lines move, three mended. The 724 places where STEP's reading stands are held for the owner's ruling (17:20 UTC).
+- **The store move: live** (`main` b1acf1e220, live check 85; the lane's step 5 done 06:15 UTC 23 November; the store 6,866,113,768 bytes, checked against my map, 0 faults).
+- **Ship 18: live** (`main` 7f6c862105, live check 86). v221: the two held rows land; the lane's resting call holds a row at 36 places of my commentaries; no line moves; 27 cards lose a reading that is another word there.
+- Next: v218, v219, v220 when they come.
 

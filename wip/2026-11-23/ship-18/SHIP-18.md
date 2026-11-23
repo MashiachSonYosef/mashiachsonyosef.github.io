@@ -1,6 +1,6 @@
 # Ship 18: the corpus lane's resting call for the translation tables' rows (relay v221)
 
-Page lane, 23 November 2026. Being built by a helper in the sandbox `S/s12` (branch `ship18` from main b1acf1e220), from the brief `S/s26w/BRIEF.md`. Not shipped.
+Page lane, 23 November 2026. Being built by a helper in the sandbox `S/s12` (branch `ship18` from main b1acf1e220), from the brief `S/s26w/BRIEF.md`. **Shipped 23 November 2026: `main` 7f6c862105, `gh-pages` 9e01af490f (live check 86, success).**
 
 ## What v221 says
 
@@ -40,4 +40,14 @@ Left as live: at the 4 «necromancy» places the card offers «leader» and Jast
 The commentaries, read on the real tree's page at all 36 held places (`measures/cards-at-the-36-held-places-real-tree.json`): **the same as the sandbox's reading after the build**, place for place. At the six places of the two rows the line is bare and the card does not offer «necromancy» or «zaatar» (it offers Jastrow's own words from the dictionary beside the store, as live does). A note on my own tool: `commentary-gloss-diff.mjs` reads a zone's line per key, so it shows «necromancy» and «zaatar» as the key's line; at a held place the page draws the hold's line, which is bare. The page reading is the one that counts.
 
 The gate and the whole suite follow in the same chain.
+
+## The gate and the suite
+
+- The gate against live (b1acf1e220), 08:08 to 08:19 UTC: **30,945 lines compared on 18 pages, 0 differ** (`measures/gate.log`).
+- The whole suite, 206 checks (`check-held-places-v1` new), 08:19 to 09:57 UTC: **204 exit 0**; red, as on every ship: `check-nothing-unlanded-v1` (until the push), `check-reading-rows-v1` R1 (`measures/suite-verdicts.txt`).
+
+## Shipped
+
+- One commit on `main`, 7f6c862105c8f21a30b99695c9865d2b46514883 (`COMMIT-MESSAGE.txt`); `gh-pages` follows it, 9e01af490f77ecc6aa2fb41facf6d8ae12aa62d7.
+- Live check 86 on 7f6c862105: success. `check-nothing-unlanded-v1` after the push: ok, 3 assertions. `S/old` stands on 7f6c862105.
 
