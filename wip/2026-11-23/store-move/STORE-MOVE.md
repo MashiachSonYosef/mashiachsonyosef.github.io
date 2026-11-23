@@ -23,3 +23,8 @@ The corpus lane's store cut (relay v216's act) reached its step 3 on 22 November
 
 - Moses tells me when step 5 is done; I list the store once against the map.
 - v221 (the held rows' resting rule, `places-v3.1.jsonl`): its own ship, after step 5.
+
+## Live
+
+Live check 85 on b1acf1e220: success (its Pages build triggered it). `check-nothing-unlanded-v1` after the push: ok, 3 assertions (`measures/check-nothing-unlanded-v1-after-push.txt`). `S/old` stands on b1acf1e220.
+
