@@ -28,3 +28,13 @@ The corpus lane's store cut (relay v216's act) reached its step 3 on 22 November
 
 Live check 85 on b1acf1e220: success (its Pages build triggered it). `check-nothing-unlanded-v1` after the push: ok, 3 assertions (`measures/check-nothing-unlanded-v1-after-push.txt`). `S/old` stands on b1acf1e220.
 
+## After step 5 (the corpus lane: done 06:15:35 UTC, 23 November)
+
+The store listed whole: **93,213 objects, 6,866,113,768 bytes**, the lane's own figures, under the 8,000,000,000 ceiling. Against the map (`tools/check-store-against-map.py`, `measures/store-against-map-after-step-5.json`): all 2,780 `.gz` names and the 24 parts stand, each at the size its object had when its bytes were checked; all 3,000 old names are gone; the 6 files and 3 folders the map says stand under their own names stand; the shelf holds 3,595 objects. **0 faults.**
+
+A correction of my own: my first count of the store and of the shelf dropped the keys whose names hold «warn» or «trace» (a filter meant for the tool's own warnings); 22 objects. Counted again with only the tool's warning lines dropped, the figures are the lane's.
+
+The lane's correction of mine: the 7 superseded builder files are not on its disk alone; all are in git on corpus-staging (`corpus-lane-builds/moses-coverage-trial-v1/`, `corpus-lane-builds/moses-read-words-v1/`).
+
+Left for the owner, from the lane: three settings on the bucket in the store's dashboard (a lifecycle rule deleting `v2/scratch/` after 14 days; the default abort of unfinished uploads after 7 days left on; a budget alert). Neither lane's key can set them.
+
