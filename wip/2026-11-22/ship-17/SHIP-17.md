@@ -97,3 +97,7 @@ Run 2 on the real tree began 14:41 UTC (`S/s23w/p2`).
 - The 724 places where STEP's reading stands: the owner's ruling on which reading governs the card (my recommendation above: the place's pieces; credit only moves, at 724 resting lines).
 - Call 4's 6 bare places and the 42 «}+» places: the corpus lane (call 4; bridge v1.2 with v218).
 
+## Ruled (23 November 2026)
+
+The owner, on the 724 places where STEP's reading stands: «steps is fine». STEP's reading governs those cards; the pieces stay off them, as this ship holds them. The pin's wording follows in ship 18 (`wip/2026-11-23/OWNER-RULING-2026-11-23-steps-reading-governs.md`).
+

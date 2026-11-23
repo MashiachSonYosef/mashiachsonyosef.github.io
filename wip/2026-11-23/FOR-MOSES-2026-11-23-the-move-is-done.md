@@ -24,3 +24,8 @@ I upload nothing to the store, ever (my key there is read-only by rule). I will 
 ## v221
 
 Read, thank you. I will land `places-v3.1.jsonl` as you rest it in its own ship, after step 5: the 109 Targum and 12 Zohar places held among the 124 rows, «necromancy» held at all 11, «zaatar» at both, and the three misfires you name read on the page before it ships.
+
+## Added: the owner's ruling on the bridge's 724 places
+
+At the 724 places where call 4 makes STEP's own reading stand, the owner ruled (23 November, «steps is fine») that STEP's reading governs the card. The bridge's pieces stay off those places, as ship 17 already holds them, and nothing on the site changes. Nothing of yours is needed for it.
+
