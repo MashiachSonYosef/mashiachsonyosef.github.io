@@ -32,7 +32,9 @@
 //       parting's sources, or of a source whose list of the pin lands t
 //       (relay v211: English Wiktionary's, its letters read from TBESH's own
 //       columns, 22 November 2026); b a list of entries, on a row of the second
-//       parting's only; opens an entry and the point of the numbered sense
+//       parting's source, or of a source whose list of the pin lands b (relay
+//       v218: both entry lists, BDB's own entries joined by the row's own
+//       pointed head form, 23 November 2026); opens an entry and the point of the numbered sense
 //       the row opens (tools/apply-sense-openings-v1.mjs; which rows carry it
 //       is check-sense-openings-v1's to hold); and no row ends in an empty
 //       slot
@@ -128,7 +130,13 @@
 //   E16 the facts lists of further sources (pin.lists; the entry ledgers of
 //       relays v203 and v204): each list's rule and receipt are the bytes
 //       its pin entry names, its receipt names the store the pin says it was
-//       read at, and its sources are the store's; a row of a list's source
+//       read at, and its sources are the store's; a list beside it, from
+//       which the pin entry reads a fact (facts_from: English Wiktionary's t
+//       from relay v211's list beside relay v218's, since ship 19, 23 November
+//       2026), is held the same way and was read at the same store, and with
+//       both here each of its lines names the row the list's line at the same
+//       place names, the row carrying that fact as the list beside gives it;
+//       a row of a list's source
 //       carries none but the facts its entry lands (E2); the index's record
 //       of each list is the pin's and a recount's. With a list here (kept
 //       in this tree, or named: --list <file>, or ROW_ENTRIES_LISTS, paths
@@ -245,6 +253,17 @@ const landedSinceItsList = (l, k, row) => { const f = listFollowOf(l); return !!
         if (!receipt.includes(`"${l.read_at_store_version}"`)) listFaults.push(`the receipt of ${said} does not name ${l.read_at_store_version}, the store the pin says it was read at`);
         if (!receipt.includes(l.list.sha256)) listFaults.push(`the receipt of ${said} does not name the list the pin names`);
       } catch (e) { if (e instanceof PinFault) listFaults.push(e.message); else throw e; }
+      // a fact read from a list beside this one (facts_from; ship 19, 23 November 2026)
+      for (const [f, o] of Object.entries(l.facts_from || {})) {
+        const besideSaid = `the list beside ${said} for ${f} (relay ${(o || {}).relay})`;
+        if (!l.facts.includes(f) || !o || !o.relay || !o.folder || !o.rule || !o.receipt || !o.list || o.read_at_store_version !== l.read_at_store_version || o.list.lines !== l.list.lines) { listFaults.push(`${besideSaid} does not name its relay, folder, rule, receipt and list, or was read at another store, or holds another count of lines, or ${f} is not a fact the entry lands`); continue; }
+        try {
+          readPinned(join(PINS, o.folder, o.rule.file), o.rule, `${o.folder}/${o.rule.file}`);
+          const theirReceipt = readPinned(join(PINS, o.folder, o.receipt.file), o.receipt, `${o.folder}/${o.receipt.file}`).toString("utf8");
+          if (!theirReceipt.includes(`"${o.read_at_store_version}"`)) listFaults.push(`the receipt of ${besideSaid} does not name ${o.read_at_store_version}, the store the pin says it was read at`);
+          if (!theirReceipt.includes(o.list.sha256)) listFaults.push(`the receipt of ${besideSaid} does not name the list the pin names`);
+        } catch (e) { if (e instanceof PinFault) listFaults.push(e.message); else throw e; }
+      }
       for (const [m, key] of Object.entries(l.sources)) {
         if (((index.m_sources || {})[m] || {}).key !== key) listFaults.push(`${said} reads ${m} as ${key}, and the store holds ${((index.m_sources || {})[m] || {}).key || "no source"} there`);
         if (LIST_M.has(m)) listFaults.push(`${m} stands under two lists`);
@@ -370,7 +389,7 @@ const mineOf = (f) => { if (!f) return null; const o = {}; for (const k of ["n",
           if (FACT_OF.get(m) !== "t" && !(((LIST_M.get(m) || {}).facts) || []).includes("t")) faults.push(`${where}: STEP's letters on a row of a source neither the parting reads nor a list of the pin lands them on`);
           if (f.t.some((x) => letteredOf(x) !== x || !(f.n || []).includes(numberOf(x)))) faults.push(`${where}: a lettered tag that is not one, or whose number the row does not carry`);
         }
-        if (Array.isArray(f.b) && FACT_OF.get(m) !== "b") faults.push(`${where}: BDB's entries on a row of a source the parting does not read`);
+        if (Array.isArray(f.b) && FACT_OF.get(m) !== "b" && !(((LIST_M.get(m) || {}).facts) || []).includes("b")) faults.push(`${where}: BDB's entries on a row of a source neither the parting reads nor a list of the pin lands them on`);
         if ("opens" in f && (typeof f.opens !== "string" || !/^\S+( \S+)?$/u.test(f.opens))) faults.push(`${where}: opens is not an entry and its point`);
         const lm = LIST_M.get(m);
         if (mineOf(f) && !READ.has(m) && !lm) faults.push(`${where}: an entry on a row of a source neither the ledger nor a list of the pin reads`);
@@ -664,22 +683,29 @@ else {
   const said = (rec && rec.lists) || [];
   if (said.length !== pin.lists.length) faults.push(`the index names ${said.length} list(s) and the pin ${pin.lists.length}`);
   const told = [];
+  // the index's record of the lists beside a list, as the entries tool writes it from the pin
+  const besideOf = (l) => (l.facts_from ? Object.fromEntries(Object.entries(l.facts_from).map(([f, o]) => [f, { relay: o.relay, list: { file: o.list.file, bytes: o.list.bytes, sha256: o.list.sha256, lines: o.list.lines, kept: o.list.kept }, read_at_store_version: o.read_at_store_version }])) : null);
+  const besideWords = (l) => (l.facts_from ? ` (${Object.entries(l.facts_from).map(([f, o]) => `${f} from relay ${o.relay}'s list beside it`).join(", ")})` : "");
   for (const [i, l] of pin.lists.entries()) {
     const s = said[i] || {}, lt = listTally.get(l) || { rows: 0, entry: 0, several: 0 }, st = s.totals || {};
-    if (s.relay !== l.relay || !same(s.list, { file: l.list.file, bytes: l.list.bytes, sha256: l.list.sha256, lines: l.list.lines, kept: l.list.kept }) || !same(s.facts_landed, l.facts) || !same(s.sources, l.sources) || s.read_at_store_version !== l.read_at_store_version) faults.push(`the index's record of the list "${l.name}" is not the pin's`);
+    if (s.relay !== l.relay || !same(s.list, { file: l.list.file, bytes: l.list.bytes, sha256: l.list.sha256, lines: l.list.lines, kept: l.list.kept }) || !same(s.facts_landed, l.facts) || !same(s.facts_from || null, besideOf(l)) || !same(s.sources, l.sources) || s.read_at_store_version !== l.read_at_store_version) faults.push(`the index's record of the list "${l.name}" is not the pin's`);
     const landedWith = st.rows_landed_since_carrying_their_landings_facts || 0;   // rows of its sources landed since, carrying their landing's facts
     if (st.store_rows_of_its_sources !== lt.rows || st.rows_carrying_an_entry + landedWith !== lt.entry || (!landedWith && st.rows_with_several_numbers !== lt.several)) faults.push(`the index says ${st.rows_carrying_an_entry} of ${st.store_rows_of_its_sources} rows of the sources of "${l.name}" carry an entry (${st.rows_with_several_numbers} several numbers), and a recount gives ${lt.entry} of ${lt.rows} (${lt.several})`);
-    told.push(`${l.name} (relay ${l.relay}): ${nf(lt.entry)} of ${nf(lt.rows)} rows of ${Object.keys(l.sources).length} source(s) carry ${l.facts.join(", ")}`);
+    told.push(`${l.name} (relay ${l.relay}): ${nf(lt.entry)} of ${nf(lt.rows)} rows of ${Object.keys(l.sources).length} source(s) carry ${l.facts.join(", ")}${besideWords(l)}`);
   }
   check("E16 the facts lists of further sources: each list's rule and receipt are the bytes its pin entry names, its sources are the store's, and the index's record of each is the pin's and a recount's", faults.length === 0,
     faults.length ? `${nf(faults.length)} · ${first(faults)}` : told.join(" · "));
   // each list that is here, line by line
   const named = new Map();   // sha256 -> bytes, of the files named with --list or ROW_ENTRIES_LISTS
   for (const path of LISTS) if (existsSync(path)) { const b = readFileSync(path); named.set(sha256(b), b); }
+  // a list's bytes: named, or kept in this tree in the folder its pin entry gives
+  const bytesOf = (folder, x) => { const inTree = join(PINS, folder, x.file); return named.get(x.sha256) || (existsSync(inTree) && sha256(readFileSync(inTree)) === x.sha256 ? readFileSync(inTree) : null); };
   for (const l of pin.lists) {
-    const inTree = join(PINS, l.folder, l.list.file);
-    const bytes = named.get(l.list.sha256) || (existsSync(inTree) && sha256(readFileSync(inTree)) === l.list.sha256 ? readFileSync(inTree) : null);
+    const bytes = bytesOf(l.folder, l.list);
     if (!bytes) { console.log(`  --  E16's second half was not judged here for "${l.name}": its list (${l.list.file}) is not on this machine (--list <file>, or ROW_ENTRIES_LISTS)`); continue; }
+    // the lists beside it (facts_from), each the bytes its pin names
+    const beside = Object.entries(l.facts_from || {}).map(([f, o]) => ({ f, o, bytes: bytesOf(o.folder, o.list) }));
+    if (beside.some((x) => !x.bytes)) { console.log(`  --  E16's second half was not judged here for "${l.name}": the list beside it for ${beside.filter((x) => !x.bytes).map((x) => `${x.f} (${x.o.list.file})`).join(", ")} is not on this machine (--list <file>, or ROW_ENTRIES_LISTS)`); continue; }
     const faults2 = [];
     let lines = 0, give = 0, met = 0, gone = 0, wrong = 0, extra = 0;
     try {
@@ -693,6 +719,17 @@ else {
       if (body.length !== l.list.lines) throw new PinFault(`${l.list.file} holds ${body.length} lines and its pin says ${l.list.lines}`);
       const followL = openFollower({ data: dirname(STORE), index, readAt: l.read_at_store_version });
       const othersOf = (f) => { const o = { ...(f || {}) }; for (const k of ["n", "t", "b"]) delete o[k]; return o; };
+      const besideLines = beside.map((x) => {
+        if (x.bytes.length !== x.o.list.bytes) throw new PinFault(`${x.o.list.file} is ${x.bytes.length} bytes and its pin says ${x.o.list.bytes}`);
+        const besideText = x.bytes.toString("utf8");
+        if (!besideText.endsWith("\n")) throw new PinFault(`${x.o.list.file} does not end in a line end`);
+        const [h2, ...b2] = besideText.slice(0, -1).split("\n");
+        const c2 = h2.split("\t");
+        const y = { ...x, body: b2, cols: c2, iS: c2.indexOf("sha16"), iT: c2.indexOf("route_text"), iN: c2.indexOf("facts_now"), iF: c2.findIndex((c) => /^facts_under_/u.test(c)) };
+        if (c2[0] !== "key" || c2[1] !== "rank" || c2[2] !== "m_id" || y.iT < 0 || y.iN < 0 || y.iF < 0) throw new PinFault(`${x.o.list.file} opens with another header: ${c2.join(" | ")}`);
+        if (b2.length !== body.length) throw new PinFault(`${x.o.list.file} holds ${b2.length} lines and ${l.list.file}, beside which it stands, ${body.length}`);
+        return y;
+      });
       const want = new Map();   // key now, then "rank m sha16" -> the landed facts each line gives, as JSON
       for (const [i, line] of body.entries()) {
         const c = line.split("\t"), where = `${l.list.file} line ${i + 2}`;
@@ -702,8 +739,19 @@ else {
         if (iS >= 0 && c[iS] !== sha16Of(c[iT])) faults2.push(`${where}: its sha16 is not its route text's`);
         const was = JSON.parse(c[iN]), under = JSON.parse(c[iF]);
         if (!same(othersOf(was), othersOf(under))) faults2.push(`${where}: changes a fact the tool does not write`);
+        // a fact read from the list beside: its line at the same place names the same row, or nothing is read
+        const fromBeside = {};
+        let elsewhere = false;
+        for (const y of besideLines) {
+          const d = y.body[i].split("\t");
+          if (d.length !== y.cols.length || d[0] !== c[0] || d[1] !== c[1] || d[2] !== c[2] || d[y.iT] !== c[iT] || (y.iS >= 0 && iS >= 0 && d[y.iS] !== c[iS])) { elsewhere = true; if (faults2.length < 6) faults2.push(`${y.o.list.file} line ${i + 2} names another row than ${where}`); continue; }
+          const u2 = JSON.parse(d[y.iF]);
+          if (!same(othersOf(JSON.parse(d[y.iN])), othersOf(u2))) faults2.push(`${y.o.list.file} line ${i + 2}: changes a fact the tool does not write`);
+          fromBeside[y.f] = u2;
+        }
+        if (elsewhere) continue;
         const facts = {};
-        for (const key of ["n", "t", "b"]) if (l.facts.includes(key) && Array.isArray(under[key]) && under[key].length) facts[key] = under[key];
+        for (const key of ["n", "t", "b"]) { const from = key in fromBeside ? fromBeside[key] : under; if (l.facts.includes(key) && Array.isArray(from[key]) && from[key].length) facts[key] = from[key]; }
         const went = followL.nowOf([c[0], Number(c[1]), c[2], sha16Of(c[iT])]);
         if (went.state === "struck" || went.state === "withheld") { gone += 1; continue; }
         if (!Object.keys(facts).length) continue;   // a line that gives nothing its entry lands
@@ -729,7 +777,7 @@ else {
       }
     } catch (e) { if (e instanceof PinFault || e instanceof SyntaxError || e instanceof FollowFault) faults2.push(e.message); else throw e; }
     check(`    and the list "${l.name}", line by line: each line that gives a landed fact names a row of the store that carries exactly it, and no other row of its sources carries an entry`, faults2.length === 0 && lines > 0,
-      faults2.length ? `${nf(faults2.length)}${wrong ? ` · ${nf(wrong)} rows carry other facts` : ""}${extra ? ` · ${nf(extra)} rows carry an entry no line gives` : ""} · ${first(faults2)}` : `${nf(lines)} lines of ${l.list.file} · ${nf(give)} give ${l.facts.join(", ")}, each met by a row carrying it (${nf(met)}) · ${nf(lines - give - gone)} give nothing that lands${gone ? ` · ${nf(gone)} name a row a round took since` : ""}`);
+      faults2.length ? `${nf(faults2.length)}${wrong ? ` · ${nf(wrong)} rows carry other facts` : ""}${extra ? ` · ${nf(extra)} rows carry an entry no line gives` : ""} · ${first(faults2)}` : `${nf(lines)} lines of ${l.list.file}${beside.map((x) => ` and of ${x.o.list.file} beside it, line for line the same rows`).join("")} · ${nf(give)} give ${l.facts.join(", ")}${besideWords(l)}, each met by a row carrying it (${nf(met)}) · ${nf(lines - give - gone)} give nothing that lands${gone ? ` · ${nf(gone)} name a row a round took since` : ""}`);
   }
 }
 listRows.clear();

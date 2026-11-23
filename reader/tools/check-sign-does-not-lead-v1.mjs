@@ -285,8 +285,10 @@ const plainIn = (groups) => groups.some((g) => !opensWithStrongSign(g.text));
         asked.add(`${surface}\u0001${key}`);
         const at = gr.e[key];
         if (![at.l, at.la].some((x) => Array.isArray(x) && opensWithStrongSign(x[0]))) { judge(w.name, "e[…].l", gr.k, (at.l || [])[0], []); judge(w.name, "e[…].la", gr.k, (at.la || [])[0], []); continue; }
+        // BDB'S ENTRIES ARE GATHERED FROM EVERY ROW OF THE KEY, as the page and the projector gather them (ship 19,
+        // 23 November 2026): the leaders are drawn from the rows that rest open, the entries from the key's whole rows
         const h = heldOf(surface, gr), place = tags ? placeEntry(tags) : null;
-        const bdbHere = place ? bdbEntriesAt(place, h.srows.map(factsOf)) : null;
+        const bdbHere = place ? bdbEntriesAt(place, (rest.routesWhole(gr.k) || []).filter((row) => mSources[row[3]]).map(factsOf)) : null;
         const keeps = (row) => { const v = place ? entryVerdict(factsOf(row), place, bdbHere) : "none"; return v !== "other" && !nameWithheld(factsOf(row), isName) && (v === "this" || !h.attested || !heldByPointing(h.gradeOf(row))) && !h.otherStem(row); };
         judge(w.name, "e[…].l", `${gr.k} at ${key}`, (at.l || [])[0], rest.readingPool(kept(h, keeps), "oldest"));
         if (Array.isArray(at.l)) judge(w.name, "e[…].la", `${gr.k} at ${key}`, (at.la || [])[0], rest.readingPool(kept(h, keeps, new Set(at.l[4].map(String))), "oldest"));

@@ -1,6 +1,6 @@
 {
  "schema_version": "ROW_ENTRIES_PIN_V1",
- "what": "the corpus lane's row entries ledger: for each row of the fifteen sources that name their entries, the entry it belongs to as its own source says it, and the Strong's numbers of that entry; and, under lists, the facts lists of further sources, whose rows the corpus lane joins to the Bible dictionaries' entries by each row's own pointed head form and kind of word. Each rule and receipt is kept here byte for byte; the ledger itself is 25 MB and the larger list 9 MB, and they are kept on the corpus lane's store, named on the command line and read only if they are the bytes named here",
+ "what": "the corpus lane's row entries ledger: for each row of the fifteen sources that name their entries, the entry it belongs to as its own source says it, and the Strong's numbers of that entry; and, under lists, the facts lists of further sources, whose rows the corpus lane joins to the Bible dictionaries' entries by each row's own pointed head form and kind of word. Each rule and receipt is kept here byte for byte; the ledger itself is 25 MB and English Wiktionary's two lists 9 and 10 MB, and they are kept on the corpus lane's store, named on the command line and read only if they are the bytes named here",
  "relay": "v197",
  "of": "20 November 2026",
  "letter": "r2:mishkan/v2/letters/moses-row-entries-v1/FOR-ELIJAH-v197.md",
@@ -72,41 +72,84 @@
  "lists": [
   {
    "name": "English Wiktionary",
-   "relay": "v211",
-   "of": "21 November 2026",
-   "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v211.md",
-   "letter_sha256": "4ade146b5cb3ebec2e75d4383d354c9c4ac6031fda9cd816026c449374cb6b7b",
-   "from": "r2:mishkan/v2/ledgers/all/entry-ledger/tbesh-letters-v1/ (the private store)",
-   "folder": "entry-ledger-tbesh-letters-v1",
+   "relay": "v218",
+   "of": "22 November 2026",
+   "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v218.md",
+   "letter_sha256": "896c818c61655b67c43462990f9295226be2663ace27fd0d730790678002a87c",
+   "from": "r2:mishkan/v2/ledgers/all/entry-ledger/lists-v1.1/ (the private store)",
+   "folder": "entry-ledger-lists-v1.1",
    "rule": {
     "file": "RULE.md",
-    "bytes": 23511,
-    "sha256": "12e8d85f51186343e0e730b7f8034be321970f8d5dbbcd214176f36c36429f1d"
+    "bytes": 21714,
+    "sha256": "8f337d8989c874e2d0d764a0ed83adff5b8fe4a2d5cd80f7aebd08c717c8c0f2"
    },
    "receipt": {
-    "file": "receipt-v1.json",
-    "bytes": 29691,
-    "sha256": "eadc3dde6233506c80f444307ed732a5d3b76ebdd204a2e8d49d167072c0728a"
+    "file": "receipt-v1.1.json",
+    "bytes": 4848,
+    "sha256": "2d6daeeacfdae44ca38282e190a216bff37144651eef3b2a22cf44cf944e54d2"
    },
    "answer": {
-    "file": "ANSWER-A.md",
-    "bytes": 21086,
-    "sha256": "3097995a1a2e8e437423dff1c7fd303713eb2bdfb8a0dc9427f07318ff12a292"
+    "file": "ANSWER-LISTS-v1.1.md",
+    "bytes": 17951,
+    "sha256": "0f0983f2c7804402230b638ab5145aaf0e8a6f6a094646bc9bb5c5650634b7b4"
+   },
+   "changes": {
+    "file": "changes-v1.1.jsonl",
+    "bytes": 419996,
+    "sha256": "c592c888c829b4a27e74f6d8774fbc3834550e82cf3a27e24390f8a66955f9c4",
+    "lines": 130,
+    "what": "each line either list changes from v1, with its ledger row and what the list now sets aside; read by the comparison made before this ship, not by the entries tool",
+    "kept": "r2:mishkan/v2/ledgers/all/entry-ledger/lists-v1.1/changes-v1.1.jsonl (the private store); not in this tree"
    },
    "list": {
-    "file": "facts-slot-t-v1.1.tsv",
-    "bytes": 10087100,
-    "sha256": "a6e3271cbf7a328ae53d4ce38ea4459662d98c76c334a96f5bc4290684b2344e",
+    "file": "facts-slot-wiktionary-v1.1.tsv",
+    "bytes": 8925125,
+    "sha256": "b16c45ce865f2262976dd6edad22d7e3776fdb478ac9fc4a25b81e88bea669d7",
     "lines": 54261,
-    "kept": "r2:mishkan/v2/ledgers/all/entry-ledger/tbesh-letters-v1/facts-slot-t-v1.1.tsv (the private store); not in this tree"
+    "kept": "r2:mishkan/v2/ledgers/all/entry-ledger/lists-v1.1/facts-slot-wiktionary-v1.1.tsv (the private store); not in this tree"
    },
    "read_at_store_version": "88fec6d59737",
    "facts": [
     "n",
-    "t"
+    "t",
+    "b"
    ],
-   "facts_not_landed": "BDB's own entries (b) wait for relay v218, which reissues relays v203 and v204 with relay v212's two answers («forget» off five lines; the 231 lines under the keys of «to» given their entry); then b lands once",
-   "why_t_lands": "STEP's letters are the first parting of ruling 6 of 13 November 2026. On these rows, joined to an entry by their own pointed head form, the letters held back rows of the same word wherever v203 gave fewer letters than STEP's own rows carry (4,380 lines). Relay v211 reads from TBESH's own first and third columns which letters are one word and widens t so that no line holds back a letter of the same word as a letter v203 gave. So the letters now part only another word, as the ruling means them to",
+   "facts_from": {
+    "t": {
+     "what": "STEP's letters are read from relay v211's list, line for line beside this one: v218 reissues v203's lines with t as v203 gave it, and the t ship 15 landed is v211's, widened by TBESH's own columns. The two lists name the same 54,261 rows in the same order (key, rank, m id, sha16, route text); v211's differs from v203's only in t and its three added columns, and v218's only in n and b, with what_changes and class, on the 126 lines its changes name (proved line by line before this ship, 23 November 2026). The entries tool and the entry gate's check refuse the two where a line names another row",
+     "relay": "v211",
+     "of": "21 November 2026",
+     "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v211.md",
+     "letter_sha256": "4ade146b5cb3ebec2e75d4383d354c9c4ac6031fda9cd816026c449374cb6b7b",
+     "from": "r2:mishkan/v2/ledgers/all/entry-ledger/tbesh-letters-v1/ (the private store)",
+     "folder": "entry-ledger-tbesh-letters-v1",
+     "rule": {
+      "file": "RULE.md",
+      "bytes": 23511,
+      "sha256": "12e8d85f51186343e0e730b7f8034be321970f8d5dbbcd214176f36c36429f1d"
+     },
+     "receipt": {
+      "file": "receipt-v1.json",
+      "bytes": 29691,
+      "sha256": "eadc3dde6233506c80f444307ed732a5d3b76ebdd204a2e8d49d167072c0728a"
+     },
+     "answer": {
+      "file": "ANSWER-A.md",
+      "bytes": 21086,
+      "sha256": "3097995a1a2e8e437423dff1c7fd303713eb2bdfb8a0dc9427f07318ff12a292"
+     },
+     "list": {
+      "file": "facts-slot-t-v1.1.tsv",
+      "bytes": 10087100,
+      "sha256": "a6e3271cbf7a328ae53d4ce38ea4459662d98c76c334a96f5bc4290684b2344e",
+      "lines": 54261,
+      "kept": "r2:mishkan/v2/ledgers/all/entry-ledger/tbesh-letters-v1/facts-slot-t-v1.1.tsv (the private store); not in this tree"
+     },
+     "read_at_store_version": "88fec6d59737",
+     "why_t_lands": "STEP's letters are the first parting of ruling 6 of 13 November 2026. On these rows, joined to an entry by their own pointed head form, the letters held back rows of the same word wherever v203 gave fewer letters than STEP's own rows carry (4,380 lines). Relay v211 reads from TBESH's own first and third columns which letters are one word and widens t so that no line holds back a letter of the same word as a letter v203 gave. So the letters now part only another word, as the ruling means them to"
+    }
+   },
+   "why_b_lands": "BDB's own entries are the second parting of ruling 6 of 13 November 2026. On a row joined to an entry by its own pointed head form, b does two things at a place. With a number, it puts BDB's entry into what the gate gathers from the key's rows for the place's numbers, so BDB's own rows that carry b and no number and name another entry are withheld there. With no number, the row itself is withheld where the entries gathered hold none of its own. So b on a joined row changes what BDB's rows do at rest, and ship 11 held it until it was counted (ask B of 20 November). Relay v212 counted it on the reading this page reads (a place asks its word's own key, and the gate gathers from every row of that key, before the pointing and the kinds hold any back): 3,927 flips of BDB's own rows, left to withheld, at 2,215 places. It settled two classes, and relay v218 reissues both lists with them: «forget» (n.fr.aa) off 27 lines, where it went the wrong way; the 231 lines under the keys that spell the preposition «to» with an ending land as given with l.aa.ab, BDB's own parting of the joined letter; 102 lines take H4480 and one line H7945. It holds nothing back, so b lands on every line that gives it (23 November 2026)",
    "sources": {
     "M11": "kaikki_wiktionary_hebrew",
     "M13": "kaikki_wiktionary_hebrew",
@@ -128,7 +171,7 @@
     }
    ],
    "amends": {
-    "what": "relay v203's list, which v211's carries line for line with t widened; its rule, receipt and kinds table stay in their folder",
+    "what": "relay v203's list, which v218's reissues line for line (n and b changed at 126 lines) and v211's carries line for line with t widened; its rule, receipt and kinds table stay in their folder",
     "relay": "v203",
     "of": "20 November 2026",
     "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v203.md",
@@ -161,38 +204,48 @@
   },
   {
    "name": "Classical Hebrew Words and Hebrew Wiktionary",
-   "relay": "v204",
-   "of": "20 November 2026",
-   "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v204.md",
-   "from": "r2:mishkan/v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/ (the private store)",
-   "folder": "entry-ledger-classical-and-hebrew-wiktionary-v1",
+   "relay": "v218",
+   "of": "22 November 2026",
+   "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v218.md",
+   "letter_sha256": "896c818c61655b67c43462990f9295226be2663ace27fd0d730790678002a87c",
+   "from": "r2:mishkan/v2/ledgers/all/entry-ledger/lists-v1.1/ (the private store)",
+   "folder": "entry-ledger-lists-v1.1",
    "rule": {
     "file": "RULE.md",
-    "bytes": 32193,
-    "sha256": "2fe910a3de701422615fa3cabcb928b45ef564078ad7acfdb175ada7ce35dbe7"
+    "bytes": 21714,
+    "sha256": "8f337d8989c874e2d0d764a0ed83adff5b8fe4a2d5cd80f7aebd08c717c8c0f2"
    },
    "receipt": {
-    "file": "receipt-v1.json",
-    "bytes": 39748,
-    "sha256": "ae14f47b5fa7710d8aeda858edf093b9fc4259bd910e1bc0a740f51e725ecda4"
+    "file": "receipt-v1.1.json",
+    "bytes": 4848,
+    "sha256": "2d6daeeacfdae44ca38282e190a216bff37144651eef3b2a22cf44cf944e54d2"
    },
-   "kinds_table": {
-    "file": "pos-tables-v1.json",
-    "bytes": 8187,
-    "sha256": "eacff1e8531defe3955e1e176b88da053452a08c98a9e065f9ec6296922c8b9e"
+   "answer": {
+    "file": "ANSWER-LISTS-v1.1.md",
+    "bytes": 17951,
+    "sha256": "0f0983f2c7804402230b638ab5145aaf0e8a6f6a094646bc9bb5c5650634b7b4"
+   },
+   "changes": {
+    "file": "changes-v1.1.jsonl",
+    "bytes": 419996,
+    "sha256": "c592c888c829b4a27e74f6d8774fbc3834550e82cf3a27e24390f8a66955f9c4",
+    "lines": 130,
+    "what": "each line either list changes from v1, with its ledger row and what the list now sets aside; read by the comparison made before this ship, not by the entries tool",
+    "kept": "r2:mishkan/v2/ledgers/all/entry-ledger/lists-v1.1/changes-v1.1.jsonl (the private store); not in this tree"
    },
    "list": {
-    "file": "facts-slot-v1.tsv",
-    "bytes": 965238,
-    "sha256": "5bc044bad2003f468592933fb5cf9c5f0ccbc54a608973ce4b466c351a6f1aeb",
+    "file": "facts-slot-v1.1.tsv",
+    "bytes": 965213,
+    "sha256": "c4c0c9d2bc917fc615296dbaed8ecad6d30209519dc53e5bd4cf78fc80f41eed",
     "lines": 9192,
-    "kept": "reader/data/row-entries/entry-ledger-classical-and-hebrew-wiktionary-v1/facts-slot-v1.tsv (in this tree)"
+    "kept": "reader/data/row-entries/entry-ledger-lists-v1.1/facts-slot-v1.1.tsv (in this tree)"
    },
-   "read_at_store_version": "54416ff5785b",
+   "read_at_store_version": "88fec6d59737",
    "facts": [
-    "n"
+    "n",
+    "b"
    ],
-   "facts_not_landed": "STEP's letters (t) and BDB's own entries (b) are the two partings of ruling 6 of 13 November 2026, which names the sources whose rows each reads (TAHOT's and TBESH's; BDB's via Open Scriptures). On a row joined to an entry by its pointed head form they are counted and not written until the partings are ruled wider",
+   "why_b_lands": "BDB's own entries are the second parting of ruling 6 of 13 November 2026. On a row joined to an entry by its own pointed head form, b does two things at a place. With a number, it puts BDB's entry into what the gate gathers from the key's rows for the place's numbers, so BDB's own rows that carry b and no number and name another entry are withheld there. With no number, the row itself is withheld where the entries gathered hold none of its own. So b on a joined row changes what BDB's rows do at rest, and ship 11 held it until it was counted (ask B of 20 November). Relay v212 counted it on the reading this page reads (a place asks its word's own key, and the gate gathers from every row of that key, before the pointing and the kinds hold any back): 3,927 flips of BDB's own rows, left to withheld, at 2,215 places. It settled two classes, and relay v218 reissues both lists with them: «forget» (n.fr.aa) off 27 lines, where it went the wrong way; the 231 lines under the keys that spell the preposition «to» with an ending land as given with l.aa.ab, BDB's own parting of the joined letter; 102 lines take H4480 and one line H7945. It holds nothing back, so b lands on every line that gives it (23 November 2026)",
    "sources": {
     "M23": "classical_hebrew_words",
     "M27": "hewiktionary_hebrew_exact_english_translation",
@@ -280,7 +333,38 @@
      "why": "held by the corpus lane (relay v204 section 4): the source holds more words of that spelling and kind than the lexical index holds entries, so the word may be one the index does not list; one ruling lands them or leaves them",
      "kept": "r2:mishkan/v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/ (the private store); not in this tree"
     }
-   ]
+   ],
+   "amends": {
+    "what": "relay v204's list, which v218's reissues line for line (n and b changed at 4 lines); its rule, receipt, kinds table and list stay in their folder",
+    "relay": "v204",
+    "of": "20 November 2026",
+    "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v204.md",
+    "from": "r2:mishkan/v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/ (the private store)",
+    "folder": "entry-ledger-classical-and-hebrew-wiktionary-v1",
+    "rule": {
+     "file": "RULE.md",
+     "bytes": 32193,
+     "sha256": "2fe910a3de701422615fa3cabcb928b45ef564078ad7acfdb175ada7ce35dbe7"
+    },
+    "receipt": {
+     "file": "receipt-v1.json",
+     "bytes": 39748,
+     "sha256": "ae14f47b5fa7710d8aeda858edf093b9fc4259bd910e1bc0a740f51e725ecda4"
+    },
+    "kinds_table": {
+     "file": "pos-tables-v1.json",
+     "bytes": 8187,
+     "sha256": "eacff1e8531defe3955e1e176b88da053452a08c98a9e065f9ec6296922c8b9e"
+    },
+    "list": {
+     "file": "facts-slot-v1.tsv",
+     "bytes": 965238,
+     "sha256": "5bc044bad2003f468592933fb5cf9c5f0ccbc54a608973ce4b466c351a6f1aeb",
+     "lines": 9192,
+     "kept": "reader/data/row-entries/entry-ledger-classical-and-hebrew-wiktionary-v1/facts-slot-v1.tsv (in this tree)"
+    },
+    "read_at_store_version": "54416ff5785b"
+   }
   }
  ],
  "note": "every sha256 here is the one the relay's letter names for the file. Row entries v1.2 (relay v197) is v1.1's rule read on the store as served on 20 November 2026 (store 54416ff5785b): 380,633 rows of the fifteen sources, each at the key and rank where it stands. Against the store as served its list of moves gives 2,843 rows other facts: 2,829 rows relay v188 landed, which carried none, and 14 rows call 5 re-keyed."
