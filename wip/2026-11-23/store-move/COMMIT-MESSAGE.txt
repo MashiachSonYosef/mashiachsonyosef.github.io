@@ -1,0 +1,15 @@
+The store cut: the path map says where every store address this repository names stands now
+
+The corpus lane's store cut (relay v216's act; its step 3 done on 22 November 2026) put the kept text files up compressed and packed some into parts; their old names go at its step 5, after this commit. Nothing on the site reads the store, and no pin or record is rewritten for the move: as with the v2 layout of 10 November, the path map says where the same bytes stand now.
+
+- data/store-path-map/: the lane's two lists, byte for byte (page-lane-renames-v1.tsv, sha256 d88e9eb3…, 2,780 files; page-lane-also-held-v2.tsv, sha256 ba70a5f5…, 220 files).
+- data/store-path-map-v1.json, section after_the_cut: an address of the first list stands as the same address with .gz; 204 of the second stand as a member of a part, each named; 16 superseded files leave the store, 9 of them in this repository and 7 (builders and their receipts) on the lane's disk only, each named; every other address stands under its own name. serving-lane/shelf/ stays.
+- Checked on 23 November: every one of the 2,984 files on the store read back, unpacked and held to its list's byte count and md5 (0 faults); 376 of them are also named by sha256 in this repository's records and equal to it; all 85 store addresses this repository names (outside wip/) accounted for, none not found. Ships 15 to 17 pin nothing the cut touched.
+- PIPELINE.md says so: a file it names on the lane's store now stands as .gz, in a part, or here; the round reads no store address.
+
+Checks on the tree with the change: check-ledger-declared-v1, check-nothing-hand-typed-v1, check-record-pinned-v1, check-no-import-side-effects-v1, check-dictionary-kinds-v1, check-form-of-v1, check-commentary-in-line-v1, check-source-switch-v1 and the eight others that read the document or walk data/: all pass. No line, card or zone changes.
+
+The record: wip/2026-11-23/store-move/STORE-MOVE.md on the notes branch.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01YaByYdukgpv1g24zxvj3Td

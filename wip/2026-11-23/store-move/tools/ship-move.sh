@@ -1,0 +1,30 @@
+#!/bin/bash
+# The store move: ship the tree S/s13 (main e0a5cb8d7c plus the path map's new section) as ONE commit on main, then
+# gh-pages follows main. No round is run: nothing the round, the page or a tool reads changes.
+set -euo pipefail
+S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad
+cd $S/s13
+pkill -f "http.server 89(12|14|15|99|21) --bind" || true
+git fetch -q origin +refs/heads/main:refs/remotes/origin/main +refs/heads/gh-pages:refs/remotes/origin/gh-pages
+BASE=$(git rev-parse e0a5cb8d7c007339366e207de598af7210deaced)
+[ "$(git rev-parse origin/main)" = "$BASE" ] || { echo "origin/main moved past our base; stop"; exit 1; }
+[ "$(git rev-parse HEAD)" = "$BASE" ] || { echo "HEAD is not the base; stop"; exit 1; }
+[ "$(git status --short | grep -v '^ M reader/PIPELINE.md$\|^ M reader/data/store-path-map-v1.json$\|^?? reader/data/store-path-map/$' | wc -l)" = 0 ] || { echo "a change beyond the move; stop"; git status --short; exit 1; }
+git add -A reader/PIPELINE.md reader/data/store-path-map-v1.json reader/data/store-path-map
+{ cat $S/s24w/commit.txt; printf '\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01YaByYdukgpv1g24zxvj3Td\n'; } > $S/s24w/commit-final.txt
+git -c user.name=Claude -c user.email=noreply@anthropic.com commit -q -F $S/s24w/commit-final.txt
+MAIN=$(git rev-parse HEAD)
+echo "main commit $MAIN"
+git push -q origin HEAD:refs/heads/main
+GHP=$(git rev-parse origin/gh-pages)
+export GIT_INDEX_FILE=$S/s24w/ghpages.index
+rm -f $GIT_INDEX_FILE
+git read-tree $MAIN
+git update-index --cacheinfo 100644,$(git rev-parse $GHP:README.md),README.md
+TREE=$(git write-tree)
+unset GIT_INDEX_FILE
+C=$(git -c user.name=Claude -c user.email=noreply@anthropic.com commit-tree $TREE -p $GHP -p $MAIN -m "gh-pages follows main")
+git push -q origin $C:refs/heads/gh-pages
+echo "gh-pages commit $C"
+git fetch -q origin +refs/heads/main:refs/remotes/origin/main +refs/heads/gh-pages:refs/remotes/origin/gh-pages
+echo "origin/main $(git rev-parse origin/main) · origin/gh-pages $(git rev-parse --short origin/gh-pages)"
