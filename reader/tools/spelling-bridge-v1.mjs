@@ -36,6 +36,23 @@
 // pinned as they are, as what v1.1 extends, and v1.1 is read only where each
 // of its lines, its added fields taken off, is v1's line, key order and all.
 //
+// BRIDGE V1.2 (the corpus lane's relay v220 of 22 November 2026; ship 20, 23
+// November 2026). STEP's key for its tag column: «Lexical tags for each
+// element of the Hebrew words, including prefixes and suffixes, with the Root
+// in {curly brackets}.» «A "+" indicates the same tag also covers the next
+// Hebrew word.» v1 took one brace off each end of a tag, so at 43 places a
+// piece carried «H4648G}+» and was not read as the word's own; v1.1 kept it.
+// v1.2 gives each such piece the number STEP names, reads the roles again at
+// 7 places and the main tags at the 43, and names every field it changed with
+// both values (changes-v1.2.jsonl: 147 fields at 43 places); on every piece
+// it adds three fields right after the tag (the tag as TAHOT writes it,
+// whether it covers the next Hebrew word, and that word). The list laid from
+// is v1.2, read only where each of its lines, its three added fields taken
+// off and its changes set back, is v1.1's line, key order and all; v1.1 and v1
+// stay pinned as what it extends. No laid place is among the 43, so no piece
+// laid moves. The class held for the «}+» tag has no reason left, and its 42
+// places of new pieces fall to the holds of call 4 they stand under (below).
+//
 // WHAT A ZONE CARRIES FOR A LAID PLACE, said here once for the tool that
 // writes it (tools/apply-spelling-bridge-v1.mjs) and the check that holds it
 // (tools/check-spelling-bridge-v1.mjs):
@@ -74,9 +91,13 @@
 //            letters. STEP writes «{H4648G}+» where one tag goes on over the
 //            next Hebrew word, and v1 cut it to «H4648G}+», so the piece is not
 //            read as the word's own and at some places the roles move (the
-//            lane's v214 letter, section 5). The lane mends it in bridge v1.2
-//            (relay v218); the place waits for the mend and is not read around
-//            the fault.
+//            lane's v214 letter, section 5). Bridge v1.2 (relay v220; ship 20,
+//            23 November 2026) gives each such piece the number STEP names, so
+//            no place of the list laid from is held so: of the 42 places of new
+//            pieces held for it until then, 40 are places call 4 holds as they
+//            rest and 2 places where STEP's reading stands. The test stays, and
+//            the pin names no kind held for it, so a place a later list held so
+//            would be a kind the pin does not name, refused, not laid.
 //   a_pair   the lattice's surface writes a pair, a written form and a read
 //            form (round and square brackets): the zone's word there is a pair,
 //            whose line a zone carries by its own rule, and the bridge lays
@@ -127,8 +148,9 @@ export const SPELLING_BRIDGE_TOOL = "tools/apply-spelling-bridge-v1.mjs";
 // how a zone names STEP's aligned translation as a piece's source
 export const PIECE_SOURCE = "tahot";
 
-/** The pin and the files it names, each read only as the bytes the pin names: v1's (relay v202) and v1.1's (relay
- *  v214), which extends them. Throws PinFault, in words. */
+/** The pin and the files it names, each read only as the bytes the pin names: v1's (relay v202), v1.1's (relay v214),
+ *  which extends them, and v1.2's (relay v220), which extends v1.1's and is the list laid from (places12). Throws
+ *  PinFault, in words. */
 export const readBridge = (pinPath) => {
   if (!existsSync(pinPath)) throw new PinFault(`${pinPath} is not here`);
   const pin = JSON.parse(readFileSync(pinPath, "utf8"));
@@ -147,7 +169,14 @@ export const readBridge = (pinPath) => {
   const take11 = (d, lines = false) => (lines ? readPinnedLines : readPinned)(join(home, v.folder, d.file), d, `${v.folder}/${d.file}`);
   take11(v.rule);
   const receipt11 = JSON.parse(take11(v.receipt).toString("utf8"));
-  return { pin, receipt, places: take(pin.places, true), landed, notLanded: take(pin.form_rows_not_landed, true), receipt11, places11: take11(v.places, true), call4: call4HoldOf(home, pin, pinPath) };
+  const w = pin.v1_2;
+  if (!w || !w.folder || w.extends !== v.folder) throw new PinFault(`${pinPath} names no v1.2 of the list that extends ${v.folder}`);
+  for (const k of ["rule", "receipt", "places", "changes"]) if (!w[k] || !w[k].file) throw new PinFault(`${pinPath} names no ${k} of v1.2`);
+  const take12 = (d, lines = false) => (lines ? readPinnedLines : readPinned)(join(home, w.folder, d.file), d, `${w.folder}/${d.file}`);
+  take12(w.rule);
+  const receipt12 = JSON.parse(take12(w.receipt).toString("utf8"));
+  return { pin, receipt, places: take(pin.places, true), landed, notLanded: take(pin.form_rows_not_landed, true), receipt11, places11: take11(v.places, true),
+    receipt12, places12: take12(w.places, true), changes12: take12(w.changes, true), call4: call4HoldOf(home, pin, pinPath) };
 };
 
 // CALL 4'S HOLD, read as the house makes it (HELD WITHIN A CLASS, above): STEP's words written with « | », the
@@ -179,8 +208,9 @@ const call4HoldOf = (home, pin, pinPath) => {
 };
 
 /** Where the lane's receipts and the pin part: v1's receipt names its three lists by the pin's bytes and sha256; v1.1's
- *  names its list and its rule so, and reads v1's files, which it extends, as the pin names them. [] where they agree. */
-export const receiptAgainst = ({ pin, receipt, receipt11 }) => {
+ *  names its list and its rule so, and reads v1's files, which it extends, as the pin names them; v1.2's names its list,
+ *  its changes and its rule so, and reads v1.1's files so. [] where they agree. */
+export const receiptAgainst = ({ pin, receipt, receipt11, receipt12 }) => {
   const out = [];
   const said = new Map((Array.isArray(receipt && receipt.outputs) ? receipt.outputs : []).map((o) => [o.file, o]));
   for (const [d, file] of [[pin.places, pin.places.file], [pin.form_rows_not_landed, pin.form_rows_not_landed.file], [pin.form_rows, String(pin.form_rows.at).split("/").pop()]]) {
@@ -198,6 +228,60 @@ export const receiptAgainst = ({ pin, receipt, receipt11 }) => {
     const f = read[file];
     if (!f || f.bytes !== d.bytes || f.sha256 !== d.sha256) out.push(`the lane's v1.1 receipt read v1's ${file} as ${f ? `${f.bytes} bytes, ${String(f.sha256).slice(0, 12)}` : "nothing"}, and the pin names it as ${d.bytes} bytes, ${String(d.sha256).slice(0, 12)}`);
   }
+  // v1.2's receipt names its list, its changes and its rule as the pin does, and read v1.1's files (its input «bridge
+  // v1.1») as the pin names them (ship 20, 23 November 2026)
+  const w = pin.v1_2 || {}, r12 = receipt12 || {};
+  const said12 = new Map((Array.isArray(r12.outputs) ? r12.outputs : []).map((o) => [o.file, o]));
+  for (const d of [w.places, w.changes]) {
+    const o = d ? said12.get(d.file) : null;
+    if (!d || !o || o.bytes !== d.bytes || o.sha256 !== d.sha256) out.push(`the lane's v1.2 receipt names ${d ? d.file : "a file"} as ${o ? `${o.bytes} bytes, ${String(o.sha256).slice(0, 12)}` : "nothing"}, and the pin as ${d ? `${d.bytes} bytes, ${String(d.sha256).slice(0, 12)}` : "nothing"}`);
+  }
+  if (!r12.rule || !w.rule || r12.rule.file !== w.rule.file || r12.rule.sha256 !== w.rule.sha256) out.push(`the lane's v1.2 receipt names its rule as ${r12.rule ? `${r12.rule.file} ${String(r12.rule.sha256).slice(0, 12)}` : "nothing"}, and the pin otherwise`);
+  const read11 = ((r12.inputs || {})["bridge v1.1"] || {}).files || {};
+  for (const d of [v.rule, v.receipt, v.places]) {
+    const f = read11[d.file];
+    if (!f || f.bytes !== d.bytes || f.sha256 !== d.sha256) out.push(`the lane's v1.2 receipt read v1.1's ${d.file} as ${f ? `${f.bytes} bytes, ${String(f.sha256).slice(0, 12)}` : "nothing"}, and the pin names it as ${d.bytes} bytes, ${String(d.sha256).slice(0, 12)}`);
+  }
+  return out;
+};
+
+// THE FIELDS V1.2 ADDS (its letter, section 4), on each piece right after its tag; taken off, and each change of
+// changes-v1.2.jsonl set back to v1.1's value, each line of v1.2 is v1.1's line
+export const ADDED_ON_A_PIECE_V1_2 = ["tag_as_tahot_writes_it", "tag_also_covers_the_next_hebrew_word", "the_next_hebrew_word_it_covers"];
+/** v1.2 against v1.1, line by line, by the letter's own proof (section 3): each piece carries the three added fields;
+ *  with them taken off and every change the list of changes names for the line set back from v1.2's value to v1.1's,
+ *  the line is v1.1's, every field and its order; every change names a line of the list and a field that holds v1.2's
+ *  value. [] where it holds. */
+export const v12Against = ({ places11, places12, changes12 }) => {
+  const out = [];
+  if (places12.length !== places11.length) out.push(`v1.2 holds ${places12.length} lines, and v1.1 ${places11.length}`);
+  const changesAt = new Map();
+  for (const [at, c] of (changes12 || []).entries()) {
+    const id = `${c && c.book} ${c && c.place}`;
+    if (!c || !Array.isArray(c.changes) || !c.changes.length) { out.push(`changes line ${at + 1} (${id}) names no change`); continue; }
+    if (changesAt.has(id)) out.push(`changes line ${at + 1}: ${id} is named twice`);
+    changesAt.set(id, c);
+  }
+  let met = 0;
+  for (const [at, l] of places12.entries()) {
+    const where = `v1.2 line ${at + 1} (${l.book} ${l.place})`;
+    if ((Array.isArray(l.pieces) ? l.pieces : []).some((x) => !x || ADDED_ON_A_PIECE_V1_2.some((k) => !Object.prototype.hasOwnProperty.call(x, k)))) { out.push(`${where}: a piece carries not every field v1.2 adds`); continue; }
+    const x = JSON.parse(JSON.stringify(l));
+    for (const q of Array.isArray(x.pieces) ? x.pieces : []) for (const k of ADDED_ON_A_PIECE_V1_2) delete q[k];
+    const c = changesAt.get(`${l.book} ${l.place}`);
+    if (c) {
+      met += 1;
+      for (const ch of c.changes) {
+        const path = String(ch.field || "").split(".");
+        const last = path.pop();
+        const parent = path.reduce((o, k) => (o && typeof o === "object" ? o[k] : undefined), x);
+        if (!parent || typeof parent !== "object" || !Object.prototype.hasOwnProperty.call(parent, last) || JSON.stringify(parent[last]) !== JSON.stringify(ch.v1_2)) { out.push(`${where}: ${ch.field} does not hold the value the changes name for v1.2`); continue; }
+        parent[last] = ch.v1_1;
+      }
+    }
+    if (JSON.stringify(x) !== JSON.stringify(places11[at])) out.push(`${where}, its added fields taken off and its changes set back, is not v1.1's line ${at + 1}`);
+  }
+  if (met !== changesAt.size) out.push(`the changes name ${changesAt.size} places, and ${met} are lines of v1.2`);
   return out;
 };
 
@@ -223,7 +307,7 @@ export const v11Against = ({ places, places11 }) => {
 
 // THE PLACES HELD WITHIN A CLASS (HELD WITHIN A CLASS, above), each reason by its name in the pin
 export const HELD = {
-  a_piece_whose_tag_is_not_plain: "a piece's tag is not «H», digits and letters (STEP's «}+»; the lane mends it in bridge v1.2, relay v218)",
+  a_piece_whose_tag_is_not_plain: "a piece's tag is not «H», digits and letters (STEP's «}+»; bridge v1.2, relay v220, gives each such piece the number STEP names, and the pin holds no place for it)",
   a_pair: "the lattice's surface writes a pair, and the bridge lays pieces on a plain word only",
   a_place_call_4_holds: "call 4 of relay v189 writes STEP's words here with « | », and the house holds the line as it rests until the corpus lane says how STEP's line reads there",
   a_place_where_steps_reading_stands: "call 4 of relay v189 makes STEP's own pick 1 the line here, and the page asks it before the place's pieces: laid, the place would be read two ways, its card and a reading across words disagreeing with its line. The owner ruled on 23 November 2026 («steps is fine»): STEP's reading governs the card at these places, and the pieces are not laid",
@@ -261,12 +345,13 @@ const idOf = (book, place) => `${book} ${place}`;
  *  place (its form row's, or the pieces' parts as v1.1 writes them, joined at the
  *  stroke), each piece's part as v1.1 writes it, the core piece's tag (kept for
  *  the record, never written) and the pieces as a zone writes a piece
- *  ({ k, g, s, r }). The list read is v1.1 (it holds every field of v1).
+ *  ({ k, g, s, r }). The list read is v1.2 (it holds every field of v1.1 and of
+ *  v1, with STEP's «{…}+» tags read as STEP's key says; ship 20).
  *  `counts` is the list by class, use and what holds a place within its class,
  *  recounted. `faults` says, in words, every kind the pin does not name or
  *  miscounts, and every laid place that is not as the rule above has it, and
  *  every reading the pin names that the list does not give. */
-export const laidOf = ({ pin, places11, landed, notLanded, call4 }) => {
+export const laidOf = ({ pin, places12, landed, notLanded, call4 }) => {
   const faults = [], laid = [], counts = new Map();
   const lays = Array.isArray(pin.laid) ? pin.laid : [], leaves = Array.isArray(pin.not_laid) ? pin.not_laid : [];
   const named = new Map();
@@ -283,8 +368,8 @@ export const laidOf = ({ pin, places11, landed, notLanded, call4 }) => {
     if (typeof r.key !== "string" || typeof r.route !== "string" || !Array.isArray(r.places)) { faults.push(`${file} line ${at + 1}: names no key, words or places`); continue; }
     for (const p of r.places) (rowAt.get(idOf(p.book, p.place)) || rowAt.set(idOf(p.book, p.place), []).get(idOf(p.book, p.place))).push(r);
   }
-  for (const [at, l] of places11.entries()) {
-    const where = `${pin.v1_1.places.file} line ${at + 1} (${l.book} ${l.place})`;
+  for (const [at, l] of places12.entries()) {
+    const where = `${pin.v1_2.places.file} line ${at + 1} (${l.book} ${l.place})`;
     const k = kindOf(l.class, l.use, heldOf(l, call4));
     counts.set(k, (counts.get(k) || 0) + 1);
     const how = named.get(k);

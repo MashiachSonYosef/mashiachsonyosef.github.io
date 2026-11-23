@@ -1207,7 +1207,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 16759135,
+  "shard_bytes_total": 16759169,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1277,7 +1277,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "3d694f420653",
+ "store_version": "2882324f8ff3",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1748,6 +1748,12 @@
    "now": "3d694f420653",
    "why": "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points",
    "on": "2026-11-23T14:00:13.000Z"
+  },
+  {
+   "was": "3d694f420653",
+   "now": "2882324f8ff3",
+   "why": "names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name",
+   "on": "2026-11-23T20:00:14.000Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -4379,7 +4385,7 @@
  },
  "name_rows": {
   "rule_id": "names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name",
-  "applied_on": "2026-11-23T10:00:14.000Z",
+  "applied_on": "2026-11-23T20:00:14.000Z",
   "applied_by": "tools/apply-name-rows-v1.mjs",
   "pin": "reader/data/names/PIN.json",
   "relay": "v198",
@@ -4394,9 +4400,9 @@
   },
   "read_at_store_version": "54416ff5785b",
   "totals": {
-   "sources": 53,
-   "rows_listed": 21292,
-   "rows_marked": 21292,
+   "sources": 54,
+   "rows_listed": 21320,
+   "rows_marked": 21320,
    "lines_that_find_no_row": 0,
    "lines_that_find_more_than_one_row": 0
   },
@@ -4430,9 +4436,74 @@
    "lines_whose_row_was_withheld": {},
    "rows_re_keyed_and_followed": {}
   },
-  "store_version_before": "54416ff5785b",
-  "store_version": "15909b6c523c",
-  "what": "a row the corpus lane's list of name rows names carries name: 1 in the facts slot (slot 10, an object): every entry its own source gives it is marked a name there. The texts are the served bytes, unchanged. At a place that is not a name such a row is withheld and counted; at a place that is a name it stands"
+  "more_lists": [
+   {
+    "relay": "v213",
+    "letter": "r2:mishkan/v2/letters/moses-names-gate-v1/FOR-ELIJAH-v213.md",
+    "rule": "reader/data/names/names-landed-v1/RULE.md",
+    "receipt": "reader/data/names/names-landed-v1/receipt-v1.json",
+    "name_rows": {
+     "file": "reader/data/names/names-landed-v1/name-rows-landed-v1.jsonl",
+     "sha256": "d1a246c3b0de6388b2ddd6c31e8f531087752c3b67c07ea4a6189c9279a9eaaa",
+     "lines": 22
+    },
+    "joined_by": [
+     "k",
+     "rank",
+     "m",
+     "sha"
+    ],
+    "read_at_store_version": "88fec6d59737",
+    "followed": {
+     "rule_id": "row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words",
+     "record": "reader/data/row-strikes-v1.json",
+     "read_at_store_version": "88fec6d59737",
+     "rounds_since": [
+      {
+       "ran_at": "2026-11-22T10:00:01.000Z",
+       "list": "land-send-back-own-language-v1.1.jsonl.gz"
+      },
+      {
+       "ran_at": "2026-11-23T10:00:01.000Z",
+       "list": "land-send-back-own-language-v1.1-let-go-v221.jsonl"
+      }
+     ],
+     "lines_whose_row_was_struck": {},
+     "lines_whose_row_was_withheld": {},
+     "rows_re_keyed_and_followed": {}
+    },
+    "totals": {
+     "rows_listed": 22,
+     "rows_marked": 22,
+     "lines_that_find_no_row": 0
+    }
+   },
+   {
+    "relay": "v219",
+    "letter": "r2:mishkan/v2/letters/moses-names-gate-v1/FOR-ELIJAH-v219.md",
+    "rule": "reader/data/names/places-at-bridge-v1/RULE.md",
+    "receipt": "reader/data/names/places-at-bridge-v1/receipt-v1.json",
+    "name_rows": {
+     "file": "reader/data/names/places-at-bridge-v1/name-rows-tables-v1.jsonl",
+     "sha256": "aee9144291a1a6669b4628b07ee717e6f865ed641a3a0ce32fa420c8ee628330",
+     "lines": 6
+    },
+    "joined_by": [
+     "k",
+     "m",
+     "sha"
+    ],
+    "read_at_store_version": null,
+    "totals": {
+     "rows_listed": 6,
+     "rows_marked": 6,
+     "lines_that_find_no_row": 0
+    }
+   }
+  ],
+  "store_version_before": "3d694f420653",
+  "store_version": "2882324f8ff3",
+  "what": "a row one of the corpus lane's lists of name rows names (names v2's, and each list the pin names beside it: more_lists) carries name: 1 in the facts slot (slot 10, an object): every entry its own source gives it is marked a name there. The texts are the served bytes, unchanged. At a place that is not a name such a row is withheld and counted; at a place that is a name it stands"
  },
  "sense_openings": {
   "rule_id": "sense-openings-rule-v1-the-words-that-open-a-numbered-sense-print-as-a-note-beside-the-readings-and-not-as-a-pill",

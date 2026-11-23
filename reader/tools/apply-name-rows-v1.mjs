@@ -50,6 +50,20 @@
 //     or a line that finds more rows than one: the record does not explain
 //     it, and nothing is guessed.
 //
+// MORE THAN ONE LIST OF ROWS (ship 20, 23 November 2026). Names v2's list was
+// read at one store, and the rows landed since were never read for a name,
+// so they stood at every place whatever their source says. The corpus lane
+// marks them by the same rule, list by list (relay v213: 22 rows relays v200
+// and v202 landed, TAHOT's; relay v219: 6 rows of the translation tables), and
+// the pin names each list beside names v2's (more_name_rows), with its own
+// rule, receipt and the way its lines find their row: followed from the store
+// its receipt names, as names v2's are, or, where the lane read no store for
+// the lines, by key, m id and sha16 in the store as it stands
+// (tools/name-lists-v1.mjs). Every list is laid in the one pass, so a row
+// keeps its mark only while a list names it; a row is listed once over every
+// list. Refused too: a line joined in the store as it stands that finds no
+// row, or more than one.
+//
 // Idempotent: a second run moves nothing and writes nothing. --dry prints
 // and writes nothing. --on gives the moment the run is recorded under
 // (tools/step-moment-v1.mjs); with none it is the clock's. The summary ends
@@ -60,9 +74,10 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
-import { factsOf, setFacts } from "./gloss-store-v1.mjs";
+import { factsOf, setFacts, openRouteStore } from "./gloss-store-v1.mjs";
 import { NAMES_GATE_RULE_ID } from "./names-gate-v1.mjs";
-import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
+import { PinFault } from "./pinned-v1.mjs";
+import { nameRowLists } from "./name-lists-v1.mjs";
 import { openFollower, followedRecord, followedSaid, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { givenMoment, momentOf } from "./step-moment-v1.mjs";
 
@@ -85,41 +100,54 @@ try { GIVEN_ON = givenMoment(); } catch (e) { refuse(e.message); }
 // what the follower refuses, this tool refuses in its words
 const following = (ask) => { try { return ask(); } catch (e) { if (e instanceof FollowFault) refuse(e.message); throw e; } };
 
-// ---- the list, as the corpus lane wrote it ----------------------------------------------
-let pin, lines, theirs;
+// ---- the lists, as the corpus lane wrote them --------------------------------------------
+// names v2's first (`pin` keeps its name for the list the index names as before), then each the pin names beside it
+let pin, lists;
 try {
   pin = JSON.parse(readFileSync(join(PINS, "PIN.json"), "utf8"));
-  if (pin.schema_version !== "NAMES_PIN_V1" || !pin.name_rows) throw new PinFault(`the pin names no list of name rows (${join(PINS, "PIN.json")})`);
-  readPinned(join(PINS, pin.folder, pin.rule.file), pin.rule, `${pin.folder}/${pin.rule.file}`);
-  theirs = JSON.parse(readPinned(join(PINS, pin.folder, pin.receipt.file), pin.receipt, `${pin.folder}/${pin.receipt.file}`).toString("utf8"));
-  lines = readPinnedLines(join(PINS, pin.folder, pin.name_rows.file), pin.name_rows, `${pin.folder}/${pin.name_rows.file}`);
+  lists = nameRowLists(PINS, pin);
 } catch (e) { if (e instanceof PinFault) refuse(e.message); throw e; }
 const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
-const readAt = (((theirs.inputs || {}).route_store || {}).store_version) || null;
-// where each row the list read has gone since, by the row-strikes record kept beside the store
-const follow = following(() => openFollower({ data: dirname(STORE), index, readAt }));
-// the list's rows, each under the name its row has NOW: key -> Map(rank m sha16 -> the line). A row a round moved
+const lines = lists.flatMap((L) => L.lines);
+const readAt = lists[0].readAt;
+// a list joined in the store as it stands: the rows under its keys, read before anything is written
+const asItStands = lists.some((L) => !L.readAt) ? openRouteStore(STORE) : null;
+const sha16 = (text) => sha256(Buffer.from(String(text ?? ""), "utf8")).slice(0, 16);
+// each list's rows, each under the name its row has NOW: key -> Map(rank m sha16 -> the line). A row a round moved
 // since stands under its new key and rank; one a round struck or withheld is not here
 const listed = new Map();
 const named = new Set();
-const goneLines = [], rekeyedLines = [];   // the follower's answers for the lines whose row a round since took, and for those followed to a moved row
 const bySource = {};
-lines.forEach((l, at) => {
-  const where = `${pin.name_rows.file} line ${at + 1}`;
-  if (typeof l.k !== "string" || !Number.isInteger(l.rank) || typeof l.m !== "string" || !/^[0-9a-f]{16}$/u.test(String(l.sha))) refuse(`${where} names no key, rank, m id or hash`);
-  if (!(index.m_sources || {})[l.m]) refuse(`${where} names a row of ${l.m}, and the store holds no such source`);
-  const asRead = `${l.k}\u0001${l.rank} ${l.m} ${l.sha}`;
-  if (named.has(asRead)) refuse(`${where} names a row an earlier line names (${l.k}, ${l.rank} ${l.m} ${l.sha})`);
-  named.add(asRead);
-  bySource[l.m] = bySource[l.m] || { key: index.m_sources[l.m].key, listed: 0, marked: 0, moved: 0 };
-  bySource[l.m].listed += 1;
-  const went = following(() => follow.nowOf([l.k, l.rank, l.m, l.sha]));
-  if (went.state === "struck" || went.state === "withheld") { goneLines.push(went); return; }
-  if (went.state === "re-keyed") rekeyedLines.push(went);
-  const [k, rankNow] = went.name;
-  const rows = listed.get(k) || listed.set(k, new Map()).get(k);
-  rows.set(`${rankNow} ${l.m} ${l.sha}`, { met: 0 });
-});
+for (const L of lists) {
+  // where each row the list read has gone since, by the row-strikes record kept beside the store
+  L.follow = L.readAt ? following(() => openFollower({ data: dirname(STORE), index, readAt: L.readAt })) : null;
+  L.gone = []; L.rekeyed = []; L.marked = 0;   // the follower's answers for the lines whose row a round since took, and for those followed to a moved row
+  L.lines.forEach((l, at) => {
+    const where = `${L.folder}/${L.rows.file} line ${at + 1}`;
+    if (typeof l.k !== "string" || (L.follow && !Number.isInteger(l.rank)) || typeof l.m !== "string" || !/^[0-9a-f]{16}$/u.test(String(l.sha))) refuse(`${where} names no key, ${L.follow ? "rank, " : ""}m id or hash`);
+    if (!(index.m_sources || {})[l.m]) refuse(`${where} names a row of ${l.m}, and the store holds no such source`);
+    let k = l.k, rankNow;
+    if (L.follow) {
+      const went = following(() => L.follow.nowOf([l.k, l.rank, l.m, l.sha]));
+      if (went.state === "struck" || went.state === "withheld") { L.gone.push(went); return; }
+      if (went.state === "re-keyed") L.rekeyed.push(went);
+      [k, rankNow] = went.name;
+    } else {
+      const found = (asItStands.routesFor(l.k) || []).filter((r) => String(r[3]) === l.m && sha16(r[1]) === l.sha);
+      if (found.length !== 1) refuse(`${where} names the row of ${l.m} (${l.sha}) under its key, joined in the store as it stands, and the store holds ${found.length} such rows: a line finds exactly one, and nothing is guessed`);
+      rankNow = found[0][0];
+    }
+    const asNow = `${k}\u0001${rankNow} ${l.m} ${l.sha}`;
+    if (named.has(asNow)) refuse(`${where} names a row an earlier line names (${l.m}, rank ${rankNow}, ${l.sha})`);
+    named.add(asNow);
+    bySource[l.m] = bySource[l.m] || { key: index.m_sources[l.m].key, listed: 0, marked: 0, moved: 0 };
+    bySource[l.m].listed += 1;
+    const rows = listed.get(k) || listed.set(k, new Map()).get(k);
+    rows.set(`${rankNow} ${l.m} ${l.sha}`, { met: 0, of: L });
+  });
+}
+const goneLines = lists.flatMap((L) => L.gone), rekeyedLines = lists[0].rekeyed;
+const follow = lists[0].follow;
 
 // ---- every row of the store, read first and written only when every line has found its row ---
 const shardNames = readdirSync(join(STORE, "shards")).filter((f) => f.endsWith(".bin")).sort();
@@ -128,6 +156,7 @@ const walk = (write) => {
   touched = []; storeRows = 0; twice = [];
   for (const rows of listed.values()) for (const x of rows.values()) x.met = 0;
   for (const s of Object.values(bySource)) { s.marked = 0; s.moved = 0; }
+  for (const L of lists) L.marked = 0;
   for (const name of shardNames) {
     const path = join(STORE, "shards", name);
     const body = JSON.parse(gunzipSync(readFileSync(path)).toString("utf8"));
@@ -138,7 +167,7 @@ const walk = (write) => {
         storeRows += 1;
         const m = String(row[3]);
         const line = mine ? mine.get(`${row[0]} ${m} ${sha256(Buffer.from(String(row[1] ?? ""), "utf8")).slice(0, 16)}`) : null;
-        if (line) { line.met += 1; if (line.met > 1 && twice.length < 6) twice.push(`${name} ${k} (${m}, rank ${row[0]})`); bySource[m].marked += 1; }
+        if (line) { line.met += 1; if (line.met > 1 && twice.length < 6) twice.push(`${name} ${k} (${m}, rank ${row[0]})`); bySource[m].marked += 1; line.of.marked += 1; }
         const has = !!(factsOf(row) || {}).name;
         if (has === !!line) continue;
         moved += 1;
@@ -156,21 +185,30 @@ const sum = (f) => Object.values(bySource).reduce((a, s) => a + s[f], 0);
 for (const [m, s] of Object.entries(bySource).sort((a, b) => b[1].listed - a[1].listed)) console.log(`  ${m.padEnd(5)} ${String(s.key).slice(0, 44).padEnd(44)} listed ${String(s.listed).padStart(5)} · marked ${String(s.marked).padStart(5)} · moved ${s.moved}`);
 // lines_that_find_no_row: the lines whose row a round since struck or withheld (a line the record does not explain is refused below)
 const totals = { sources: Object.values(bySource).filter((s) => s.listed).length, rows_listed: lines.length, rows_marked: sum("marked"), lines_that_find_no_row: goneLines.length, lines_that_find_more_than_one_row: twice.length };
-const followed = followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines });
+const followed = followedRecord(follow, { left: lists[0].gone, rekeyed: rekeyedLines });
 const moved = sum("moved"), shardsRewritten = touched.length;
-console.log(`name rows · relay ${pin.relay} · ${n(lines.length)} rows listed (read from the store at ${readAt}) · ${n(totals.rows_marked)} marked in the store of ${n(storeRows)} · followed through ${follow.rounds.length} round(s) since: ${followedSaid(followed)} · unexplained: ${unmet} lines find no row, ${twice.length} find more than one · ${n(moved)} rows move (${shardsRewritten} shards)`);
+// each list beside names v2's, as the index and the receipt name it: its relay, rule, receipt and list, how its lines
+// find their row, and what they found (none where the pin names no list beside names v2's, so the record is as before)
+const homeOf = (L, f) => `${HOME}/${L.folder}/${f.file}`;
+const moreLists = lists.slice(1).map((L) => ({ relay: L.relay, letter: L.letter, rule: homeOf(L, L.rule), receipt: homeOf(L, L.receipt),
+  name_rows: { file: homeOf(L, L.rows), sha256: L.rows.sha256, lines: L.rows.lines }, joined_by: L.join, read_at_store_version: L.readAt,
+  ...(L.follow ? { followed: followedRecord(L.follow, { left: L.gone, rekeyed: L.rekeyed }) } : {}),
+  totals: { rows_listed: L.lines.length, rows_marked: L.marked, lines_that_find_no_row: L.gone.length } }));
+console.log(`name rows · ${lists.map((L) => `relay ${L.relay} ${n(L.lines.length)} (${L.readAt ? `read from the store at ${L.readAt}` : "joined in the store as it stands"}, ${n(L.marked)} marked)`).join(" · ")} · ${n(totals.rows_marked)} of ${n(lines.length)} marked in the store of ${n(storeRows)} · names v2's followed through ${follow.rounds.length} round(s) since: ${followedSaid(followed)} · unexplained: ${unmet} lines find no row, ${twice.length} find more than one · ${n(moved)} rows move (${shardsRewritten} shards)`);
 if (unmet || twice.length) refuse(`${unmet} line(s) find no row that no round of the row-strikes record struck, withheld or moved since the store was ${readAt}${firstUnmet.length ? ` (first: ${firstUnmet[0]})` : ""}, and ${twice.length} find more than one${twice.length ? ` (first: ${twice[0]})` : ""}. The record does not explain them, and nothing is guessed`);
 const record = { pin: `${HOME}/PIN.json`, relay: pin.relay, letter: pin.letter, from: pin.from, rule: `${HOME}/${pin.folder}/${pin.rule.file}`, receipt: `${HOME}/${pin.folder}/${pin.receipt.file}`,
-  name_rows: { file: `${HOME}/${pin.folder}/${pin.name_rows.file}`, sha256: pin.name_rows.sha256, lines: pin.name_rows.lines }, read_at_store_version: readAt, totals, followed };
+  name_rows: { file: `${HOME}/${pin.folder}/${pin.name_rows.file}`, sha256: pin.name_rows.sha256, lines: pin.name_rows.lines }, read_at_store_version: readAt, totals, followed,
+  ...(moreLists.length ? { more_lists: moreLists } : {}) };
 const had = index.name_rows || null;
 const nothingToWrite = !moved && !!had && Object.keys(record).every((k) => same(had[k], record[k]));
 // the run's figures, one line of JSON, for a script that holds a run to what was rehearsed
 const count = (o) => Object.values(o || {}).reduce((a, c) => a + c, 0);
 console.log(`figures ${JSON.stringify({ relay: pin.relay, list_sha256: pin.name_rows.sha256, read_at_store_version: readAt, store_version: index.store_version || null, ...totals, rounds_since: follow.rounds.length,
   lines_whose_row_was_struck: count(followed.lines_whose_row_was_struck), lines_whose_row_was_withheld: count(followed.lines_whose_row_was_withheld), rows_re_keyed_and_followed: count(followed.rows_re_keyed_and_followed),
+  lists: lists.map((L) => ({ relay: L.relay, list_sha256: L.rows.sha256, lines: L.lines.length, marked: L.marked, joined_by: L.join.join(" ") })),
   rows_moved: moved, shards_moved: shardsRewritten, the_index_names_this_run: nothingToWrite })}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
-if (nothingToWrite) { console.log("nothing moves and the index names this list as it is followed — nothing written"); process.exit(0); }
+if (nothingToWrite) { console.log(`nothing moves and the index names ${lists.length > 1 ? "these lists as they are" : "this list as it is"} followed — nothing written`); process.exit(0); }
 const sources = JSON.parse(JSON.stringify(bySource));
 if (moved) walk(true);
 
@@ -180,7 +218,9 @@ const digest = createHash("sha256");
 let shardBytes = 0;
 for (const name of shardNames) { const b = readFileSync(join(STORE, "shards", name)); digest.update(b); shardBytes += b.length; }
 const was = index.store_version || null, now = digest.digest("hex").slice(0, 12);
-const WHAT = "a row the corpus lane's list of name rows names carries name: 1 in the facts slot (slot 10, an object): every entry its own source gives it is marked a name there. The texts are the served bytes, unchanged. At a place that is not a name such a row is withheld and counted; at a place that is a name it stands";
+const WHAT = lists.length > 1
+  ? "a row one of the corpus lane's lists of name rows names (names v2's, and each list the pin names beside it: more_lists) carries name: 1 in the facts slot (slot 10, an object): every entry its own source gives it is marked a name there. The texts are the served bytes, unchanged. At a place that is not a name such a row is withheld and counted; at a place that is a name it stands"
+  : "a row the corpus lane's list of name rows names carries name: 1 in the facts slot (slot 10, an object): every entry its own source gives it is marked a name there. The texts are the served bytes, unchanged. At a place that is not a name such a row is withheld and counted; at a place that is a name it stands";
 const lastMove = now !== was || !had ? { store_version_before: was, store_version: now } : { store_version_before: had.store_version_before, store_version: had.store_version };
 index.name_rows = { rule_id: NAMES_GATE_RULE_ID, applied_on: on, applied_by: "tools/apply-name-rows-v1.mjs", ...record, ...lastMove, what: WHAT };
 index.counts = { ...(index.counts || {}), shard_bytes_total: shardBytes };
@@ -188,5 +228,5 @@ if (now !== was) { index.store_version = now; index.store_version_history = [...
 writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
 const prior = existsSync(RECEIPT) ? JSON.parse(readFileSync(RECEIPT, "utf8")) : null;
 writeFileSync(RECEIPT, JSON.stringify({ schema_version: "NAME_ROWS_RECEIPT_V1", rule_id: NAMES_GATE_RULE_ID, what: WHAT, pin: { file: `${HOME}/PIN.json`, relay: pin.relay, letter: pin.letter },
-  runs: [...((prior && prior.runs) || []), { ran_at: on, store_version: { was, now }, followed, shards_rewritten: shardsRewritten, rows_moved: moved, totals, sources }] }, null, 1) + "\n");
-console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · shards weigh ${n(shardBytes)} bytes · index.name_rows names the list · receipt ${RECEIPT}`);
+  runs: [...((prior && prior.runs) || []), { ran_at: on, store_version: { was, now }, followed, ...(moreLists.length ? { more_lists: moreLists } : {}), shards_rewritten: shardsRewritten, rows_moved: moved, totals, sources }] }, null, 1) + "\n");
+console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · shards weigh ${n(shardBytes)} bytes · index.name_rows names the list${moreLists.length ? `s (${lists.length})` : ""} · receipt ${RECEIPT}`);

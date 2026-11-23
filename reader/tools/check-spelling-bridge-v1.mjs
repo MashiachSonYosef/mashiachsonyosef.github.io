@@ -31,12 +31,25 @@
 // and across words under a source pressed (check-rulings-under-sources-v1
 // U8). They wait for the page lane. B4 and B5 still owe, at any laid place the
 // default picks' index marks as standing, STEP's words under STEP's credit,
-// and hold them to be the pieces drawn. The laws:
+// and hold them to be the pieces drawn.
 //
-//   B1  the pin's files are the bytes it names, v1's and v1.1's, and the
-//       lane's receipts name the lists the same, v1.1's reading v1's files
-//       as the pin names them; each line of v1.1, its added fields taken
-//       off, is v1's line; the list recounts to the lane's own counts; every
+// SHIP 20 (23 November 2026; the lane's relay v220, bridge v1.2). The list laid
+// from is v1.2: v1.1's lines with STEP's «{…}+» tags read as STEP's key says
+// (the number STEP names; roles again at 7 places, main tags at 43), each
+// field it changed named with both values in its list of changes, and three
+// fields more on every piece. B1 holds its bytes and its receipt, and that
+// each of its lines, its added fields off and its changes set back, is v1.1's;
+// B3 holds each zone's record to name v1.2's list and v1.1 as the list it
+// extends; B6 reads the parts on v1.2's own lines. The places held for the
+// «}+» tag are held so no longer: the pin names no such kind, and the 42 are
+// counted under the holds of call 4 they stand under. The laws:
+//
+//   B1  the pin's files are the bytes it names, v1's, v1.1's and v1.2's, and
+//       the lane's receipts name the lists the same, v1.1's reading v1's files
+//       and v1.2's reading v1.1's as the pin names them; each line of v1.1,
+//       its added fields taken off, is v1's line; each line of v1.2, its added
+//       fields taken off and its changes set back, is v1.1's line; the list
+//       recounts to the lane's own counts; every
 //       kind of the list (its class, its use and what holds it within its
 //       class) is named by the pin, laid or not, with the list's count; each
 //       laid place's pieces are STEP's, in order, and spell our letters, and
@@ -49,13 +62,14 @@
 //   B2  every laid place is found on its zone by its verse, its number
 //       among the verse's words and the lattice's surface, a plain word
 //       under the list's key, and carries exactly the list's pieces
-//   B3  nothing else is written: each zone's record names v1.1's list, the
-//       list it extends and its laid places as a recount gives them, and its
+//   B3  nothing else is written: each zone's record names v1.2's list, the
+//       list it extends (v1.1) and its laid places as a recount gives them, and its
 //       write is typed; a zone with no laid place carries no record; and
 //       every place of the list the lattice gives no pieces that the pin
 //       does not lay carries none, each place held within its class found
-//       on its zone (STEP's «}+» places, the pairs, the places call 4
-//       holds and the places where call 4 makes STEP's reading stand)
+//       on its zone (the pairs, the places call 4 holds and the places where
+//       call 4 makes STEP's reading stand; and STEP's «}+» places, none since
+//       v1.2)
 //   B4  in the record of the lines at rest, the line over every laid place
 //       is its pieces in order as the page draws them with the signs at
 //       rest, under that word alone, credited to the pieces' source; but
@@ -65,7 +79,8 @@
 //       and each reading the pin names is recorded so
 //   B6  the words as STEP writes them, by a road of its own: on every laid
 //       place's zone word, each piece's words are its part of STEP's column
-//       as v1.1's own line for the place writes it, its ends trimmed where
+//       as v1.2's own line for the place writes it (v1.1's part, which v1.2
+//       keeps), its ends trimmed where
 //       the place is worded as written, byte for byte where its form row
 //       words it; and the part with its square and angle brackets taken
 //       out, its spaces closed and its ends trimmed, character by character,
@@ -94,7 +109,7 @@ import { readCards } from "./card-readings-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
 import {
-  SPELLING_BRIDGE_RULE_ID, SPELLING_BRIDGE_HOME, SPELLING_BRIDGE_TOOL, PIECE_SOURCE, readBridge, receiptAgainst, v11Against, heldOf, laidOf, findBridgePlace, carriedAt, namedReadings,
+  SPELLING_BRIDGE_RULE_ID, SPELLING_BRIDGE_HOME, SPELLING_BRIDGE_TOOL, PIECE_SOURCE, readBridge, receiptAgainst, v11Against, v12Against, heldOf, laidOf, findBridgePlace, carriedAt, namedReadings,
 } from "./spelling-bridge-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -138,6 +153,7 @@ let bridge = null, laid = [], counts = new Map();
   if (bridge) {
     faults.push(...receiptAgainst(bridge));
     faults.push(...v11Against(bridge));
+    faults.push(...v12Against(bridge));
     const got = laidOf(bridge);
     laid = got.laid; counts = got.counts;
     faults.push(...got.faults);
@@ -154,10 +170,10 @@ let bridge = null, laid = [], counts = new Map();
   const by = (xs, f) => { const m = new Map(); for (const x of xs) m.set(f(x), (m.get(f(x)) || 0) + 1); return [...m].map(([k, v]) => `${k} ${nf(v)}`).join(", "); };
   const rowWorded = laid.filter((p) => p.worded === "form_row"), rowPieces = rowWorded.flatMap((p) => p.pieces);
   const heldBy = (l) => heldOf(l, bridge.call4);
-  const held = bridge ? (bridge.places11 || []).filter(heldBy) : [];
-  check("B1  the pin's files are the bytes it names, v1's and v1.1's, and the lane's receipts name the lists the same; each line of v1.1, its added fields off, is v1's line; the list recounts to the lane's own counts; every kind is named by the pin, laid or not, with the list's count; each laid place's pieces are STEP's and spell our letters, each piece's part as v1.1 writes it is its row's column cut at the stroke and the marks off it give v1's English; a place worded by its form row has one, whose parts are the parts as v1.1 writes them byte for byte; each named reading is the list's",
+  const held = bridge ? (bridge.places12 || []).filter(heldBy) : [];
+  check("B1  the pin's files are the bytes it names, v1's, v1.1's and v1.2's, and the lane's receipts name the lists the same; each line of v1.1, its added fields off, is v1's line; each line of v1.2, its added fields off and its changes set back, is v1.1's line; the list recounts to the lane's own counts; every kind is named by the pin, laid or not, with the list's count; each laid place's pieces are STEP's and spell our letters, each piece's part as v1.1 writes it is its row's column cut at the stroke and the marks off it give v1's English; a place worded by its form row has one, whose parts are the parts as v1.1 writes them byte for byte; each named reading is the list's",
     !!bridge && faults.length === 0,
-    faults.length ? `${faults.length} · ${first(faults)}` : `relays ${bridge.pin.relay} and ${bridge.pin.v1_1.relay} · list v1.1 ${bridge.pin.v1_1.places.sha256.slice(0, 12)}, extending v1 ${bridge.pin.places.sha256.slice(0, 12)} · ${nf(bridge.places11.length)} places in ${counts.size} kinds · ${nf(laid.length)} laid (${nf(laid.reduce((s, p) => s + p.pieces.length, 0))} pieces; by class ${by(laid, (p) => p.cls)}; worded ${by(laid, (p) => p.worded)}; ${laid.filter((p) => /[\[<]/u.test(p.words)).length} whose words carry a bracket of STEP's) · held within a class: ${by(held, heldBy)} (call 4's hold read from ${bridge.call4.file} ${bridge.call4.sha256.slice(0, 12)}, ${bridge.call4.holding ? `${nf(bridge.call4.places.size)} places it holds` : "its landing holds nothing now"}, ${bridge.call4.landing_stands ? `${nf(bridge.call4.stands.size)} where STEP's reading stands` : "its landing makes none stand now"}) · at the ${nf(rowWorded.length)} worded by their form rows each part is v1.1's byte for byte (${nf(rowPieces.length)} pieces, ${nf(rowPieces.filter((q) => q.g !== q.g.trim()).length)} keeping STEP's space at an end, which the page trims) · ${namedReadings(bridge.pin).length} readings named`);
+    faults.length ? `${faults.length} · ${first(faults)}` : `relays ${bridge.pin.relay}, ${bridge.pin.v1_1.relay} and ${bridge.pin.v1_2.relay} · list v1.2 ${bridge.pin.v1_2.places.sha256.slice(0, 12)} (${nf(bridge.changes12.reduce((a, c) => a + c.changes.length, 0))} fields changed at ${nf(bridge.changes12.length)} places), extending v1.1 ${bridge.pin.v1_1.places.sha256.slice(0, 12)} and v1 ${bridge.pin.places.sha256.slice(0, 12)} · ${nf(bridge.places12.length)} places in ${counts.size} kinds · ${nf(laid.length)} laid (${nf(laid.reduce((s, p) => s + p.pieces.length, 0))} pieces; by class ${by(laid, (p) => p.cls)}; worded ${by(laid, (p) => p.worded)}; ${laid.filter((p) => /[\[<]/u.test(p.words)).length} whose words carry a bracket of STEP's) · held within a class: ${by(held, heldBy)} (call 4's hold read from ${bridge.call4.file} ${bridge.call4.sha256.slice(0, 12)}, ${bridge.call4.holding ? `${nf(bridge.call4.places.size)} places it holds` : "its landing holds nothing now"}, ${bridge.call4.landing_stands ? `${nf(bridge.call4.stands.size)} where STEP's reading stands` : "its landing makes none stand now"}) · at the ${nf(rowWorded.length)} worded by their form rows each part is v1.1's byte for byte (${nf(rowPieces.length)} pieces, ${nf(rowPieces.filter((q) => q.g !== q.g.trim()).length)} keeping STEP's space at an end, which the page trims) · ${namedReadings(bridge.pin).length} readings named`);
 }
 if (!bridge) { console.log(`\n${bad} FAILED`); process.exit(1); }
 
@@ -203,18 +219,18 @@ const saidOf = (p) => `${p.book} ${p.place}`;
     const want = { places_laid: here.length, pieces: here.reduce((s, x) => s + x.place.pieces.length, 0) };
     const hereWant = here.map((x) => ({ ref: x.place.ref, section_word: x.found.at, word: x.place.n, reads: x.place.words }));
     if (!rec) { faults.push(`${book}: ${here.length} laid place(s) and no record`); continue; }
-    if (rec.rule_id !== SPELLING_BRIDGE_RULE_ID || rec.applied_by !== SPELLING_BRIDGE_TOOL || rec.relay !== bridge.pin.v1_1.relay || (rec.list || {}).sha256 !== bridge.pin.v1_1.places.sha256 || (rec.list || {}).lines !== bridge.pin.v1_1.places.lines || (rec.extends || {}).sha256 !== bridge.pin.places.sha256)
+    if (rec.rule_id !== SPELLING_BRIDGE_RULE_ID || rec.applied_by !== SPELLING_BRIDGE_TOOL || rec.relay !== bridge.pin.v1_2.relay || (rec.list || {}).sha256 !== bridge.pin.v1_2.places.sha256 || (rec.list || {}).lines !== bridge.pin.v1_2.places.lines || (rec.extends || {}).sha256 !== bridge.pin.v1_1.places.sha256)
       faults.push(`${book}: its record does not name the rule, the tool, the relay, the list or the list it extends as the pin does`);
     else if (JSON.stringify(rec.counts) !== JSON.stringify(want) || JSON.stringify(rec.here) !== JSON.stringify(hereWant)) faults.push(`${book}: its record counts ${JSON.stringify(rec.counts)}, and a recount gives ${JSON.stringify(want)}, or its places are not the recount's`);
     else if (!typed) faults.push(`${book}: its write is not typed on the zone`);
     else records += 1;
   }
   // a place the lattice gives no pieces and the pin does not lay: found the same way, it carries none; a place held within
-  // its class (heldOf: STEP's «}+» places, the pairs, the places call 4 holds) is found, or it is a fault, since whether it
-  // carries any could not be said
+  // its class (heldOf: the pairs, the places call 4 holds, the places where STEP's reading stands) is found, or it is a
+  // fault, since whether it carries any could not be said
   const laidIds = new Set(laid.map(saidOf));
   const heldSeen = new Map();
-  for (const l of bridge.places11) {
+  for (const l of bridge.places12) {
     if (l.use !== "NEW_PIECES" || laidIds.has(`${l.book} ${l.place}`)) continue;
     const why = heldOf(l, bridge.call4);
     const zone = readZone(l.book), m = /^(\d+):(\d+):(\d+)$/u.exec(String(l.place));
@@ -225,7 +241,7 @@ const saidOf = (p) => `${p.book} ${p.place}`;
     if (why) heldSeen.set(why, (heldSeen.get(why) || 0) + 1);
     if (word.pg !== undefined) faults.push(`${l.book} ${l.place} (${l.class}${why ? `, held: ${why}` : ""}): the pin does not lay it, and the word carries pieces`);
   }
-  check("B3  nothing else is written: each zone's record names v1.1's list, the list it extends and its laid places as a recount gives them, and its write is typed; a zone with no laid place carries no record; and every place of the list the lattice gives no pieces that the pin does not lay carries none, each place held within its class found on its zone",
+  check("B3  nothing else is written: each zone's record names v1.2's list, the list it extends (v1.1) and its laid places as a recount gives them, and its write is typed; a zone with no laid place carries no record; and every place of the list the lattice gives no pieces that the pin does not lay carries none, each place held within its class found on its zone",
     faults.length === 0 && records === byBook.size,
     faults.length ? `${faults.length} · ${first(faults)}` : `${records} zones' records recount · ${without} zones on disk with no laid place carry none · ${nf(unlaid)} places the pin does not lay carry no pieces${heldSeen.size ? ` (held within their class: ${[...heldSeen].map(([k, v]) => `${nf(v)} ${k}`).join(", ")})` : ""}`);
 }
@@ -265,7 +281,8 @@ const owedAtRest = (x) => {
 {
   const faults = [];
   const v1At = new Map(bridge.places.map((l) => [`${l.book} ${l.place}`, l]));
-  const v11At = new Map(bridge.places11.map((l) => [`${l.book} ${l.place}`, l]));
+  // v1.2's own line for the place (each piece's part as STEP writes it is v1.1's, which v1.2 keeps: B1)
+  const v11At = new Map(bridge.places12.map((l) => [`${l.book} ${l.place}`, l]));
   // the marks taken off a part, character by character: every square and angle bracket out, every run of white space
   // one space, none at the ends (the lane's v1.1 RULE, section 2)
   const marksOff = (t) => { let o = "", gap = false; for (const c of String(t)) { if (c === "[" || c === "]" || c === "<" || c === ">") continue; if (/\s/u.test(c)) { gap = true; continue; } if (gap && o) o += " "; gap = false; o += c; } return o; };
@@ -273,7 +290,7 @@ const owedAtRest = (x) => {
   for (const x of at) {
     const l = v11At.get(saidOf(x.place)), l1 = v1At.get(saidOf(x.place));
     const pg = Array.isArray(x.found.word.pg) ? x.found.word.pg : [], ps = l && Array.isArray(l.pieces) ? l.pieces : [];
-    if (!l || !l1 || pg.length !== ps.length) { faults.push(`${saidOf(x.place)}: the zone word carries ${pg.length} piece(s), and v1.1's line for the place ${l ? ps.length : "is not found"}`); continue; }
+    if (!l || !l1 || pg.length !== ps.length) { faults.push(`${saidOf(x.place)}: the zone word carries ${pg.length} piece(s), and v1.2's line for the place ${l ? ps.length : "is not found"}`); continue; }
     for (const [i, q] of ps.entries()) {
       const part = String(q.english_tahot_as_written), g = String((pg[i] || {}).g), owed = x.place.worded === "form_row" ? part : part.trim();
       const v1 = String((((l1.pieces || [])[i]) || {}).english_tahot);
@@ -282,7 +299,7 @@ const owedAtRest = (x) => {
       else { pieces += 1; if (x.place.worded === "form_row") kept += 1; else trimmed += 1; }
     }
   }
-  check("B6  the words as STEP writes them, by a road of its own: on every laid place's zone word each piece's words are its part of STEP's column as v1.1's line writes it, its ends trimmed where the place is worded as written, byte for byte where its form row words it; and the part, the marks off, is v1's English for the piece",
+  check("B6  the words as STEP writes them, by a road of its own: on every laid place's zone word each piece's words are its part of STEP's column as v1.2's line writes it, its ends trimmed where the place is worded as written, byte for byte where its form row words it; and the part, the marks off, is v1's English for the piece",
     faults.length === 0 && at.length === laid.length,
     faults.length ? `${faults.length} · ${first(faults, 4)}` : `${nf(pieces)} pieces at ${nf(at.length)} places: ${nf(trimmed)} their part with its ends trimmed, ${nf(kept)} their part byte for byte (worded by their form rows), every part with the marks off v1's English`);
 }
