@@ -27,6 +27,13 @@
 # and, where the lattice gave the place no pieces, the place its pieces. It
 # reads only this tree, and over zones that carry its work it writes nothing.
 #
+# THE COMMENTARY'S LINE READ AGAIN IS FOLLOWED BY THE PLACES THE CORPUS LANE
+# HOLDS A ROW AT (data/held-places/, relay v221; ship 18, 23 November 2026):
+# tools/apply-held-places-v1.mjs writes, on the word of each such place, the
+# rows held there and the line the place reads without them, read from the
+# same store the line was just read from. It reads only this tree, and over
+# zones that carry its work it writes nothing.
+#
 # THE ZONES STEP BEGINS WITH THE SPELLING BRIDGE (data/spelling-bridge/, relays
 # v202 and v214): tools/apply-spelling-bridge-v1.mjs gives a place our text
 # spells otherwise than the Leningrad text, where the corpus lane's list cuts
@@ -149,6 +156,13 @@ if has zones; then
       || { echo "round-v1: regloss failed on $n" >&2; tail -5 "$WORK/commentary/$n.log" >&2; exit 1; }
   done
   for f in "$WORK"/commentary/*.bin; do [ -f "$f" ] && cp "$f" "data/zones/$(basename "$f")"; done
+
+  echo "── zones · a row the corpus lane holds at a place, held there ──────────"
+  # right after the commentary's line is read again, from the same store: the
+  # line under a hold is the key's pool less the rows held there
+  node tools/apply-held-places-v1.mjs --stamp "$STAMP" > "$WORK/held-places.log" 2>&1 \
+    || { echo "round-v1: the held places were not laid" >&2; grep -E "^FAIL" "$WORK/held-places.log" >&2 || true; tail -2 "$WORK/held-places.log" >&2; exit 1; }
+  grep -E "^  (holds|lines):" "$WORK/held-places.log" | sed 's/^  /   /' || true
 
   if [ -n "$LATTICE" ]; then
     echo "── zones · the lattice projected over each book it grades ──────────────"

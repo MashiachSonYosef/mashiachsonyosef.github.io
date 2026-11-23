@@ -1,0 +1,181 @@
+{
+ "schema_version": "HELD_PLACES_PIN_V1",
+ "rule_id": "place-hold-rule-v1-a-row-the-corpus-lane-holds-at-a-place-rests-withheld-there-and-stands-at-every-other-place",
+ "what": "the corpus lane's resting call for every row of the translation tables at the places of the Targum and the Zohar (relay v221): a row names a spelling and no place, and where a dictionary the lane holds lists the spelling as two or more words, the lane says, place by place, whether the text's word there is the row's word or another word written alike. Kept here byte for byte in the folder the lane keeps it in, with its rule, its answer, its receipt and second count, the known misfires, the two rows' verdicts and the strike list. tools/apply-held-places-v1.mjs writes, on the word of each place the list marks held at rest, the rows held there and the line the place reads without them; the reader withholds those rows from the word's card there under «only this pointing», and they stand at every other place",
+ "relay": "v221",
+ "of": "22 November 2026",
+ "letter": "r2:mishkan/v2/letters/moses-send-back-v1/FOR-ELIJAH-v221.md",
+ "letter_sha256": "34eee37d93b61f5db30ca7e19c31b31b972eaebe06918cf3750e640d4dbb131d",
+ "from": "r2:mishkan/v2/ledgers/all/send-back/two-table-rows-v1/ (the private store)",
+ "folder": "two-table-rows-v1",
+ "rule": {
+  "file": "RULE.md",
+  "bytes": 34255,
+  "sha256": "aa770466a9198ea1782ec4061850ac0e0a2a06662f1f76ec3d004c00d751d53b"
+ },
+ "answer": {
+  "file": "ANSWER.md",
+  "bytes": 16067,
+  "sha256": "01a50ceb434e07926753ebd91fe3a534a9e37246da10da76da7f24ae7446f37e"
+ },
+ "receipt": {
+  "file": "receipt-v3.1.json",
+  "bytes": 70854,
+  "sha256": "17cb450eca12a09711a9fd3a4307868951a8fcb798005246bd3f078ccad58c49"
+ },
+ "verify_receipt": {
+  "file": "verify-receipt-v3.1.json",
+  "bytes": 1894,
+  "sha256": "36e409eed91e6b597b181552ca58405e4c1e29670a073c32c4ef5b9e4a9f8516"
+ },
+ "places": {
+  "file": "places-v3.1.jsonl.gz",
+  "stored": "gzip",
+  "bytes": 2265249,
+  "sha256": "8f1e506f8f8d693bc8e5325b575f6908a95d6c5a9849e5341d61e68c43a843b3",
+  "lines": 4065
+ },
+ "known_misfires": {
+  "file": "known-misfires-v3.1.json",
+  "bytes": 5510,
+  "sha256": "166d8df37988c6f8bed3208b7511e9ac109e75e7e8999dd338cb13d0950fa97e"
+ },
+ "two_rows": {
+  "file": "two-rows-v3.1.json",
+  "bytes": 9447,
+  "sha256": "56bd6889e26795f20a98c9f39ae9c30f6c8fea7f1a8bfafd3c53cf75bf7cfcd6"
+ },
+ "strike_list": {
+  "file": "strike-list-v3.1.json",
+  "bytes": 130,
+  "sha256": "cb3e0ae48339952d4b1f58998370cfcccf94d9af223c5a1e560bc0b491e8cced"
+ },
+ "held_at_rest": {
+  "field": "at_rest",
+  "value": "held",
+  "says": "the lane's resting call (RULE.md, Amended 10): HELD_BY_CITATION, HELD_BY_POINTS and HELD_BY_CORPUS_ENTRY_WORD hold at rest; every other class stands",
+  "places": 134,
+  "by_zone": {
+   "targum": 122,
+   "zohar": 12
+  }
+ },
+ "keyed_by": {
+  "fields": [
+   "m",
+   "key",
+   "route",
+   "work",
+   "unit",
+   "class"
+  ],
+  "says": "a place is found on our zone by its row (m, key and words), its work and its verse unit, and carries its class; the lane's token row is its own edition's and is never read here (the letter, section 4: our commentary text may be another edition)"
+ },
+ "branches_off_at_rest": {
+  "labels": [
+   "WIDE_HOLD",
+   "BRANCH_HELD_BY_CORPUS_POINTS_TIE"
+  ],
+  "says": "labelled on the places they would hold (branches) and off at rest; turning one on is the lane's call, so nothing is held by them",
+  "places": {
+   "WIDE_HOLD": 2934,
+   "BRANCH_HELD_BY_CORPUS_POINTS_TIE": 4
+  }
+ },
+ "works_not_served": {
+  "kabbalah/zohar": {
+   "zone": "zohar",
+   "places_held": 9,
+   "why": "the page serves no zone of this work: of the Zohar it serves the Tikkunei Zohar alone (data/zones/tikkunei-zohar.bin)"
+  },
+  "kabbalah/zohar-chadash": {
+   "zone": "zohar",
+   "places_held": 3,
+   "why": "the page serves no zone of this work: of the Zohar it serves the Tikkunei Zohar alone (data/zones/tikkunei-zohar.bin)"
+  },
+  "tanakh/onkelos-deuteronomy": {
+   "zone": "targum",
+   "places_held": 1,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "tanakh/onkelos-exodus": {
+   "zone": "targum",
+   "places_held": 9,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "tanakh/onkelos-leviticus": {
+   "zone": "targum",
+   "places_held": 15,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "tanakh/onkelos-numbers": {
+   "zone": "targum",
+   "places_held": 12,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/aramaic-targum-to-esther": {
+   "zone": "targum",
+   "places_held": 5,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/aramaic-targum-to-job": {
+   "zone": "targum",
+   "places_held": 3,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/aramaic-targum-to-proverbs": {
+   "zone": "targum",
+   "places_held": 2,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/aramaic-targum-to-psalms": {
+   "zone": "targum",
+   "places_held": 8,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/targum-jonathan-on-exodus": {
+   "zone": "targum",
+   "places_held": 14,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/targum-jonathan-on-genesis": {
+   "zone": "targum",
+   "places_held": 5,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/targum-jonathan-on-i-samuel": {
+   "zone": "targum",
+   "places_held": 3,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/targum-jonathan-on-ii-kings": {
+   "zone": "targum",
+   "places_held": 3,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/targum-jonathan-on-jeremiah": {
+   "zone": "targum",
+   "places_held": 3,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/targum-jonathan-on-leviticus": {
+   "zone": "targum",
+   "places_held": 1,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/targum-jonathan-on-numbers": {
+   "zone": "targum",
+   "places_held": 1,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  },
+  "targum/targum-of-i-chronicles": {
+   "zone": "targum",
+   "places_held": 1,
+   "why": "the page serves no zone of this work: the Targum it serves stands beside a book as that book's commentary zone (data/zones/<book>.commentary.bin), and no commentary zone of this tree names this work"
+  }
+ },
+ "works_not_served_says": "the works of the list's held places that no zone of this tree serves, each with why, as read from the zones when this pin was written; the hold writes nothing for them and its check holds the list to the zones as they stand",
+ "not_found": [],
+ "not_found_says": "a held place of a served work that its verse on our zone does not carry under its key: none (23 November 2026)",
+ "note": "every sha256 here is the one the relay's letter names for the file; the list is kept gzipped and weighed as what it holds (tools/pinned-v1.mjs)"
+}

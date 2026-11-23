@@ -336,7 +336,8 @@
 > struck. A source returns whole, or for its listed rows alone where each
 > row's own language field decides: English Wiktionary's translation
 > tables (M78, M103) return so, for the 126 rows the ledger v1.1 admits
-> (124 land; two wait by their line, below).
+> (124 landed with the list; the two it held by their line land since
+> 23 November 2026, below).
 > Only the landings write rows, and
 > `tools/project-lattice-v12-v1.mjs` takes a lattice card of such a source
 > for the headword's line only where a served row of that source speaks it.
@@ -355,6 +356,32 @@
 > list): two of the translation tables' rows that read wrongly at the
 > Targum's places wait so for the corpus lane, each named not landed, held
 > by its line, and counted in the record as a listed row not served.
+> The corpus lane's relay v221 (ship 18, 23 November 2026) found both right
+> as English Wiktionary's own words and the Targum's word at their places
+> another word written alike, and lets them go (`let_go` on each held line,
+> by relay and why): they land in a list of the pin that RE-READS the list
+> v1.1 (`re_reads`: the same rule, receipt and list, derived again on the
+> store after it landed), which lands exactly the lines let go to it, while
+> every line that landed before is printed by its own source and PanLex's
+> stay held with their source. The record counts them as let go
+> (`held_lines_let_go`), and the source record as served. A row may be held
+> at a place instead (`place-hold-rule-v1`): a row of the translation tables
+> names a spelling and no place, and the commentary zones carry no tag or
+> grade that parts it from another word written alike. The lane's resting
+> call for every row of the tables at every place of the Targum and the
+> Zohar is kept byte for byte in `data/held-places/` (relay v221; the list
+> gzipped). At each place it marks held at rest, found on our commentary
+> zone by the row, the work, the verse unit and the key (the lane's token
+> row is its own edition's), `tools/apply-held-places-v1.mjs`, in the
+> round's zones step right after the commentary's line is read again, writes
+> on the word the rows held there and the line the place reads without them
+> (`ph`); the reader draws that line there and keeps the rows off the word's
+> card under «only this pointing», counted as the names gate counts its own;
+> they stand at every other place. The lane's two branches (WIDE_HOLD and the
+> corpus hold on a points tie) are off at rest and hold nothing. A held
+> place of a work no zone serves (Onkelos, the other Targumim, the Zohar and
+> Zohar Chadash) is named in the pin as not served, with why.
+> `tools/check-held-places-v1.mjs` holds every held place to the zones.
 > Harkavy's list (withdrawn by the lane, refused by the
 > owner) and the Bible dictionaries' (the owner's to add) are not pinned;
 > the record names both, with why. The ledgers' manifest says why a

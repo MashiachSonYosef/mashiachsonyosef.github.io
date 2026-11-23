@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-16.
 
-**192 rules declared · 180 named by a check · 12 unguarded.**
+**193 rules declared · 181 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -102,7 +102,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `masoretic-marks-rule-v1-every-mark-is-gold-by-its-class-never-by-a-code-point-range` | tools/project-masoretic-marks-v1.mjs, zone.html | check-masoretic-gold-v1, check-color-channels-v1 |
 | `megacompspan-rule-v1-one-maqaf-run-one-card` | tools/check-maqaf-pair-drawn-v1.mjs | check-maqaf-pair-drawn-v1, check-run-card-forms-v1, check-choice-memory-v1 |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | check-serve-oracle-checked-v1 |
-| `names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name` | tools/apply-name-rows-v1.mjs, tools/names-gate-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-names-gate-v1, check-same-product-v1 |
+| `names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name` | tools/apply-name-rows-v1.mjs, tools/names-gate-v1.mjs, tools/held-places-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-names-gate-v1, check-same-product-v1 |
 | `no-names-rule-v1-the-reading-a-name-displaced-is-kept-beside-the-name-so-a-switch-puts-it-back-on-that-line-alone` | tools/regloss-zone.mjs | check-names-pill-v1 |
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |
@@ -118,6 +118,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `piece-class-rule-v1-a-one-letter-piece-is-asked-as-a-prefix-or-a-suffix-under-the-pointing` | zone.html | check-piece-class-v1 |
 | `piece-gloss-rule-v1-a-piece-reads-what-its-source-said-at-this-position-not-what-the-key-means-in-general` | tools/project-piece-gloss-v1.mjs | **UNGUARDED** |
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | check-manifest-prints-unguarded-v1 |
+| `place-hold-rule-v1-a-row-the-corpus-lane-holds-at-a-place-rests-withheld-there-and-stands-at-every-other-place` | tools/apply-held-places-v1.mjs, tools/held-places-v1.mjs, zone.html | check-held-places-v1 |
 | `place-order-rule-v1-the-line-reads-what-the-source-gives-at-this-place` | tools/check-line-reads-the-place-v1.mjs | check-line-reads-the-place-v1 |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
 | `pointer-line-rule-v1-a-pointer-that-would-lead-a-line-prints-the-resolution-its-pill-prints` | zone.html, tools/resting-lines-v1.mjs | check-form-of-v1, check-press-paints-before-seen-v1 |
@@ -225,7 +226,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 45 of the 166 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 46 of the 168 tools that are not checks.
 
 Not called by any build stage:
 
@@ -286,6 +287,7 @@ Not called by any build stage:
 - `tools/gloss-m-v1.mjs`
 - `tools/gloss-store-v1.mjs`
 - `tools/group-variant-sites-v1.mjs`
+- `tools/held-places-v1.mjs`
 - `tools/import-witnessed-orders-v1.mjs`
 - `tools/k-normalization-v1.mjs`
 - `tools/k-normalization-v2.mjs`
@@ -366,7 +368,7 @@ again from a checkout by a build file alone.
 | kind | bins | route or schema | built by | written after its build by |
 |---|---|---|---|---|
 | zone | 40 | MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE, EDITION_DOOR_SERVE__BUILT_STREAM | tools/build-zone.mjs (run by build.sh) | tools/apply-paseq-place-v1.mjs (12; **no build file runs it**); tools/apply-read-words-v1.mjs (15; run by tools/round-v1.sh); tools/apply-span-ledger-v1.mjs (39; **no build file runs it**); tools/apply-spelling-bridge-v1.mjs (28; run by tools/round-v1.sh); tools/bake-witnessed-order-v1.mjs (39; run by tools/round-v1.sh); tools/project-lattice-v12-v1.mjs (39; run by tools/round-v1.sh); tools/project-piece-gloss-v1.mjs (39; **no build file runs it**); tools/project-toggle-headword-v1.mjs (39; **no build file runs it**); tools/regloss-zone.mjs (40; run by tools/round-v1.sh); tools/respan-zone-v1.mjs (39; **no build file runs it**); tools/restamp-zone-v1.mjs (39; run by tools/round-v1.sh); tools/strike-source-v1.mjs (23; **no build file runs it**); tools/type-witnessed-drops-v1.mjs (3; **no build file runs it**) |
-| commentary | 21 | ZONE_COMMENTARY_V2 | tools/build-commentary-sidecar-v2.mjs (no build file runs it) | tools/regloss-zone.mjs (21; run by tools/round-v1.sh); tools/strike-source-v1.mjs (20; **no build file runs it**) |
+| commentary | 21 | ZONE_COMMENTARY_V2 | tools/build-commentary-sidecar-v2.mjs (no build file runs it) | tools/apply-held-places-v1.mjs (11; run by tools/round-v1.sh); tools/regloss-zone.mjs (21; run by tools/round-v1.sh); tools/strike-source-v1.mjs (20; **no build file runs it**) |
 | lattice | 39 | ZONE_LATTICE_V1 | tools/project-lattice-v12-v1.mjs (run by tools/round-v1.sh) | — |
 | volume | 39 | V_VOLUME_V1 | tools/project-v-volume-v1.mjs (no build file runs it) | — |
 

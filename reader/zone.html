@@ -3480,6 +3480,7 @@
   let openTags = null;                  // the core tags of that place, where the form standing open is the one they tag
   let openByLemma = false;              // and whether they are the entries of MACULA's lemma (te), STEP giving the word no tag
   let openName = null;                  // whether that place is a name; null where the card stands at no place of the book
+  let openHeld = null;                  // the rows the corpus lane holds at the open word's place, where it is a commentary's word that carries them (ph)
   let openRunWords = null;              // the words of the run the open card stands on (a chain's, a named run's), or null
   const WORD_VERSE = new WeakMap();     // a word of the zone -> its verse's label
   // THE WORD A POOL IS ASKED FOR. The card asks for the word standing open
@@ -8919,6 +8920,20 @@
       withheldByName = routes.length - kept.length;
       routes = kept; namesHeld = true;
     }
+    // THE CORPUS LANE'S HOLD AT THE PLACE (place-hold-rule-v1-a-row-the-corpus-lane-holds-at-a-place-rests-withheld-there-and-stands-at-every-other-place;
+    // relay v221, 23 November 2026), with the place's other gates. A row of English Wiktionary's translation tables
+    // names a spelling and no place; where the corpus lane reads the word at a place of the Targum as another word
+    // written alike, it holds the row there at rest. Under «only», at a commentary's word whose place the lane holds
+    // rows at (opts.heldAt: the open word's ph, given by the card alone, never the key's): such a row never enters the
+    // pool, and the card says how many. A row a gate above withheld is counted there and not again. Under «keep» and
+    // «letters» it stands, as every gate of a place lifts there. The line, the exporter and a pool asked with no place
+    // hold none back: the line at the place is the one its word carries
+    let withheldHere = 0;
+    if (opts.heldAt && Array.isArray(opts.heldAt.rows) && opts.heldAt.rows.length && pointingNow(W.pointed) === "only") {
+      const kept = routes.filter((row) => !opts.heldAt.rows.some((h) => String(row[3]) === h[0] && row[1] === h[1]));
+      withheldHere = routes.length - kept.length;
+      routes = kept;
+    }
     if (pointingNow(W.pointed) === "only") {
       // the grade has to be here before the pool is built, not after: a
       // pool built while the sidecar was still arriving is an unfiltered
@@ -9393,7 +9408,7 @@
     // sort of it keeps the bake's order
     const pool = sortPool(Object.assign([...groups.values()], { signsLast: signsLastOn(opts.bin || zone), spanAt: opts.spanAt || null }), surface, { ...W, begins: beginsWord });
     pool.withheld = withheld; pool.withheldUnpointed = withheldUnpointed; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
-    pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.entryByLemma = entryByLemma; pool.withheldByName = withheldByName; pool.namesHeld = namesHeld;
+    pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.entryByLemma = entryByLemma; pool.withheldByName = withheldByName; pool.namesHeld = namesHeld; pool.withheldHere = withheldHere;
     pool.withheldBySense = withheldBySense; pool.sensesShown = sensesShown;
     pool.withheldByKind = withheldByKind; pool.kindsShown = kindsShown;
     pool.notes = notes;
@@ -9412,7 +9427,7 @@
   // carries is named here once, and a copy takes them all.
   const carryWithheld = (to, from) => {
     to.withheld = from.withheld; to.withheldUnpointed = from.withheldUnpointed; to.withheldBySources = from.withheldBySources; to.withheldByStem = from.withheldByStem; to.stems = from.stems; to.rows = from.rows;
-    to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.entryByLemma = from.entryByLemma; to.withheldByName = from.withheldByName; to.namesHeld = from.namesHeld;
+    to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.entryByLemma = from.entryByLemma; to.withheldByName = from.withheldByName; to.namesHeld = from.namesHeld; to.withheldHere = from.withheldHere;
     to.withheldBySense = from.withheldBySense; to.sensesShown = from.sensesShown;
     to.withheldByKind = from.withheldByKind; to.kindsShown = from.kindsShown;
     to.notes = from.notes;
@@ -10400,6 +10415,12 @@
     openByLemma = !!(openTags && openPlaceWord && !openPlaceWord.tg && openPlaceWord.te && openPlaceWord.k === openKey);
     // and whether that place is a name, for the names gate (names-gate-rule-v1)
     openName = openPlaceWord ? isNamePlace(openPlaceWord) : null;
+    // THE CORPUS LANE'S HOLD AT THE PLACE (place-hold-rule-v1-a-row-the-corpus-lane-holds-at-a-place-rests-withheld-there-and-stands-at-every-other-place;
+    // relay v221, 23 November 2026). A commentary's word is no position of the book, so no gate above reads it; where
+    // the lane holds rows at its place (the word's ph, laid by tools/apply-held-places-v1.mjs), its own card keeps them
+    // off, under its own key (poolFor, opts.heldAt)
+    openHeld = bin !== zone && word && word.ph && Array.isArray(word.ph.r) && word.ph.r.length && word.k ? { k: word.k, rows: word.ph.r } : null;
+    window.__cardHeld = openHeld ? openHeld.rows.map((h) => `${h[0]} ${h[1]}`).join("|") : "";
     // the run's words, each asked as its own word (runWordAsked); a branch of a pair keeps its own asking
     openRunWords = bin === zone && opts.run && !opts.run.kqBranch && Array.isArray(opts.run.words) ? opts.run.words.filter((w) => w && w.k && w.s && !w.kq && !w.w) : null;
     // the tags this card is gated by, and what it takes its place for, for a check to read
@@ -11915,7 +11936,7 @@
       if (!cache.has(askKey)) {
         try {
           const at = placeOfCell(surface);
-          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: askPlace, bin, kindsAt: kindsAtCell, pills: true, spanAt: spanPlaceOfCell(surface), ruled: picked.get(surface) || null });
+          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: askPlace, bin, kindsAt: kindsAtCell, pills: true, spanAt: spanPlaceOfCell(surface), ruled: picked.get(surface) || null, heldAt: openHeld && surface === openHeld.k ? openHeld : null });
           // the whole form, where the set has its division: the set is not a
           // reading of the form as one word, and stands on its division; the
           // copy counts what it set aside (inParts), which stands a press away
@@ -12154,7 +12175,7 @@
         // exists, and a block whose every row they withheld was read as a
         // block no dictionary gives — and its rung forgotten. It says what
         // withheld it, keeps the rung, and stands on no record meanwhile.
-        if (pool && (pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || kindsHeldN(pool))) {
+        if (pool && (pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldHere || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || kindsHeldN(pool))) {
           const bits = [];
           // what rests shut emptied it, in the record's words, with the press that opens them (dictionary-kinds-rule-v1)
           const nK = kindsHeldN(pool);
@@ -12162,6 +12183,7 @@
           if (pool.withheldBySense) bits.push(`${pool.withheldBySense} word sense${pool.withheldBySense === 1 ? "" : "s"} held back — Jastrow's note${pool.withheldBySense === 1 ? "" : "s"} on the word's sense, not a definition, shown under the word senses switch`);
           if (pool.withheldByEntry) bits.push(`${pool.withheldByEntry} record${pool.withheldByEntry === 1 ? "" : "s"} withheld by the entry — their own source files them under another entry than ${(pool.entry || []).join(" or ")}, ${pool.entryByLemma ? "the entries of MACULA's lemma here, where STEP gives the word no tag" : "which stands here"}`);
           if (pool.withheldByName) bits.push(`${pool.withheldByName} record${pool.withheldByName === 1 ? "" : "s"} withheld as a name — their own source gives ${pool.withheldByName === 1 ? "it" : "them"} as a name, and the word here is not one`);
+          if (pool.withheldHere) bits.push(`${pool.withheldHere} record${pool.withheldHere === 1 ? "" : "s"} held at this place — the corpus lane reads the word here as another word written alike`);
           if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
           if (pool.withheld) bits.push(`${pool.withheld} record${pool.withheld === 1 ? "" : "s"} withheld by the pointing — their source points this word otherwise`);
           if (pool.withheldUnpointed) bits.push(`${pool.withheldUnpointed} record${pool.withheldUnpointed === 1 ? "" : "s"} held back — their source does not point this word`);
@@ -12173,8 +12195,9 @@
           readRow.append(p);
           { const nl = notesLine(); if (nl) readRow.append(nl); }
           dSlot.replaceChildren(); selectedRecordRef.m = null;
-          const onlyShut = nK && !(pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense);
-          paintNow(saidOnce(cover.map((c, i) => textOfCell(c.surface, i))).join(" + "), onlyShut ? "every record for this block rests shut" : "every record for this block is withheld by your switches");
+          const onlyShut = nK && !(pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldHere || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense);
+          const onlyHere = pool.withheldHere && !(nK || pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense);
+          paintNow(saidOnce(cover.map((c, i) => textOfCell(c.surface, i))).join(" + "), onlyShut ? "every record for this block rests shut" : onlyHere ? "every record for this word is held at this place" : "every record for this block is withheld by your switches");
           clampHud(); return;
         }
         // a rung of a run's lattice nothing on the shelf answers says so in
@@ -12868,6 +12891,7 @@
         pills.dataset.stemWithheld = String(pool.withheldByStem || 0);
         pills.dataset.entryWithheld = String(pool.withheldByEntry || 0);
         pills.dataset.nameWithheld = String(pool.withheldByName || 0);
+        pills.dataset.placeHeld = String(pool.withheldHere || 0);
         pills.dataset.entry = (pool.entry || []).join("|");
         pills.dataset.stems = (pool.stems || []).join("|");
         pills.dataset.withheldBySources = String(pool.withheldBySources || 0);
@@ -12888,12 +12912,13 @@
         // the source switches' count share a line, each its own span, so the
         // pointing standing by default costs the readings band no row
         let wLine = readRow.querySelector(".withheld-line");
-        if (pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || pool.sensesShown || kindsHeldN(pool) || pool.kindsShown) {
+        if (pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldHere || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || pool.sensesShown || kindsHeldN(pool) || pool.kindsShown) {
           if (!wLine) { wLine = document.createElement("p"); wLine.className = "kq-role withheld-line"; readRow.append(wLine); }
           wLine.replaceChildren();
           const parts = [];
           if (pool.withheldByEntry) parts.push(Object.assign(document.createElement("span"), { className: "entry-withheld", textContent: `${pool.withheldByEntry} of another entry than ${(pool.entry || []).join(" or ")}, withheld` }));
           if (pool.withheldByName) parts.push(Object.assign(document.createElement("span"), { className: "name-withheld", textContent: `${pool.withheldByName} given as a name by ${pool.withheldByName === 1 ? "its" : "their"} source, withheld` }));
+          if (pool.withheldHere) parts.push(Object.assign(document.createElement("span"), { className: "place-held", textContent: `${pool.withheldHere} held at this place: the corpus lane reads the word here as another word written alike` }));
           if (pool.withheld) parts.push(Object.assign(document.createElement("span"), { className: "masorah-withheld", textContent: `${pool.withheld} of ${pool.rows} pointed otherwise, withheld` }));
           // a record its source does not point qualifies for no pointing (unpointed-row-rule-v1), said apart
           if (pool.withheldUnpointed) parts.push(Object.assign(document.createElement("span"), { className: "unpointed-withheld", textContent: `${pool.withheldUnpointed} of ${pool.rows} not pointed by their source, held back` }));
@@ -15563,7 +15588,10 @@
       // one region only: a headword is projected onto a position, and a
       // position with two forms on it keeps its forms
       if (!(regions && regions.length > 1)) { const ov = lineUnder(word, table); if (ov) { lineMoved = ov; return spanJoin(ov.text); } }
-      const g = table ? table[shownKey(r)] : null;
+      // a commentary's word whose place the corpus lane holds rows at reads the line its word carries, the line without
+      // them (place-hold-rule-v1-a-row-the-corpus-lane-holds-at-a-place-rests-withheld-there-and-stands-at-every-other-place), under every switch:
+      // a commentary's line is drawn once, from its zone, and no switch repaints it
+      const g = table ? (table !== zone.gloss && word.ph && !(regions && regions.length > 1) && r.k === word.k ? word.ph.g : table[shownKey(r)]) : null;
       // a pair's half under the source switches, in a section built after
       // the switch moved too (licChipSwitched)
       return g ? (word.kq && table === zone.gloss ? switchedReading(shownKey(r), g) : spanJoin(g)) : "—";
