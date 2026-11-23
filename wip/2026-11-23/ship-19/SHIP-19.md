@@ -24,3 +24,9 @@ v211's (STEP's letters `t` widened; landed by ship 15) and v218's (`n` and `b` a
 - Leaders baked at a kind of place: 4 change, none on a resting line (Hosea 2:7, Hosea 2:13, Exodus 28:17 and 39:10, 2 Samuel's Laish).
 - First cards: 19 of 929 differ, none gains a pill; Ecclesiastes 5:1, Hosea 9:1, Proverbs 24:1 and 27:1 lose BDB's «algebra, Alhambra, alkali…»; Judges 21:1 loses «be strong» and «strong»; the others count more rows held back.
 - Checks on the sandbox: 21 pass (the entry gate's 25 laws among them); deliberate faults failed E2 and E16 and were undone.
+
+## The round on the real tree (`S/s30w`, 23 November 2026)
+
+- Started 14:12:52 UTC on 7f6c862105, ship 19 applied first (zone.html 98832b01999ec895); apply 135 s, the round 1,242 s, every step exit 0; done 14:56:26 UTC.
+- **Every resting line against live: 0 move in 40 works** (entries moved 0, dagesh 0, span 0, other 0, credit only 0), as the sandbox found.
+- The gate and the whole suite follow.
