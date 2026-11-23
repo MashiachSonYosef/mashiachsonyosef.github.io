@@ -36,4 +36,6 @@ v211's (STEP's letters `t` widened; landed by ship 15) and v218's (`n` and `b` a
 
 - main 418d69e93f, gh-pages 6d6de66bcb ("gh-pages follows main"), one commit each; the message is `COMMIT-MESSAGE.txt` beside this record.
 - After the push, check-nothing-unlanded-v1 on the tree: 2,609 files identical on the branch, 447 sources all landed, all checks passed.
+- Live check 87 (page_build on 418d69e93f): success.
+- The letter to the corpus lane: `wip/2026-11-23/FOR-MOSES-2026-11-23-ship-19-live.md`.
 - The live tree for comparison (`S/old`) moved to 418d69e93f. Ship 20's round began on top at 16:46 UTC.
