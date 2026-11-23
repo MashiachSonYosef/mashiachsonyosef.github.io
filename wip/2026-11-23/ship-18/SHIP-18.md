@@ -33,3 +33,11 @@ Left as live: at the 4 «necromancy» places the card offers «leader» and Jast
 
 ## The round on the real tree (S/s13 on b1acf1e220) began 07:24 UTC (`S/s27w`).
 
+## The round on the real tree, 07:24 to 08:08 UTC
+
+`apply-18.sh` first (exit 0), then the round, the form-of record, the lines, the chain books, the door and the switches page: every step exit 0. **Every resting line against live: 0 move.**
+
+The commentaries, read on the real tree's page at all 36 held places (`measures/cards-at-the-36-held-places-real-tree.json`): **the same as the sandbox's reading after the build**, place for place. At the six places of the two rows the line is bare and the card does not offer «necromancy» or «zaatar» (it offers Jastrow's own words from the dictionary beside the store, as live does). A note on my own tool: `commentary-gloss-diff.mjs` reads a zone's line per key, so it shows «necromancy» and «zaatar» as the key's line; at a held place the page draws the hold's line, which is bare. The page reading is the one that counts.
+
+The gate and the whole suite follow in the same chain.
+
