@@ -1,6 +1,6 @@
 # Ship 19: BDB's own entries (`b`) land, with the entry lists v1.1 (relays v218 and v212)
 
-Page lane, 23 November 2026. Built by a helper in the sandbox `S/s11` (from main 7f6c862105, ship 18), from the brief `S/s28w/BRIEF.md`; applied by `S/s28w/apply-19.sh`. Its round on the real tree (`S/s13`) began 14:12 UTC (`S/s30w`). Not shipped.
+Page lane, 23 November 2026. Built by a helper in the sandbox `S/s11` (from main 7f6c862105, ship 18), from the brief `S/s28w/BRIEF.md`; applied by `S/s28w/apply-19.sh`. Its round on the real tree (`S/s13`) began 14:12 UTC (`S/s30w`). **Shipped 23 November 2026: main 418d69e93f12e0b2c251ad31a7cddf0f66ad72bc, gh-pages 6d6de66bcb431ec425d4253d09029d4f7e9840d2.**
 
 ## What lands
 
@@ -29,4 +29,11 @@ v211's (STEP's letters `t` widened; landed by ship 15) and v218's (`n` and `b` a
 
 - Started 14:12:52 UTC on 7f6c862105, ship 19 applied first (zone.html 98832b01999ec895); apply 135 s, the round 1,242 s, every step exit 0; done 14:56:26 UTC.
 - **Every resting line against live: 0 move in 40 works** (entries moved 0, dagesh 0, span 0, other 0, credit only 0), as the sandbox found.
-- The gate and the whole suite follow.
+- **The gate** against live (7f6c862105), 14:56 to 15:08 UTC: 30,945 lines compared on 18 pages, 0 differ; S1 and S2 ok; 0 cards written to the diff.
+- **The whole suite** (206 checks, two lanes, to 16:42 UTC): 204 pass. Red, as on every ship: check-nothing-unlanded-v1 (456 owed until the push) and check-reading-rows-v1 R1 (the small phone's nine short rows, the same on live).
+
+## Shipped
+
+- main 418d69e93f, gh-pages 6d6de66bcb ("gh-pages follows main"), one commit each; the message is `COMMIT-MESSAGE.txt` beside this record.
+- After the push, check-nothing-unlanded-v1 on the tree: 2,609 files identical on the branch, 447 sources all landed, all checks passed.
+- The live tree for comparison (`S/old`) moved to 418d69e93f. Ship 20's round began on top at 16:46 UTC.
