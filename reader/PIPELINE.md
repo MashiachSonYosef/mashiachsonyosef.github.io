@@ -39,7 +39,11 @@
 > pointed head form meets: the numbers land; STEP's letters land from
 > English Wiktionary's list since 22 November 2026, as relay v211 widens
 > them by TBESH's own columns so that none holds back a letter of the same
-> word; BDB's entries from a list are counted and not written until relay
+> word; BDB's own entries land from both lists since 23 November 2026, as
+> relay v218 reissues them with relay v212's two answers (English
+> Wiktionary's letters are still read from relay v211's list, which names
+> the same rows line for line: the pin's facts_from); they were counted and
+> not written until relay
 > v218, as the pin says) and whether its source gives
 > it as a name (`tools/apply-name-rows-v1.mjs`, from the lists kept in
 > `data/names/`: since 20 November 2026 the list of name rows is names
@@ -193,7 +197,10 @@
 > own fields, and for a book it holds they open the store through
 > `openRouteStore(…, { atRest: true })` (`tools/gloss-store-v1.mjs`): the
 > line under a word, every column beside it and every leader the sidecar
-> bakes read only the rows that rest open, a word carries no headword's
+> bakes read only the rows that rest open (the entry gate, asked for a
+> leader at a kind of place, gathers BDB's own entries from every row of the key,
+> as the page does, since 23 November 2026, when rows that rest shut began
+> to carry them), a word carries no headword's
 > reading (hg, the line under «the headword») whose lattice card is of a
 > source shut whole or that its source gives only in rows that rest shut,
 > a witnessed reading the corpus lane credited to a shut source is

@@ -545,10 +545,19 @@ const sameList = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]
 // the gates, and kept where they are not the same: grades[surface].e[<the
 // place's key>] = { l, la, nl }. What a surface's rows grade as, and which
 // stems part them, is the surface's and is kept from its first verse.
+//
+// BDB'S ENTRIES ARE GATHERED FROM EVERY ROW OF THE KEY (ship 19, 23 November
+// 2026). The page gathers them (bdbEntriesAt) from every row of the word's
+// key, before the pointing and the kinds hold any back (relay v212's reading
+// 1), and so does this: from the key's whole rows (whole), while the leaders
+// are drawn from the rows that rest open (srows). Until relay v218 only
+// BDB's own rows, which rest open, carried b, and the two came to the same;
+// the entry lists land b on rows that rest shut, and a leader gathered from
+// the open rows alone could be a BDB row the card withholds (Hosea 2:7).
 const sameJson = (a, b) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
-const surfaceRows = new Map();   // pointed surface -> { srows, gradeOfRow, attested, otherStem, nameText, asked: the kinds of place asked so far }
-const leadersAt = ({ srows, gradeOfRow, attested, otherStem, nameText }, place, isName) => {
-  const bdbHere = place ? bdbEntriesAt(place, srows.map(factsOf)) : null;
+const surfaceRows = new Map();   // pointed surface -> { srows, whole, gradeOfRow, attested, otherStem, nameText, asked: the kinds of place asked so far }
+const leadersAt = ({ srows, whole, gradeOfRow, attested, otherStem, nameText }, place, isName) => {
+  const bdbHere = place ? bdbEntriesAt(place, whole.map(factsOf)) : null;
   const verdict = new Map(srows.map((row) => [row, place ? entryVerdict(factsOf(row), place, bdbHere) : "none"]));
   const keeps = (row) => { const v = verdict.get(row); return v !== "other" && !nameWithheld(factsOf(row), isName) && (v === "this" || !attested || !heldByPointing(gradeOfRow(row))) && !otherStem(row); };
   const leader = (omit) => {
@@ -855,7 +864,7 @@ for (const sec of zone.sections || []) {
       grades[m.surface] = { k: m.key, g: g.join(""), n: names, o, ...(st ? { st } : {}), ...(nl ? { nl: 1 } : {}) };
       if (st) stats.surfaces_with_stems += 1;
       stats.grades += 1;
-      surfaceRows.set(m.surface, { srows, gradeOfRow, attested, otherStem, nameText, asked: new Set() });
+      surfaceRows.set(m.surface, { srows, whole: (store.routesWhole(m.key) || []).filter((row) => store.index.m_sources[row[3]]), gradeOfRow, attested, otherStem, nameText, asked: new Set() });
     }
     // rule 3 · hg, the headword's first reading under lemma-sort v3
     const entry = (p.megacompspan || []).find((m) => m.lemma) || null;
