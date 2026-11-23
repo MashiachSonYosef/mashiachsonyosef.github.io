@@ -56,6 +56,8 @@
 // served is no fault: the record says, for each BY_ROW witness, how many of its
 // admitted lines stand as no served row, and of those how many its landing
 // pin holds back by their line or with their source (admitted_lines_not_served).
+// A line the pin held by its line and let go (let_go, 23 November 2026: a later list that re-reads its own, re_reads,
+// lands it) is held no more: served, it is counted as served, and not served, as other.
 //
 // Run: node tools/emit-source-corpus-v1.mjs --ledger <source-corpus-v1.1.json> --stamp YYYY-MM-DD
 //        [--store data/route-store] [--out data/source-corpus-v1.json]
@@ -124,7 +126,7 @@ const admittedRowsOf = (label) => {
   try { lines = readPinnedLines(join(K3, kept), L.list, kept); } catch (e) { if (e instanceof PinFault) die("BY_ROW_ROWS_NOT_THEIR_BYTES", e.message); throw e; }
   const got = { entry: a, kept_here: kept, stored: L.list.stored || null, bytes: L.list.bytes, lines: L.list.lines, named: new Set(lines.map((e) => [e.m, e.key, e.route].join(SEP))), countsAs: countsAsOf(lines),
     idsOf: (m) => lines.filter((e) => e.m === m).map((e) => [e.m, e.key, e.route].join(SEP)),
-    heldLineIds: new Set((Array.isArray(L.held_lines) ? L.held_lines : []).filter((h) => h).map((h) => [h.m, h.key, h.route].join(SEP))),
+    heldLineIds: new Set((Array.isArray(L.held_lines) ? L.held_lines : []).filter((h) => h && !h.let_go).map((h) => [h.m, h.key, h.route].join(SEP))),
     heldSources: new Set(Object.keys(L.held_sources || {})) };
   admittedOf.set(label, got);
   return got;

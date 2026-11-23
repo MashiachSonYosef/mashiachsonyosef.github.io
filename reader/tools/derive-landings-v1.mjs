@@ -42,6 +42,13 @@
 //     exactly one line of the list, by its source, key and words, and not of a source the pin holds back whole. It is
 //     proved as every line is and written to the list of lines not landed with its own kind, "held_by_its_line",
 //     and the pin's reason; nothing of it lands, and it takes no rank and no hole;
+//   - a line held by its line may be LET GO (its `let_go`: the relay, the day, why in words, and the list of the pin it
+//     lands in; 23 November 2026, the corpus lane's v221, which found both of v210's held rows right as their own
+//     source's words and holds them at the Targum's places instead, data/held-places/). It stays held in its own list
+//     as that list landed. It lands in a list that RE-READS that one (`re_reads`: the same rule, receipt and list,
+//     derived again on the store as it stands after that list landed). Such a list lands exactly the lines let go to
+//     it, each proved as every line is; every line that landed before is printed by its own source now, and a source
+//     held back is held as before;
 //   - the facts the line names for its row (n, t, b: what its own source says of the row, as the store carried
 //     them before or as STEP's own tags give them) go with it, for the landing to write;
 //   - lines of one source with the same words under one key are ONE row (the store holds one row of a source for a
@@ -129,6 +136,24 @@ if (L.held_lines !== undefined) {
   });
 }
 const heldByLine = {};
+// a list that re-reads an earlier list of the pin: the same rule, receipt and list; it lands exactly the lines that list
+// let go to it (the index of each such line of the list)
+const LET_GO = new Set();
+let reread = null;
+if (L.re_reads !== undefined) {
+  reread = pin.lists.slice(0, at).find((l) => l.id === L.re_reads) || null;
+  if (!reread) refuse(`the pin's list "${ID}" re-reads "${L.re_reads}", which is no list the pin lands before it`);
+  for (const k of ["folder", "rule", "receipt", "list"]) if (JSON.stringify(reread[k] ?? null) !== JSON.stringify(L[k] ?? null)) refuse(`the pin's list "${ID}" re-reads "${reread.id}" and names another ${k}`);
+  for (const h of Array.isArray(reread.held_lines) ? reread.held_lines : []) {
+    if (!h || !h.let_go || h.let_go.lands_in !== ID) continue;
+    if (typeof h.let_go.why !== "string" || !h.let_go.why.trim() || typeof h.let_go.relay !== "string" || !h.let_go.relay) refuse(`"${reread.id}" lets a line of ${h.m} go to "${ID}" and does not say by which relay and why`);
+    const hit = [];
+    lines.forEach((e, i) => { if (e && e.m === h.m && e.key === h.key && e.route === h.route) hit.push(i); });
+    if (hit.length !== 1) refuse(`"${reread.id}" lets a line of ${h.m} (\u00ab${h.route}\u00bb) go to "${ID}", and ${hit.length} lines of the list are it`);
+    LET_GO.add(hit[0]);
+  }
+  if (!LET_GO.size) refuse(`the pin's list "${ID}" re-reads "${reread.id}", which lets no line go to it`);
+}
 
 // ---- the store this is derived on: after the list before it has landed, and before this one has ----------------
 if (!existsSync(RECORD)) refuse(`the row-strikes record is not here (${RECORD})`);
@@ -244,6 +269,12 @@ lines.forEach((e, i) => {
     kind: e.kind ?? null, why: e.why ?? null, record_loc: e.record_loc ?? null, record_file: e.record_file ?? null, from: from(i) });
 });
 for (const x of landed) delete x.rank_named;
+// a list that re-reads another lands exactly the lines let go to it
+if (reread) {
+  const took = new Set(landed.flatMap((x) => (Array.isArray(x.from.gathers) ? x.from.gathers : [x.from.line]).map((n) => n - 1)));
+  for (const i of took) if (!LET_GO.has(i)) refuse(`"${ID}" re-reads "${reread.id}" and would land line ${i + 1} (${lines[i].m}), which "${reread.id}" does not let go to it`);
+  for (const i of LET_GO) if (!took.has(i)) refuse(`"${reread.id}" lets line ${i + 1} (${lines[i].m}) go to "${ID}", and it does not land: ${(notLanded.find((x) => x.from.line === i + 1) || {}).kind || "it is not named"}`);
+}
 
 // ---- what is written, held to the pin ----------------------------------------------------------
 const bytesOf = (list) => Buffer.from(list.map((x) => JSON.stringify(x)).join("\n") + (list.length ? "\n" : ""), "utf8");
@@ -252,7 +283,7 @@ const pinned = out.map(([p, b, count]) => heldToPin(b, count, p));
 const figures = { list: ID, relay: L.relay, store_version: store.index.store_version, lines: lines.length, landed: landed.length, not_landed: notLanded.length,
   lines_gathered_into_an_earlier_lines_row: gathered, keys: new Set(landed.map((x) => x.key)).size, keys_new_to_the_store: newKeys.size, ranked_here: landed.filter((x) => !x.rank_from.startsWith("the list names") && !x.rank_from.startsWith("the hole the strike left")).length,
   ...(HOLES ? { at_the_hole_the_strike_left: landed.filter((x) => x.rank_from.startsWith("the hole the strike left")).length, hole_taken_now: holesTaken, moved_off_the_holes_key: holesMoved } : {}),
-  with_facts: landed.filter((x) => x.facts).length, by_kind: byKind, by_source: bySource, ...(HELD.size ? { held_with_their_source: heldBySource } : {}), ...(HELD_LINES.size ? { held_by_their_line: heldByLine } : {}),
+  with_facts: landed.filter((x) => x.facts).length, by_kind: byKind, by_source: bySource, ...(HELD.size ? { held_with_their_source: heldBySource } : {}), ...(HELD_LINES.size ? { held_by_their_line: heldByLine } : {}), ...(reread ? { re_reads: reread.id, let_go_to_it: LET_GO.size } : {}),
   files: out.map(([p, b, count]) => ({ file: `${derived.folder}/${p.file}`, bytes: b.length, sha256: sha256Of(b), lines: count })), the_pin_names_these_bytes: pinned.every(Boolean) };
 console.log(`landings · ${ID} (relay ${L.relay}) · ${n(lines.length)} lines read on store ${store.index.store_version}${at > 0 ? `, after the landing of ${pin.lists[at - 1].id}` : ""} · ${n(landed.length)} rows land${gathered ? ` (${n(gathered)} more lines gathered into a row of the same source and words)` : ""} under ${n(figures.keys)} keys (${n(newKeys.size)} new to the store), ${n(figures.ranked_here)} ranked here, ${n(figures.with_facts)} with facts · ${n(notLanded.length)} not landed (${HELD.size || HELD_LINES.size ? `${n(notLanded.filter((x) => x.kind !== HELD_KIND && x.kind !== LINE_KIND).length)} their own source prints under their key, ${n(notLanded.filter((x) => x.kind === HELD_KIND).length)} held with their source, ${n(notLanded.filter((x) => x.kind === LINE_KIND).length)} held by their line` : "their own source prints their words under their key"})`);
 for (const [p, b, count] of out) console.log(`  ${derived.folder}/${p.file} · ${count} lines · ${b.length} bytes · sha256 ${sha256Of(b)}`);

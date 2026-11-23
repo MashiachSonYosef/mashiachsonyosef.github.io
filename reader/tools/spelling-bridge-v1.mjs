@@ -107,8 +107,9 @@
 //            reads» (check-compspan-coverage-v1 C3, Amos 1:10), and under a
 //            source pressed a reading across two words kept the pieces where
 //            the line as it rests is STEP's words (check-rulings-under-sources-v1
-//            U8, Esther 9:18). The place waits until the page lane says how a
-//            place both read is drawn. Read from the same record as the hold
+//            U8, Esther 9:18). The owner ruled on 23 November 2026 («steps is
+//            fine»): STEP's reading governs the card at these places, and the
+//            pieces are not laid. Read from the same record as the hold
 //            above: call 4's list, while its landing lands that action.
 //
 // A place is found on its zone by its verse, its number among the verse's
@@ -225,7 +226,7 @@ export const HELD = {
   a_piece_whose_tag_is_not_plain: "a piece's tag is not «H», digits and letters (STEP's «}+»; the lane mends it in bridge v1.2, relay v218)",
   a_pair: "the lattice's surface writes a pair, and the bridge lays pieces on a plain word only",
   a_place_call_4_holds: "call 4 of relay v189 writes STEP's words here with « | », and the house holds the line as it rests until the corpus lane says how STEP's line reads there",
-  a_place_where_steps_reading_stands: "call 4 of relay v189 makes STEP's own pick 1 the line here, and the page asks it before the place's pieces: laid, the place would be read two ways, its card and a reading across words disagreeing with its line, until the page lane says how a place both read is drawn",
+  a_place_where_steps_reading_stands: "call 4 of relay v189 makes STEP's own pick 1 the line here, and the page asks it before the place's pieces: laid, the place would be read two ways, its card and a reading across words disagreeing with its line. The owner ruled on 23 November 2026 («steps is fine»): STEP's reading governs the card at these places, and the pieces are not laid",
 };
 const PLAIN_TAG = /^H[0-9A-Za-z]+$/u;
 const PAIR_MARKS = /[()\[\]]/u;

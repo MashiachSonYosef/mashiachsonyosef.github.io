@@ -34,7 +34,10 @@
 //       of a held source lands. Or it is held by its line (22 November 2026: the pin's list may hold back single
 //       lines, held_lines, each its source, key, words and why): it stands only where the pin's list names that
 //       very line with that very reason, each line the pin so names is exactly one line of the list and is named
-//       not landed once, so, and no row of it lands
+//       not landed once, so, and no row of it lands. A line held by its line may be let go (let_go, 23 November
+//       2026, the corpus lane's v221): it stays named held in its own list, as that list landed, and its let_go says
+//       by which relay and why and names a later list of the pin that re-reads its own (re_reads: the same rule,
+//       receipt and list) and lands that very line once; such a list lands no row its list does not let go to it
 //
 // The words are found in the data, never named. A tree with no pin of the landings is skipped (exit 3).
 // Run: node tools/check-landings-v1.mjs [--store data/route-store]
@@ -242,7 +245,7 @@ const ROUND_OF = new Map();   // a list's id -> its round
 // what holds it back is the pin's list, which must hold that source back with the reason the line gives.
 {
   const faults = [];
-  let lines = 0, held = 0, heldLines = 0;
+  let lines = 0, held = 0, heldLines = 0, letGo = 0;
   const heldBy = {}, byLine = {};
   for (const l of lists) {
     const got = READ.get(l.id) || {};
@@ -288,10 +291,29 @@ const ROUND_OF = new Map();   // a list's id -> its round
       if (listed !== 1) faults.push(`${l.id}: held line ${j + 1} of the pin is ${listed} lines of the list, not one`);
       if ((lineHeld.get(j) || 0) !== 1) faults.push(`${l.id}: held line ${j + 1} of the pin is named not landed, held by its line, ${lineHeld.get(j) || 0} times`);
       if ((got.landed || []).some((x) => sameLine(h, x))) faults.push(`${l.id}: held line ${j + 1} of the pin lands all the same`);
+      // let go: a later list that re-reads this one lands it, once
+      if (h.let_go !== undefined) {
+        const g = h.let_go || {};
+        if (typeof g.why !== "string" || !g.why.trim() || typeof g.relay !== "string" || !g.relay) faults.push(`${l.id}: held line ${j + 1} of the pin is let go and does not say by which relay and why`);
+        const later = lists.slice(lists.indexOf(l) + 1).find((x) => x.id === g.lands_in);
+        if (!later || later.re_reads !== l.id) faults.push(`${l.id}: held line ${j + 1} of the pin is let go to ${g.lands_in}, which is no later list of the pin that re-reads ${l.id}`);
+        else { const n = ((READ.get(later.id) || {}).landed || []).filter((x) => sameLine(h, x)).length; if (n !== 1) faults.push(`${l.id}: held line ${j + 1} of the pin is let go to ${later.id}, which lands it ${n} times`); else letGo += 1; }
+      }
     });
+    // a list that re-reads another: the same rule, receipt and list, and no row it lands but a line let go to it
+    if (l.re_reads !== undefined) {
+      const src = lists.slice(0, lists.indexOf(l)).find((x) => x.id === l.re_reads);
+      if (!src) faults.push(`${l.id} re-reads ${l.re_reads}, which is no list the pin lands before it`);
+      else {
+        for (const k of ["folder", "rule", "receipt", "list"]) if (!same(src[k], l[k])) faults.push(`${l.id} re-reads ${src.id} and names another ${k}`);
+        const goes = (Array.isArray(src.held_lines) ? src.held_lines : []).filter((h) => h && h.let_go && h.let_go.lands_in === l.id);
+        for (const x of got.landed || []) if (!goes.some((h) => sameLine(h, x))) faults.push(`${l.id}: a row of ${x.m} lands that ${src.id} does not let go to it`);
+        if (!goes.length) faults.push(`${l.id} re-reads ${src.id}, which lets no line go to it`);
+      }
+    }
   }
-  check("G5  each line not landed names the rows of its own source that print its words under its key, and such a row stands there now; or it is held with its source, where the pin's list holds that source back with that reason, every line of it so named and none landed; or it is held by its line, where the pin's list names that exact line with that reason", faults.length === 0,
-    faults.length ? `${nf(faults.length)} · ${first(faults)}` : lines ? [lines - held - heldLines ? `${nf(lines - held - heldLines)} lines, each printed by its own source` : "", held ? `${nf(held)} held with their source (${Object.entries(heldBy).map(([m, k]) => `${m} ${nf(k)}`).join(", ")}), each as its pin's list holds it` : "", heldLines ? `${nf(heldLines)} held by their line (${Object.entries(byLine).map(([m, k]) => `${m} ${nf(k)}`).join(", ")}), each as its pin's list names it` : ""].filter(Boolean).join(" · ") : "no line of the pin's lists is held back: every line lands");
+  check("G5  each line not landed names the rows of its own source that print its words under its key, and such a row stands there now; or it is held with its source, where the pin's list holds that source back with that reason, every line of it so named and none landed; or it is held by its line, where the pin's list names that exact line with that reason; a line let go lands, once, in the later list that re-reads its own, and such a list lands nothing else", faults.length === 0,
+    faults.length ? `${nf(faults.length)} · ${first(faults)}` : lines ? [lines - held - heldLines ? `${nf(lines - held - heldLines)} lines, each printed by its own source` : "", held ? `${nf(held)} held with their source (${Object.entries(heldBy).map(([m, k]) => `${m} ${nf(k)}`).join(", ")}), each as its pin's list holds it` : "", heldLines ? `${nf(heldLines)} held by their line (${Object.entries(byLine).map(([m, k]) => `${m} ${nf(k)}`).join(", ")}), each as its pin's list names it${letGo ? `, ${nf(letGo)} of them let go and landed by the list that re-reads it` : ""}` : ""].filter(Boolean).join(" · ") : "no line of the pin's lists is held back: every line lands");
 }
 
 console.log(bad ? `\n${bad} check(s) FAILED` : "\nall checks passed");

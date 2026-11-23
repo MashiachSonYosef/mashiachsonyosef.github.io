@@ -16,7 +16,10 @@
 //       list carries PanLex's lines beside the translation tables') has exactly its count of lines in the list it
 //       names, that list's pin holds it back with the record's reason, and it stays struck. A line the pin holds
 //       back by itself (held_lines, 22 November 2026) is a listed row of its source not served: the record counts
-//       them for the source (held_by_their_line), and that is the pin's count (R1); none stands as a row (R4)
+//       them for the source (held_by_their_line), and that is the pin's count (R1); none stands as a row (R4).
+//       A line the pin let go (let_go, 23 November 2026, relay v221) is held no more: the record counts it apart
+//       (held_lines_let_go), the pin's count (R1), and the row the list that re-reads its own lands (re_reads) is a
+//       landed line of the record's lists (R4)
 //   R2  in the index each returning source stands exactly as the record returns it (its entry as it stood, the
 //       languages its own source names, the record's year, how it returns), and the admission's own rule admits
 //       it by those languages; it is among the re-admitted and not among the struck; the struck and the
@@ -64,7 +67,9 @@ const heldIds = new Set(Object.values((rec.held_for_the_owners_word || {}).sourc
 const heldBack = heldOf(rec);   // the sources the record holds back in its own lists, each with why
 // the single lines the landings' pin holds back in the record's lists (held_lines), each of its source
 const landingsPin = existsSync(join(K3, "data", "landings", "PIN.json")) ? JSON.parse(readFileSync(join(K3, "data", "landings", "PIN.json"), "utf8")) : { lists: [] };
-const heldLinesOf = (m) => (landingsPin.lists || []).filter((l) => rec.lists.includes(l.id)).flatMap((l) => (Array.isArray(l.held_lines) ? l.held_lines : []).filter((h) => h && h.m === m));
+const heldLinesOf = (m) => (landingsPin.lists || []).filter((l) => rec.lists.includes(l.id)).flatMap((l) => (Array.isArray(l.held_lines) ? l.held_lines : []).filter((h) => h && h.m === m && !h.let_go));
+// and the lines it held so and let go to a list that re-reads its own (re_reads, 23 November 2026)
+const letGoOf = (m) => (landingsPin.lists || []).filter((l) => rec.lists.includes(l.id)).flatMap((l) => (Array.isArray(l.held_lines) ? l.held_lines : []).filter((h) => h && h.m === m && h.let_go));
 for (const m of heldBack.keys()) heldIds.add(m);
 
 // ---- R1: the record against the landings' pin and its lists ------------------------------------------------
@@ -93,6 +98,12 @@ const landedOf = new Map();   // list id -> the landed lines derived from it
       landedOf.set(id, d && d.lines ? readPinnedLines(join(LAND, L.derived.folder, d.file), d, `${L.derived.folder}/${d.file}`) : []);
     } catch (e) { if (e instanceof PinFault) faults.push(e.message); else throw e; }
   }
+  // a list of the pin that re-reads one of the record's lists lands the lines that list let go: its rows are the record's lists' rows
+  for (const L of pin.lists || []) {
+    if (!rec.lists.includes(L.re_reads)) continue;
+    try { const d = (L.derived || {}).landed; landedOf.set(L.id, d && d.lines ? readPinnedLines(join(LAND, L.derived.folder, d.file), d, `${L.derived.folder}/${d.file}`) : []); } catch (e) { if (e instanceof PinFault) faults.push(e.message); else throw e; }
+  }
+  for (const s of rec.sources) if (letGoOf(s.m).length !== (s.held_lines_let_go || 0)) faults.push(`${s.m}: the record says its pin let go ${s.held_lines_let_go || 0} of the lines it held by their line, and the pin lets go ${letGoOf(s.m).length}`);
   for (const s of rec.sources) {
     if (counted.get(s.m) !== s.rows_listed) faults.push(`${s.m}: the record counts ${s.rows_listed} listed rows and the lists hold ${counted.get(s.m) || 0}`);
     if (keyed.get(s.m) !== s.entry.key) faults.push(`${s.m}: the record's entry is ${s.entry.key} and the lists name ${keyed.get(s.m)}`);
@@ -183,7 +194,7 @@ const landedOf = new Map();   // list id -> the landed lines derived from it
   for (const [m, ids] of want) if (back.has(m) && (seen.get(m) || new Set()).size !== ids.size) faults.push(`${m}: ${ids.size} lines landed and ${(seen.get(m) || new Set()).size} of them stand as rows`);
   const alone = rec.sources.filter((s) => s.returns !== "whole");
   check("R4  every row the store holds of a returning source is a row a landing of the record's lists made, and every such landed line stands as a row; a source that stays struck or is held for the owner's word carries none, and no line the pin holds back by itself stands as a row",
-    faults.length === 0 && lines > 0, faults.length ? `${faults.length} · ${first(faults)}` : `${nf(Object.values(perM).reduce((a, b) => a + b, 0))} rows of ${Object.keys(perM).length} returning sources, each a landed line's (${nf(lines)} lines landed) · the sources that returned for their listed rows alone carry ${nf(alone.reduce((a, s) => a + (perM[s.m] || 0), 0))} rows (${alone.map((s) => `${s.m} ${nf(perM[s.m] || 0)}${s.held_by_their_line ? ` of ${nf(s.rows_listed)} listed: ${s.held_by_their_line} held by their line, named and not served` : ""}`).join(", ")}) and no other · ${rowsOfOut} rows of a struck or held source`);
+    faults.length === 0 && lines > 0, faults.length ? `${faults.length} · ${first(faults)}` : `${nf(Object.values(perM).reduce((a, b) => a + b, 0))} rows of ${Object.keys(perM).length} returning sources, each a landed line's (${nf(lines)} lines landed) · the sources that returned for their listed rows alone carry ${nf(alone.reduce((a, s) => a + (perM[s.m] || 0), 0))} rows (${alone.map((s) => `${s.m} ${nf(perM[s.m] || 0)}${s.held_by_their_line ? ` of ${nf(s.rows_listed)} listed: ${s.held_by_their_line} held by their line, named and not served` : ""}${s.held_lines_let_go ? ` (${s.held_lines_let_go} held by their line and let go, landed by the list that re-reads theirs)` : ""}`).join(", ")}) and no other · ${rowsOfOut} rows of a struck or held source`);
 }
 
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

@@ -46,6 +46,8 @@
 // of a returning source (held_lines: two of the translation tables' rows that read wrongly at the Targum's places).
 // The source still returns, for the rows the lane lists; its count of listed rows is the list's, and the record says
 // how many of them its pin holds back by their line (held_by_their_line), which must be the pin's count for it.
+// A line its pin let go (let_go, 23 November 2026, relay v221: a later list of the pin that re-reads its own lands it;
+// the list's own `re_reads`) is held no more: it is counted apart (held_lines_let_go), and its row is a landed line's.
 //
 // PROVED BEFORE ANYTHING IS WRITTEN: the record is the rule's; the landings' pin names the record's lists and each
 // is its pinned bytes; the sources the lists' lines name are exactly the record's, each with the record's count of
@@ -158,8 +160,11 @@ if (startedAs(import.meta.url)) {
   for (const [id, L] of pinList) for (const m of Object.keys(L.held_sources || {})) if (!HELD.has(m)) faults.push(`the pin's list ${id} holds back ${m}, and the record does not`);
   // the lines the pin holds back by their line, source by source, are the record's count
   for (const s of rec.sources) {
-    const byPin = (((pinList.get(s.list) || {}).held_lines) || []).filter((h) => h && h.m === s.m).length;
+    const byPin = (((pinList.get(s.list) || {}).held_lines) || []).filter((h) => h && h.m === s.m && !h.let_go).length;
     if (byPin !== (s.held_by_their_line || 0)) faults.push(`${s.m}: the record says its pin holds back ${s.held_by_their_line || 0} of its lines by their line, and the pin's list ${s.list} holds back ${byPin}`);
+    // a line let go by its pin (re_reads): held no more, and counted apart
+    const letGo = (((pinList.get(s.list) || {}).held_lines) || []).filter((h) => h && h.m === s.m && h.let_go).length;
+    if (letGo !== (s.held_lines_let_go || 0)) faults.push(`${s.m}: the record says its pin let go ${s.held_lines_let_go || 0} of the lines it held by their line, and the pin's list ${s.list} lets go ${letGo}`);
   }
   for (const [id, L] of pinList) for (const h of L.held_lines || []) if (!h || !rec.sources.some((s) => s.m === h.m && s.list === id)) faults.push(`the pin's list ${id} holds back a line of ${h && h.m}, which is not a source the record returns in it`);
   if (faults.length) refuse(`the record and the lists do not agree: ${faults.slice(0, 4).join("; ")}${faults.length > 4 ? `; and ${faults.length - 4} more` : ""}`);

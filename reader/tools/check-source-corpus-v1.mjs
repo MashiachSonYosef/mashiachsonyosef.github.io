@@ -38,7 +38,8 @@
 //       (22 November 2026). And it says how many of its admitted lines stand
 //       as no served row, and of those how many the landings' pin holds back
 //       by their line or with their source (admitted_lines_not_served): a
-//       named row not served is no fault, but the record must say it as it is
+//       named row not served is no fault, but the record must say it as it is. A line the pin held by its line
+//       and let go (let_go, 23 November 2026, relay v221; re_reads) is held no more
 //
 // BY_ROW (22 November 2026, the corpus lane's relay v210 and its ledger v1.1).
 // Three labels are neither admitted whole nor refused whole: each row is
@@ -139,7 +140,7 @@ check("L2  no witness this shelf cites is one M refuses, and a witness the ledge
     if (w.rows_count_as === undefined || ordered(w.rows_count_as) !== ordered(got)) { off.push(`${m}: the record says its lines count as ${JSON.stringify(w.rows_count_as)}, and they count as ${JSON.stringify(got)}`); continue; }
     // the admitted lines that stand as no served row, and why, recounted from the lines, the store and the landings' pin
     const L = pinListOf((w.admitted_rows || {}).sha256);
-    const heldLineIds = new Set((Array.isArray(L.held_lines) ? L.held_lines : []).filter((h) => h).map((h) => [h.m, h.key, h.route].join(SEP)));
+    const heldLineIds = new Set((Array.isArray(L.held_lines) ? L.held_lines : []).filter((h) => h && !h.let_go).map((h) => [h.m, h.key, h.route].join(SEP)));
     const unserved = (byRowIds.get(m) || []).filter((id) => !(byRowServed.get(m) || new Set()).has(id));
     const byLine = unserved.filter((id) => heldLineIds.has(id)).length, bySource = Object.prototype.hasOwnProperty.call(L.held_sources || {}, m) ? unserved.length - byLine : 0;
     const want = { lines: unserved.length, held_by_their_line: byLine, held_with_their_source: bySource, other: unserved.length - byLine - bySource };
