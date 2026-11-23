@@ -35,5 +35,7 @@ Measured against live (ship 19, `S/old`), in `measures/real-tree/`:
 
 - main 8c53c71284, gh-pages 0bfcfb215b ("gh-pages follows main"), one commit each; the message is `COMMIT-MESSAGE.txt` beside this record.
 - After the push, check-nothing-unlanded-v1 on the tree: 2,621 files identical on the branch, 451 sources all landed, all checks passed.
+- Pages build 1390 and live check 88 (page_build on 8c53c71284): success.
+- The letter to the corpus lane: `wip/2026-11-23/FOR-MOSES-2026-11-23-ship-20-live.md`.
 - The live tree for comparison (`S/old`) moved to 8c53c71284.
 

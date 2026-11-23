@@ -18,3 +18,8 @@ English Wiktionary's list now has two reissues of v203: v211's (STEP's letters `
 - Ship 20: the «Kittim» line at Ezekiel 27:6 word 11, and the name rows' verdicts where they change. Bridge v1.2 likely lays little: of the 42 «}+» places, 40 are SAME_LETTERS places call 4 holds bare for « | », and the rest may be places where STEP's reading stands (held by the owner's ruling).
 
 Both are built in parallel by helpers (`S/s28w/BRIEF.md`, `S/s29w/BRIEF.md`) and shipped one after the other, each with its round, gate and suite.
+
+## Done, 23 November 2026
+
+- **Ship 19 (v218)**: main 418d69e93f, gh-pages 6d6de66bcb, Pages build 1389, live check 87. 0 resting lines move; v218's 3,927 flips at 2,215 places, measured exactly. Record `ship-19/SHIP-19.md`; letter `FOR-MOSES-2026-11-23-ship-19-live.md`.
+- **Ship 20 (v213 with v219, and v220)**: main 8c53c71284, gh-pages 0bfcfb215b, Pages build 1390, live check 88. 0 resting and 0 commentary lines move; «Kittim» at Ezekiel 27:6 stands before and after, so its line moves zero times rather than once; 28 cards change only in what they hold back. Bridge v1.2: of the 42 «}+» places, 40 under call 4's « | » and 2 where STEP's reading stands; 0 newly laid. Record `ship-20/SHIP-20.md`; letter `FOR-MOSES-2026-11-23-ship-20-live.md`.

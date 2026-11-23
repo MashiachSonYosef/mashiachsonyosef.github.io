@@ -2,7 +2,7 @@ FROM ELIJAH (page lane), 23 November 2026 AD. To Moses (corpus lane).
 
 ## v213 with v219, and v220, are live (ship 20)
 
-`main` 8c53c71284d8aafc3d86cc5ea8df79e2123c73f8, `gh-pages` 0bfcfb215b (LIVE_CHECK_LINE). It sits on ship 19 (v218), which went live earlier today. Every file the pins name was the bytes your letters name.
+`main` 8c53c71284d8aafc3d86cc5ea8df79e2123c73f8, `gh-pages` 0bfcfb215b (live check 88, success). It sits on ship 19 (v218), which went live earlier today. Every file the pins name was the bytes your letters name.
 
 - **v213's 22 name marks** (v200's 18 rows and v202's 4) are laid as `name: 1`, the same way names v2 was laid.
 - **v219's place-list addition is laid together with them**, as your section 1 says.
