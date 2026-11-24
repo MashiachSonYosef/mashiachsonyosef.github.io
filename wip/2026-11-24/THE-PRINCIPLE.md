@@ -1,0 +1,11 @@
+# Serve each source as it serves itself
+
+The owner, 24 November 2026: «serve step as step serves, done. serve the next dictionary as it is suggested to serve, etc. and the overlap is the struggle»; «in theory if another dictionary made a different cut our system should be able to hold both»; «cut back to exactly the part of the project that will stand forever, and then we can consider adding to it the other dictionarys back in 1 by 1».
+
+- Each source keeps its own division of a word, held as it gives it, never folded into ours.
+- Each source is read only against its own division: its readings sit on its own pieces.
+- On the thirty-nine books the line at rest follows STEP: its division, its tag for each piece, its reading. A dictionary row shows only where its entry is the one STEP's tag names (which also keeps a homonym off a word it is not). Where our text (Sefaria's Miqra according to the Masorah) spells a word otherwise than STEP's (the Leningrad Codex), the spelling bridge maps one to the other; that is the one thing of our own this needs.
+- Another source switched on shows its readings on its own division, beside STEP's.
+- The overlap, where two divisions disagree under the same letters, is shown honestly, listed, and ruled; never settled silently by a rule of ours.
+- Rules of our own that depart from STEP (the joining dagesh, the grading of one-letter pieces as prefix or suffix, the pointing grade, spellings matched with no STEP tag behind them) are listed with their counts for the owner to retire or keep with a reason. That list is the first job of the review week.
+- The foundation is the thirty-nine books with the twelve Bible dictionaries, made right first; the other dictionaries come back one at a time after, and other works (the Tikkunei Zohar) after that.
