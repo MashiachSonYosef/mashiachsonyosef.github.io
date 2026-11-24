@@ -23,3 +23,7 @@ The round is in the repository (`reader/tools/round-v1.sh`); the harness around 
 - The round's inputs come from the store (`ENVIRONMENT-RESOLVED.txt` lists the seven, under `$S` = the scratch folder); a new session downloads them again with `r2.mjs` (read only; credentials from the environment, never printed), each into its own new folder, Python reading them with `python3 -I`.
 - After a push: `check-nothing-unlanded-v1` on the tree, then the live check run on GitHub (live-check.yml), then move the live tree to the new main.
 - Expected reds before a push: check-nothing-unlanded-v1 (until the push) and check-reading-rows-v1 R1 (the small phone's nine short rows, red on live too).
+
+## Ship 21 (24 November 2026): the way home is the woven mark from the first paint
+
+The owner, on Genesis while it loaded: «wrong home page logo on genesis». The door's 1,273 pages copied zone.html's text link («The Tabernacle») and only the script laid the mark in, so the old text showed while a page loaded. `tools/build-front-door-v1.mjs` now writes the mark into each page's way home (and refuses a zone.html whose way home is not the one text link it expects); the door step run again changed each page by that one line. Nine door and mark checks pass; Genesis 1 read on the new build shows the mark. Shipped without the full round and gate, as nothing under a word, no zone and no card changes: main 3476e24ebf, gh-pages 7de59f4e7c. Its live check runs on the Pages build.
