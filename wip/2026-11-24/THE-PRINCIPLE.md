@@ -9,3 +9,7 @@ The owner, 24 November 2026: «serve step as step serves, done. serve the next d
 - The overlap, where two divisions disagree under the same letters, is shown honestly, listed, and ruled; never settled silently by a rule of ours.
 - Rules of our own that depart from STEP (the joining dagesh, the grading of one-letter pieces as prefix or suffix, the pointing grade, spellings matched with no STEP tag behind them) are listed with their counts for the owner to retire or keep with a reason. That list is the first job of the review week.
 - The foundation is the thirty-nine books with the twelve Bible dictionaries, made right first; the other dictionaries come back one at a time after, and other works (the Tikkunei Zohar) after that.
+
+## The lesson (the owner, 24 November 2026: «keep in mind this difficulty was found within work that was essentially already done for us»)
+
+STEP gave us the thirty-nine books divided and tagged, and most of our trouble came from what we added on top. So: before any rule of our own, ask whether the source already answers the question; if it does, follow it. A rule of our own needs a stated reason and the owner's ruling, and stands on a list the owner can read. A work with no STEP behind it (the Tikkunei Zohar) means the dividing and tagging are ours, which is why it waits until the foundation is right.
