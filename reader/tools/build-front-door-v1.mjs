@@ -2854,7 +2854,16 @@ const readerPage = (b) => {
   const slot = `<main id="text"></main>`;
   if (b.porch && !titled.includes(slot))
     throw new Error("zone.html lost its text slot — refusing to emit a page with a porch and nowhere to stand it");
-  return titled
+  // THE WAY HOME IS THE MARK FROM THE FIRST PAINT (the owner, 24 November
+  // 2026, on Genesis while it loaded: «wrong home page logo on genesis»).
+  // zone.html stands alone with the working name as text and its script lays
+  // the mark in from the site-mark meta; on the door's pages the text showed
+  // until the script ran. Where the door has a mark, the page is written with
+  // it already in place (the script then lays the same mark in again).
+  const homeText = '<a href="/" class="home">The Tabernacle</a>';
+  if (MARK_WOVEN && titled.split(homeText).length !== 2)
+    throw new Error("zone.html's way home is not the one text link the door expects — refusing to write a page whose home is not the mark");
+  return (MARK_WOVEN ? titled.replace(homeText, () => `<a href="/" class="home"><img class="wm-mark-s" src="${MARK_WOVEN}" alt="${SITE_NAME}" width="710" height="88"></a>`) : titled)
     .replace(anchor, () => metas + anchor)
     .replace(engineBlocks.css.whole, () => `<link rel="stylesheet" href="/${ENGINE}/${engineBlocks.css.name}">`)
     .replace(engineBlocks.js.whole, () => `<script src="/${ENGINE}/${engineBlocks.js.name}"></script>`)
