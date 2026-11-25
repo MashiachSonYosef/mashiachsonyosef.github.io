@@ -92,7 +92,7 @@ const ovRec = existsSync("data/overlay-book-counts-v1.json") ? JSON.parse(readFi
 const ovBook = Object.fromEntries(Object.entries((ovRec && ovRec.books && ovRec.books[ZONE]) || {})
   .filter(([, e]) => e.carries > 0 && (existsSync(`data/overlays/${e.overlay}/index.json`) || existsSync(`data/${e.overlay}/index.json`))));
 // (an overlay's source the record of dictionary kinds rests shut whole on a
-// book at rest stands in the rail's «Shut at rest» block, not on the strip:
+// book at rest stands in the rail's «Off by default» block, not on the strip:
 // the owner's twelve, 19 November 2026; read off the page once it has loaded)
 let ovIds = new Set(Object.keys(ovBook));
 let ovKeys = new Set(Object.entries(ovBook).map(([id, e]) => e.key || id));
@@ -117,7 +117,7 @@ console.log(`— ${ZONE} —`);
 {
   const shutWhole = new Set(await p.evaluate(() => (window.__kindsHere ? window.__restsOffIds || [] : [])));
   const kept = Object.entries(ovBook).filter(([id]) => !shutWhole.has(id));
-  if (kept.length !== Object.keys(ovBook).length) console.log(`  --  ${Object.keys(ovBook).length - kept.length} overlay source(s) rest shut whole here and stand in the «Shut at rest» block, not on the strip`);
+  if (kept.length !== Object.keys(ovBook).length) console.log(`  --  ${Object.keys(ovBook).length - kept.length} overlay source(s) rest shut whole here and stand in the «Off by default» block, not on the strip`);
   ovIds = new Set(kept.map(([id]) => id));
   ovKeys = new Set(kept.map(([id, e]) => e.key || id));
 }

@@ -5443,9 +5443,9 @@
   </div>
   <div id="wcard" role="dialog" aria-label="the word&#8217;s own record" hidden>
     <div class="head"><b dir="rtl"></b><button type="button" aria-label="Close">&#215;</button></div>
-    <p class="w-open" hidden><span class="lab">commonly force read as</span><span class="slot"></span></p>
+    <p class="w-open" hidden><span class="lab">commonly read as</span><span class="slot"></span></p>
     <p class="r-now"><span class="k">reading</span><span class="v"></span></p>
-    <p class="r-label">Exact selectable routes</p>
+    <p class="r-label">Readings</p>
     <!-- NO SWITCHES IN A CARD. The order row stood here (seven positions, the
          owner's) and a reader who pressed one on the door had set the whole
          reader's order without knowing it: every book then read "oldest
@@ -5678,7 +5678,7 @@
       // the register is the claim's, only when a record backs the claim
       slot.innerHTML = fam.he +
         '<span class="of"><span class="fr-lab"></span> <span class="en"></span><span class="chip"></span></span>';
-      slot.querySelector(".of .fr-lab").textContent = fam.att ? "commonly force read as" : "listed in the catalog as";
+      slot.querySelector(".of .fr-lab").textContent = fam.att ? "commonly read as" : "listed in the catalog as";
       slot.querySelector(".of .en").textContent = fam.en;
       var famChip = slot.querySelector(".of .chip");
       if (fam.att) { famChip.textContent = fam.att; famChip.title = fam.attTitle; }
@@ -5866,12 +5866,12 @@
     var P_INLINE = 3;
     var line = document.createElement("p"); line.className = "d-also";
     var lab = document.createElement("span"); lab.className = "d-also-lab";
-    lab.textContent = "the same record, carried by " + also.length + " more source" + (also.length === 1 ? "" : "s");
+    lab.textContent = "also given by " + also.length + " more source" + (also.length === 1 ? "" : "s");
     line.append(lab);
     var srcBtn = function (j) {
       var mj = (storeIndex.m_sources || {})[rows[j][3]] || {};
       var btn = document.createElement("button"); btn.type = "button"; btn.className = "d-also-m";
-      btn.append((mj.label || rows[j][3]) + " · " + (rows[j][4] && rows[j][4] !== "S_NO_SOURCE_YEAR" ? "wording " + rows[j][4] + " AD" : "no wording year"));
+      btn.append((mj.label || rows[j][3]) + (rows[j][4] && rows[j][4] !== "S_NO_SOURCE_YEAR" ? " · wording " + rows[j][4] + " AD" : ""));
       var c2 = document.createElement("span"); c2.className = "lic-chip";
       c2.textContent = licName(mj.licensePosture); btn.append(c2);
       var rd = document.createElement("span"); rd.className = "d-also-read";
@@ -5921,7 +5921,7 @@
       // the register follows the evidence: the claim label only with the
       // record's force license riding beside the name, the bridge register
       // and the awaiting note when nothing backs it
-      wo.querySelector(".lab").textContent = bookAtt ? "commonly force read as" : "listed in the catalog as";
+      wo.querySelector(".lab").textContent = bookAtt ? "commonly read as" : "listed in the catalog as";
       var a = document.createElement("a");
       a.href = book; a.className = "wo-link";
       a.textContent = bookName || book.slice(1).replace(/-/g, " ");

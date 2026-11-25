@@ -146,7 +146,7 @@ const claimed = await p.evaluate(async () => {
            chip: (band.querySelector(".chip") || {}).textContent || "" };
 });
 check("a backed name takes the claim label with its attestation beside it",
-  /commonly force read as/.test(claimed.label) && claimed.chip === "attested: the fixture's instrument witness",
+  /commonly read as/.test(claimed.label) && claimed.chip === "attested: the fixture's instrument witness",
   `${claimed.label} · ${claimed.chip || "NO CHIP"}`);
 check("the record is read first and the book entered under it", layer.aboveReadings);
 check("and the word's own routes are still there beneath it", layer.readingsStillThere);

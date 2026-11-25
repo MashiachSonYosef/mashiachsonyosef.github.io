@@ -904,7 +904,7 @@ if (rule) {
           !!s3.block && !s3.block.hidden && s3.block.opts.shut === "true" && chips.length > 0 && keysSame && chips.every((c) => c.disabled && c.ids.length && c.ids.every((id) => SHUT_IDS.has(id) || IDS.includes(id)) && !/\bdfp\b/u.test(c.cls)),
           s3.block ? `${chips.length} chips (${chips.filter((c) => c.disabled).length} shut) for ${wantKeys.size} keys the stamp and the overlays' counts hold${keysSame ? "" : `; the chips' keys ${[...chipKeys].slice(0, 4).join(", ")} …`}` : "no block on the rail");
         const offN = (/(\d+) off\b/u.exec(s3.railText || "") || [])[1];
-        const shutN = (/(\d+) more rest shut/u.exec(s3.railTitle || "") || [])[1];
+        const shutN = (/(\d+) more are off by default/u.exec(s3.railTitle || "") || [])[1];
         check("K4  the rail's line counts as off only the reader's own switches, and its title says how many more rest shut",
           s3.railText !== null && Number(offN || 0) === s3.stripOff && !/shut/u.test(s3.railText) && Number(shutN) === chips.length,
           `«${String(s3.railText).trim()}» · title «${String(s3.railTitle).slice(-80)}»`);
