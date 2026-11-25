@@ -23,6 +23,7 @@ The seventeen sources shut at rest, the Tikkunei Zohar, the commentaries, new fe
 7. **The chain pages** of the twelve minor prophets, link by link against their cards.
 8. **Leftovers already listed that touch the 39/12:** tasks 61, 154, 156, 157, 58, 112.
 9. **The reading loop (takes whatever budget is left).** Fresh readers read the 929 chapters on the page in canonical order, Genesis first: the line under every verse and the cards behind it, flagging what reads wrong. Each finding is proven on the live page, traced to its cause, and mended by rule, never by hand. Progress is kept in a ledger file so the next session resumes at the next chapter.
+   - *Noted by the owner, 25 November, low priority («my screenshot just shows blobs crossing over each other. not a huge deal»):* in the English reader a word of three pieces (Isaiah 25:9, «and + he will save + us») crosses its three frames in a strip 12px tall, so their edges run together. It follows three standing rulings (the English keeps its order, 10 October; every outline stays over every fill where frames cross, 10 October; no room between the English and its Hebrew, 16 and 18 October). Nothing changes now. If it is taken up: where frames cross, one thin line from each English piece to its Hebrew in place of the wide ribbon, which needs no height.
 10. **Close.** The whole suite, one report (per pass: what was checked, found, mended), and a release tag.
 
 ## How the budget is spent
