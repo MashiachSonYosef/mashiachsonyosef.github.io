@@ -111,7 +111,7 @@ const cell = () => p.evaluate(() => {
 const card = () => p.evaluate(() => {
   const hud = document.getElementById("hud");
   const t = (el) => (el ? el.textContent.replace(/\s+/g, " ").trim() : null);
-  const box = [...hud.querySelectorAll(".rows .band")].find((b) => /Exact selectable routes/.test(t(b.querySelector(".r-label")) || ""));
+  const box = [...hud.querySelectorAll(".rows .band")].find((b) => /^Readings\b/.test(t(b.querySelector(".r-label")) || ""));
   const pillsEl = box ? box.querySelector(".r-pills") : null;
   const pills = box ? [...box.querySelectorAll(".r-pills button")] : [];
   return {

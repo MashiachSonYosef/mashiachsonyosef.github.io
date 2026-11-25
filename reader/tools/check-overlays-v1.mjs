@@ -30,7 +30,7 @@
 //   O6  an overlay's reading, opened, names its overlay in the card
 //   (Since 19 November 2026 the overlays rest shut by their kind on a book of the
 //   thirty-nine (dictionary-kinds-rule-v1, the owner's twelve), a press away, and
-//   their chips stand in the rail's «Shut at rest» block, not on the strip. So
+//   their chips stand in the rail's «Off by default» block, not on the strip. So
 //   every pass here opens the dictionaries that rest shut first, as a reader does
 //   with «show», and O2 reads an overlay's chips where they stand: on the strip,
 //   or in that block. What rests shut, and how, is check-dictionary-kinds-v1's.)

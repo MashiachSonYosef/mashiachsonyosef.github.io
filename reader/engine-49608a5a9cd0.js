@@ -1404,11 +1404,11 @@
     if (!kindsHere || (!held && !shown)) return null;
     const said = held ? pool.withheldByKind.map((x) => `${x.n} ${x.say}`).join(" \u00b7 ") : "";
     const b = Object.assign(document.createElement("button"), { type: "button", className: "kinds-switch",
-      textContent: !held ? `${shown} shut at rest, shown \u00b7 hide` : short ? `${held} shut at rest \u00b7 show` : `${said} \u00b7 show` });
+      textContent: !held ? `${shown} off by default, shown \u00b7 hide` : short ? `${held} off by default \u00b7 show` : `${said} \u00b7 show` });
     if (short && held) b.title = said;
     // one name whatever it shows, and aria-pressed says whether they stand open;
     // pressed, the card is built again under it and the focus comes back to it
-    b.setAttribute("aria-label", "dictionaries shut at rest");
+    b.setAttribute("aria-label", "dictionaries off by default");
     b.setAttribute("aria-pressed", String(!held));
     b.addEventListener("click", (e) => { e.stopPropagation(); kindsFocus = true; chooseKinds(held ? "open" : "shut"); });
     // to the press the rebuilt card shows: a tight card folds the withheld
@@ -4753,7 +4753,7 @@
         // (the value's own spaces are settled, not the line's: settling the
         // whole line took its indent with them and the line hung out of its record)
         if (src.at) L.push(`    for: ${`${zone.work || ""} ${src.at}`.replace(/\s+/gu, " ").trim()}`);
-        L.push(`    source: [${cite(src)}] ${src.label}${hasYear(src.wy) ? ` \u00b7 wording ${adYear(src.wy)}${yearMarkOf(src.received.mId, src.wy) ? ` (${yearMarkOf(src.received.mId, src.wy)})` : ""}` : " \u00b7 wording year not supplied"}`);
+        L.push(`    source: [${cite(src)}] ${src.label}${hasYear(src.wy) ? ` \u00b7 wording ${adYear(src.wy)}${yearMarkOf(src.received.mId, src.wy) ? ` (${yearMarkOf(src.received.mId, src.wy)})` : ""}` : ""}`);
         const deed = licenseDeed(src.posture);
         L.push(`    license: ${licenseName(src.posture)}${deed ? ` \u2014 ${deed}` : ""}`);
         if (/^https?:\/\//u.test(src.pointer || "")) L.push(`    from: ${src.pointer}`);
@@ -9220,7 +9220,7 @@
       // the label is the page speaking and the block it names is the corpus's
       // letters, so the letters it quotes stand in the red (the owner,
       // 2026-10-18: "the hebrew should still be red")
-      label.append("Exact selectable routes");
+      label.append("Readings");
       const quoted = setWhole ? joinCut(cover) : cover.length > 1 ? surface : "";
       if (quoted) label.append(" · ", Object.assign(document.createElement("span"), { className: "he-q", lang: "he", dir: "rtl", textContent: quoted }));
       // the set, one reading of the division whole: its source's own row at
@@ -9491,11 +9491,11 @@
           const bits = [];
           // what rests shut emptied it, in the record's words, with the press that opens them (dictionary-kinds-rule-v1)
           const nK = kindsHeldN(pool);
-          if (nK) bits.push(`${nK} reading${nK === 1 ? "" : "s"} shut at rest: ${pool.withheldByKind.map((x) => `${x.n} ${x.say}`).join(", ")} \u2014 the button opens them`);
+          if (nK) bits.push(`${nK} reading${nK === 1 ? "" : "s"} off by default: ${pool.withheldByKind.map((x) => `${x.n} ${x.say}`).join(", ")} \u2014 the button opens them`);
           if (pool.withheldBySense) bits.push(`${pool.withheldBySense} word sense${pool.withheldBySense === 1 ? "" : "s"} held back — Jastrow's note${pool.withheldBySense === 1 ? "" : "s"} on the word's sense, not a definition, shown under the word senses switch`);
           if (pool.withheldByEntry) bits.push(`${pool.withheldByEntry} record${pool.withheldByEntry === 1 ? "" : "s"} withheld by the entry — their own source files them under another entry than ${(pool.entry || []).join(" or ")}, ${pool.entryByLemma ? "the entries of MACULA's lemma here, where STEP gives the word no tag" : "which stands here"}`);
           if (pool.withheldByName) bits.push(`${pool.withheldByName} record${pool.withheldByName === 1 ? "" : "s"} withheld as a name — their own source gives ${pool.withheldByName === 1 ? "it" : "them"} as a name, and the word here is not one`);
-          if (pool.withheldHere) bits.push(`${pool.withheldHere} record${pool.withheldHere === 1 ? "" : "s"} held at this place — the corpus lane reads the word here as another word written alike`);
+          if (pool.withheldHere) bits.push(`${pool.withheldHere} record${pool.withheldHere === 1 ? "" : "s"} held at this place: read here as another word spelled the same`);
           if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
           if (pool.withheld) bits.push(`${pool.withheld} record${pool.withheld === 1 ? "" : "s"} withheld by the pointing — their source points this word otherwise`);
           if (pool.withheldUnpointed) bits.push(`${pool.withheldUnpointed} record${pool.withheldUnpointed === 1 ? "" : "s"} held back — their source does not point this word`);
@@ -9757,7 +9757,7 @@
           const [, , , mId, year] = row;
           const m = index.m_sources[mId];
           const att = document.createElement("p"); att.className = "att";
-          att.append(`${m.label} · ${hasYear(year) ? `wording ${yearSaid(mId, year)}` : "wording year not supplied"} `);
+          att.append(`${m.label}${hasYear(year) ? ` · wording ${yearSaid(mId, year)}` : ""} `);
           // the chip IS the license's own address where the declarations name
           // its deed, which every CC license asks to travel with its material
           const deed = licenseDeed(m.licensePosture);
@@ -9969,7 +9969,7 @@
           const one = ({ row, group, text }) => {
             const m = index.m_sources[row[3]];
             const b = document.createElement("button"); b.type = "button"; b.className = "d-also-m";
-            b.append(`${m.label.split(/[,(]/)[0].trim()} · ${hasYear(row[4]) ? `wording ${yearSaid(row[3], row[4])}` : "no wording year"}`);
+            b.append(`${m.label.split(/[,(]/)[0].trim()}${hasYear(row[4]) ? ` · wording ${yearSaid(row[3], row[4])}` : ""}`);
             const lic = document.createElement("span"); lic.className = "lic-chip";
             lic.textContent = licenseTextOf(readingOfRow(row)); b.append(lic);
             if (text && text !== firstText) {
@@ -10001,7 +10001,7 @@
               const m = index.m_sources[x.row[3]];
               const says = x.text && x.text !== firstText ? ` · reads it “${x.text}”` : "";
               sel.append(Object.assign(document.createElement("option"),
-                { value: String(i), textContent: `${m.label} · ${hasYear(x.row[4]) ? yearSaid(x.row[3], x.row[4]) : "no wording year"}${says}` }));
+                { value: String(i), textContent: `${m.label}${hasYear(x.row[4]) ? ` · ${yearSaid(x.row[3], x.row[4])}` : ""}${says}` }));
             });
             sel.addEventListener("change", (ev) => {
               ev.stopPropagation();
@@ -10019,7 +10019,7 @@
           body.append(line);
         };
         if (alsoCarry.length) carryLine(alsoCarry,
-          `the same record, carried by ${alsoCarry.length} more witness${alsoCarry.length === 1 ? "" : "es"} of this reading`);
+          `also given by ${alsoCarry.length} more source${alsoCarry.length === 1 ? "" : "s"}`);
         if (elsewhere.length) carryLine(elsewhere,
           `the same wording, standing under ${elsewhere.length} other reading${elsewhere.length === 1 ? "" : "s"}`);
         // The drawer holds the genuinely different records — other P
@@ -10230,7 +10230,7 @@
           const parts = [];
           if (pool.withheldByEntry) parts.push(Object.assign(document.createElement("span"), { className: "entry-withheld", textContent: `${pool.withheldByEntry} of another entry than ${(pool.entry || []).join(" or ")}, withheld` }));
           if (pool.withheldByName) parts.push(Object.assign(document.createElement("span"), { className: "name-withheld", textContent: `${pool.withheldByName} given as a name by ${pool.withheldByName === 1 ? "its" : "their"} source, withheld` }));
-          if (pool.withheldHere) parts.push(Object.assign(document.createElement("span"), { className: "place-held", textContent: `${pool.withheldHere} held at this place: the corpus lane reads the word here as another word written alike` }));
+          if (pool.withheldHere) parts.push(Object.assign(document.createElement("span"), { className: "place-held", textContent: `${pool.withheldHere} held at this place: read here as another word spelled the same` }));
           if (pool.withheld) parts.push(Object.assign(document.createElement("span"), { className: "masorah-withheld", textContent: `${pool.withheld} of ${pool.rows} pointed otherwise, withheld` }));
           // a record its source does not point qualifies for no pointing (unpointed-row-rule-v1), said apart
           if (pool.withheldUnpointed) parts.push(Object.assign(document.createElement("span"), { className: "unpointed-withheld", textContent: `${pool.withheldUnpointed} of ${pool.rows} not pointed by their source, held back` }));
@@ -13801,7 +13801,7 @@
     // since a word more wraps the rail's one line on a phone, a line of the
     // phone's top more (check-contents-shut-v1)
     const shutN = kindsHere && kindsPref === "shut" ? kindsOnBook().reduce((n, x) => n + x.groups.length, 0) : 0;
-    s.title = `the dictionaries this book's readings stand on; press to switch any off${shutN ? `; ${shutN} more rest shut, on the cards a press away (Shut at rest, inside)` : ""}`;
+    s.title = `the dictionaries this book's readings stand on; press to switch any off${shutN ? `; ${shutN} more are off by default, a press away on the cards (Off by default, inside)` : ""}`;
     const g = document.createElement("b"); g.dataset.toggle = "suggested"; g.classList.add("still");
     g.textContent = "source suggested: the BSB";
     g.title = "the Berean Standard Bible's own cell stands on every card, for now";
@@ -14228,7 +14228,7 @@
     host.hidden = !stamp;
     if (!stamp) return;
     const head = document.createElement("div"); head.className = "kinds-head";
-    head.append(Object.assign(document.createElement("span"), { className: "kinds-title", textContent: "Shut at rest" }));
+    head.append(Object.assign(document.createElement("span"), { className: "kinds-title", textContent: "Off by default" }));
     host.append(head);
     if (!kindsHere) {
       host.append(Object.assign(document.createElement("p"), { className: "kinds-entry", textContent: "the record of what rests shut did not arrive, or does not hold over this store; nothing is shut on this visit" }));
@@ -14257,7 +14257,7 @@
         chip.disabled = !open;
         chip.setAttribute("aria-pressed", String(open && !isOff));
         const own = g.family.own_words.length ? g.family.own_words.map((w) => `\u00ab${w}\u00bb`).join(" ") : (g.family.silent || "says nothing of itself in any record read");
-        chip.title = `${g.family.family}\n${own}\n${open ? `on cards only: the line under a word never reads it\n${isOff ? "switched off: press to switch it back on" : "press to switch it off"}` : `shut at rest, ${e.say}; the switch above opens it`}`;
+        chip.title = `${g.family.family}\n${own}\n${open ? `on cards only: the line under a word never reads it\n${isOff ? "switched off: press to switch it back on" : "press to switch it off"}` : `off by default, ${e.say}; the switch above opens it`}`;
         chip.addEventListener("click", () => { if (kindsPref !== "open") return; sources.set(g.ids, g.ids.every((m) => sourcesOff.has(m))); drawKinds(host); railSay(); });
         strip.append(chip);
       }
@@ -14316,7 +14316,7 @@
     // THE OVERLAYS' SOURCES, chips like the rest, from their per-book counts.
     // A source that gives nothing on this book draws no chip.
     // An overlay's source the record rests shut whole on this book stands in
-    // the block above the strip (Shut at rest), as a store source the bake
+    // the block above the strip (Off by default), as a store source the bake
     // left out of the table does, and is no chip of the strip
     for (const [id, e] of Object.entries(bookOverlays)) {
       if (!isOverlayId(id) || !e.carries) continue;
@@ -14472,7 +14472,7 @@
 
     // the dictionaries that rest shut, above the shelves, on a book baked at rest
     const kindsHost = document.createElement("div"); kindsHost.className = "kinds-block"; kindsHost.id = "kindsRow";
-    kindsHost.setAttribute("role", "group"); kindsHost.setAttribute("aria-label", "dictionaries shut at rest");
+    kindsHost.setAttribute("role", "group"); kindsHost.setAttribute("aria-label", "dictionaries off by default");
     drawKinds(kindsHost);
     seg.append(kindsHost, chooser, shelvesHost);
     draw(); sayFold();
@@ -15475,7 +15475,7 @@
     // row put its first word under the fold (check-contents-shut-v1).
     if (key) { try { a = await attributionFor(key, zone.work, null, null, false, null, true); } catch { a = null; } }
     if (a && a.ok) {
-      lab.textContent = "commonly force read as";
+      lab.textContent = "commonly read as";
       enT.textContent = zone.work;
       // Attestation, not license — FRAME v2.7. A common name is an
       // identification: uncopyrightable fact, not reproduced expression, so
@@ -16085,7 +16085,7 @@
           if (n.part_num) {
             const p2 = document.createElement("div"); p2.className = "nh-row";
             p2.append(Object.assign(document.createElement("span"),
-              { className: "nh-lab", textContent: "commonly force read as" }));
+              { className: "nh-lab", textContent: "commonly read as" }));
             p2.append(Object.assign(document.createElement("span"),
               { className: "nh-en", textContent: `Part ${n.part_num}` }));
             ph.append(p2);
@@ -16123,7 +16123,7 @@
       // a named sequence's node carries the sealed id's own words, which is a
       // record and not a reading anybody forces
       r2.append(Object.assign(document.createElement("span"),
-        { className: "nh-lab", textContent: NAMED_SHAPE ? "recorded as" : "commonly force read as" }));
+        { className: "nh-lab", textContent: NAMED_SHAPE ? "recorded as" : "commonly read as" }));
       r2.append(Object.assign(document.createElement("span"),
         { className: "nh-en", textContent: n.name_en || `${MAJOR_C} ${n.num || sec.node + 1}` }));
       if (n.sections) r2.append(Object.assign(document.createElement("span"),
@@ -16176,7 +16176,7 @@
     const row = document.createElement("div"); row.className = "seg-row";
     const v = document.createElement("span"); v.className = "vnum"; v.textContent = sec.label || "";
     // THE WORK'S NAME ON EVERY SECTION PILL (the owner, 2026-10-30: "add the
-    // common force read name only such as Isaiah to every section such as
+    // common read name only such as Isaiah to every section such as
     // section 1:1 goes from '1:1' to 'Isaiah 1:1'"): the name the zone
     // carries, drawn before the numbers by the style (data-work), so the
     // pill's own text stays the address; a named locator keeps its own shape
@@ -16399,7 +16399,7 @@
       const paint = () => {
         body.replaceChildren();
         // What this is, said in plain English before anything else — the same
-        // register as "book title" and "commonly force read as" above. The card
+        // register as "book title" and "commonly read as" above. The card
         // used to open with a work name, a reference in Hebrew and a license
         // chip run together in one line, which asked the reader to already know
         // what they were looking at.
@@ -16475,7 +16475,7 @@
         // to "commonly read as" or "recorded as" — what is missing is said in
         // the Hebrew row, not by quietly relabelling the English one.
         row2.append(Object.assign(document.createElement("span"),
-          { className: "c-head-lab", textContent: "commonly force read as" }));
+          { className: "c-head-lab", textContent: "commonly read as" }));
         row2.append(Object.assign(document.createElement("span"),
           { className: "c-head-en", textContent: selected.title || w.family_en || selected.ref }));
         const lic = document.createElement("span"); lic.className = "lic-chip";

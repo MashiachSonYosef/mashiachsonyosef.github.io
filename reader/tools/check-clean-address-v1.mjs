@@ -333,7 +333,7 @@ const framed = await p.evaluate(() => {
       const chip = row.querySelector(".chip"), of = row.querySelector(".of");
       return { t: e.textContent.trim(), lab: labOf(e),
         chip: chip ? chip.textContent : "",
-        register: /^commonly force read as\b/i.test(chip?.title || "") ? "claim"
+        register: /^commonly read as\b/i.test(chip?.title || "") ? "claim"
           : /^listed in the catalog as\b/i.test(of?.title || "") ? "catalog" : "" };
     }),
     unnamed: [...document.querySelectorAll(".bookcard .he.none")].map((e) => e.textContent.trim()),
@@ -517,7 +517,7 @@ for (const [href, ...expected] of WALK) {
     r.titleOpens ? "pressable" : "not pressable");
   // The label is a claim and follows the evidence — the owner's ruling,
   // which overruled the law this block used to state ("the label never
-  // softens"). "commonly force read as" may head an English only when a
+  // softens"). "commonly read as" may head an English only when a
   // record reads the title's own form that way, its ATTESTATION riding
   // beside it (FRAME v2.7: a name is an identification, not licensed
   // expression — who attests, never who permits); where none does, the row
@@ -533,7 +533,7 @@ for (const [href, ...expected] of WALK) {
   const byDoor = !!doorName && !(r.lic && !/^attested: the edition door\b/.test(r.lic));
   check("  the claim label stands only where a record backs the claim",
     byDoor ? /^listed in the catalog as$/i.test(r.enLab) && r.en === doorName && /^attested: the edition door\b/.test(r.lic || "")
-      : r.lic ? /^commonly force read as$/i.test(r.enLab) && r.en === en
+      : r.lic ? /^commonly read as$/i.test(r.enLab) && r.en === en
               : /^listed in the catalog as$/i.test(r.enLab) && r.en === addrPlain,
     `"${r.enLab}": ${r.en}`);
   check("  with an attestation on the claim, and the note on the record",

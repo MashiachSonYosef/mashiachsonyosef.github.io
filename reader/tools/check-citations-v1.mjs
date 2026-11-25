@@ -180,7 +180,9 @@ for (const w of walk) {
   // block's record; the line, and so the file, reads the set: the card is stood on the set whole again first
   if (await p.evaluate(() => { const blk = document.querySelector('#hud .b-cell .s-pills button[aria-pressed="true"]'); const cut = document.querySelector('#hud .b-cut .s-pills button[aria-pressed="true"]'); if (blk && cut && document.querySelectorAll("#hud .b-cell .s-pills button").length > 1) { cut.click(); return true; } return false; })) await p.waitForTimeout(700);
   const card = await p.evaluate(() => {
-    const att = (document.querySelector("#hud .d-card .d-foot .att")?.textContent || "");
+    const attEl = document.querySelector("#hud .d-card .d-foot .att");
+    // the credit's own words, without its license chip (a source with no year prints no « · wording …» to end the name at)
+    const att = attEl ? [...attEl.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join("") : "";
     return { reading: (document.querySelector("#hud .r-now .v")?.textContent || "").trim(), source: att.split(" · ")[0].trim(), wording: (/wording (\d{3,4})/u.exec(att) || [])[1] || null };
   });
   await p.keyboard.press("Escape");

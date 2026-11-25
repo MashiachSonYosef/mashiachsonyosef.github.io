@@ -24,7 +24,7 @@
 //   1. It prints no Hebrew it cannot stand behind. A book's own title is
 //      corpus text; it appears here exactly as its zone carries it — the
 //      ledger's word — with the store's licensed reading beside it under
-//      "commonly force read as", the same two-row frame as the masthead
+//      "commonly read as", the same two-row frame as the masthead
 //      inside. The title is a doorway: pressing it opens the book, where the
 //      same word opens its full record. A work whose ledger has not named a
 //      title shows the open slot instead, in the masthead's own words. No
@@ -848,7 +848,7 @@ const bookCard = (b) => `    <div class="bookcard">
           : plainName(b.slug)
             ? `<span class="en">${esc(plainName(b.slug))}</span>`
             : `<span class="en none" title="${esc(b.slug)}">${NO_PLAIN_NAME}</span>`}</a><span class="col-att">${b.reading
-          ? `<span class="chip att" role="button" tabindex="0" aria-expanded="false" title="commonly force read as — ${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""} attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested<span class="att-v">: ${esc(b.reading.label)}</span></span>`
+          ? `<span class="chip att" role="button" tabindex="0" aria-expanded="false" title="commonly read as — ${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""} attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested<span class="att-v">: ${esc(b.reading.label)}</span></span>`
           : `<span class="of" title="${esc(AWAITS_M)}">awaiting a named source</span>`}</span></span><span class="pair pair-r"><span class="col-he">${b.he
           ? (titleWords(b)
             ? `<span class="fam-he"><span class="he" lang="he" dir="rtl">${titleWords(b)}</span>${b.heGloss ? `<span class="g"${glossTitle(b.heGlossSrc)}>${esc(b.heGloss)}</span>` : ""}</span>`
@@ -1057,7 +1057,7 @@ const atlasRow = (w) => {
     // under. Absent where the record is absent, and silent about it — a book
     // row is not the place to argue, and the card inside says what is missing.
     const att = zi.reading
-      ? `<span class="chip att" role="button" tabindex="0" aria-expanded="false" title="commonly force read as — ${esc(zi.reading.label)}${zi.reading.year ? ` · ${esc(zi.reading.year)}` : ""} attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested<span class="att-v">: ${esc(zi.reading.label)}</span></span>`
+      ? `<span class="chip att" role="button" tabindex="0" aria-expanded="false" title="commonly read as — ${esc(zi.reading.label)}${zi.reading.year ? ` · ${esc(zi.reading.year)}` : ""} attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested<span class="att-v">: ${esc(zi.reading.label)}</span></span>`
       : zi.door
         ? `<span class="chip att" role="button" tabindex="0" aria-expanded="false" title="listed in the catalog as \u2014 ${esc(doorRecordName(zi.door) || "the edition door")}${zi.door.file && zi.door.sha256 ? ` (${esc(zi.door.sha256.slice(0, 12))}\u2026)` : ""}, the corpus lane's edition door, lists this work under this name; the door is the source on record for the catalog's own spelling (the owner's ruling, 31 October 2026). A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested<span class="att-v">: the edition door${doorRecordName(zi.door) ? `, ${esc(doorRecordName(zi.door))}` : ""}</span></span>`
         : "";
@@ -1238,7 +1238,7 @@ const familySection = (fam) => {
   // own Hebrew that way; until then the bridge's recorded values are read
   // plainly, and the row says what it is waiting on.
   // The label is a claim and follows the evidence — the owner's ruling, made
-  // the day "liturgy" stood under "commonly force read as" with no D card and
+  // the day "liturgy" stood under "commonly read as" with no D card and
   // no M anywhere behind it. The id was honest; the label was not. A claim
   // prints only with its ATTESTATION riding beside it — who attests the
   // usage, never who permits it: a common name is an identification, not
@@ -1248,7 +1248,7 @@ const familySection = (fam) => {
   // value read plainly, and says so in the register the awaiting shelf
   // already uses.
   // THE REGISTER RIDES THE CHIP, NOT A LABEL IN FRONT OF THE NAME. Every row
-  // wore its register spelled out — "commonly force read as", "listed in the
+  // wore its register spelled out — "commonly read as", "listed in the
   // catalog as" — six or seven words ahead of a one-word name, on every shelf
   // and every book. The ruling those labels serve does not change: English
   // standing at a shelf's head must say which register it stands in, and a
@@ -1271,7 +1271,7 @@ const familySection = (fam) => {
           : `<span class="en none" title="${esc(fam.members.join(" · "))}">${NO_PLAIN_NAME}</span>`;
       })();
   const enAtt = reading
-    ? `<span class="chip att" role="button" tabindex="0" aria-expanded="false" title="commonly force read as — ${esc(reading.label)}${reading.year ? ` · ${esc(reading.year)}` : ""} attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested<span class="att-v">: ${esc(reading.label)}</span></span>`
+    ? `<span class="chip att" role="button" tabindex="0" aria-expanded="false" title="commonly read as — ${esc(reading.label)}${reading.year ? ` · ${esc(reading.year)}` : ""} attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested<span class="att-v">: ${esc(reading.label)}</span></span>`
     : `<span class="of" title="${esc(`listed in the catalog as — ${AWAITS_M}`)}">awaiting a named source</span>`;
   // Two lines stood at the head of every shelf and the owner struck both
   // (2026-09-06): the family's own description of itself, and the ledger's
@@ -1866,9 +1866,9 @@ ${page.sections.join("\n")}
   </div>
   <div id="wcard" role="dialog" aria-label="the word&#8217;s own record" hidden>
     <div class="head"><b dir="rtl"></b><button type="button" aria-label="Close">&#215;</button></div>
-    <p class="w-open" hidden><span class="lab">commonly force read as</span><span class="slot"></span></p>
+    <p class="w-open" hidden><span class="lab">commonly read as</span><span class="slot"></span></p>
     <p class="r-now"><span class="k">reading</span><span class="v"></span></p>
-    <p class="r-label">Exact selectable routes</p>
+    <p class="r-label">Readings</p>
     <!-- NO SWITCHES IN A CARD. The order row stood here (seven positions, the
          owner's) and a reader who pressed one on the door had set the whole
          reader's order without knowing it: every book then read "oldest
@@ -2109,7 +2109,7 @@ ${page.sections.join("\n")}
       // the register is the claim's, only when a record backs the claim
       slot.innerHTML = fam.he +
         '<span class="of"><span class="fr-lab"></span> <span class="en"></span><span class="chip"></span></span>';
-      slot.querySelector(".of .fr-lab").textContent = fam.att ? "commonly force read as" : "listed in the catalog as";
+      slot.querySelector(".of .fr-lab").textContent = fam.att ? "commonly read as" : "listed in the catalog as";
       slot.querySelector(".of .en").textContent = fam.en;
       var famChip = slot.querySelector(".of .chip");
       if (fam.att) { famChip.textContent = fam.att; famChip.title = fam.attTitle; }
@@ -2297,12 +2297,12 @@ ${page.sections.join("\n")}
     var P_INLINE = 3;
     var line = document.createElement("p"); line.className = "d-also";
     var lab = document.createElement("span"); lab.className = "d-also-lab";
-    lab.textContent = "the same record, carried by " + also.length + " more source" + (also.length === 1 ? "" : "s");
+    lab.textContent = "also given by " + also.length + " more source" + (also.length === 1 ? "" : "s");
     line.append(lab);
     var srcBtn = function (j) {
       var mj = (storeIndex.m_sources || {})[rows[j][3]] || {};
       var btn = document.createElement("button"); btn.type = "button"; btn.className = "d-also-m";
-      btn.append((mj.label || rows[j][3]) + " · " + (rows[j][4] && rows[j][4] !== "S_NO_SOURCE_YEAR" ? "wording " + rows[j][4] + " AD" : "no wording year"));
+      btn.append((mj.label || rows[j][3]) + (rows[j][4] && rows[j][4] !== "S_NO_SOURCE_YEAR" ? " · wording " + rows[j][4] + " AD" : ""));
       var c2 = document.createElement("span"); c2.className = "lic-chip";
       c2.textContent = licName(mj.licensePosture); btn.append(c2);
       var rd = document.createElement("span"); rd.className = "d-also-read";
@@ -2352,7 +2352,7 @@ ${page.sections.join("\n")}
       // the register follows the evidence: the claim label only with the
       // record's force license riding beside the name, the bridge register
       // and the awaiting note when nothing backs it
-      wo.querySelector(".lab").textContent = bookAtt ? "commonly force read as" : "listed in the catalog as";
+      wo.querySelector(".lab").textContent = bookAtt ? "commonly read as" : "listed in the catalog as";
       var a = document.createElement("a");
       a.href = book; a.className = "wo-link";
       a.textContent = bookName || book.slice(1).replace(/-/g, " ");
@@ -2863,7 +2863,16 @@ const readerPage = (b) => {
   const homeText = '<a href="/" class="home">The Tabernacle</a>';
   if (MARK_WOVEN && titled.split(homeText).length !== 2)
     throw new Error("zone.html's way home is not the one text link the door expects — refusing to write a page whose home is not the mark");
-  return (MARK_WOVEN ? titled.replace(homeText, () => `<a href="/" class="home"><img class="wm-mark-s" src="${MARK_WOVEN}" alt="${SITE_NAME}" width="710" height="88"></a>`) : titled)
+  // THE BOOK'S OWN NAME FROM THE FIRST PAINT (the owner, 25 November 2026, on
+  // what is sour on the page: our working names leaking to a reader). zone.html
+  // stands alone as «Zone reader»; a book's page is written with its book's name
+  // there, which the engine then sets again as it draws.
+  // the work's English name as the zone carries it (the same test the work's own page title passes)
+  const zEn = ZONE_INFO.get(b.slug) && ZONE_INFO.get(b.slug).workEn;
+  const bookEn = zEn && zEn !== b.slug && !HEBREW.test(zEn) ? zEn : (books.find((x) => x.slug === b.slug) || {}).en;
+  // a page whose zone carries no English name (a demonstration) leaves the slot empty until the engine names it
+  const namedTitled = titled.replace('<span class="en-t">Zone reader</span>', () => `<span class="en-t">${bookEn ? esc(bookEn) : ""}</span>`);
+  return (MARK_WOVEN ? namedTitled.replace(homeText, () => `<a href="/" class="home"><img class="wm-mark-s" src="${MARK_WOVEN}" alt="${SITE_NAME}" width="710" height="88"></a>`) : namedTitled)
     .replace(anchor, () => metas + anchor)
     .replace(engineBlocks.css.whole, () => `<link rel="stylesheet" href="/${ENGINE}/${engineBlocks.css.name}">`)
     .replace(engineBlocks.js.whole, () => `<script src="/${ENGINE}/${engineBlocks.js.name}"></script>`)
@@ -3245,14 +3254,14 @@ const chapterReceipt = { rule: CHAPTER_PAGE_RULE,
       const quotesNote = quotesHebrew ? ` ${quotesHebrew} reading${quotesHebrew === 1 ? "" : "s"} of this chapter quote${quotesHebrew === 1 ? "s" : ""} Hebrew letters and print${quotesHebrew === 1 ? "s" : ""} only under the words.` : "";
       const porch = `<section id="porch" lang="en" dir="ltr">
   <h2>${esc(en)} ${esc(ch)}</h2>
-  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the line the reader draws under its words as it first opens, one reading for a word or for the words one card joins, credited by number to its source at the foot.</p>
+  <p class="porch-sub">Hebrew, word by word: press any word to see its readings. Under each verse, the English the reader shows first, each reading numbered to its source at the foot.</p>
 ${verses.join("\n")}
   <nav class="porch-nav">${prev}<a href="/${zi.slug}/">${esc(en)}, from the beginning</a>${next}</nav>
   <footer>Sources, by the number beside each reading:
     <ol>
     ${srcList || "<li>no source</li>"}
     </ol>
-    Each carried reading keeps its own license. A reading is printed here as the reader prints it: its "/" pieces joined by " + ", a closing period dropped, and a piece that is only a source's own sign left as a gap. Those are our changes, not the source's, and the record on each word's own card carries the source's bytes whole.${quotesNote} Noncommercial: nothing sold, no advertising, no payment taken. What this page adds of its own is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>; where it adapts a share-alike reading, the adaptation stays under that reading's license. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+    Each carried reading keeps its own license. A reading is printed here as the reader prints it: its "/" pieces joined by " + ", a closing period dropped, and a piece that is only a source's own sign left as a gap. Those are our changes, not the source's, and the record on each word's own card carries the source's bytes whole.${quotesNote} Noncommercial: nothing sold, no advertising, no payment taken. What this page adds of its own is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>; where it adapts a share-alike reading, the adaptation stays under that reading's license. The Hebrew text is shown only in the reader.</footer>
 </section>`;
       const page = readerPage({ slug: zi.slug, en, canonical: `/${zi.slug}/${ch}`, at: ch,
         title: `${en} ${ch} · Hebrew, word by word · ${SITE_NAME}`,
