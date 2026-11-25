@@ -2,6 +2,10 @@
 
 Page lane, 25 November 2026. The owner: «lets plan next week again focus on the idea of having enough to do to spend all your tokens FINE TUNING the 39/12». This replaces `wip/2026-11-24/REVIEW-WEEK-PLAN.md` (its five reviews are passes 2, 5, 6 and 7 here) and follows `wip/2026-11-24/THE-PRINCIPLE.md`.
 
+## The standard
+
+The owner, 25 November 2026: «the consonants were just positioning once, a hebrew word is just positioning, a book of hebrew words is just positioning, Strongs definitions are just positioning, the point isnt about degrees of upgrade or comparing each bit of work done to the existing work … i think it all culminates in ultra convenience (english, internet, free, zero effort put in needed, etc)». So every pass, and the reading loop above all, judges by one question: where does a reader have to stop and work? A reading to unlearn, a card that buries its answer, frames that tangle, a page slow to appear: each is a finding.
+
 ## Where the foundation stands (measured 25 November on main 3476e24ebf, ship 21, live check 89)
 
 - 305,417 words in the thirty-nine books; **none bare** at rest.
