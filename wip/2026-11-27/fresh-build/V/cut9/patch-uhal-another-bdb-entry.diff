@@ -1,0 +1,72 @@
+--- a/reader/tools/place-answers-bridges-v1.mjs	2026-11-27 16:28:59.978448500 +0000
++++ b/reader/tools/place-answers-bridges-v1.mjs	2026-11-27 16:29:29.599416552 +0000
+@@ -39,8 +39,9 @@
+   P: "absent: STEP's own number for a prefix, a suffix or a mark of punctuation (H9000 and above); no dictionary of Strong's numbers has it",
+   H: "absent here: the source has the entry but its file is not on hand",
+   B: "absent: the Lexical Index has the number but names no BDB entry for it",
++  W: "absent: the source files one entry under this number, and that entry says itself (its own BDB reference) that it is another word of the number than the one STEP's letter names (the BDB entry the tag reaches)",
+ };
+-export const CLASS_OF = { N: "exact", L: "exact", T: "exact", E: "exact", S: "exact", A: "ambiguous", 0: "absent", P: "absent", H: "absent", B: "absent" };
++export const CLASS_OF = { N: "exact", L: "exact", T: "exact", E: "exact", S: "exact", A: "ambiguous", 0: "absent", P: "absent", H: "absent", B: "absent", W: "absent" };
+ 
+ /** Every tag STEP uses on any part of any word, with how many rows (words)
+  *  and parts it stands on, and how often as the root. */
+@@ -188,6 +189,14 @@
+     // unfoldingWord files one entry under each number it lists, its name the number in four digits
+     // (H0518.md); it writes no letter, so every lettered tag of a number reaches that one file
+     row.unfoldingword_uhal = own ? ["P"] : uhalHas.has(N) ? ["N", "H" + String(N).padStart(4, "0")] : !whole.unfoldingword_uhal && strongsHas.has(N) ? ["H"] : ["0"];
++    // PARTED BY THE TWO FILES' OWN WORDS (proposed, cut 9): the one file says which entry of BDB it is (its «BDB
++    // Reference»); STEP's letter and the Lexical Index say which entry of BDB the tag is. Where the tag reaches one
++    // BDB entry and the file names another, the file is, by its own statement, another word of the number: absent here
++    {
++      const f = row.unfoldingword_uhal[0] === "N" ? src.unfoldingword_uhal[row.unfoldingword_uhal[1]] : null;
++      const its = f && f.bdb_reference && f.bdb_reference.bdb_id;
++      if (its && ["N", "L", "T", "E", "S"].includes(row.openscriptures_bdb_1906[0]) && row.openscriptures_bdb_1906[1] !== its) row.unfoldingword_uhal = ["W"];
++    }
+     out[tag] = row;
+   }
+   return out;
+@@ -457,7 +466,9 @@
+   const EXACT = new Set(["N", "L", "T", "E", "S"]);
+   const counts = {}; const per = {};
+   const add = (k, rows) => { const c = (counts[k] ||= { tags: 0, rows: 0 }); c.tags++; c.rows += rows; };
+-  for (const [tag, row] of Object.entries(bridge)) {
++  for (const [tag, row0] of Object.entries(bridge)) {
++    // a tag parted off (W) is measured as before the parting: its number's one file
++    const row = row0.unfoldingword_uhal[0] === "W" ? { ...row0, unfoldingword_uhal: ["N", "H" + tag.slice(1, 5)] } : row0;
+     const [how, id] = row.unfoldingword_uhal; if (how !== "N") continue;
+     const e = src.unfoldingword_uhal[id];
+     const own = e.bdb_reference && e.bdb_reference.bdb_id ? e.bdb_reference.bdb_id : null;
+--- a/reader/tools/check-place-answers-entries-v1.mjs	2026-11-27 16:28:59.981848787 +0000
++++ b/reader/tools/check-place-answers-entries-v1.mjs	2026-11-27 16:29:29.600415058 +0000
+@@ -527,6 +527,8 @@
+       // number; «not on hand» only where the source was not read whole (by its own list)
+       if (key === "unfoldingword_uhal" || key === "wikisource_strongs_explicit_forms") {
+         const id = key === "unfoldingword_uhal" ? "H" + String(N).padStart(4, "0") : "H" + N;
++        // W: the file of the number is on hand, and its own BDB reference names another BDB entry than the tag's
++        if (how === "W") { const f = all[key][id], its = f && (/\(rc:\/\/en\/bdb\/dict\/([^)]*)\)/.exec(f.text.split("\n").find((l) => l.startsWith("* BDB Reference:") || l.startsWith("* Lexical Entry:")) || "") || [])[1]; ok(f && its && ["N", "L", "T", "E", "S"].includes(row.openscriptures_bdb_1906[0]) && row.openscriptures_bdb_1906[1] !== its, "bridge " + tag + ": UHAL says W though its file's BDB reference is the tag's BDB entry"); }
+         if (how === "0" || how === "H") ok(!all[key][id], "bridge " + tag + ": " + key + " says " + how + " though the entry " + id + " is on hand");
+         if (how === "H") ok(!wholeOf[key], "bridge " + tag + ": " + key + " says «not on hand» though the source was read whole");
+         if (how === "0" && !wholeOf[key]) ok(!all.openscriptures_strongs["H" + N], "bridge " + tag + ": " + key + " is not whole and Strong's has the number, yet the bridge says «no entry»");
+@@ -540,8 +542,8 @@
+   {
+     const m = { same: [0, 0], other: [0, 0] };
+     for (const [tag, row] of Object.entries(b.tags)) {
+-      if (row.unfoldingword_uhal[0] !== "N") continue;
+-      const ue = all.unfoldingword_uhal[row.unfoldingword_uhal[1]]; if (!ue) continue; // a missing entry is said by the bridge's own test above
++      if (row.unfoldingword_uhal[0] !== "N" && row.unfoldingword_uhal[0] !== "W") continue;
++      const ue = all.unfoldingword_uhal[row.unfoldingword_uhal[0] === "W" ? "H" + tag.slice(1, 5) : row.unfoldingword_uhal[1]]; if (!ue) continue; // a missing entry is said by the bridge's own test above
+       const line = ue.text.split("\n").find((l) => l.startsWith("* BDB Reference:") || l.startsWith("* Lexical Entry:")) || "";
+       const own = (/\(rc:\/\/en\/bdb\/dict\/([^)]*)\)/.exec(line) || [])[1];
+       const [hb, ...bdb] = row.openscriptures_bdb_1906;
+--- a/reader/place.html	2026-11-27 16:28:59.984998288 +0000
++++ b/reader/place.html	2026-11-27 16:29:29.601245212 +0000
+@@ -239,7 +239,7 @@
+ const srcHead = (key, extra) => { const d = el("div", "src", el("b", "", SRC[key][0]), lic(SRC[key][1])); if (extra) d.append(el("span", "", extra)); return d; };
+ // how a number reaches an entry, in plain words, by the letter the data gives
+ const REACHED = { N: "found by the number alone", L: "found by the number and its letter", T: "filed under STEP's own number", E: "found by the number and the letter that STEP's list and the Lexical Index both give", S: "several lines of the index name this one entry" };
+-const ABSENT = { 0: "This dictionary has no entry under this number.", H: "This dictionary has an entry for the number, but its file is not on hand here.", B: "The index names no entry of Brown-Driver-Briggs for this number.", P: "This is STEP's own number; no dictionary is filed under it." };
++const ABSENT = { 0: "This dictionary has no entry under this number.", H: "This dictionary has an entry for the number, but its file is not on hand here.", B: "The index names no entry of Brown-Driver-Briggs for this number.", P: "This is STEP's own number; no dictionary is filed under it.", W: "This dictionary files one entry under this number, and by its own reference to Brown-Driver-Briggs that entry is another word of the number than the one STEP's letter names." };
+ const KIND_WORDS = ["", "written and read", "written, not read", "read, not written"];
+ 
+ // ---------------------------------------------------------------- the chapter

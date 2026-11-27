@@ -251,3 +251,31 @@ Moses answered all nine letters (relay v223). Copies of the letter and its regis
   - The 26 of class (c), Davidson among them, stand only behind «readings matched by spelling».
 - **The unabridged BDB at Genesis 1:11:** the cause is in the file's own divisions (the niphal division runs on through the form lists while the stem in force at the reference is hiphil). The fresh build's reader already resolves it.
 - **For the owner:** the downloads for one pin (STEP 5de0a47f, UBS v0.9.4, and Wikisource's pages again to pin a revision); a word to STEP on its five slips; Davidson's place.
+
+## 27 November, night: the ninth cut (builder V7, S/s14)
+
+Both sources are now read whole, from the corpus lane's store (read only, each object held to its sha256) and by their own files. The report is `V/hand-back-cut-9.md`.
+
+- **unfoldingWord** is read from its zip at commit 0a2b9bf1: 8,235 entries, 14,421 senses, 19,627 glosses.
+- **Wikisource's Strong's** is read from its nine pages: 8,674 entries, 263,246 verse links.
+- **The fetch script** now takes them from the store by key and sha256, and the record files M7 and M14 are no longer read.
+- **The card:**
+  - 267,409 words newly draw an unfoldingWord row.
+  - 25,449 draw none, because 399 of STEP's numbers have no entry in the lexicon's own list (among them «upon», «people», «see»).
+- **The proofs:**
+  - make holds three times with identical pins;
+  - the comparison tool exits 0 (141);
+  - the entries check holds, and fails each of eight spoiled copies;
+  - the eight tree checks pass;
+  - 60 entries were read by hand.
+
+**The finding.** unfoldingWord files one entry per Strong's number, with no letter, and each file names its own Brown-Driver-Briggs entry. At 745 of STEP's lettered tags (35,398 words), that entry is another word than the one STEP's letter reaches through the Lexical Index:
+- «to make» reaches «press, squeeze»;
+- «garment» reaches «treachery»;
+- «bag» reaches «harp».
+
+Thirty were read by hand and all confirm it (`V/cut9/uhal-other-bdb-hand-30.txt`). Both sources declare their bridge to BDB, so where the two name different entries, the source itself says the file is another word.
+
+**Taken.** The bridge parts them as W, «absent: the source files one entry under this number, and that entry says itself (its own BDB reference) that it is another word», and the card says so. The patch is `V/cut9/patch-uhal-another-bdb-entry.diff`; V7 applies it and proves it again.
+
+**Open, for the corpus lane:** the source's own title is «Unlocked Hebrew and Aramaic Lexicon» (its manifest and README), while both lanes' files say «unfoldingWord Hebrew and Aramaic Lexicon».
