@@ -148,3 +148,13 @@ Built, every proof passing (the one command, 210 s; the line under the word did 
 - **The page changes of the fifth, sixth and seventh cuts are one file** for builder H2: `V/cut7/page-changes-cuts-5-6-7.mjs` (9 exact edits, run in node).
 
 One refinement asked: where a record of another numeral cites this very verse (Exod 30:33: BDB reads «cut off from his kinsmen», STEP's letter «people»), the card shows both sources' readings with a sentence, instead of withholding BDB's own citation.
+
+## The eighth cut: BDB's own citation under another numeral (`V/hand-back-cut-8.md`, evidence in `V/cut8/`)
+
+Where a record of another numeral cites this very verse, the card now shows BDB's reading beside STEP's, with one sentence: «BDB files this verse under another word of the same letters (II. «kinsman»); STEP's number is I.» (Exod 30:33). 106 such lines on 104 words. Withheld, each by the source's own words: 46 where BDB itself sends the verse elsewhere («see II.», «read»), 15 where another word of the verse holds the same paragraph under its own numeral, 1 where BDB's quoted form names another word. Read by hand: 15 drawn (12 plainly BDB's reading of this word; 3 from BDB's form lists citing under the other homonym, drawn as BDB gives them), all 46 pointers (45 plain, 1 borderline), all 15 others.
+
+Proofs: the one command (203 s, everything holds), the comparison tool (the line under the word did not move), the page check with four spoiled copies each failing, the eight tree checks.
+
+The page changes of cuts 5 to 8 are one file of 9 exact edits: `V/cut8/page-changes-cuts-5-6-7.mjs`. Builder H2 applies it once its present proofs are done.
+
+The lists for the corpus lane are in `V/cut8/` and the letter `../FOR-MOSES-2026-11-27-what-the-fresh-build-found-in-the-sources.md`.
