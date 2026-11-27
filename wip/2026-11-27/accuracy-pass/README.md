@@ -89,3 +89,42 @@ The lead opened eight of the cited cards on live (`lead/c1-verify-rest.json`); e
 | C | MACULA's license asks for set wording and a link; STEP asks for a link to its site; neither is on the card | 2 sources | page lane | by the helper |
 
 Letter: `../FOR-MOSES-2026-11-27-step-and-macula-as-served.md`.
+
+## The owner's direction, 27 November
+
+«im the same everytime, i am not married to old versioning. if for example we have 85 errors in STEP and you can easily fix it by: 1. redownloading, 2. reapplying our existing pipeline; as a faster solution thats fine too i dont care about directionality, i see getting here as the discovery».
+
+Taken as: the fastest correct route wins; a source's newer file replaces our pinned one where it mends a thing; old rulings and old versions are not kept for their own sake; either lane may do the work. So the three calls put to the owner that day go ahead (STEP's bracketed readings back on the cards; another place's rendering a press away; the bare «!» hidden and the object marker printed as STEP prints it).
+
+**STEP redownloaded the same hour** (`../step-latest/`): STEPBible-Data's latest revision (5de0a47f) against the one the bridge was built from (b86d26cd). In the data STEP changed exactly the four Psalms places put to the owner that morning (44:15, 57:10, 108:4, 149:7): two rows «not» and «peoples» became one row, «among the/ peoples» (H9003/{H3816}), the old reading kept as a variant. Ship 23 lays STEP's latest row there. Nothing else in the data moved (one white-space cell); the license heading changed (it now names AI servers, drops «without changing the data», and asks for credit to Tyndale House and STEPBible.org with a link to STEPBible.github.io/STEPBible-Data). The slips the passes found («ofK:», «opressors», «God of» + «spring», Ruth 1:6 «if») are still in STEP's latest file: a list for STEP.
+
+### A, the rules counted two ways and the homonyms (`A/findings.md`); the two pilot readers (`R-ruth/`, `R-genesis-1-5/`); E, the sources off by default (`E/findings.md`)
+
+Each helper's hand-back was saved by the lead as its `findings.md`. The lead opened the cited cards on live (`lead/r-verify-rest.json`, `lead/e-verify-open.json`): Genesis 1:3 word 5, the line «and + there was», the card's pressed pill 17th of 81 and the first pill «beacon»; Genesis 1:2 word 9, «[the] spirit of» 53rd of 57; Ruth 1:1 word 1, «it was» 60th of 81; Seth's card (Genesis 4:25) with «foundation», «buttocks» and «six»; «be fat» on «he created» (Genesis 1:1); Ruth 1:1 word 4 «the + judges» showing Jastrow's «judgments» where the same word bare at Deuteronomy 16:18 does not.
+
+**The lines are nearly clean.** Ruth: 5 of 1,296 read wrong, 4 of them where the texts differ (ship 23's ground) and 1 STEP's own («if» for כִּי at 1:6). Genesis 1 to 5: no line reads against the Hebrew in 1,815 words.
+
+**The cards are where a reader stops, and one weakness runs through every report: the blocks of a divided word are second-class.** 145,023 of the 305,431 words are divided, and their card opens on a piece. There:
+
+| What is missing on a piece's block | Count | Report |
+|---|---|---|
+| The reading the line prints does not lead: the block falls to oldest first, and STEP, which states no year, sorts last | first pill is the line's at 127 of 692 divided words in Ruth, 205 of 866 in Genesis 1 to 5; 145,559 lines have more than one piece | both readers |
+| The pointing grade and the stem are not asked: a row with no entry is bound by nothing (the owner's Isaiah 1:22 example, «sproutings» on «dross») | 3,039,636 placings of the sources off by default stand on a core piece; 2,316,693 would be withheld | E |
+| The entry gate is not asked on a prefix or suffix block: the zone carries STEP's tag for the core piece only | 12,271,895 placings on 162,177 blocks; the article opens «whether, direct, indirect», the suffix «our» on «habitation», «me» on «Yôdh» | A, both readers |
+| A block's own reading is not offered where it is a sign: וְאֵת opens on «self» | 4,066 words | both readers |
+
+**The other findings, by size:**
+
+- **Homonyms.** UBS's and the SDBH's rows carry every number of their lemma, so «mosquito» stands on «so» and «buttocks» on Seth (6,856 and 3,786 rows name more than one number). A row with the place's number and no letter passes where STEP parts the number by letter: «be fat» on «he created» (2,814,272 placings at letters A to F).
+- **Pills that are not readings.** The unabridged BDB's «Mensch», «verb», «dative», «seems preferable» (368 cards in Genesis 1 to 5); Strong's lists cut inside his own parentheses («like)», «( ) day») and his «Compare 802» riding on the last reading; UBS's pointers («witness (read …)»); BDB's letter names leading a suffix block.
+- **The signs switch**, as C1 found, and unevenly: 6,593 object markers tied by a maqaf print nothing; the plain list under a chapter prints an empty item with a footnote number for each of them.
+- **The piece class withholds the unabridged BDB's article** on all 22,773 article blocks (one line of `zone.html`).
+- **The year and the credit** of a folded row, as C1 found: 130 pill titles in Ruth alone.
+- **A slash printed as STEP's joiner** on 310 rows of other sources (UBS's «and/or»).
+- **The names gate at gentilics** (1,138 placings): BDB's «Amorites» withheld at «the Amorite».
+- **The maqaf pair's options** (the owner's example of 26 November): gone at rest; under the «as written» switch the pair is still offered at 39,966 chains no dictionary files.
+- **The page's own words:** «13 dictionaries» with Strong's counted twice; «57th century AM»; a full working label on a chip; «CHAPTER TITLE no name is on record»; the foot of the page.
+
+**The sources off by default (E): none can reopen as it is; two can after the piece mend.** English Wiktionary's Hebrew entries, by its rows of the place's own entry only (86% right in the sample), and Wikidata's lexemes (89% once the piece is graded). STEP's Expanded Strong tags (held) are the best thing we hold back, and must be served at their own verse and word, never by letters. Four need the corpus lane first; the rest stay off. The table: `E/findings.md`.
+
+**The reading loop's size.** Both pilots: 2,500 to 3,000 words an hour with the tools in hand; the card faults repeat by cause and are counted by machine after the first books, and the lines are almost wholly STEP's own bytes, already checked by machine for all 39 books (C1). So the loop follows the mends: the causes above are mended first, then every card is walked by machine for them, and the hand reading goes to the lines.
