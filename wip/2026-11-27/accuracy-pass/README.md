@@ -185,3 +185,17 @@ What goes wrong is what the page calls a mark, or says of it (ship 28, task 176)
 Two standing rulings, shown for their size and not as faults: on a first visit none of the 29,056 sof pasuq, bars and section marks is drawn, and 35,715 of the 42,635 maqaf strokes are followed by a space.
 
 **The edition has moved on from the provider's copy.** The edition's own latest files (documented 26 October 2026) count 1,787 legarmeh, 508 paseq, 1,047 pairs, 149 trivial pairs and 116 gray maqaf, and carry no notes; the provider serves, and we carry, 1,795, 498, 1,045, 130, 109 and 31 notes. Under the owner's word of 27 November that is a question for them: follow the provider, or the edition.
+
+### G, the chain pages of the twelve minor prophets, link by link against the cards (`G/findings.md`)
+
+**The chain is a true recording of the cards.** Every word of the twelve books was pressed in a browser and set beside the chain: at rest 14,354 of 14,354 cards (512,247 pills), with every switch lifted 14,354 of 14,354 (1,325,807 pills), pill for pill. The entry gate holds at every word (0 pills on a row of another entry). The lead opened four cited cards on live (`lead/g-verify-rest.json`).
+
+| # | Finding | Places | Where it went |
+|---|---|---|---|
+| 3 | **The pill the card opens on is credited to another source than the line.** The line is STEP's at 14,350 words; the pressed pill, the same words, is titled BDB 1906, Strong's 1890 or MACULA 2022 at 7,574 (52.8%), because one pill holds every source that prints the words and its title names the oldest dated one. Hosea 2:20 word 18: the line «from» is STEP's, the card says «Brown-Driver-Briggs … wording 1906» | 7,574 of 14,354 | ship 24, law 1b: the place's source first among the pill's carriers |
+| 8 | The pill the card opens on is not what the place reads: «self» for the object marker inside a word (96), and at the read half of a pair (14; Nahum 1:3 word 4 opens on «elder(-est)» for «great of») | 110 | ship 25 law 3; ship 24 law 1c |
+| 1, 2 | The «here MACULA / UBS / BDB reads» lines are in no chain file (31,969), and the lines the chain does record are folded away on about 92 cards in 100 at a phone's width, so on such a card nothing drawn says the reading is STEP's | 14,248 cards | ship 29 (task 177) |
+| 4, 7, 9 | The chain page neither prints nor marks the reading under the word; it holds no link for the line or for the entry | 6,687; 851; all | ship 29 |
+| 5 | One source under two labels, one printing an internal name: «(PIECE:TAHOT)» | 624 pill titles | ship 25 |
+| 6 | Links the page formed: «and + or» for «and/or» (222), «..» for a source's «...» (255) | 5,578 of 512,247 | ship 25 |
+| 10, 11 | The chain pages' own sentences and nine plain-words candidates | | ship 29 |

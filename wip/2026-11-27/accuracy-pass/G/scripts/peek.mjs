@@ -1,0 +1,24 @@
+// Read-only look at one book's chain file, its zone and its resting lines.
+import { readFileSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
+import { join } from "node:path";
+const S = "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad";
+const R = join(S, "base/reader");
+const book = process.argv[2] || "obadiah";
+const gz = (p) => JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"));
+const chain = gz(join(S, "base/chain", book, "chain-v1.json.gz"));
+console.log(Object.keys(chain));
+console.log(JSON.stringify(chain.counts, null, 1));
+console.log(JSON.stringify(chain.read_off.states, null, 1));
+console.log("files", Object.keys(chain.read_off.files).length, Object.keys(chain.read_off.files).slice(0, 40));
+console.log("store", chain.store);
+const sec = chain.sections[0];
+console.log(sec.label, sec.lf, sec.cells.length);
+for (const c of sec.cells.slice(0, 4)) console.log(JSON.stringify(c));
+console.log("pool0", JSON.stringify(chain.pools[sec.cells[0].rest.pool]).slice(0, 600));
+const zone = gz(join(R, "data/zones", `${book}.bin`));
+console.log(Object.keys(zone));
+console.log(JSON.stringify(zone.sections[0].words.slice(0, 4), null, 0).slice(0, 3000));
+const rl = gz(join(R, "data/resting-lines", `${book}.json.gz`));
+console.log(Object.keys(rl));
+console.log(JSON.stringify(rl).slice(0, 2500));
