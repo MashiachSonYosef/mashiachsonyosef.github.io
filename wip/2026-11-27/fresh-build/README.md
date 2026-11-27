@@ -215,3 +215,22 @@ H2 brought S/s16 to the eighth cut and put the page changes of cuts 5 to 8 into 
 - the line under the 8 written-not-read words (Ruth 3:12 still «mother»: the later step of the 141).
 
 The ‡ sentence now names both numbers: «‡ BDB files this verse under another word of the same letters (II. «kinsman»); STEP's number H5971A is BDB's I.» P11 checks the new wording, and its spoiled copy still fails. Reports are in `H2/hand-back-cut-8-fix.md`. The pictures sent to the owner are in `H2/shots-cut8/`.
+
+## 27 November, night: the owner on the card, and the pills
+
+The owner, on picture 01: «this part is fine but you dont get to skip R pills and compspan and selectable gloss just because we can play around with how the cards list off D/M».
+
+The listing stands. The card seated in S/s16 had dropped today's frame:
+- the line at the top;
+- the divisions (the whole form, its pieces, the covers, the maqaf run's card, a chain's card);
+- the R pills;
+- the pressed pill setting the line.
+
+That frame was never the fault. The fault was where the pills came from: the pool matched by letters («beacon», «break», «faint» at Genesis 1:3).
+
+**The next step** (`BRIEF-H2-PILLS.md`, builder H2): the card at rest is today's card in every part of its frame, reusing today's code, with its pills filled from the place answers by each source's own address. Under the pills stands the listing.
+- **The cells:** a cell's pills are STEP's and MACULA's readings of that part at this place (MACULA held by its own division where it divides otherwise), and each dictionary's marked meanings under the number STEP gives that piece. The marked meanings are each «» run, each `<def>`, each UBS gloss, and STEP's lexicon gloss.
+- **What is not a pill:** plain italics and Strong's KJV renderings.
+- **A cell no source reads** has no pills and says so.
+- **The line at rest does not move**, and a pressed pill sets the line as today.
+- **The proof:** the 70 card checks that were red only for want of this frame are run again at rest. Their laws are not edited.
