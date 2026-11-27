@@ -29,12 +29,16 @@
 //       entry's own. And no BDB sense the two bridges give for a word is
 //       left out. A paragraph of the unabridged BDB is said to cite a place
 //       only where its own headword has the letters of the word's lemma
-//       (STEP's brief lexicon's headword for the number, the Lexical
-//       Index's, or MACULA's lemma for a morph that carries the number):
+//       (STEP's brief lexicon's headword for the number, read without what
+//       stands in its square brackets: the other words of a combination the
+//       number is one word of; the Lexical Index's; or MACULA's lemma for a
+//       morph that carries the number):
 //       every line said passes that test, every citing paragraph that passes
 //       it is said, and the records that are a word's by MACULA's lemma
 //       alone are named on its form. The test is coded here again, apart
-//       from the projection's
+//       from the projection's. Every headword of STEP's that carries a square
+//       bracket has a relation said in the file's own column and letters left
+//       outside the brackets, and they are the headwords the pin names
 //   G7  the sentences that say how the two editions meet are the rule's
 //       sentences for the places' record of the word, and no others
 //   G8  every tag of STEP's stands in the one file its number names, with
@@ -116,7 +120,7 @@ const counts = { books: 0, chapters: 0, verses: 0, words: 0, marks: 0, forms: 0,
   steps_rows_no_word_of_ours_meets: 0,
   lines_under_a_word_with_a_sign_hidden: 0,
   headword: { unabridged_lines_not_drawn_under_a_number_of_one_record: 0, unabridged_lines_not_drawn_under_a_number_of_several_records: 0, unabridged_lines_drawn_by_maculas_lemma_alone: 0, words_where_a_line_is_not_drawn: 0, forms_with_a_record_by_maculas_lemma_alone: 0,
-    words_under_a_number_of_several_records: { one_record_is_the_words: 0, several_are: 0, none_is: 0 } } };
+    words_under_a_number_of_several_records: { one_record_is_the_words: 0, several_are: 0, none_is: 0 }, steps_headwords_read_without_their_square_brackets: {} } };
 const held = { zone: 0, step: 0, macula: 0, here: 0, sentences: 0 };
 const KIND = ["plain", "written and read", "written, not read", "read, not written"];
 const lettersOf = (x) => Array.from(String(x || "")).filter((ch) => { const c = ch.codePointAt(0); return c >= 0x5d0 && c <= 0x5ea; }).join("");
@@ -124,10 +128,17 @@ const ubsEntryOf = (lexid) => ENTRIES.ubs_sdbh_hebrew_v0_9_2[`${lexid.slice(0, 6
 // ---- the headword test, coded here apart from the projection: letters are the consonants, the five end-of-word shapes folded
 const FOLD = new Map([[0x5da, 0x5db], [0x5dd, 0x5de], [0x5df, 0x5e0], [0x5e3, 0x5e4], [0x5e5, 0x5e6]]);
 const folded = (s) => { let o = ""; for (const ch of String(s || "")) { const c = ch.codePointAt(0); if (c >= 0x5d0 && c <= 0x5ea) o += String.fromCodePoint(FOLD.get(c) || c); } return o; };
+/** A headword of STEP's without what stands in its square brackets (read here letter by letter, apart from the projection's). */
+const outsideBrackets = (s) => { let o = "", depth = 0; for (const ch of String(s || "")) { if (ch === "[") depth += 1; else if (ch === "]") { if (depth) depth -= 1; o += " "; } else if (!depth) o += ch; } return o; };
+// every headword of STEP's brief lexicon that carries a square bracket, with its relation column; each must say a relation and keep letters outside the brackets
+for (const id of Object.keys(ENTRIES.stepbible_tbesh_gloss).sort()) { const e = ENTRIES.stepbible_tbesh_gloss[id]; const h = String(e.Hebrew || ""); if (!h.includes("[") && !h.includes("]")) continue;
+  counts.headword.steps_headwords_read_without_their_square_brackets[id] = e.relation || "";
+  if (!e.relation) miss("G6", `${id}: STEP's headword carries square brackets and its relation column says nothing`);
+  if (!folded(outsideBrackets(h))) miss("G6", `${id}: STEP's headword has no letter outside its square brackets`); }
 const LEMMAS = new Map();
-/** The letters of a number's lemma as STEP's brief lexicon and the Lexical Index give it. */
+/** The letters of a number's lemma as STEP's brief lexicon (its headword outside its square brackets) and the Lexical Index give it. */
 const lemmaSet = (tag) => { let s = LEMMAS.get(tag); if (s) return s; s = new Set(); const row = bridge.tags[tag];
-  if (row) { for (const id of row.stepbible_tbesh_gloss.slice(1)) { const L = folded((ENTRIES.stepbible_tbesh_gloss[id] || {}).Hebrew); if (L) s.add(L); } for (const id of row.openscriptures_lexical_index.slice(1)) { const L = folded((ENTRIES.openscriptures_lexical_index[id] || {}).w); if (L) s.add(L); } }
+  if (row) { for (const id of row.stepbible_tbesh_gloss.slice(1)) { const L = folded(outsideBrackets((ENTRIES.stepbible_tbesh_gloss[id] || {}).Hebrew)); if (L) s.add(L); } for (const id of row.openscriptures_lexical_index.slice(1)) { const L = folded((ENTRIES.openscriptures_lexical_index[id] || {}).w); if (L) s.add(L); } }
   LEMMAS.set(tag, s); return s; };
 /** MACULA's lemma letters for the number at a word: its morphs that carry the number. */
 const maculaSet = (tag, mo) => { const s = new Set(); if (!mo || mo.way === 0 || mo.letters === "another word") return s; const n = Number(tag.slice(1, 5)); for (const x of mo.morphs) if (Number.parseInt(x.strongnumberx, 10) === n) { const L = folded(x.lemma); if (L) s.add(L); } return s; };

@@ -6,7 +6,7 @@ Read first, in this order:
 
 1. `S/s42w/FRAME.md` (the why, the one rule, the house rules).
 2. `/home/user/mashiachsonyosef.github.io/wip/2026-11-27/THE-LAYERS.md` (the layers; the two systems on the live page: the line and «here X reads», nearly clean, and the pool of readings matched by letters and trimmed by gates, where every card fault lives).
-3. `/home/user/mashiachsonyosef.github.io/wip/2026-11-27/fresh-build/README.md`, then `V/hand-back.md` and `V/hand-back-cut-2.md` beside it (the trial page `reader/place.html`, its data, its rules, what still reads badly).
+3. `/home/user/mashiachsonyosef.github.io/wip/2026-11-27/fresh-build/README.md`, then `V/hand-back.md`, `V/hand-back-cut-2.md` and `V/hand-back-cut-3.md` beside it (the trial page `reader/place.html`, its data, its rules, what still reads badly).
 
 ## Where things stand
 
@@ -18,7 +18,7 @@ Held side by side, the live reader's chapter face (the Hebrew, the frames that s
 
 In your sandbox, the live reader `reader/zone.html` opening the place card on the 39 books of the Bible, with the old card kept whole behind one named switch.
 
-**Your sandbox:** `S/s16` (a git worktree at live `main`, ea6e1ad08e, clean). First copy into it, from `S/s14`, everything `git -C S/s14 status --short` lists as untracked (the data folder, `reader/place.html`, the tools), so your tree holds the fresh build; then run `reader/tools/make-place-answers-v1.sh S/s45w/fetched` once and see «everything holds». `S/s14`, `S/base` (a copy of live, read only) and everything else are read only. Your scratch, logs and pictures: `S/s46w/`. No commit, push or ship.
+**Your sandbox:** `S/s16` (a git worktree at live `main`, ea6e1ad08e). The lead has already copied the fresh build into it as it stood after the trial page's third cut (30 untracked paths: the data folder, `reader/place.html`, the tools; the comparison tool's list `data/place-answers-v1/lines-known-to-differ.tsv` is there too). First run `reader/tools/make-place-answers-v1.sh S/s45w/fetched` once (about three minutes) and see «everything holds». From now on `reader/place.html` in `S/s16` is yours to change. `S/s14` (where another builder may still change the projection tools, never `place.html`; the lead reconciles the tools at the end), `S/base` (a copy of live, read only) and everything else are read only. Your scratch, logs and pictures: `S/s46w/`. No commit, push or ship.
 
 ### 1. The card
 

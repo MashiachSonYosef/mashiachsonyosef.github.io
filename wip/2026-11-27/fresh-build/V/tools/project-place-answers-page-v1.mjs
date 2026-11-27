@@ -44,7 +44,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BOOKS, readZone } from "./place-answers-sources-v1.mjs";
 import { openPlaces } from "./place-answers-places-v1.mjs";
-import { PAGE_RULE_ID, PAGE_RULE, CHAPTER_SCHEMA, TAGS_SCHEMA, UNABRIDGED_SCHEMA, INDEX_SCHEMA, PAGE_PIN_SCHEMA, DICTIONARIES, INLINE, LEFT_OUT, SHAPE_WORDS, TAG_FILE_SPAN, UNABRIDGED_FILE_SPAN, pageEntry, unabridgedHead, tagFile, unabridgedFile, ubsWordNumbers, pageForm, lemmaLetters, ownParagraphs, setLinesUnder } from "./place-answers-page-v1.mjs";
+import { PAGE_RULE_ID, PAGE_RULE, CHAPTER_SCHEMA, TAGS_SCHEMA, UNABRIDGED_SCHEMA, INDEX_SCHEMA, PAGE_PIN_SCHEMA, DICTIONARIES, INLINE, LEFT_OUT, SHAPE_WORDS, TAG_FILE_SPAN, UNABRIDGED_FILE_SPAN, pageEntry, unabridgedHead, tagFile, unabridgedFile, ubsWordNumbers, pageForm, lemmaLetters, ownParagraphs, setLinesUnder, stepsBracketedHeadwords } from "./place-answers-page-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -91,8 +91,10 @@ const counts = { books: 0, chapters: 0, verses: 0, words: 0, marks: 0, forms: 0,
   steps_rows_no_word_of_ours_meets: 0,
   lines_under_a_word_with_a_sign_hidden: 0,
   headword: { unabridged_lines_not_drawn_under_a_number_of_one_record: 0, unabridged_lines_not_drawn_under_a_number_of_several_records: 0, unabridged_lines_drawn_by_maculas_lemma_alone: 0, words_where_a_line_is_not_drawn: 0, forms_with_a_record_by_maculas_lemma_alone: 0,
-    words_under_a_number_of_several_records: { one_record_is_the_words: 0, several_are: 0, none_is: 0 } } };
-// the letters of each number's lemma (STEP's brief lexicon's headword, the Lexical Index's), reckoned once a tag
+    words_under_a_number_of_several_records: { one_record_is_the_words: 0, several_are: 0, none_is: 0 },
+    // the numbers whose headword in STEP's brief lexicon carries square brackets, each with its relation column: the test reads them without the bracketed runs
+    steps_headwords_read_without_their_square_brackets: stepsBracketedHeadwords(ENTRIES.stepbible_tbesh_gloss) } };
+// the letters of each number's lemma (STEP's brief lexicon's headword without its square-bracketed runs, the Lexical Index's), reckoned once a tag
 const LEMMA = new Map(); const lemmaOf = (tag) => { let s = LEMMA.get(tag); if (!s) { s = lemmaLetters(tag, bridge, (k) => ENTRIES[k]); LEMMA.set(tag, s); } return s; };
 const OWN = new Map(); const ownOf = (tag) => { let o = OWN.get(tag); if (!o) { o = {}; const row = bridge.tags[tag]; for (const id of row ? row.unabridged_bdb_1906.slice(1) : []) { const ps = ownParagraphs(ENTRIES.unabridged_bdb_1906[id], lemmaOf(tag)); if (ps.length) o[id] = ps; } OWN.set(tag, o); } return o; };
 const TALLY = { not_drawn_exact: 0, not_drawn_ambiguous: 0, drawn_by_maculas_lemma_alone: 0 };

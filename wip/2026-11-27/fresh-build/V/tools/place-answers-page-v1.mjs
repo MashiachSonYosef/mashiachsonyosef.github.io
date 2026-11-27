@@ -52,6 +52,16 @@
 // sources (own), and a form names the records that are its word's by
 // MACULA's lemma alone (ow).
 //
+// STEP'S HEADWORD IS READ WITHOUT ITS SQUARE BRACKETS (the third cut, 27
+// November 2026). STEP's brief lexicon writes square brackets in five
+// headwords. Each is the headword of a number that is one word of a
+// combination: its relation column says so («a Part of», «combination of»,
+// «a Meaning of»), and the brackets hold the combination's other words. The
+// word the number stands on is therefore the headword outside the brackets,
+// and for the headword test above STEP's headword is read without its
+// square-bracketed runs (stepsOwnHeadword). The pin names the headwords so
+// read, each with its relation as the file gives it.
+//
 // THE LINE UNDER A WORD IS THE READER'S LINE. STEP's parts joined with « + »
 // as the live reader draws them at rest: a part that is only a sign is not
 // drawn (a hidden sign's gap stands in its place, and no joiner beside it),
@@ -128,7 +138,7 @@ export const SHAPE_WORDS = {
   entry: "a mark {m: its kind, s: as our text writes it} or a word {i: its place among the section's entries (marks counted), s: as our text writes it, k: 1 written and read, 2 written and not read, 3 read and not written (left off: a plain word), f: its forms in our text's order}",
   form: "{r: 1 the form read, 2 the form written (left off: a plain word), s: the form as our text writes it (a pair's forms), t: STEP here, m: MACULA here, mo: MACULA's morphs where another word stands in its text, h: the senses that cite this very place}",
   line: "t.g = the line under the word as the reader draws it at rest, where it is not simply the parts' English trimmed and joined with « + » (a part that is only a sign is a zero-width gap; a full stop at the end is left off): left off elsewhere",
-  own: "tags.<tag>.own = {record id: [paragraphs]} — of the unabridged BDB's records the tag reaches, the paragraphs whose own headword has the letters of the number's lemma as STEP's brief lexicon or the Lexical Index gives it; a form's ow = the records the tag reaches that are this word's by MACULA's lemma alone",
+  own: "tags.<tag>.own = {record id: [paragraphs]} — of the unabridged BDB's records the tag reaches, the paragraphs whose own headword has the letters of the number's lemma as STEP's brief lexicon (its headword read without its square-bracketed runs) or the Lexical Index gives it; a form's ow = the records the tag reaches that are this word's by MACULA's lemma alone",
   step: "t = {w: how the word meets STEP's rows (0 no row; 1 one for one; 2 one of ours, two or three rows; 3 one row that marks two words; 4 one of the words a row holds, STEP's seam mark between; 5 two of ours, one of theirs, parted at STEP's part cut; 6 the same with no mark at the seam), rows: STEP's own references, l: the letters by which our spelling differs as the places name them (left off: the same letters; 1: another word stands there), p: STEP's parts, other: STEP's word where another word stands [[Hebrew, English]], wf: 1 the meeting is on STEP's written form (its «K=» variant), vn: STEP's Hebrew verse number where it is not ours, d: 1 where the two editions differ in the word, say: the sentences that say how}",
   part: "[English exactly as STEP writes it (null where STEP gives a form's Hebrew only), the tag (the key to page/entries/t/), 1 where STEP marks the part as the root, STEP's Hebrew of the part, 1 where STEP writes «+» after the tag (it also covers the next word)]",
   macula: "m = MACULA's morphs of the word, each [its gloss column, its english column, its Hebrew]",
@@ -208,11 +218,21 @@ export function unabridgedUnit(e, para, point, sub) {
 export const OPENING_KINDS = ["opening", "tagged_gloss", "main_gloss"];
 /** The letters of a paragraph's own headword (consonants, end-of-word shapes folded); "" where it has none. */
 export const headLetters = (blk) => (blk.head.headword ? meetLetters(blk.head.headword.t) : "");
+/** Whether a headword of STEP's brief lexicon carries a run in square brackets. */
+export const hasBracketedRun = (h) => /\[[^\]]*\]/u.test(String(h ?? ""));
+/** STEP's headword as the headword test reads it: without its square-bracketed runs. STEP's brief lexicon
+ *  writes square brackets in the headword of a number that is one word of a combination (its relation column
+ *  says so: «a Part of», «combination of», «a Meaning of»), and the brackets hold the combination's other
+ *  words. So the word the number stands on is the headword outside the brackets. */
+export const stepsOwnHeadword = (h) => String(h ?? "").replace(/\[[^\]]*\]/gu, " ");
+/** The numbers of STEP's brief lexicon whose headword carries square brackets, each with its relation column
+ *  as the file gives it: the ones the headword test reads without the bracketed runs. */
+export const stepsBracketedHeadwords = (tbesh) => Object.fromEntries(Object.keys(tbesh).filter((id) => hasBracketedRun(tbesh[id].Hebrew)).sort().map((id) => [id, tbesh[id].relation || ""]));
 /** The letters of a number's lemma as STEP's brief lexicon and the Lexical Index give it: the headwords of
- *  the entries the tag bridge reaches in those two. */
+ *  the entries the tag bridge reaches in those two (STEP's without its square-bracketed runs). */
 export function lemmaLetters(tag, bridge, entries) {
   const out = new Set(); const row = bridge.tags[tag]; if (!row) return out;
-  for (const id of row.stepbible_tbesh_gloss.slice(1)) { const e = entries("stepbible_tbesh_gloss")[id]; const L = e ? meetLetters(e.Hebrew) : ""; if (L) out.add(L); }
+  for (const id of row.stepbible_tbesh_gloss.slice(1)) { const e = entries("stepbible_tbesh_gloss")[id]; const L = e ? meetLetters(stepsOwnHeadword(e.Hebrew)) : ""; if (L) out.add(L); }
   for (const id of row.openscriptures_lexical_index.slice(1)) { const e = entries("openscriptures_lexical_index")[id]; const L = e ? meetLetters(e.w) : ""; if (L) out.add(L); }
   return out;
 }

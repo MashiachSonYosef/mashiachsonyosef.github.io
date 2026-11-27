@@ -46,10 +46,17 @@ Seven things, each by rule with counts before and after (`V/hand-back-cut-2.md`)
 - Judges 19:13 entry 2: the live line is MACULA's «come»; STEP's own parts are «come» and «!». Ours prints STEP's.
 - 2 Samuel 5:8 entry 9 and Isaiah 10:15 entry 12, both the word «and + object marker» tied to the next word: the live page prints «<and> + <obj.>»; ours draws two gaps. The cause is in the live page (`reader/zone.html` near line 13678): across a tied run it hides a word whose whole line passes the one-sign test, and a word of two signs fails that test, so it stands while a word of one sign beside it becomes a gap. By the live rule's own comment («a part that is a sign alone keeps its place as a gap, unless every part is one») both are gaps. A fault of the live page at exactly two words; the fresh rule is kept.
 
-### A third, small cut (asked of builder V, 27 November)
+### A third, small cut (builder V, 27 November; done, `V/hand-back-cut-3.md`)
 
 - STEP's lexicon writes square brackets in five headwords (H0518B, H3588B, H3588C, H3651B, H5921B), each one word of a combination with the other words in the brackets. The headword test reads the headword outside the brackets, so Ruth 3:12 word 5 shows its own record (2 of the 57 numbers, 287 words).
 - The comparison tool holds the list of the 141 expected differences with their causes and fails on any other.
+- Done: Ruth 3:12 word 5 shows the record of «if» first (H0518B, 150 words, from none to one record; H3588B, 137 words, from none to two). The list is `data/place-answers-v1/lines-known-to-differ.tsv` (`V/lines-known-to-differ.tsv`): 138 by builder P's verdicts, 2 by the live page's one-sign test, 1 where the live line is another source's. The one command on the fetched folder: everything holds, 182 seconds.
+
+### Running now (27 November)
+
+- **Builder H** (`BRIEF-H.md`, sandbox `S/s16`): the place card inside the live reader, the old card behind one named switch. Not shipped.
+- **Auditor Q** (`BRIEF-Q.md`): an audit of whether every line sits at its word, from the raw source files alone, on a frozen copy.
+- **Builder V, a fourth cut** (tools and data only): the unabridged BDB's headword read with its vowels, so a record of another word with the same letters (the stub «mother» inside the record of «if») no longer passes as this word's, measured and read by hand before it is built; and the record's one line never says «no meaning in italics» where the head holds an italic word.
 
 ### What a reader still meets on the trial page
 
