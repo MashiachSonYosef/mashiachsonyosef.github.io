@@ -143,3 +143,22 @@ Each helper's hand-back was saved by the lead as its `findings.md`. The lead ope
 | To follow | The footing mends; other-place renderings a press away; the homonyms by BDB's own entry; pills that are not readings; C3b; the line readers | | queued |
 
 Each builder hands back a patch against live main (ea6e1ad08e); the lead applies them in order on the ship tree, runs the round, the gate and the suite, and ships each as its own ship.
+
+### C2, Strong's in two editions and the two Brown-Driver-Briggs, each as it serves itself (`C2/findings.md`)
+
+**The bytes are right.** Of 196,520 served rows, 196,386 are exactly a field of their source through the declared steps; nothing is respelled; the three source files hash to what the receipts name. The trouble is in which bytes became readings, which marks are honored, and where a reading shows. The lead opened four of the cited cards on live (`lead/c2-verify-rest.json`); each was as reported.
+
+| # | Finding | Size | Whose mend |
+|---|---|---|---|
+| 1 | **A source filed by entry is found by letters only.** At an inflected word the entry STEP names is the source's own, and its rows do not come: Amos 7:12 word 6 «go» shows nothing from Strong's (Open Scriptures) or either BDB | 116,980, 114,216 and 111,091 words | ship 27 (task 175) |
+| 2 | Strong's «×» and «+» renderings are not offered at rest | 15,688 and 752 readings | stays, by the owner's ruling of 3 October: they hold only in a phrase. «(+) word» and «+ word» are treated alike in ship 25 |
+| 3 | The Open Scriptures file lost Strong's «+» (39 written; the Wikisource edition has 539): signed renderings print plain. Genesis 49:24 offers «carbuncle» and «mason» as readings of «stone» | 352 readings at 158,412 pill places | ship 25 if it can be held to the sources' bytes; else the next |
+| 4 | Strong's condensed forms print condensed: «(fore-) father(-less)» | 11,064 and 1,154 readings | for the owner: an expansion printed beside the source's text |
+| 5 | The fold, measured for these four | 4,388 of the unabridged BDB's 12,891 glosses stand only under another name | corpus lane |
+| 6 | The unabridged BDB's italics are all taken for readings: «preposition», «es gibt», BDB's remarks, a cited verse's wording at other verses | 10,840 + 742 + 27,276 pill places | ship 26 |
+| 7 | The Open Scriptures BDB's tag breaks words («we», «a», «set» for sunset) and takes in root meanings («fear» on «these») | 2,450 + up to 12,008 | ship 26 |
+| 8 | Wikisource rows cut where Strong did not: his etymology, his note, a piece inside his bracket («like)» at 3,555 places) | 8,397 + 5,773 + 4,367 + 7,224 | ship 26 |
+| 9 | Any square bracket counts as a sign | 22 readings at 12,264 places | ship 25 |
+| 10 | Strong's pointer by bare number rides on the last rendering («Levi. See also 3879, 3881») | 253 readings at 13,572 places | ship 26 |
+| 11 | A credit line with another source's year | 2,010 rows | ship 25 |
+| 12 | The declarations: one ledger says Strong's key was not found while its sister quotes it; «×» is declared «not a plain rendering» against Strong's words | 69 of 181 shapes «unverified:» | corpus lane |
