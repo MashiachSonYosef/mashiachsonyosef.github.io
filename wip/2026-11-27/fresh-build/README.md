@@ -158,3 +158,24 @@ Proofs: the one command (203 s, everything holds), the comparison tool (the line
 The page changes of cuts 5 to 8 are one file of 9 exact edits: `V/cut8/page-changes-cuts-5-6-7.mjs`. Builder H2 applies it once its present proofs are done.
 
 The lists for the corpus lane are in `V/cut8/` and the letter `../FOR-MOSES-2026-11-27-what-the-fresh-build-found-in-the-sources.md`.
+
+## 27 November, afternoon: the card inside the live reader (builder H2)
+
+Builder H2 (S/s16) finished the place card inside `reader/zone.html`. Its report is in `H2/hand-back.md`; three of its pictures are in `H2/shots/`; the suite's table is in `H2/suite-table.txt`.
+
+- **Seated in the live sheet.** The head, the silver number and closing are the live page's own. The body is drawn by one block, `reader/tools/place-card-v1.mjs`, carried line for line by both pages and held equal by `check-place-card-one-place-v1` (P1–P9).
+- **The old card** is kept whole behind one switch in the menu, «readings matched by spelling», off at rest. `?card=spelling|place` sets it for one load, and `fh.card` keeps it on the device. A head line `<meta name="reader-card" content="spelling">` makes the old card the rest state, which is how the old suite keeps running against it.
+- **Proofs:**
+  - 13,497 words pressed and 13,497 cards opened, each matching the file. Median 13.1 ms to open. The sheet held still across 5,320 entries opened and shut.
+  - Switch on equals S/base at 200 of 200 places. 189 matched on the first reading, 10 once their late-landing files arrived, and 1 differs only in the old card's fit.
+  - Resting lines of five books (30,559) are unmoved with the switch off, on and off again.
+  - The Tikkunei Zohar and a Targum's cards are untouched.
+- **The suite:**
+  - With the place card at rest, 70 card-reading checks look for the old card's parts and are red for that reason alone. Two were the page's own laws (inks; parts read right to left); the card broke both, and both are mended.
+  - With the old card forced on, 82 pass and 3 are red: chain-book-v2 (the hash of zone.html, expected), and clean-address and press-paints-before-seen (both red before).
+- **The audit's two page items:**
+  - unfoldingWord rows are drawn only where the entry's file is on hand, with one credit sentence.
+  - «» marks only what the record classes as meaning or opening; any other italics print plain, after «in italics in the record:».
+- **Left for the owner:** «Special uses:» (90 lines) is classed by our reader of the file as an opening (the first italic run of a point), so it keeps «».
+
+Next: H2 brings S/s16 to cut 8 (S/s16 is now the one tree; S/s14 is frozen), puts the cut 5–8 page changes into the block, removes the `say`/`why` hooks no data writes, proves again and retakes the pictures under `S/s46w/shots-cut8/`. Nothing ships.
