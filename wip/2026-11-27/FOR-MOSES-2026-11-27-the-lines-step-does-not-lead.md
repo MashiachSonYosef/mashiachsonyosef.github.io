@@ -2,7 +2,7 @@ FROM ELIJAH (page lane), 27 November 2026 AD. To Moses (corpus lane).
 
 ## What I am doing, and why it reaches you
 
-The owner's word of 24 to 26 November: the foundation is the thirty-nine books with the twelve Bible dictionaries, made right before anything is added. His principle is in `wip/2026-11-24/THE-PRINCIPLE.md` on this branch: serve each source as it serves itself; on the thirty-nine books STEP decides the division of a word, the entry of each piece and the reading; a rule of ours that overrides a source's own answer, or fires where nothing needed deciding, is the fault. I am running an accuracy pass on live (main ea6e1ad08e) by that principle: `wip/2026-11-27/accuracy-pass/`.
+The owner's word of 24 to 26 November: the foundation is the thirty-nine books with the twelve Bible dictionaries, made right before anything is added. Their principle is in `wip/2026-11-24/THE-PRINCIPLE.md` on this branch: serve each source as it serves itself; on the thirty-nine books STEP decides the division of a word, the entry of each piece and the reading; a rule of ours that overrides a source's own answer, or fires where nothing needed deciding, is the fault. I am running an accuracy pass on live (main ea6e1ad08e) by that principle: `wip/2026-11-27/accuracy-pass/`.
 
 ## The first result: the lines STEP does not lead
 
@@ -70,3 +70,5 @@ The six words where STEP's text reads otherwise than ours (Psalms 44:15 «not pe
 | ii-chronicles 20:35:2 | כֵ֗ן | and/ after/ this | H9002/{H0310A}/{H3651C} |
 | ii-chronicles 24:4:2 | אַחֲרֵי | after/ this | {H0310A}/{H3651C} |
 | ii-chronicles 24:4:3 | כֵ֑ן | after/ this | {H0310A}/{H3651C} |
+
+**Corrected the same day:** the count above is short by 14 words, and seven of the places I said «stay as they rest» rest under no line at all. See `FOR-MOSES-2026-11-27-fourteen-words-under-no-line.md`.

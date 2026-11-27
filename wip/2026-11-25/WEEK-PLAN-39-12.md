@@ -9,6 +9,7 @@ The owner, 25 November 2026: «the consonants were just positioning once, a hebr
 ## Where the foundation stands (measured 25 November on main 3476e24ebf, ship 21, live check 89)
 
 - 305,417 words in the thirty-nine books; **none bare** at rest.
+  - **Corrected 27 November:** this was wrong. The thirty-nine books hold 305,431 words; 305,417 is the count that stand under a line, and **14 stand under no line** (the page's own tally, `counts.words_under_no_line` in `data/resting-lines/`, each confirmed on the page). I had read the zone's stored reading, not the line the page draws. See `wip/2026-11-27/accuracy-pass/README.md`, «A correction».
 - The line at rest is STEP's own at **305,293 words**: TAHOT's pieces 304,494, TAHOT's rows 799. **124 words** are led by another of the twelve: MACULA's pieces 53, Strong's 57 (Open Scriptures 50, the Wikisource form lists 7), TBESH 6, the SDBH 4, MACULA's rows 2, the Lexical Index 2.
 - So the line is nearly done, and **the week's work is the cards**: which of the twelve's rows stand under each word, on which division, in which printed form.
 
