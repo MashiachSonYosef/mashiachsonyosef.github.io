@@ -44,7 +44,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BOOKS, readZone } from "./place-answers-sources-v1.mjs";
 import { openPlaces } from "./place-answers-places-v1.mjs";
-import { PAGE_RULE_ID, PAGE_RULE, CHAPTER_SCHEMA, TAGS_SCHEMA, UNABRIDGED_SCHEMA, INDEX_SCHEMA, PAGE_PIN_SCHEMA, DICTIONARIES, INLINE, LEFT_OUT, SHAPE_WORDS, TAG_FILE_SPAN, UNABRIDGED_FILE_SPAN, pageEntry, unabridgedHead, tagFile, unabridgedFile, ubsWordNumbers, pageForm } from "./place-answers-page-v1.mjs";
+import { PAGE_RULE_ID, PAGE_RULE, CHAPTER_SCHEMA, TAGS_SCHEMA, UNABRIDGED_SCHEMA, INDEX_SCHEMA, PAGE_PIN_SCHEMA, DICTIONARIES, INLINE, LEFT_OUT, SHAPE_WORDS, TAG_FILE_SPAN, UNABRIDGED_FILE_SPAN, pageEntry, unabridgedHead, tagFile, unabridgedFile, ubsWordNumbers, pageForm, lemmaLetters, ownParagraphs, setLinesUnder } from "./place-answers-page-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -88,7 +88,14 @@ if (!ONLY && existsSync(OUT)) rmSync(OUT, { recursive: true });
 // ---- the chapters
 const counts = { books: 0, chapters: 0, verses: 0, words: 0, marks: 0, forms: 0, forms_with_steps_parts: 0, forms_with_maculas_morphs: 0, words_where_the_editions_differ: 0, sentences: 0,
   here: { ubs_at_this_very_word_by_the_tags_entry: 0, ubs_at_this_very_word_by_maculas_lemma: 0, ubs_at_the_verse_another_word_number: 0, ubs_at_the_verse_no_word_of_maculas: 0, bdb_open_scriptures_at_the_verse: 0, bdb_unabridged_at_the_verse: 0, words_with_a_ubs_sense_at_this_very_word: 0, words_with_any: 0 },
-  steps_rows_no_word_of_ours_meets: 0 };
+  steps_rows_no_word_of_ours_meets: 0,
+  lines_under_a_word_with_a_sign_hidden: 0,
+  headword: { unabridged_lines_not_drawn_under_a_number_of_one_record: 0, unabridged_lines_not_drawn_under_a_number_of_several_records: 0, unabridged_lines_drawn_by_maculas_lemma_alone: 0, words_where_a_line_is_not_drawn: 0, forms_with_a_record_by_maculas_lemma_alone: 0,
+    words_under_a_number_of_several_records: { one_record_is_the_words: 0, several_are: 0, none_is: 0 } } };
+// the letters of each number's lemma (STEP's brief lexicon's headword, the Lexical Index's), reckoned once a tag
+const LEMMA = new Map(); const lemmaOf = (tag) => { let s = LEMMA.get(tag); if (!s) { s = lemmaLetters(tag, bridge, (k) => ENTRIES[k]); LEMMA.set(tag, s); } return s; };
+const OWN = new Map(); const ownOf = (tag) => { let o = OWN.get(tag); if (!o) { o = {}; const row = bridge.tags[tag]; for (const id of row ? row.unabridged_bdb_1906.slice(1) : []) { const ps = ownParagraphs(ENTRIES.unabridged_bdb_1906[id], lemmaOf(tag)); if (ps.length) o[id] = ps; } OWN.set(tag, o); } return o; };
+const TALLY = { not_drawn_exact: 0, not_drawn_ambiguous: 0, drawn_by_maculas_lemma_alone: 0 };
 const bookFacts = {}; const largest = { bytes: 0, file: "" };
 for (const [book] of BOOKS) {
   if (ONLY && !ONLY.includes(book)) continue;
@@ -96,7 +103,7 @@ for (const [book] of BOOKS) {
   const zone = readZone(zoneFile); const rawZone = readGz(zoneFile);
   const P = openPlaces(join(DIR, "places", `${book}.json.gz`));
   if (P.doc.zone.sha256 !== zone.sha256) { console.error(`${book}: the places were made from another zone than ${zoneFile}`); process.exit(1); }
-  const S = { bridge, verses: (k) => VERSES[k][book] || {}, entries: (k) => ENTRIES[k], numbers: ubsWordNumbers(P) };
+  const S = { bridge, verses: (k) => VERSES[k][book] || {}, entries: (k) => ENTRIES[k], numbers: ubsWordNumbers(P), lemma: lemmaOf, tally: TALLY };
   // the credit line of our text: the zone's own byline up to its first « · », which is the rights record's line
   const byline = String(rawZone.byline || ""); const cut = byline.indexOf(" · "); const credit = cut >= 0 ? byline.slice(0, cut) : byline;
   const rightsLine = (((rights.works || {})[`tanakh/${book}`] || {}).credit || {}).line;
@@ -113,7 +120,17 @@ for (const [book] of BOOKS) {
       if (en.mark) { e.push({ m: en.mark === true ? "" : en.mark, s: en.s }); counts.marks += 1; return; }
       const W = P.wordAt(si, ei); if (!W) { console.error(`${book} ${sec.label} entry ${ei}: a word with no record in the places`); process.exit(1); }
       const word = { i: ei, s: en.s }; const k = ["plain", "written and read", "written, not read", "read, not written"].indexOf(W.kind); if (k) word.k = k;
+      const notDrawnBefore = TALLY.not_drawn_exact + TALLY.not_drawn_ambiguous;
       word.f = W.forms.map((f, fi) => pageForm({ kind: W.kind, f, text: en.forms ? en.forms[fi].s : undefined }, S));
+      if (TALLY.not_drawn_exact + TALLY.not_drawn_ambiguous > notDrawnBefore) counts.headword.words_where_a_line_is_not_drawn += 1;
+      { // under each number of the word that reaches several unabridged records: how many of them are this word's
+        const seen = new Set();
+        for (const f of word.f) for (const p of (f.t || {}).p || []) {
+          const row = p[1] ? bridge.tags[p[1]] : null; if (!row || row.unabridged_bdb_1906.length < 3 || seen.has(p[1])) continue; seen.add(p[1]);
+          const mine = new Set(Object.keys(ownOf(p[1]))); for (const g of word.f) for (const id of g.ow || []) if (row.unabridged_bdb_1906.includes(id)) mine.add(id);
+          counts.headword.words_under_a_number_of_several_records[mine.size === 1 ? "one_record_is_the_words" : mine.size ? "several_are" : "none_is"] += 1;
+        }
+      }
       counts.words += 1; counts.forms += word.f.length;
       let any = false, very = false, differs = false;
       for (const f of word.f) {
@@ -121,11 +138,13 @@ for (const [book] of BOOKS) {
         if (f.m) counts.forms_with_maculas_morphs += 1;
         if (f.t && f.t.d) differs = true;
         if (f.t && f.t.say) counts.sentences += f.t.say.length;
+        if (f.ow) counts.headword.forms_with_a_record_by_maculas_lemma_alone += 1;
         if (f.h) { any = true; for (const u of f.h.u || []) { counts.here[["ubs_at_this_very_word_by_the_tags_entry", "ubs_at_this_very_word_by_maculas_lemma", "ubs_at_the_verse_another_word_number", "ubs_at_the_verse_no_word_of_maculas"][u[1]]] += 1; if (u[1] < 2) very = true; } counts.here.bdb_open_scriptures_at_the_verse += (f.h.o || []).length; counts.here.bdb_unabridged_at_the_verse += (f.h.b || []).length; }
       }
       if (any) counts.here.words_with_any += 1; if (very) counts.here.words_with_a_ubs_sense_at_this_very_word += 1; if (differs) counts.words_where_the_editions_differ += 1;
       e.push(word);
     });
+    setLinesUnder(e); for (const w of e) for (const f of w.f || []) if (f.t && f.t.g !== undefined) counts.lines_under_a_word_with_a_sign_hidden += 1;
     const v = { l: sec.label, e }; if (unmet.has(sec.label)) { v.un = unmet.get(sec.label); counts.steps_rows_no_word_of_ours_meets += v.un.length; unmet.delete(sec.label); }
     chapters.get(sec.ch).push(v); counts.verses += 1;
   });
@@ -140,10 +159,15 @@ for (const [book] of BOOKS) {
   facts.words = P.doc.zone.words; bookFacts[book] = facts; counts.books += 1;
   console.log(`${book.padEnd(14)} ${String(facts.chapters.length).padStart(3)} chapters  (${((Date.now() - t0) / 1000).toFixed(1)} s)`);
 }
+counts.headword.unabridged_lines_not_drawn_under_a_number_of_one_record = TALLY.not_drawn_exact;
+counts.headword.unabridged_lines_not_drawn_under_a_number_of_several_records = TALLY.not_drawn_ambiguous;
+counts.headword.unabridged_lines_drawn_by_maculas_lemma_alone = TALLY.drawn_by_maculas_lemma_alone;
 
 if (!ONLY) {
   // ---- the dictionaries, by STEP tag
-  const tagFiles = new Map(); const tagCounts = { tags: 0, files: 0, entries: Object.fromEntries(DICTIONARIES.map((k) => [k, 0])), by_how: Object.fromEntries(DICTIONARIES.map((k) => [k, {}])) };
+  const tagFiles = new Map(); const tagCounts = { tags: 0, files: 0, entries: Object.fromEntries(DICTIONARIES.map((k) => [k, 0])), by_how: Object.fromEntries(DICTIONARIES.map((k) => [k, {}])),
+    // the unabridged BDB under a number, by the headword test with the lemma of STEP's brief lexicon and the Lexical Index (words: the rows the tag stands on in STEP's main column)
+    unabridged_by_headword: { a_number_of_one_record: { the_record_is_the_words: { tags: 0, words: 0 }, it_is_not: { tags: 0, words: 0 } }, a_number_of_several_records: { one_record_is_the_words: { tags: 0, words: 0 }, several_are: { tags: 0, words: 0 }, none_is: { tags: 0, words: 0 } } } };
   for (const tag of Object.keys(bridge.tags)) {
     const file = tagFile(tag); if (!file) { console.error(`a tag that is not H and four digits: ${tag}`); process.exit(1); }
     if (!tagFiles.has(file)) tagFiles.set(file, { schema: TAGS_SCHEMA, rule_id: PAGE_RULE_ID, file, tags: {}, entries: Object.fromEntries(INLINE.map((k) => [k, {}])), unabridged: {} });
@@ -156,6 +180,12 @@ if (!ONLY) {
       }
     }
     F.tags[tag] = { n: row.n, b }; tagCounts.tags += 1;
+    if (row.v) F.tags[tag].v = row.v;
+    if (row.unabridged_bdb_1906.length > 1) {
+      const own = ownOf(tag); F.tags[tag].own = own; const n = Object.keys(own).length, U = tagCounts.unabridged_by_headword;
+      const slot = row.unabridged_bdb_1906.length === 2 ? (n ? U.a_number_of_one_record.the_record_is_the_words : U.a_number_of_one_record.it_is_not) : n === 1 ? U.a_number_of_several_records.one_record_is_the_words : n ? U.a_number_of_several_records.several_are : U.a_number_of_several_records.none_is;
+      slot.tags += 1; slot.words += row.n[0];
+    }
   }
   for (const [file, F] of [...tagFiles].sort((a, b) => (a[0] < b[0] ? -1 : 1))) {
     for (const k of INLINE) tagCounts.entries[k] += Object.keys(F.entries[k]).length;

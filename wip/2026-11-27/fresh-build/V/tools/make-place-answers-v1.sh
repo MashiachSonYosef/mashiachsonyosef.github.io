@@ -8,7 +8,7 @@
 #
 #   1  places/    STEP and MACULA at every word of our text      build-place-answers-places-v1.mjs
 #   2  entries/, bridges/   each dictionary's entries, the bridges   build-place-answers-entries-v1.mjs
-#   3  PIN.json   the two parts' pins joined                       join-place-answers-pin-v1.mjs
+#   3  PIN.json   the two parts' pins joined; the folder's map kept beside them (sources.json)   join-place-answers-pin-v1.mjs
 #   4  both checks, each with the sources open beside what was made
 #   5  page/      the second reader's files, projected from 1 and 2, with their check, and the pin joined again
 #                 (left out with --parts-only)
@@ -19,6 +19,8 @@
 #   newer file of a source (put it in the folder, change its path and revision
 #   in the map), the same command makes the same output for it. The zones are
 #   the tree's own (data/zones) unless the map names a folder of them.
+# From nothing: tools/fetch-place-answers-sources-v1.sh <new folder> [<folder of what cannot be fetched>] fills
+# such a folder from the last build's map and pins, each file held to its pinned sha256.
 # One heavy process runs at a time. The first failure stops the making; a
 # failed check does not stop the other checks, and the command exits 1.
 set -u
@@ -37,6 +39,8 @@ node tools/build-place-answers-places-v1.mjs --step "$STEP" --step-revision "$ST
 step "2 the entries and the bridges"
 node tools/build-place-answers-entries-v1.mjs "$MAP" || exit 1
 step "3 the one pin"
+# the folder's map is kept beside the pins: tools/fetch-place-answers-sources-v1.sh fills a sources folder again from it
+cmp -s "$MAP" data/place-answers-v1/sources.json || cp "$MAP" data/place-answers-v1/sources.json || exit 1
 node tools/join-place-answers-pin-v1.mjs || exit 1
 
 fail=0

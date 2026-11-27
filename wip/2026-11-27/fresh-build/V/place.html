@@ -135,9 +135,13 @@
   .row .line .he { font-size: 1.2rem; }
   .row .sub { margin: 0.1rem 0 0; font-size: 0.76rem; color: var(--muted); line-height: 1.4; }
   .row .sub .he { font-size: 1.02rem; }
+  .def { font-family: 'reading', Georgia, serif; font-weight: 500; color: var(--tekhelet-ink); }
+  .row .line small.ctx { font-size: 0.72em; color: var(--muted); }
+  .records[hidden], .more[hidden] { display: none; }
+  .more-btn { display: block; }
   .plus { color: var(--faint); padding: 0 0.3em; }
-  .open { margin-top: 0.3rem; border: 1px solid var(--line); border-radius: 0.45rem; background: var(--bg); padding: 0.2rem 0.6rem; font-size: 0.74rem; letter-spacing: 0.03em; cursor: pointer; min-height: 2rem; }
-  .open[aria-expanded="true"] { background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
+  .open, .more-btn { margin-top: 0.3rem; border: 1px solid var(--line); border-radius: 0.45rem; background: var(--bg); padding: 0.2rem 0.6rem; font-size: 0.74rem; letter-spacing: 0.03em; cursor: pointer; min-height: 2rem; }
+  .open[aria-expanded="true"], .more-btn[aria-expanded="true"] { background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
   .entry { margin: 0.4rem 0 0.1rem; padding: 0.45rem 0.55rem; border: 1px solid var(--bronze-dim); border-radius: 0.45rem; font-size: 0.86rem; line-height: 1.5; overflow-wrap: anywhere; }
   .entry[hidden] { display: none; }
   .entry .he { font-size: 1.12rem; }
@@ -206,7 +210,7 @@ function getFile(rel) {
 /** For printing only: a source file's own character references resolved (the data keeps them as the file
  *  writes them, so that every string is the file's). The unabridged BDB's file writes a backslash before
  *  the wide space that indents a lettered point; the two are a blank here. */
-const NAMED = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", emsp: " ", nbsp: " " };
+const NAMED = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", emsp: "\u2003", nbsp: "\u00a0" };
 const printable = (s) => String(s).replace(/\\?&(#x[0-9A-Fa-f]+|#[0-9]+|amp|lt|gt|quot|apos|emsp|nbsp);/g, (all, r) => (r[0] === "#" ? String.fromCodePoint(r[1] === "x" ? parseInt(r.slice(2), 16) : parseInt(r.slice(1), 10)) : NAMED[r]));
 const tidy = (s) => printable(s).replace(/\s+/g, " ").trim();
 const he = (s) => el("span", "he", s);
@@ -246,8 +250,9 @@ window.__place = state;
 window.addEventListener("error", (e) => state.errors.push(String(e.message)));
 window.addEventListener("unhandledrejection", (e) => state.errors.push(String(e.reason && e.reason.message || e.reason)));
 
-/** STEP's English under a word: its parts as STEP writes them, joined with « + » (a part with no English left out). */
-const lineOf = (f) => (f.t && f.t.p ? f.t.p.map((p) => (p[0] === null ? "" : p[0].trim())).filter(Boolean).join(" + ") : "");
+/** The line under a word: as the chapter's file carries it where a sign is hidden (the live reader's own rule: a part that is
+ *  only a sign is a gap, and where every part of a run is a sign they stand), else STEP's parts trimmed and joined with « + ». */
+const lineOf = (f) => (f.t && f.t.p ? (f.t.g !== undefined ? f.t.g : f.t.p.map((p) => (p[0] === null ? "" : p[0].trim())).filter(Boolean).join(" + ")) : "");
 
 function drawChapter() {
   const main = $("chapter"); main.replaceChildren();
@@ -334,9 +339,11 @@ function drawHere(f, body) {
   }
   const m = f.m || f.mo;
   if (m) {
+    // MACULA's plain English word is the reading; its wording of the part in this sentence stands smaller beside it where the two differ
+    const dotted = (x) => x[0].replace(/\./g, " ");
     const row = el("div", "row", srcHead("macula", f.mo ? "another word stands here in its text" : ""));
-    row.append(el("p", "line", ...joinPlus(m.map((x) => el("span", "", he(x[2]), " ", rd(x[0]), x[1] && x[1] !== x[0] ? el("span", "gap", ` (${x[1]})`) : "")))));
-    if (m.some((x) => x[1] && x[1] !== x[0])) row.append(el("p", "sub", "MACULA gives two English columns: its gloss in the sentence, and in brackets its plain English word."));
+    row.append(el("p", "line", ...joinPlus(m.map((x) => el("span", "", he(x[2]), " ", rd(x[1]), x[0] && dotted(x) !== x[1] ? el("small", "ctx", ` ${dotted(x)}`) : "")))));
+    if (m.some((x) => x[0] && dotted(x) !== x[1])) row.append(el("p", "sub", "In small letters: MACULA's wording of the part in this sentence, where it differs from its plain English word."));
     body.append(row);
   }
   const h = f.h || {};
@@ -366,7 +373,7 @@ function drawHere(f, body) {
     const row = el("div", "row", srcHead("unabridged_bdb_1906", "cites this verse"));
     for (const b of h.b) row.append(el("p", "line", he(b[7]), " ", el("span", "gap", `${[b[4], b[5]].filter(Boolean).join(" ") || "the opening"} `), b[6].length ? rd(b[6].map((d) => `«${tidy(d)}»`).join(", ")) : ""));
     const many = Math.max(...h.b.map((b) => b[8]));
-    if (many > 1) row.append(el("p", "sub", `STEP's number for this word reaches ${many} records of this file, and nothing in the files says which is meant; the record shown is the one that cites this verse.`));
+    if (many > 1) row.append(el("p", "sub", `STEP's number for this word stands on ${many} records of this file. Only a record whose own headword is this word's is shown here.`));
     body.append(row);
   }
 }
@@ -387,7 +394,13 @@ const DRAW = {
     whole: (e) => [kv("STEP's number", e.uStrong), kv("Strong's number", e.eStrong), kv("word", he(e.Hebrew), ` ${e.Transliteration}`), kv("kind", e.Morph), kv("gloss", rd(tidy(e.Gloss))), e.relation ? kv("STEP's note", tidy(e.relation)) : null],
   },
   openscriptures_strongs: {
-    first: (e) => { const r = ((e.usage || {}).renderings || []).filter((x) => !x.empty); if (!r.length) return [el("span", "gap", "(no list of renderings)")]; const show = r.slice(0, 8).map((x) => (x.sign ? `${x.sign} ` : "") + tidy(x.t)).join(" · "); return [rd(show), r.length > 8 ? el("span", "gap", ` … (${r.length} in his list)`) : ""]; },
+    // the row's one line is his meaning as he wrote it, the glosses the file tags drawn as on the opened entry; his list of
+    // renderings (the Authorized Version's, in the order of the alphabet) stands in the opened entry
+    first: (e) => {
+      if (e.meaning) { const marks = (e.meaning.defs || []).map((d) => [d[0], d[1], (s) => el("span", "def", s)]); for (const w of e.meaning.words || []) marks.push([w.at, w.t.length, (s) => he(s)]); return marked(e.meaning.t, 0, e.meaning.t.length, marks); }
+      if (e.source) return [el("span", "gap", "(he gives no meaning apart; his derivation:) "), printable(e.source.t)];
+      return [el("span", "gap", "(he gives no meaning)")];
+    },
     whole: (e) => {
       const out = [el("p", "", he(e.w.t), ` ${e.w.pron ? `(${e.w.pron}) ` : ""}${e.w.pos || ""}`)];
       const field = (name, f) => { if (!f) return; const marks = []; for (const d of f.defs || []) marks.push([d[0], d[1], (s) => el("span", "def", s)]); for (const w of f.words || []) marks.push([w.at, w.t.length, (s) => he(s)]); out.push(kv(name, ...marked(f.t, 0, f.t.length, marks))); };
@@ -441,21 +454,43 @@ const DRAW = {
     },
   },
   ubs_sdbh_hebrew_v0_9_2: {
-    first: (e) => { const s = []; for (const b of e.BaseForms || []) for (const m of b.LEXMeanings || []) s.push((((m.LEXSenses || [])[0] || {}).Glosses || []).map((g) => `«${tidy(g)}»`).join(", ") || "(no gloss)"); return [he(e.Lemma), " ", rd(s.slice(0, 3).join(" | ")), s.length > 3 ? el("span", "gap", ` … (${s.length} senses)`) : ""]; },
+    // The dictionary's numbers sit on the whole entry, and an entry can hold several words of one spelling (its base forms).
+    // The base form that holds a sense cited at this very word stands first; where none is, the base forms in the file's
+    // order, said as such. `cited` is { very, verse }: the senses cited at this very word, and at the verse only.
+    first: (e, cited) => {
+      const forms = e.BaseForms || []; const gl = (m) => (((m.LEXSenses || [])[0] || {}).Glosses || []).map((g) => `«${tidy(g)}»`).join(", ") || "(no gloss)";
+      const lead = forms.filter((b) => (b.LEXMeanings || []).some((m) => cited.very.has(m.LEXID)));
+      const out = [he(e.Lemma), " "];
+      if (lead.length) { lead.forEach((b, i) => { const ms = b.LEXMeanings || []; const hit = ms.filter((m) => cited.very.has(m.LEXID)); if (i) out.push(el("span", "gap", " | ")); out.push(rd(hit.map(gl).join(" | ")), ms.length > hit.length ? el("span", "gap", ` … (${ms.length} senses of this word)`) : ""); }); return out; }
+      if (forms.length > 1) out.push(el("span", "gap", "no sense is cited at this very word; the words of this entry in the file's order: "));
+      forms.forEach((b, i) => { const ms = b.LEXMeanings || []; if (i) out.push(el("span", "gap", " | ")); if (forms.length > 1) out.push(el("span", "gap", `${i + 1}. `)); out.push(rd(ms.length ? gl(ms[0]) : "(no sense)"), ms.length > 1 ? el("span", "gap", ` … (${ms.length} senses)`) : ""); });
+      return out;
+    },
     whole: (e, cited) => {
+      const forms = e.BaseForms || []; const lead = forms.filter((b) => (b.LEXMeanings || []).some((m) => cited.very.has(m.LEXID)));
       const out = [el("p", "", he(e.Lemma), (e.StrongCodes || []).length ? ` · its numbers: ${e.StrongCodes.join(", ")}` : "")];
-      (e.BaseForms || []).forEach((b, bi) => {
-        out.push(el("p", "", el("span", "k", `base form ${bi + 1}`), (b.PartsOfSpeech || []).join(", ")));
+      const draw = (b) => {
+        const nodes = [el("p", "", el("span", "k", forms.length > 1 ? `word ${forms.indexOf(b) + 1} of ${forms.length} under this entry` : "the word"), (b.PartsOfSpeech || []).join(", "))];
         for (const m of b.LEXMeanings || []) {
           const s = (m.LEXSenses || [])[0] || {}; const d = el("div", "sense", rd((s.Glosses || []).map((g) => `«${tidy(g)}»`).join(", ") || "(no gloss)"));
-          if (cited.has(m.LEXID)) { d.classList.add("cited"); d.append(el("span", "cited-note", "cites this place")); }
+          if (cited.very.has(m.LEXID) || cited.verse.has(m.LEXID)) { d.classList.add("cited"); d.append(el("span", "cited-note", cited.very.has(m.LEXID) ? "cites this very word" : "cites this verse")); }
           if (s.DefinitionShort) d.append(el("p", "", tidy(s.DefinitionShort)));
           const facts = []; if ((m.LEXForms || []).length) facts.push(m.LEXForms.join(", ")); if ((m.LEXDomains || []).length) facts.push(`field: ${m.LEXDomains.map((x) => x.Domain).join(", ")}`); facts.push(`cited at ${m.verses_cited} ${m.verses_cited === 1 ? "place" : "places"}`);
           const fp = el("p", "how", facts.join(" · ")); if ((m.LEXCollocations || []).length) { fp.append(" · with "); m.LEXCollocations.forEach((c, i) => { if (i) fp.append(", "); fp.append(he(c)); }); } d.append(fp);
           if (s.Comments) d.append(el("p", "how", tidy(s.Comments)));
-          out.push(d);
+          nodes.push(d);
         }
-      });
+        return nodes;
+      };
+      const rest = lead.length ? forms.filter((b) => !lead.includes(b)) : [];
+      if (!lead.length && forms.length > 1) out.push(el("p", "how", "No sense of this entry is cited at this very word; its words stand in the file's order."));
+      for (const b of lead.length ? lead : forms) out.push(...draw(b));
+      if (rest.length) {
+        const btn = el("button", "more-btn", `Other words under this entry: ${rest.length}`); btn.type = "button"; btn.setAttribute("aria-expanded", "false");
+        const more = el("div", "more"); more.hidden = true; for (const b of rest) more.append(...draw(b));
+        btn.addEventListener("click", () => { more.hidden = !more.hidden; btn.setAttribute("aria-expanded", String(!more.hidden)); });
+        out.push(btn, more);
+      }
       return out;
     },
   },
@@ -468,11 +503,11 @@ const DRAW = {
 /** One line for a record of the unabridged BDB, from the head a tag's file holds of it. */
 function unabridgedFirst(hd, several) {
   const main = (hd.head.italics || []).filter((x) => x.kind === "main_gloss").map((x) => tidy(x.t)); const open = (hd.head.italics || []).filter((x) => x.kind === "opening").map((x) => tidy(x.t));
-  return [hd.head.headword ? he(hd.head.headword.t) : "", " ", main.length ? rd(main.map((x) => `«${x}»`).join(", ")) : open.length ? rd(open.map((x) => `«${x}»`).join(", ")) : el("span", "gap", "(its opening carries no meaning in italics)"), several ? el("span", "gap", ` (${hd.language === "BIBLICAL ARAMAIC" ? "Biblical Aramaic" : "Biblical Hebrew"})`) : ""];
+  return [hd.head.headword ? he(hd.head.headword.t) : "", " ", main.length ? rd(main.map((x) => `«${x}»`).join(", ")) : open.length ? rd(open.map((x) => `«${x}»`).join(", ")) : (hd.head.bold || []).length ? el("span", "gap", `(no meaning in italics; in bold: ${hd.head.bold.map((x) => tidy(x.t)).join(", ")})`) : el("span", "gap", "(its opening carries no meaning in italics)"), several ? el("span", "gap", ` (${hd.language === "BIBLICAL ARAMAIC" ? "Biblical Aramaic" : "Biblical Hebrew"})`) : ""];
 }
 const ITALIC_SAYS = { main_gloss: "the entry's meaning", tagged_gloss: "a meaning", opening: "the words this point opens with", rendering_of_hebrew: "the English of the Hebrew just quoted", verse_wording: "the English of the verse cited", grammar_word: "a grammar word", abbreviation: "an abbreviation", other_language: "a word of another language", outline_letter: "an outline letter", unclassed: "italic in the lexicon; the file does not tell what it is" };
 /** A record of the unabridged BDB whole: its paragraphs, each with its opening and its points in order. */
-function unabridgedWhole(e, cited) {
+function unabridgedWhole(e, cited, own) {
   const out = []; const kindOf = new Map();
   const note = (u) => { for (const it of u.italics || []) kindOf.set(it.k, it.kind); };
   e.blocks.forEach((blk, bi) => {
@@ -483,7 +518,7 @@ function unabridgedWhole(e, cited) {
     for (let i = blk.k[0]; i < blk.k[1]; i += 1) {
       if (starts.has(i)) { const [cls, key] = starts.get(i); unit = el("div", `unit ${cls}`); if (cited.has(key)) { unit.classList.add("cited"); unit.append(el("span", "cited-note", "cites this verse")); } para.append(unit); empty = true; }
       const p = e.k[i];
-      if (typeof p === "string") { let s = printable(p).replace(/[  ]/g, " "); if (empty) s = s.replace(/^\s+/, ""); if (s) { unit.append(s); empty = false; } continue; }
+      if (typeof p === "string") { let s = printable(p).replace(/[\u2003\u00a0]/g, " "); if (empty) s = s.replace(/^\s+/, ""); if (s) { unit.append(s); empty = false; } continue; }
       const [what, text] = p;
       if (what === "<") { if (text === "<br>" && !empty) unit.append(el("br")); else if (/^<placeholder/.test(text)) { const g = el("span", "gap", "[…]"); g.title = "a word in another script, which this file leaves out"; unit.append(g); } continue; }
       empty = false;
@@ -496,7 +531,7 @@ function unabridgedWhole(e, cited) {
       else if (what === "transliteration") unit.append(el("em", "gr", printable(text)));
       else unit.append(printable(text));
     }
-    if (e.blocks.length > 1) out.push(el("p", "k", `paragraph ${bi + 1} of ${e.blocks.length}`));
+    if (e.blocks.length > 1) out.push(el("p", "k", `paragraph ${bi + 1} of ${e.blocks.length}${own ? (own.includes(bi) ? " \u00b7 this word's headword" : " \u00b7 another headword") : ""}`));
     out.push(para);
   });
   out.push(el("p", "how", `${e.language === "BIBLICAL ARAMAIC" ? "Biblical Aramaic" : "Biblical Hebrew"}${e.strong && e.strong.length ? `. The file lists this record under the numbers ${e.strong.join(", ")}` : ""}. Italic words are the lexicon's own. Where the record's structure tells what an italic run is, it is drawn so: a meaning in blue; a grammar word, an abbreviation or a word of another language in gray.`));
@@ -512,35 +547,61 @@ async function drawEntries(tag, forms, body, token) {
   if (token !== state.open) return; wait.remove();
   const line = F.tags[tag]; if (!line) { box.append(el("p", "form-h", "STEP writes this number only in its note on the form written. The dictionaries are listed here for the numbers of STEP's main text, so none is shown under it.")); box.dataset.ready = "1"; return; }
   // what cites this place, by entry, so that the sense can be marked when the entry is opened
-  const citedO = new Map(), citedB = new Map(), citedU = new Map();
-  for (const f of forms) { const h = f.h || {}; for (const o of h.o || []) { if (!citedO.has(o[0])) citedO.set(o[0], new Set()); citedO.get(o[0]).add(o[1] ? o[1].join(".") : ""); } for (const b of h.b || []) { if (!citedB.has(b[0])) citedB.set(b[0], new Set()); citedB.get(b[0]).add(`${b[1]}|${b[2]}|${b[3]}`); } for (const u of h.u || []) { const id = `${u[0].slice(0, 6)}000000000`; if (!citedU.has(id)) citedU.set(id, new Set()); citedU.get(id).add(u[0]); } }
+  const citedO = new Map(), citedB = new Map(), citedU = new Map(); const byMacula = new Set();
+  for (const f of forms) {
+    const h = f.h || {}; for (const id of f.ow || []) byMacula.add(id);
+    for (const o of h.o || []) { if (!citedO.has(o[0])) citedO.set(o[0], new Set()); citedO.get(o[0]).add(o[1] ? o[1].join(".") : ""); }
+    for (const b of h.b || []) { if (!citedB.has(b[0])) citedB.set(b[0], new Set()); citedB.get(b[0]).add(`${b[1]}|${b[2]}|${b[3]}`); }
+    for (const u of h.u || []) { const id = `${u[0].slice(0, 6)}000000000`; if (!citedU.has(id)) citedU.set(id, { very: new Set(), verse: new Set() }); citedU.get(id)[u[1] < 2 ? "very" : "verse"].add(u[0]); }
+  }
   for (const key of INDEX.dictionaries) {
     const [how, ...ids0] = line.b[key]; const row = el("div", "row", srcHead(key)); box.append(row);
     if (!ids0.length) { row.append(el("p", "sub", ABSENT[how] || "No entry.")); continue; }
-    const citedOf = key === "openscriptures_bdb_1906" ? citedO : key === "unabridged_bdb_1906" ? citedB : key === "ubs_sdbh_hebrew_v0_9_2" ? citedU : new Map();
+    const isU = key === "ubs_sdbh_hebrew_v0_9_2", isB = key === "unabridged_bdb_1906";
+    const citedOf = key === "openscriptures_bdb_1906" ? citedO : isB ? citedB : isU ? citedU : new Map();
+    const citedAt = (id) => citedOf.get(id) || (isU ? { very: new Set(), verse: new Set() } : new Set());
+    const cites = (id) => { const c = citedOf.get(id); return !!c && (isU ? c.very.size + c.verse.size > 0 : c.size > 0); };
+    const several = ids0.length > 1;
     // where a number reaches several records, the one that cites this place stands first
-    const ids = ids0.slice().sort((a, b) => (citedOf.has(b) ? 1 : 0) - (citedOf.has(a) ? 1 : 0));
-    if (ids.length > 1) row.append(el("p", "sub", `This number reaches ${ids.length} records of this dictionary; nothing in the files says which is meant.${ids.some((id) => citedOf.has(id)) ? " The record that cites this place stands first." : ""}`));
-    const list = ids.length > 1 ? el("ul", "records") : null; if (list) row.append(list);
-    for (const id of ids) {
-      const holder = list ? el("li", "") : row; if (list) list.append(holder);
-      const cited = citedOf.get(id) || new Set();
-      const first = el("p", "line"); holder.append(first);
-      if (key === "unabridged_bdb_1906") first.append(...unabridgedFirst(F.unabridged[id], ids.length > 1)); else first.append(...DRAW[key].first(F.entries[key][id]));
-      if (cited.size) first.append(el("span", "cited-note", key === "ubs_sdbh_hebrew_v0_9_2" ? "cites this place" : "cites this verse"));
-      const btn = el("button", "open", "Open the whole entry"); btn.type = "button"; btn.setAttribute("aria-expanded", "false"); btn.dataset.src = key; btn.dataset.id = id;
-      const whole = el("div", "entry"); whole.hidden = true; holder.append(btn, whole);
-      btn.addEventListener("click", async () => {
-        const open = whole.hidden; btn.setAttribute("aria-expanded", String(open)); btn.textContent = open ? "Close the entry" : "Open the whole entry"; whole.hidden = !open;
-        if (!open || whole.dataset.drawn) return;
-        whole.dataset.drawn = "1";
-        try {
-          if (key === "unabridged_bdb_1906") { whole.append(el("p", "how", "Opening the record…")); const U = await getFile(unFile(id)); whole.replaceChildren(...unabridgedWhole(U.entries[id], cited)); }
-          else whole.append(...DRAW[key].whole(F.entries[key][id], cited).filter(Boolean));
-          if (REACHED[how]) whole.append(el("p", "how", `This entry is ${REACHED[how]} (${id}).`));
-          whole.dataset.ready = "1";
-        } catch (err) { whole.replaceChildren(el("p", "how", "The entry could not be fetched.")); state.errors.push(String(err.message)); }
-      });
+    let ids = ids0.slice().sort((x, y) => (cites(y) ? 1 : 0) - (cites(x) ? 1 : 0)); let behind = [];
+    if (isB) {
+      // The unabridged file lists a number on several records, and a record can be another word's. A record is this
+      // word's where its own headword has the letters of the word's dictionary form (the data names them: own, and
+      // on the word, ow). Those stand; the others wait behind one line.
+      const own = new Set([...Object.keys(line.own || {}), ...ids0.filter((id) => byMacula.has(id))]);
+      if (several) {
+        behind = ids.filter((id) => !own.has(id)); ids = ids.filter((id) => own.has(id));
+        row.append(el("p", "sub", ids.length === 1 ? `This number stands on ${ids0.length} records of this file. One has this word's own headword.` : ids.length ? `This number stands on ${ids0.length} records of this file. ${ids.length} of them have this word's own headword, and nothing in the files says which is meant.${ids.some(cites) ? " The record that cites this verse stands first." : ""}` : `This number stands on ${ids0.length} records of this file. None has this word's own headword.`));
+      } else if (!own.has(ids0[0])) row.append(el("p", "sub", "This record's headword is spelled otherwise than this word's dictionary form, so it is not said to cite this word."));
+    } else if (several) row.append(el("p", "sub", `This number reaches ${ids.length} records of this dictionary; nothing in the files says which is meant.${ids.some(cites) ? " The record that cites this place stands first." : ""}`));
+    const drawRecords = (list, into) => {
+      for (const id of list) {
+        const holder = several ? el("li", "") : into; if (several) into.append(holder);
+        const cited = citedAt(id);
+        const first = el("p", "line"); holder.append(first);
+        if (isB) first.append(...unabridgedFirst(F.unabridged[id], several)); else first.append(...DRAW[key].first(F.entries[key][id], cited));
+        if (cites(id)) first.append(el("span", "cited-note", isU ? (cited.very.size ? "cites this very word" : "cites this verse") : "cites this verse"));
+        const btn = el("button", "open", "Open the whole entry"); btn.type = "button"; btn.setAttribute("aria-expanded", "false"); btn.dataset.src = key; btn.dataset.id = id;
+        const whole = el("div", "entry"); whole.hidden = true; holder.append(btn, whole);
+        btn.addEventListener("click", async () => {
+          const open = whole.hidden; btn.setAttribute("aria-expanded", String(open)); btn.textContent = open ? "Close the entry" : "Open the whole entry"; whole.hidden = !open;
+          if (!open || whole.dataset.drawn) return;
+          whole.dataset.drawn = "1";
+          try {
+            if (isB) { whole.append(el("p", "how", "Opening the record…")); const U = await getFile(unFile(id)); whole.replaceChildren(...unabridgedWhole(U.entries[id], cited, (line.own || {})[id] || null)); }
+            else whole.append(...DRAW[key].whole(F.entries[key][id], cited).filter(Boolean));
+            if (REACHED[how]) whole.append(el("p", "how", `This entry is ${REACHED[how]} (${id}).`));
+            whole.dataset.ready = "1";
+          } catch (err) { whole.replaceChildren(el("p", "how", "The entry could not be fetched.")); state.errors.push(String(err.message)); }
+        });
+      }
+    };
+    if (ids.length) { const list = several ? el("ul", "records") : row; if (several) row.append(list); drawRecords(ids, list); }
+    if (behind.length) {
+      const btn = el("button", "more-btn", `Other records this number also stands on: ${behind.length}`); btn.type = "button"; btn.setAttribute("aria-expanded", "false");
+      const ul = el("ul", "records"); ul.hidden = true; drawRecords(behind, ul);
+      btn.addEventListener("click", () => { ul.hidden = !ul.hidden; btn.setAttribute("aria-expanded", String(!ul.hidden)); });
+      row.append(btn, ul);
     }
   }
   box.dataset.ready = "1";

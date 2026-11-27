@@ -37,8 +37,37 @@
 //   BDB         (both files) of the entries the word's tag reaches, the
 //               senses that cite this verse. BDB cites a verse, not a word.
 //
+// A RECORD OF ANOTHER WORD IS NEVER SHOWN AT THIS WORD (the second cut, 27
+// November 2026). The unabridged BDB's number column is a loose list: one
+// number stands on up to nine records, and a record's paragraphs can be
+// several words (the record of «if» also holds «mother» and «cubit»). So a
+// paragraph of a record is this word's only where its own headword has the
+// letters of the word's lemma as a source gives it: STEP's brief lexicon's
+// headword for the number, or the Lexical Index's, or MACULA's lemma for a
+// morph of the word that carries the number. Letters are compared as the
+// places compare them: consonants only, the five end-of-word shapes folded.
+// A citing paragraph that fails this is not said to cite the place. The same
+// test parts an ambiguous number: each tag's line names the records (and
+// their paragraphs) whose headword has the lemma's letters by the first two
+// sources (own), and a form names the records that are its word's by
+// MACULA's lemma alone (ow).
+//
+// THE LINE UNDER A WORD IS THE READER'S LINE. STEP's parts joined with « + »
+// as the live reader draws them at rest: a part that is only a sign is not
+// drawn (a hidden sign's gap stands in its place, and no joiner beside it),
+// and where every part is a sign they stand. The pieces and the joiner are
+// the reader's own (tools/gloss-store-v1.mjs: printedForm, signOnly,
+// joinDrawn), used here and not said again. «Every part is a sign» is judged
+// as the live reader judges it: over the words a maqaf ties into one run
+// (plain words, each but the last ending in a maqaf), so the object marker
+// before its noun is a gap, and standing alone it shows its sign. A form
+// carries the drawn line (g) only where it is not simply its parts trimmed
+// and joined; the card keeps STEP's words exactly.
+//
 // No Hebrew letter stands in this file: a letter is named by its code point.
 import { changesFromText } from "./place-answers-meet-v1.mjs";
+import { meetLetters } from "./place-answers-sources-v1.mjs";
+import { printedForm, signOnly, joinDrawn, SIGN_GAP } from "./gloss-store-v1.mjs";
 
 export const PAGE_RULE_ID = "place-answers-rule-v1-a-reading-stands-at-a-word-only-where-a-source-puts-it-there-by-that-sources-own-address";
 export const PAGE_RULE = "The card shows what each source says at this word, by that source's own address, and then each dictionary's own entry. Every string of these files is a string of the places, the entries or the zones, but for the sentences that say how our text and STEP's meet at a word, which are made by rule from the places' record. Nothing is matched by letters.";
@@ -98,6 +127,8 @@ export const SHAPE_WORDS = {
   verse: "{l: the verse's label, e: its entries in our text's order, un: STEP's rows of this verse that no word of ours meets, each [STEP's reference, its Hebrew, its English]}",
   entry: "a mark {m: its kind, s: as our text writes it} or a word {i: its place among the section's entries (marks counted), s: as our text writes it, k: 1 written and read, 2 written and not read, 3 read and not written (left off: a plain word), f: its forms in our text's order}",
   form: "{r: 1 the form read, 2 the form written (left off: a plain word), s: the form as our text writes it (a pair's forms), t: STEP here, m: MACULA here, mo: MACULA's morphs where another word stands in its text, h: the senses that cite this very place}",
+  line: "t.g = the line under the word as the reader draws it at rest, where it is not simply the parts' English trimmed and joined with « + » (a part that is only a sign is a zero-width gap; a full stop at the end is left off): left off elsewhere",
+  own: "tags.<tag>.own = {record id: [paragraphs]} — of the unabridged BDB's records the tag reaches, the paragraphs whose own headword has the letters of the number's lemma as STEP's brief lexicon or the Lexical Index gives it; a form's ow = the records the tag reaches that are this word's by MACULA's lemma alone",
   step: "t = {w: how the word meets STEP's rows (0 no row; 1 one for one; 2 one of ours, two or three rows; 3 one row that marks two words; 4 one of the words a row holds, STEP's seam mark between; 5 two of ours, one of theirs, parted at STEP's part cut; 6 the same with no mark at the seam), rows: STEP's own references, l: the letters by which our spelling differs as the places name them (left off: the same letters; 1: another word stands there), p: STEP's parts, other: STEP's word where another word stands [[Hebrew, English]], wf: 1 the meeting is on STEP's written form (its «K=» variant), vn: STEP's Hebrew verse number where it is not ours, d: 1 where the two editions differ in the word, say: the sentences that say how}",
   part: "[English exactly as STEP writes it (null where STEP gives a form's Hebrew only), the tag (the key to page/entries/t/), 1 where STEP marks the part as the root, STEP's Hebrew of the part, 1 where STEP writes «+» after the tag (it also covers the next word)]",
   macula: "m = MACULA's morphs of the word, each [its gloss column, its english column, its Hebrew]",
@@ -175,6 +206,53 @@ export function unabridgedUnit(e, para, point, sub) {
   return { blk, pt, sb, unit: sb || pt || blk.head };
 }
 export const OPENING_KINDS = ["opening", "tagged_gloss", "main_gloss"];
+/** The letters of a paragraph's own headword (consonants, end-of-word shapes folded); "" where it has none. */
+export const headLetters = (blk) => (blk.head.headword ? meetLetters(blk.head.headword.t) : "");
+/** The letters of a number's lemma as STEP's brief lexicon and the Lexical Index give it: the headwords of
+ *  the entries the tag bridge reaches in those two. */
+export function lemmaLetters(tag, bridge, entries) {
+  const out = new Set(); const row = bridge.tags[tag]; if (!row) return out;
+  for (const id of row.stepbible_tbesh_gloss.slice(1)) { const e = entries("stepbible_tbesh_gloss")[id]; const L = e ? meetLetters(e.Hebrew) : ""; if (L) out.add(L); }
+  for (const id of row.openscriptures_lexical_index.slice(1)) { const e = entries("openscriptures_lexical_index")[id]; const L = e ? meetLetters(e.w) : ""; if (L) out.add(L); }
+  return out;
+}
+/** MACULA's lemma letters for a number at a word: of the word's morphs, those whose own Strong number is the tag's. */
+export function maculaLemmaLetters(tag, mo) {
+  const out = new Set(); if (!mo || mo.way === 0 || mo.letters === "another word") return out;
+  const n = Number(tag.slice(1, 5));
+  for (const x of mo.morphs) if (Number.parseInt(x.strongnumberx, 10) === n) { const L = meetLetters(x.lemma); if (L) out.add(L); }
+  return out;
+}
+/** The paragraphs of an unabridged BDB record whose own headword has one of the letters given. */
+export const ownParagraphs = (e, letters) => { const out = []; e.blocks.forEach((b, i) => { const L = headLetters(b); if (L && letters.has(L)) out.push(i); }); return out; };
+/** STEP's parts trimmed and joined, nothing hidden. */
+export const plainLine = (parts) => parts.map((p) => (p[0] === null ? "" : p[0].trim())).filter(Boolean).join(" + ");
+/** The pieces the reader prints for a form's parts (its own printed form: trimmed, empty ones dropped, a full stop at the end left off). */
+export const piecesOf = (parts) => { const text = printedForm((parts || []).map((p) => (p[0] === null ? "" : p[0])).join("/")); return text ? text.split(" + ") : []; };
+const MAQAF = "\u05be";
+/** The forms of an entry the line is drawn under: a plain word's own; a pair's read form; the written form of
+ *  a word written and not read. */
+export const drawnForms = (e) => e.f.filter((f) => (e.k === 2 ? true : f.r !== 2));
+/** Whether a maqaf ties the entry to the word after it: the entry as our text writes it ends in one (a pair's
+ *  last form is written inside its bracket). */
+export const tiedOn = (e) => e.s.replace(/[\])]+$/u, "").endsWith(MAQAF);
+/** The lines under the words of one verse as the reader draws them at rest. `entries` are the page's entries
+ *  of the verse in order; a form's t.g is set where its drawn line is not simply its parts trimmed and joined.
+ *  A run is words tied by a maqaf (each but the last ends in one), a pair counted by the form its line is
+ *  drawn under; a scribal mark ends a run. A pair's other form stands alone. */
+export function setLinesUnder(entries) {
+  const draw = (forms) => {
+    const pieces = forms.map((f) => (f.t && f.t.p ? piecesOf(f.t.p) : []));
+    const all = pieces.flat(); const stand = all.every(signOnly); // where every piece of the run is a sign, the signs stand
+    forms.forEach((f, i) => { if (!f.t || !f.t.p) return; const drawn = joinDrawn(stand ? pieces[i] : pieces[i].map((x) => (signOnly(x) ? SIGN_GAP : x))); if (drawn !== plainLine(f.t.p)) f.t.g = drawn; });
+  };
+  for (let i = 0; i < entries.length; i += 1) {
+    if (entries[i].m !== undefined) continue;
+    const run = [...drawnForms(entries[i])]; for (const f of entries[i].f) if (!run.includes(f)) draw([f]);
+    while (tiedOn(entries[i]) && i + 1 < entries.length && entries[i + 1].m === undefined) { i += 1; for (const f of entries[i].f) { if (drawnForms(entries[i]).includes(f)) run.push(f); else draw([f]); } }
+    draw(run);
+  }
+}
 /** The UBS dictionary: a sense by its id. */
 export function ubsSense(entry, lexid) { for (const b of entry.BaseForms || []) for (const m of b.LEXMeanings || []) if (m.LEXID === lexid) return m; return null; }
 export const ubsGlosses = (m) => ((m.LEXSenses || [])[0] || {}).Glosses || [];
@@ -202,7 +280,9 @@ export function ubsWordNumbers(P) {
  *  places' own reader (wordAt().forms[i]); `text` the form as our text writes
  *  it where the word is a pair; S the sources opened: { bridge, verses(key)
  *  → the verse bridge's table for this book, entries(key), numbers (the UBS
- *  word numbers of MACULA's morph rows) }. */
+ *  word numbers of MACULA's morph rows), lemma(tag) → the letters of the
+ *  number's lemma (lemmaLetters), tally (optional): counters of the headword
+ *  test }. */
 export function pageForm({ kind, f, text }, S) {
   const out = {};
   if (f.role !== "plain") out.r = f.role === "read" ? 1 : 2;
@@ -249,9 +329,14 @@ export function pageForm({ kind, f, text }, S) {
       }
       { // BDB, unabridged: a value is [id, paragraph, point (-1 the head), sub-point (-1 none), piece]
         const ids = new Set(row.unabridged_bdb_1906.slice(1)); const seen = new Set();
+        const lemma = S.lemma(tag), byMacula = maculaLemmaLetters(tag, f.macula);
         for (const [id, para, point, sub] of (S.verses("unabridged_bdb_1906")[hv] || []).filter((x) => ids.has(x[0]))) {
           const k = `${id}|${para}|${point}|${sub}`; if (seen.has(k)) continue; seen.add(k);
           const e = S.entries("unabridged_bdb_1906")[id]; const { blk, pt, sb, unit } = unabridgedUnit(e, para, point, sub);
+          // a paragraph of another word is not said to cite this place
+          const L = headLetters(blk);
+          if (!(L && (lemma.has(L) || byMacula.has(L)))) { if (S.tally) S.tally[ids.size > 1 ? "not_drawn_ambiguous" : "not_drawn_exact"] += 1; continue; }
+          if (S.tally && !lemma.has(L)) S.tally.drawn_by_maculas_lemma_alone += 1;
           h.b.push([id, para, point, sub, pt ? pt.label || "" : "", sb ? sb.label || "" : "", (unit.italics || []).filter((x) => OPENING_KINDS.includes(x.kind)).slice(0, 3).map((x) => x.t), blk.head.headword ? blk.head.headword.t : "", ids.size, tag]);
         }
       }
@@ -282,6 +367,14 @@ export function pageForm({ kind, f, text }, S) {
     const seen = new Set();
     for (const [lexid, w] of (S.verses("ubs_sdbh_hebrew_v0_9_2")[o.rows[0].verse] || []).filter((c) => ubsOfTags.has(ubsEntryId(c[0])))) { if (seen.has(lexid)) continue; seen.add(lexid); h.u.push([lexid, 3, glossesOf(lexid), "", w]); }
   }
+  // the unabridged BDB's records the word's numbers reach that are this word's by MACULA's lemma alone
+  const ow = [];
+  for (const tag of dict) {
+    const row = S.bridge.tags[tag]; if (!row) continue;
+    const byMacula = maculaLemmaLetters(tag, f.macula); if (!byMacula.size) continue; const lemma = S.lemma(tag);
+    for (const id of row.unabridged_bdb_1906.slice(1)) { const e = S.entries("unabridged_bdb_1906")[id]; if (!ownParagraphs(e, lemma).length && ownParagraphs(e, byMacula).length && !ow.includes(id)) ow.push(id); }
+  }
+  if (ow.length) out.ow = ow;
   for (const k of ["u", "o", "b"]) if (!h[k].length) delete h[k];
   if (Object.keys(h).length) out.h = h;
   return out;

@@ -18,14 +18,23 @@
 //   G3  every entry of our text stands in its verse in order, as the zone
 //       writes it: each word, each scribal mark, each form of a pair
 //   G4  every STEP string is the string of the places: the rows met, each
-//       part's English, tag, root mark and Hebrew, how the word meets them
+//       part's English, tag, root mark and Hebrew, how the word meets them;
+//       and the line under the word is the reader's own line for those parts
+//       (tools/gloss-store-v1.mjs), carried only where a sign is hidden
 //   G5  every MACULA string is the string of the places
 //   G6  every sense said to cite a place is found again by its address: the
 //       verse bridge lists it under that verse (and, for the UBS dictionary,
 //       at that word number); the tag reaches its entry by the tag bridge
 //       (or the entry's lemma is MACULA's for the morph); its words are the
 //       entry's own. And no BDB sense the two bridges give for a word is
-//       left out
+//       left out. A paragraph of the unabridged BDB is said to cite a place
+//       only where its own headword has the letters of the word's lemma
+//       (STEP's brief lexicon's headword for the number, the Lexical
+//       Index's, or MACULA's lemma for a morph that carries the number):
+//       every line said passes that test, every citing paragraph that passes
+//       it is said, and the records that are a word's by MACULA's lemma
+//       alone are named on its form. The test is coded here again, apart
+//       from the projection's
 //   G7  the sentences that say how the two editions meet are the rule's
 //       sentences for the places' record of the word, and no others
 //   G8  every tag of STEP's stands in the one file its number names, with
@@ -53,6 +62,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BOOKS, readZone } from "./place-answers-sources-v1.mjs";
 import { openPlaces } from "./place-answers-places-v1.mjs";
+import { printedForm, signOnly, joinDrawn, SIGN_GAP } from "./gloss-store-v1.mjs";
 import { CHAPTER_SCHEMA, TAGS_SCHEMA, UNABRIDGED_SCHEMA, INDEX_SCHEMA, PAGE_PIN_SCHEMA, DICTIONARIES, INLINE, LEFT_OUT, tagFile, unabridgedFile, isStepsOwn, meetingWords, bdbSenseLabel, OPENING_KINDS } from "./place-answers-page-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -103,11 +113,27 @@ const index = existsSync(join(PAGE, "index.json")) ? JSON.parse(readFileSync(joi
 // ---- G2 to G7, book by book
 const counts = { books: 0, chapters: 0, verses: 0, words: 0, marks: 0, forms: 0, forms_with_steps_parts: 0, forms_with_maculas_morphs: 0, words_where_the_editions_differ: 0, sentences: 0,
   here: { ubs_at_this_very_word_by_the_tags_entry: 0, ubs_at_this_very_word_by_maculas_lemma: 0, ubs_at_the_verse_another_word_number: 0, ubs_at_the_verse_no_word_of_maculas: 0, bdb_open_scriptures_at_the_verse: 0, bdb_unabridged_at_the_verse: 0, words_with_a_ubs_sense_at_this_very_word: 0, words_with_any: 0 },
-  steps_rows_no_word_of_ours_meets: 0 };
+  steps_rows_no_word_of_ours_meets: 0,
+  lines_under_a_word_with_a_sign_hidden: 0,
+  headword: { unabridged_lines_not_drawn_under_a_number_of_one_record: 0, unabridged_lines_not_drawn_under_a_number_of_several_records: 0, unabridged_lines_drawn_by_maculas_lemma_alone: 0, words_where_a_line_is_not_drawn: 0, forms_with_a_record_by_maculas_lemma_alone: 0,
+    words_under_a_number_of_several_records: { one_record_is_the_words: 0, several_are: 0, none_is: 0 } } };
 const held = { zone: 0, step: 0, macula: 0, here: 0, sentences: 0 };
 const KIND = ["plain", "written and read", "written, not read", "read, not written"];
 const lettersOf = (x) => Array.from(String(x || "")).filter((ch) => { const c = ch.codePointAt(0); return c >= 0x5d0 && c <= 0x5ea; }).join("");
 const ubsEntryOf = (lexid) => ENTRIES.ubs_sdbh_hebrew_v0_9_2[`${lexid.slice(0, 6)}000000000`];
+// ---- the headword test, coded here apart from the projection: letters are the consonants, the five end-of-word shapes folded
+const FOLD = new Map([[0x5da, 0x5db], [0x5dd, 0x5de], [0x5df, 0x5e0], [0x5e3, 0x5e4], [0x5e5, 0x5e6]]);
+const folded = (s) => { let o = ""; for (const ch of String(s || "")) { const c = ch.codePointAt(0); if (c >= 0x5d0 && c <= 0x5ea) o += String.fromCodePoint(FOLD.get(c) || c); } return o; };
+const LEMMAS = new Map();
+/** The letters of a number's lemma as STEP's brief lexicon and the Lexical Index give it. */
+const lemmaSet = (tag) => { let s = LEMMAS.get(tag); if (s) return s; s = new Set(); const row = bridge.tags[tag];
+  if (row) { for (const id of row.stepbible_tbesh_gloss.slice(1)) { const L = folded((ENTRIES.stepbible_tbesh_gloss[id] || {}).Hebrew); if (L) s.add(L); } for (const id of row.openscriptures_lexical_index.slice(1)) { const L = folded((ENTRIES.openscriptures_lexical_index[id] || {}).w); if (L) s.add(L); } }
+  LEMMAS.set(tag, s); return s; };
+/** MACULA's lemma letters for the number at a word: its morphs that carry the number. */
+const maculaSet = (tag, mo) => { const s = new Set(); if (!mo || mo.way === 0 || mo.letters === "another word") return s; const n = Number(tag.slice(1, 5)); for (const x of mo.morphs) if (Number.parseInt(x.strongnumberx, 10) === n) { const L = folded(x.lemma); if (L) s.add(L); } return s; };
+const headOf = (e, para) => { const b = e.blocks[para]; return b && b.head.headword ? folded(b.head.headword.t) : ""; };
+const parasOf = (e, set) => { const out = []; e.blocks.forEach((b, i) => { const L = b.head.headword ? folded(b.head.headword.t) : ""; if (L && set.has(L)) out.push(i); }); return out; };
+const ownOfTag = (tag) => { const o = {}; const row = bridge.tags[tag]; for (const id of row ? row.unabridged_bdb_1906.slice(1) : []) { const ps = parasOf(ENTRIES.unabridged_bdb_1906[id], lemmaSet(tag)); if (ps.length) o[id] = ps; } return o; };
 const indexBooks = new Map((index.books || []).map((b) => [b.book, b]));
 for (const [book] of BOOKS) {
   const zoneFile = join(ZONES, `${book}.bin`); const zone = readZone(zoneFile); const rawZone = readGz(zoneFile);
@@ -143,7 +169,7 @@ for (const [book] of BOOKS) {
         counts.words += 1; held.zone += 1;
         const W = P.wordAt(si, ei);
         if (pe.i !== ei || pe.s !== en.s || !W || (pe.k || 0) !== KIND.indexOf(W.kind) || !Array.isArray(pe.f) || pe.f.length !== W.forms.length) { miss("G3", `${at} entry ${ei}: the word is not the zone's word with the places' kind and forms`); return; }
-        let any = false, very = false, differs = false;
+        let any = false, very = false, differs = false, notDrawn = false;
         W.forms.forEach((fm, fi) => {
           const pf = pe.f[fi]; const atF = `${at} entry ${ei}${W.forms.length > 1 ? ` form ${fi}` : ""}`; counts.forms += 1;
           if ((pf.r || 0) !== ["plain", "read", "written"].indexOf(fm.role)) miss("G3", `${atF}: the form's role`);
@@ -195,16 +221,29 @@ for (const [book] of BOOKS) {
             let okWords = false;
             if (e && e.blocks[para]) { const blk = e.blocks[para]; const pt = point >= 0 ? (blk.points || [])[point] : null; const sb = sub >= 0 ? ((pt || blk.head).sub || [])[sub] : null; const unit = sb || pt || blk.head;
               okWords = (point < 0 || !!pt) && (sub < 0 || !!sb) && lp === (pt ? pt.label || "" : "") && ls === (sb ? sb.label || "" : "") && headword === (blk.head.headword ? blk.head.headword.t : "") && same(its, (unit.italics || []).filter((x) => OPENING_KINDS.includes(x.kind)).slice(0, 3).map((x) => x.t)); }
-            if (!e || !dict.includes(tag) || !row || !row.unabridged_bdb_1906.slice(1).includes(id) || n !== row.unabridged_bdb_1906.length - 1 || !cited || !okWords) miss("G6", `${atF}: BDB (unabridged) ${id} is not found again at ${hv} under ${tag} with these words`);
+            if (!e || !dict.includes(tag) || !row || !row.unabridged_bdb_1906.slice(1).includes(id) || n !== row.unabridged_bdb_1906.length - 1 || !cited || !okWords || !(headOf(e, para) && (lemmaSet(tag).has(headOf(e, para)) || maculaSet(tag, mo).has(headOf(e, para))))) miss("G6", `${atF}: BDB (unabridged) ${id} is not found again at ${hv} under ${tag} with these words`);
           }
           // no BDB sense the bridges give for the word is left out
           if (stepStands) {
             const wantO = new Set(), wantB = new Set(); const ro = reached("openscriptures_bdb_1906"), rb = reached("unabridged_bdb_1906");
             for (const x of V.o[hv] || []) if (ro.has(x[0])) wantO.add(`${x[0]}|${x[1] ? x[1].join(".") : ""}`);
-            for (const x of V.b[hv] || []) if (rb.has(x[0])) wantB.add(`${x[0]}|${x[1]}|${x[2]}|${x[3]}`);
+            // the unabridged BDB, number by number: a citing paragraph is wanted only where its headword has the lemma's letters
+            for (const tag of dict) {
+              const ids = new Set((bridge.tags[tag] || { unabridged_bdb_1906: [] }).unabridged_bdb_1906.slice(1)); const seenK = new Set(); const ms = maculaSet(tag, mo), ls = lemmaSet(tag);
+              for (const x of V.b[hv] || []) {
+                if (!ids.has(x[0])) continue; const k = `${x[0]}|${x[1]}|${x[2]}|${x[3]}`; if (seenK.has(k)) continue; seenK.add(k);
+                const L = headOf(ENTRIES.unabridged_bdb_1906[x[0]], x[1]);
+                if (L && (ls.has(L) || ms.has(L))) { wantB.add(k); if (!ls.has(L)) counts.headword.unabridged_lines_drawn_by_maculas_lemma_alone += 1; }
+                else { counts.headword[ids.size > 1 ? "unabridged_lines_not_drawn_under_a_number_of_several_records" : "unabridged_lines_not_drawn_under_a_number_of_one_record"] += 1; notDrawn = true; }
+              }
+            }
             const haveO = new Set((h.o || []).map((x) => `${x[0]}|${x[1] ? x[1].join(".") : ""}`)), haveB = new Set((h.b || []).map((x) => `${x[0]}|${x[1]}|${x[2]}|${x[3]}`));
             if (wantO.size !== haveO.size || [...wantO].some((k) => !haveO.has(k)) || wantB.size !== haveB.size || [...wantB].some((k) => !haveB.has(k))) miss("G6", `${atF}: the BDB senses that cite ${hv} under the word's tags are not all said`);
           } else if ((h.o || []).length || (h.b || []).length) miss("G6", `${atF}: BDB is said where STEP's parts do not stand`);
+          { // the records that are this word's by MACULA's lemma alone
+            const want = []; for (const tag of dict) { const row = bridge.tags[tag]; if (!row) continue; const ms = maculaSet(tag, mo); if (!ms.size) continue; for (const id of row.unabridged_bdb_1906.slice(1)) { const e = ENTRIES.unabridged_bdb_1906[id]; if (!parasOf(e, lemmaSet(tag)).length && parasOf(e, ms).length && !want.includes(id)) want.push(id); } }
+            if (!same(pf.ow || [], want)) miss("G6", `${atF}: the records that are this word's by MACULA's lemma alone are not as named`);
+            if (pf.ow) counts.headword.forms_with_a_record_by_maculas_lemma_alone += 1; }
           const ubsReached = reached("ubs_sdbh_hebrew_v0_9_2");
           for (const [lexid, how, glosses, morph, n] of h.u || []) {
             counts.here[["ubs_at_this_very_word_by_the_tags_entry", "ubs_at_this_very_word_by_maculas_lemma", "ubs_at_the_verse_another_word_number", "ubs_at_the_verse_no_word_of_maculas"][how]] += 1; if (how < 2) very = true; held.here += 1 + glosses.length;
@@ -222,7 +261,35 @@ for (const [book] of BOOKS) {
           }
         });
         if (any) counts.here.words_with_any += 1; if (very) counts.here.words_with_a_ubs_sense_at_this_very_word += 1; if (differs) counts.words_where_the_editions_differ += 1;
+        if (notDrawn) counts.headword.words_where_a_line_is_not_drawn += 1;
+        { // under each number of the word that reaches several unabridged records: how many are this word's
+          const seenT = new Set();
+          for (const pf of pe.f) for (const p of (pf.t || {}).p || []) {
+            const row = p[1] ? bridge.tags[p[1]] : null; if (!row || row.unabridged_bdb_1906.length < 3 || seenT.has(p[1])) continue; seenT.add(p[1]);
+            const mine = new Set(Object.keys(ownOfTag(p[1]))); for (const g of pe.f) for (const id of g.ow || []) if (row.unabridged_bdb_1906.includes(id)) mine.add(id);
+            counts.headword.words_under_a_number_of_several_records[mine.size === 1 ? "one_record_is_the_words" : mine.size ? "several_are" : "none_is"] += 1;
+          }
+        }
       });
+      { // G4, the lines under the words of the verse: the reader's rule (its own pieces, signs and joiner), judged over
+        // the words a maqaf ties, coded here apart from the projection. A mark ends a run; a pair's other form stands alone.
+        const want = new Map();
+        const pcs = (f) => { const tx = printedForm(((f.t || {}).p || []).map((p) => (p[0] === null ? "" : p[0])).join("/")); return tx ? tx.split(" + ") : []; };
+        const judge = (fs) => { const P2 = fs.map(pcs); const stand = P2.flat().every(signOnly); fs.forEach((f, i) => want.set(f, joinDrawn(stand ? P2[i] : P2[i].map((x) => (signOnly(x) ? SIGN_GAP : x))))); };
+        let run = [];
+        for (const e of v.e) {
+          if (e.m !== undefined) { if (run.length) judge(run); run = []; continue; }
+          for (const f of e.f) { if (e.k === 2 || f.r !== 2) run.push(f); else judge([f]); }
+          if (!e.s.replace(/[\])]+$/u, "").endsWith("\u05be")) { judge(run); run = []; }
+        }
+        if (run.length) judge(run);
+        for (const e of v.e) for (const f of e.f || []) {
+          if (!f.t || !f.t.p) { if (f.t && f.t.g !== undefined) miss("G4", `${book} ${sec.label} entry ${e.i}: a line is carried where STEP's parts do not stand`); continue; }
+          const plain = f.t.p.map((p) => (p[0] === null ? "" : p[0].trim())).filter(Boolean).join(" + ");
+          if ((f.t.g === undefined ? plain : f.t.g) !== want.get(f) || f.t.g === plain) miss("G4", `${book} ${sec.label} entry ${e.i}: the line under the word is not the reader's line for STEP's parts`);
+          if (f.t.g !== undefined) { counts.lines_under_a_word_with_a_sign_hidden += 1; held.step += 1; }
+        }
+      }
       si += 1;
     });
   }
@@ -247,6 +314,7 @@ verdict("G7", "the sentences that say how the two editions meet are the rule's f
     return (src.BaseForms || []).every((b, bi) => (b.LEXMeanings || []).every((m, mi) => { const g = got.BaseForms[bi].LEXMeanings[mi]; return g.verses_cited === (m.LEXReferences || []).length && g.LEXReferences === undefined; }));
   };
   const seen = new Set(); let files = 0; const entries = Object.fromEntries(DICTIONARIES.map((k) => [k, 0])); let strings = 0;
+  const byHead = { a_number_of_one_record: { the_record_is_the_words: { tags: 0, words: 0 }, it_is_not: { tags: 0, words: 0 } }, a_number_of_several_records: { one_record_is_the_words: { tags: 0, words: 0 }, several_are: { tags: 0, words: 0 }, none_is: { tags: 0, words: 0 } } };
   const dirT = join(PAGE, "entries", "t");
   for (const name of existsSync(dirT) ? readdirSync(dirT).sort() : []) {
     const file = name.replace(/\.json\.gz$/u, ""); const F = readGz(join(dirT, name)); files += 1;
@@ -256,7 +324,13 @@ verdict("G7", "the sentences that say how the two editions meet are the rule's f
       if (seen.has(tag)) miss("G8", `${tag} stands in two files`); seen.add(tag);
       const row = bridge.tags[tag];
       if (!row || tagFile(tag) !== file) { miss("G8", `${tag} is no tag of the bridge's, or stands in the wrong file (${file})`); continue; }
-      if (!same(line.n, row.n) || !same(Object.keys(line.b), DICTIONARIES) || DICTIONARIES.some((k) => !same(line.b[k], row[k]))) miss("G8", `${tag}: its line is not the bridge's`);
+      if (!same(line.n, row.n) || !same(line.v, row.v) || !same(Object.keys(line.b), DICTIONARIES) || DICTIONARIES.some((k) => !same(line.b[k], row[k]))) miss("G8", `${tag}: its line is not the bridge's`);
+      // the unabridged BDB's records that are the number's by their headword: named on every tag that reaches a record
+      if (row.unabridged_bdb_1906.length > 1) {
+        const own = ownOfTag(tag); if (!same(line.own, own)) miss("G8", `${tag}: the records named as the number's own by their headword are not the ones the test gives`);
+        const n = Object.keys(own).length; const slot = row.unabridged_bdb_1906.length === 2 ? (n ? byHead.a_number_of_one_record.the_record_is_the_words : byHead.a_number_of_one_record.it_is_not) : n === 1 ? byHead.a_number_of_several_records.one_record_is_the_words : n ? byHead.a_number_of_several_records.several_are : byHead.a_number_of_several_records.none_is;
+        slot.tags += 1; slot.words += row.n[0];
+      } else if (line.own !== undefined) miss("G8", `${tag}: records are named as its own where it reaches none`);
       for (const k of DICTIONARIES) for (const id of row[k].slice(1)) named[k].add(id);
     }
     for (const k of INLINE) {
@@ -270,7 +344,7 @@ verdict("G7", "the sentences that say how the two editions meet are the rule's f
   }
   for (const tag of Object.keys(bridge.tags)) if (!seen.has(tag)) miss("G8", `${tag} of the bridge stands in no file`);
   const pt = pin.tags || {};
-  if (pt.tags !== seen.size || pt.files !== files || !same(pt.entries, entries)) miss("G11", "the tags, their files and the entries beside them, counted again, are not the pin's");
+  if (pt.tags !== seen.size || pt.files !== files || !same(pt.entries, entries) || !same(pt.unabridged_by_headword, byHead)) miss("G11", "the tags, their files and the entries beside them, counted again, are not the pin's");
   verdict("G8", "every tag stands in the one file its number names with the bridge's own line, and every entry beside it is the entry of entries/", `${N(seen.size)} tags in ${files} files; entries beside them: ${DICTIONARIES.map((k) => `${k} ${N(entries[k])}`).join(", ")}`);
 }
 

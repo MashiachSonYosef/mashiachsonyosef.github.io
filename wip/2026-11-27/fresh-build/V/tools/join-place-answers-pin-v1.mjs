@@ -54,6 +54,9 @@ function joined() {
     rule_id: RULE_ID,
     what: "the one pin of data/place-answers-v1/: the pin of each part, whole and as its builder wrote it, under the part's own key (parts.<key>.record), with the bytes and sha256 of the part's pin file",
     made_by: "tools/join-place-answers-pin-v1.mjs, the last step of tools/make-place-answers-v1.sh <sources folder>",
+    // the map of the sources folder the build was made from, kept beside the pins: what stands where in such a
+    // folder and each source's revision. tools/fetch-place-answers-sources-v1.sh fills a folder again from it.
+    sources_map: (() => { const p = join(DIR, "sources.json"); if (!existsSync(p)) return null; const buf = readFileSync(p); return { file: "sources.json", bytes: buf.length, sha256: createHash("sha256").update(buf).digest("hex") }; })(),
     parts,
   };
 }
@@ -73,6 +76,7 @@ if (CHECK) {
     if (!a && !b) { console.log(`  --  ${key}: not made here, and the pin does not name it`); continue; }
     check(`${key}: the pin holds the bytes of ${rel} as it stands`, !!a && !!b && a.sha256 === b.sha256 && a.bytes === b.bytes && JSON.stringify(a.record) === JSON.stringify(b.record), a && b ? `${b.bytes.toLocaleString("en-US")} bytes, sha256 ${b.sha256.slice(0, 12)}…` : a ? "the part's pin file is gone" : "the part was made after the join");
   }
+  check("the map of the sources folder beside the pins is the one the pin names", JSON.stringify((pin || {}).sources_map || null) === JSON.stringify(now.sources_map), now.sources_map ? `sources.json, sha256 ${now.sources_map.sha256.slice(0, 12)}…` : "no map is kept");
   check("the folder's pin is the join, byte for byte", have === text);
   console.log(bad ? `\n${bad} FAILED` : "\nthe one pin holds");
   process.exit(bad ? 1 : 0);
