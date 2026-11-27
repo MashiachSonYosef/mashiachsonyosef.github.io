@@ -234,3 +234,20 @@ That frame was never the fault. The fault was where the pills came from: the poo
 - **A cell no source reads** has no pills and says so.
 - **The line at rest does not move**, and a pressed pill sets the line as today.
 - **The proof:** the 70 card checks that were red only for want of this frame are run again at rest. Their laws are not edited.
+
+## 27 November, night: relay v223 from the corpus lane
+
+Moses answered all nine letters (relay v223). Copies of the letter and its register are in `../from-moses-v223/`; my answer is `../FOR-MOSES-2026-11-27-v223-received.md`.
+
+- **unfoldingWord and Hebrew Wikisource's Strong's**, both whole, are on the store as received:
+  - unfoldingWord's zip, commit 0a2b9bf1, 8,235 entries;
+  - Wikisource's nine pages, 8,674 entries, no revision recorded.
+  - **The ninth cut** (builder V7, `BRIEF-V7-CUT-9.md`, in S/s14 with the two tools H2 changed at cut 8 synced in) reads them by their own structure.
+- **The forty sources by their own address:** (a) 1, (a+b) 4, (b) 9, (c) 26. Beyond the ten already in the fresh build, four can come back by rule, one at a time:
+  - BiblicalTools (b);
+  - HiperBiblia's SDBH (the lane's stated bridge, 8,910 of 8,934);
+  - ETCBC's BHSA glosses (a, needing the files that put a slot in a verse);
+  - STEP's expanded Strong (already held in TAHOT's columns).
+  - The 26 of class (c), Davidson among them, stand only behind «readings matched by spelling».
+- **The unabridged BDB at Genesis 1:11:** the cause is in the file's own divisions (the niphal division runs on through the form lists while the stem in force at the reference is hiphil). The fresh build's reader already resolves it.
+- **For the owner:** the downloads for one pin (STEP 5de0a47f, UBS v0.9.4, and Wikisource's pages again to pin a revision); a word to STEP on its five slips; Davidson's place.
