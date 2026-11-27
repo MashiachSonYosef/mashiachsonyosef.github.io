@@ -1,0 +1,609 @@
+<!doctype html>
+<!--
+  THE SECOND READER (27 November 2026, the fresh build). One file, plain
+  JavaScript, no library. It shows the 39 books from data/place-answers-v1/page/
+  alone: a chapter of our Hebrew with STEP's English under each word, and a
+  card that says what each source says at this very word, by that source's own
+  address, and then each dictionary's own entry. It matches nothing by
+  letters and has no list of readings to choose from. It is not linked from
+  any page the site serves; it stands beside the reader so the two can be held
+  side by side. Its files are projected by tools/project-place-answers-page-v1.mjs
+  and held by tools/check-place-answers-page-v1.mjs.
+
+  The look is the reader's own (reader/zone.html): the same linen ground, the
+  same four dyes as variables, the same faces. Hebrew is red, as there.
+  No Hebrew letter is typed in this file: every one arrives in the data.
+
+  Address: place.html?b=<book>&c=<chapter>
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Word by word, source by source</title>
+<style>
+  /* the reader's palette, by the reader's own names (zone.html :root) */
+  :root {
+    color-scheme: light;
+    --bg: #ebdec3; --cell-wash: rgba(74, 48, 8, 0.06); --press-wash: #dccbaa;
+    --argaman: #642460; --argaman-dim: #753c6d;
+    --ink: var(--argaman); --ink-strong: var(--argaman); --muted: var(--argaman-dim); --faint: var(--argaman-dim);
+    --bronze: #6d523a; --bronze-dim: #7f6044; --silver: #53575b; --silver-dim: #6e7378; --gold: #967c26;
+    --line: var(--bronze-dim);
+    --shani: #a52035; --shani-dim: #be6367; --tekhelet: #23558a; --tekhelet-dim: #768ea2;
+    --shani-ink: var(--shani); --tekhelet-ink: var(--tekhelet);
+    --shadow-card: 0 14px 40px rgba(96, 80, 48, 0.30);
+    --card-h: 66vh;
+  }
+  @supports (height: 1svh) { :root { --card-h: 66svh; } }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Georgia, "Times New Roman", serif; overflow-x: hidden; }
+  /* the scroll's ground is woven linen: the reader's own body rule (zone.html), byte for byte */
+  body {
+    background-color: var(--bg);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.55' numOctaves='2' seed='21' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.01 0.03 0.05 0.07'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55 0.012' numOctaves='2' seed='22' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.01 0.025 0.045 0.06'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.18' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0.02 0.04 0.06 0.08'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.38 0 0 0 0 0.2 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.03 0.05 0.03 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 300px 300px, 300px 300px, 420px 420px, 600px 600px;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+    background-repeat: repeat, repeat, repeat, repeat;
+  }
+
+  @font-face { font-family: 'wordmark'; src: url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+  @font-face { font-family:'reading'; src:url('/fonts/reading-latin-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; unicode-range:U+0020-007E, U+00A0-00FF, U+2000-206F, U+FB01-FB02; }
+  @font-face { font-family:'reading'; src:url('/fonts/reading-ext-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; unicode-range:U+0100-024F, U+0370-03FF, U+1E00-1FFF, U+2100-22FF; }
+  .he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani-ink); direction: rtl; unicode-bidi: isolate; }
+  .rd { font-family: 'reading', Georgia, serif; font-weight: 500; color: var(--tekhelet-ink); }
+  a { color: var(--argaman-dim); }
+  button { font: inherit; color: inherit; }
+
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 0.9rem 0.85rem 2.5rem; }
+  header.top .home { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 0.2rem 0.85rem; background: var(--bg);
+    font-family: 'wordmark', Georgia, serif; font-weight: 600; letter-spacing: -0.01em; text-decoration: none; white-space: nowrap; font-size: 0.85rem; text-transform: none; }
+  .wm-fire { color: var(--shani); } .wm-and { color: var(--gold); } .wm-hail { color: var(--tekhelet); } .wm-tld { color: var(--argaman); }
+  header.top .kicker { margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
+  header.top h1 { margin: 0.2rem 0 0.1rem; font-size: 1.55rem; line-height: 1.2; font-weight: 400; color: var(--ink-strong); }
+  header.top .lede { margin: 0.2rem 0 0.6rem; font-size: 0.86rem; color: var(--muted); line-height: 1.45; }
+  nav.go { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0.5rem 0 0.2rem; }
+  nav.go a, nav.go button { border: 1px solid var(--line); border-radius: 0.5rem; background: var(--bg); padding: 0.28rem 0.7rem; font-size: 0.8rem; letter-spacing: 0.03em; cursor: pointer; text-decoration: none; color: var(--ink); min-height: 2.2rem; display: inline-flex; align-items: center; }
+  nav.go a[aria-disabled="true"] { opacity: 0.4; pointer-events: none; }
+  nav.go button[aria-expanded="true"] { background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
+  #toc { border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.6rem 0.7rem; margin: 0.5rem 0 0.8rem; background: var(--bg); }
+  #toc h2 { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 400; color: var(--faint); margin: 0.1rem 0 0.4rem; }
+  #toc .books, #toc .chs { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  #toc .books button, #toc .chs a { border: 1px solid var(--line); border-radius: 0.45rem; background: var(--bg); padding: 0.22rem 0.55rem; font-size: 0.8rem; cursor: pointer; text-decoration: none; color: var(--ink); min-height: 2rem; display: inline-flex; align-items: center; }
+  #toc .books button.on, #toc .chs a.on { background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
+  #toc .chs { margin-top: 0.6rem; } #toc .chs a { min-width: 2.2rem; justify-content: center; font-variant-numeric: tabular-nums; }
+
+  /* a verse: its number, then its words right to left, each with its English line (the reader's word block) */
+  .seg { margin: 0 0 0.55rem; }
+  .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; }
+  .vnum { font-size: 0.72rem; color: var(--ink-strong); border: 1px solid var(--bronze-dim); background: var(--bg); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+  .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0; font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; margin: 0 0.16rem 0.55rem; cursor: pointer; position: relative;
+    background: var(--cell-wash); border-radius: 0.4rem; padding: 0.08rem 0.24rem 0.16rem; -webkit-tap-highlight-color: transparent; }
+  .wb .w { display: block; color: var(--shani-ink); padding: 0.02em 0.3em; }
+  .wb .g { display: block; direction: ltr; font-family: 'reading', Georgia, serif; font-weight: 500; color: var(--tekhelet-ink); font-size: 0.8rem; line-height: 1.25; max-width: 9.5em; text-align: center; overflow-wrap: anywhere; min-height: 1em; }
+  .wb .note { display: block; direction: ltr; font: 0.6rem/1.2 Georgia, serif; letter-spacing: 0.05em; color: var(--faint); text-align: center; }
+  .wb.active { background: var(--press-wash); outline: 1.5px solid var(--bronze); outline-offset: 3px; }
+  .wb:focus-visible { outline: 2px solid var(--tekhelet); outline-offset: 2px; }
+  /* a pair: both forms as our text writes them, side by side, the English under the form that is read */
+  .wb.pair { flex-direction: row; align-items: flex-start; gap: 0.1rem; }
+  .wb.pair .fm { display: flex; flex-direction: column; align-items: center; }
+  /* ink that is not a word: no wash, a bronze frame, the page's neutral ink */
+  .wb.mark { background: none; padding: 0; cursor: default; }
+  .wb.mark .w { font-size: 0.8em; letter-spacing: 0.06em; border: 1px solid var(--bronze-dim); color: var(--muted); border-radius: 0.5em; }
+  /* where the two editions differ in the word: a small ring in the cell's corner; the card says how */
+  .wb.dif::after { content: ""; position: absolute; top: -4px; inset-inline-end: -4px; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--bronze); background: var(--bg); }
+  #status { font-size: 0.85rem; color: var(--muted); font-style: italic; margin: 1rem 0; }
+
+  footer#credits { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 0.8rem; font-size: 0.78rem; line-height: 1.5; color: var(--muted); }
+  footer#credits h2 { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 400; color: var(--faint); margin: 0 0 0.4rem; }
+  footer#credits p { margin: 0 0 0.5rem; overflow-wrap: anywhere; }
+  footer#credits b { font-weight: 400; color: var(--ink-strong); }
+  body.card-open .wrap { padding-bottom: calc(var(--card-h) + 2rem); }
+
+  /* THE CARD: a sheet that does not move while it is open. It is fixed to the foot of the window at one
+     height; what is opened inside it scrolls inside it. */
+  #card { position: fixed; left: 0; right: 0; bottom: 0; height: var(--card-h); z-index: 20; background: var(--bg); border-top: 1.5px solid var(--bronze);
+    box-shadow: var(--shadow-card); display: flex; flex-direction: column; }
+  #card[hidden] { display: none; }
+  #card .c-in { width: 100%; max-width: 46rem; margin: 0 auto; display: flex; flex-direction: column; min-height: 0; flex: 1 1 auto; }
+  #card .c-head { flex: none; display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0.85rem 0.4rem; border-bottom: 1px solid var(--bronze-dim); }
+  #card .c-word { font-size: 1.7rem; line-height: 1.2; flex: 1 1 auto; text-align: right; }
+  #card .c-at { flex: none; font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); padding-top: 0.5rem; text-align: left; }
+  #card .c-at b { display: block; font-weight: 400; color: var(--ink-strong); font-size: 0.8rem; }
+  #card .c-close { flex: none; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--bg); padding: 0.25rem 0.7rem; font-size: 0.8rem; cursor: pointer; min-height: 2.2rem; }
+  #card .c-body { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 0.5rem 0.85rem 1.4rem; }
+  #card h3 { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 400; color: var(--faint); margin: 0.9rem 0 0.3rem; }
+  #card h3:first-child { margin-top: 0.1rem; }
+  #card .say { margin: 0 0 0.5rem; padding: 0.35rem 0.55rem; border: 1px dashed var(--bronze-dim); border-radius: 0.45rem; font-size: 0.84rem; line-height: 1.4; color: var(--ink); }
+  #card .say .he { font-size: 1.15rem; }
+  #card .say p { margin: 0 0 0.25rem; } #card .say p:last-child { margin: 0; }
+  #card .form-h { font-size: 0.8rem; color: var(--muted); margin: 0.6rem 0 0.2rem; }
+  #card .form-h .he { font-size: 1.15rem; }
+  .row { border-top: 1px solid rgba(127, 96, 68, 0.35); padding: 0.4rem 0 0.42rem; }
+  .row:first-of-type { border-top: none; }
+  .row .src { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.5rem; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted); }
+  .row .src b { font-weight: 400; color: var(--ink-strong); font-size: 0.8rem; letter-spacing: 0.02em; }
+  .lic { font-size: 0.62rem; letter-spacing: 0.05em; border: 1px solid var(--bronze-dim); border-radius: 999px; padding: 0 0.42rem; color: var(--muted); white-space: nowrap; }
+  .row .line { margin: 0.12rem 0 0; font-size: 0.95rem; line-height: 1.45; overflow-wrap: anywhere; }
+  .row .line .he { font-size: 1.2rem; }
+  .row .sub { margin: 0.1rem 0 0; font-size: 0.76rem; color: var(--muted); line-height: 1.4; }
+  .row .sub .he { font-size: 1.02rem; }
+  .plus { color: var(--faint); padding: 0 0.3em; }
+  .open { margin-top: 0.3rem; border: 1px solid var(--line); border-radius: 0.45rem; background: var(--bg); padding: 0.2rem 0.6rem; font-size: 0.74rem; letter-spacing: 0.03em; cursor: pointer; min-height: 2rem; }
+  .open[aria-expanded="true"] { background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
+  .entry { margin: 0.4rem 0 0.1rem; padding: 0.45rem 0.55rem; border: 1px solid var(--bronze-dim); border-radius: 0.45rem; font-size: 0.86rem; line-height: 1.5; overflow-wrap: anywhere; }
+  .entry[hidden] { display: none; }
+  .entry .he { font-size: 1.12rem; }
+  .entry p { margin: 0 0 0.35rem; } .entry p:last-child { margin: 0; }
+  .entry .k { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin-right: 0.4em; }
+  .entry .how { font-size: 0.74rem; color: var(--muted); font-style: italic; }
+  .entry ol.rend { margin: 0.1rem 0 0.4rem; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 0.25rem 0.3rem; }
+  .entry ol.rend li { border: 1px solid rgba(127, 96, 68, 0.45); border-radius: 0.4rem; padding: 0 0.4rem; }
+  .entry ol.rend li .sign { color: var(--shani-dim); padding-right: 0.25em; }
+  .entry ol.rend li small { display: block; font-size: 0.66rem; color: var(--muted); line-height: 1.3; }
+  .entry .def { font-family: 'reading', Georgia, serif; font-weight: 500; color: var(--tekhelet-ink); }
+  .sense { margin: 0.2rem 0 0.2rem 0; padding-left: 0.7rem; border-left: 1px solid rgba(127, 96, 68, 0.35); }
+  .sense > .lab { font-weight: 400; color: var(--ink-strong); margin-right: 0.35em; }
+  .cited { background: var(--press-wash); outline: 1px solid var(--bronze); border-radius: 0.3rem; }
+  .cited-note { font: 0.68rem/1.3 Georgia, serif; letter-spacing: 0.05em; color: var(--bronze); margin-left: 0.5em; white-space: nowrap; border: 1px solid var(--bronze-dim); border-radius: 999px; padding: 0 0.4rem; }
+  .unit > .cited-note, .sense > .cited-note { display: table; margin: 0.1rem 0 0.2rem; }
+  .cited { padding-right: 0.35rem; }
+  .unit { margin: 0.25rem 0; } .unit.point { padding-left: 0.6rem; border-left: 1px solid rgba(127, 96, 68, 0.35); } .unit.sub { padding-left: 1.3rem; border-left: 1px solid rgba(127, 96, 68, 0.2); }
+  .entry em { font-style: italic; } .entry em.gl { font-style: normal; font-family: 'reading', Georgia, serif; font-weight: 500; color: var(--tekhelet-ink); }
+  .entry em.gr { color: var(--silver-dim); } .entry .ref { color: var(--silver); font-size: 0.82em; white-space: nowrap; } .entry .gap { color: var(--silver-dim); font-size: 0.8em; }
+  .records { margin: 0.2rem 0 0; padding: 0; list-style: none; }
+  .records li { margin: 0.25rem 0; padding-left: 0.6rem; border-left: 2px solid rgba(127, 96, 68, 0.35); }
+  .c-credit { margin-top: 1rem; font-size: 0.7rem; line-height: 1.45; color: var(--muted); border-top: 1px solid rgba(127, 96, 68, 0.35); padding-top: 0.5rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <p class="kicker"><a class="home" href="/"><span class="wm-fire">fire</span><span class="wm-and">and</span><span class="wm-hail">hail</span><span class="wm-tld">.com</span></a><span>a second reader, on trial</span></p>
+    <h1 id="title">&nbsp;</h1>
+    <p class="lede">Under each word stands the English that STEP Bible gives for it. Press a word to see what each source says at that very word, and then each dictionary's own entry for it. Nothing on this page is matched by spelling: every line stands where its source puts it.</p>
+    <nav class="go" aria-label="Chapters">
+      <a id="prev" href="#" aria-disabled="true">&#8249; Previous</a>
+      <button id="tocBtn" type="button" aria-expanded="false" aria-controls="toc">Books and chapters</button>
+      <a id="next" href="#" aria-disabled="true">Next &#8250;</a>
+    </nav>
+  </header>
+  <nav id="toc" hidden aria-label="Books and chapters"><h2>Books</h2><div class="books"></div><div class="chs"></div></nav>
+  <p id="status">Opening the chapter&hellip;</p>
+  <main id="chapter"></main>
+  <footer id="credits" hidden></footer>
+</div>
+<aside id="card" hidden aria-label="What each source says at this word">
+  <div class="c-in">
+    <div class="c-head"><div class="c-at" id="cAt"></div><div class="c-word he" id="cWord"></div><button class="c-close" id="cClose" type="button">Close</button></div>
+    <div class="c-body" id="cBody"></div>
+  </div>
+</aside>
+<script>
+"use strict";
+// ---------------------------------------------------------------- small tools
+const DATA = "data/place-answers-v1/page/";
+const $ = (id) => document.getElementById(id);
+/** An element with a class and text or children. */
+function el(tag, cls, ...kids) { const n = document.createElement(tag); if (cls) n.className = cls; for (const k of kids) if (k !== null && k !== undefined && k !== "") n.append(k); return n; }
+/** A file of the page's data: plain JSON, or the gzip of JSON (.json.gz), fetched once. */
+const fetched = new Map();
+function getFile(rel) {
+  if (!fetched.has(rel)) fetched.set(rel, (async () => {
+    const r = await fetch(DATA + rel); if (!r.ok) throw new Error(`${rel}: ${r.status}`);
+    if (!rel.endsWith(".gz")) return r.json();
+    return new Response(r.body.pipeThrough(new DecompressionStream("gzip"))).json();
+  })());
+  return fetched.get(rel);
+}
+/** For printing only: a source file's own character references resolved (the data keeps them as the file
+ *  writes them, so that every string is the file's). The unabridged BDB's file writes a backslash before
+ *  the wide space that indents a lettered point; the two are a blank here. */
+const NAMED = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", emsp: " ", nbsp: " " };
+const printable = (s) => String(s).replace(/\\?&(#x[0-9A-Fa-f]+|#[0-9]+|amp|lt|gt|quot|apos|emsp|nbsp);/g, (all, r) => (r[0] === "#" ? String.fromCodePoint(r[1] === "x" ? parseInt(r.slice(2), 16) : parseInt(r.slice(1), 10)) : NAMED[r]));
+const tidy = (s) => printable(s).replace(/\s+/g, " ").trim();
+const he = (s) => el("span", "he", s);
+const rd = (s) => el("span", "rd", s);
+const lic = (s) => el("span", "lic", s);
+const pad3 = (n) => String(n).padStart(3, "0");
+const tagFile = (tag) => `entries/t/${pad3(Math.floor(Number(tag.slice(1, 5)) / FILED.tags_a_file))}.json.gz`;
+const unFile = (id) => `entries/u/${pad3(Math.floor(Number(id.slice(3)) / FILED.unabridged_records_a_file))}.json.gz`;
+const stepsOwn = (tag) => /^H9\d\d\d$/.test(tag);
+/** The number in a tag as STEP writes it (a written form's tag can come with its brackets and a blank). */
+const numberOf = (tag) => (/H\d{4}[A-Za-z]?/.exec(tag || "") || [null])[0];
+let FILED = { tags_a_file: 50, unabridged_records_a_file: 50 };
+
+// what each source is called on this page, and its license (plain names; the credits at the foot say the rest)
+const SRC = {
+  step: ["STEP Bible", "CC BY 4.0"],
+  macula: ["MACULA Hebrew", "CC BY 4.0"],
+  stepbible_tbesh_gloss: ["STEP Bible's brief lexicon", "CC BY 4.0"],
+  openscriptures_strongs: ["Strong's dictionary", "Open Scriptures file, CC BY 4.0"],
+  openscriptures_bdb_1906: ["Brown-Driver-Briggs, the Open Scriptures file", "CC BY 4.0"],
+  unabridged_bdb_1906: ["Brown-Driver-Briggs, unabridged", "public domain"],
+  ubs_sdbh_hebrew_v0_9_2: ["UBS Dictionary of Biblical Hebrew", "CC BY-SA 4.0"],
+  openscriptures_lexical_index: ["Lexical Index", "Open Scriptures, CC BY 4.0"],
+  unfoldingword_uhal: ["unfoldingWord Hebrew and Aramaic Lexicon", "CC BY-SA 4.0"],
+};
+const srcHead = (key, extra) => { const d = el("div", "src", el("b", "", SRC[key][0]), lic(SRC[key][1])); if (extra) d.append(el("span", "", extra)); return d; };
+// how a number reaches an entry, in plain words, by the letter the data gives
+const REACHED = { N: "found by the number alone", L: "found by the number and its letter", T: "filed under STEP's own number", E: "found by the number and the letter that STEP's list and the Lexical Index both give", S: "several lines of the index name this one entry" };
+const ABSENT = { 0: "This dictionary has no entry under this number.", H: "This dictionary has an entry for the number, but its file is not on hand here.", B: "The index names no entry of Brown-Driver-Briggs for this number.", P: "This is STEP's own number; no dictionary is filed under it." };
+const KIND_WORDS = ["", "written and read", "written, not read", "read, not written"];
+
+// ---------------------------------------------------------------- the chapter
+const params = new URLSearchParams(location.search);
+let INDEX = null, BOOK = null, CH = null, DOC = null;
+const state = { open: null, times: [], errors: [] };
+window.__place = state;
+window.addEventListener("error", (e) => state.errors.push(String(e.message)));
+window.addEventListener("unhandledrejection", (e) => state.errors.push(String(e.reason && e.reason.message || e.reason)));
+
+/** STEP's English under a word: its parts as STEP writes them, joined with « + » (a part with no English left out). */
+const lineOf = (f) => (f.t && f.t.p ? f.t.p.map((p) => (p[0] === null ? "" : p[0].trim())).filter(Boolean).join(" + ") : "");
+
+function drawChapter() {
+  const main = $("chapter"); main.replaceChildren();
+  $("title").textContent = `${DOC.title} ${DOC.chapter}`; document.title = `${DOC.title} ${DOC.chapter} · word by word, source by source`;
+  for (const v of DOC.verses) {
+    const sec = el("section", "seg"); const p = el("p", "he-text");
+    sec.append(el("div", "seg-row", el("span", "vnum", v.l)), p);
+    let n = 0;
+    v.e.forEach((e, ei) => {
+      if (e.m !== undefined) { const m = el("span", "wb mark", el("span", "w", e.s)); if (DOC.marks[e.m]) m.title = DOC.marks[e.m]; p.append(m, " "); return; }
+      n += 1;
+      const wb = el("span", "wb"); wb.setAttribute("role", "button"); wb.tabIndex = 0; wb.dataset.v = v.l; wb.dataset.e = String(ei); wb.dataset.n = String(n);
+      if (e.f.some((f) => f.t && f.t.d)) { wb.classList.add("dif"); wb.setAttribute("aria-description", "the two editions differ at this word"); }
+      if (e.f.length > 1 || e.k) {
+        // a pair, or a word only written or only read: each form as our text writes it; the English under the form that is read
+        wb.classList.add("pair");
+        for (const f of e.f) {
+          const read = f.r !== 2; const fm = el("span", "fm", el("span", "w", f.s || e.s));
+          fm.append(el("span", "g", read || e.k === 2 ? lineOf(f) : ""), el("span", "note", e.k === 2 ? "written, not read" : e.k === 3 ? "read, not written" : read ? "read" : "written"));
+          wb.append(fm);
+        }
+      } else wb.append(el("span", "w", e.s), el("span", "g", lineOf(e.f[0])));
+      p.append(wb, " ");
+    });
+    main.append(sec);
+  }
+  $("status").hidden = true;
+}
+
+function drawToc() {
+  const books = $("toc").querySelector(".books"), chs = $("toc").querySelector(".chs");
+  const show = (b) => {
+    for (const x of books.children) x.classList.toggle("on", x.dataset.b === b.book);
+    chs.replaceChildren(...b.chapters.map((c) => { const a = el("a", b.book === BOOK && c === CH ? "on" : "", String(c)); a.href = `?b=${b.book}&c=${c}`; return a; }));
+  };
+  books.replaceChildren(...INDEX.books.map((b) => { const x = el("button", "", b.title); x.type = "button"; x.dataset.b = b.book; x.addEventListener("click", () => show(b)); return x; }));
+  show(INDEX.books.find((b) => b.book === BOOK));
+  $("tocBtn").addEventListener("click", () => { const open = $("toc").hidden; $("toc").hidden = !open; $("tocBtn").setAttribute("aria-expanded", String(open)); });
+  // the chapter before and after, across books in the list's own order
+  const flat = []; for (const b of INDEX.books) for (const c of b.chapters) flat.push([b.book, c]);
+  const at = flat.findIndex(([b, c]) => b === BOOK && c === CH);
+  for (const [id, to] of [["prev", flat[at - 1]], ["next", flat[at + 1]]]) if (to) { $(id).href = `?b=${to[0]}&c=${to[1]}`; $(id).removeAttribute("aria-disabled"); }
+}
+
+function drawCredits() {
+  const f = $("credits"); const S = INDEX.sources; const rev = (k) => ((S[k] || {}).revision || (((S[k] || {}).files || [])[0] || {}).revision || "");
+  const link = (href, text) => { const a = el("a", "", text || href.replace(/^https?:\/\//, "")); a.href = href; a.rel = "noopener"; return a; };
+  const p = (...kids) => el("p", "", ...kids);
+  f.replaceChildren(el("h2", "", "Whose words these are"));
+  // our text, as the reader credits it: the fields of the book's own credit line
+  { const fields = DOC.credit.split(" | ").map((kv) => { const i = kv.indexOf(": "); return i > 0 ? [kv.slice(0, i), kv.slice(i + 2)] : [null, kv]; });
+    const SAY = { "Title": "title", "Version": "edition", "Provider metadata": "from", "Source": "source", "License": "license" };
+    const line = p(el("b", "", "The Hebrew text. "));
+    for (const [k, v] of fields) { if (!SAY[k]) continue; line.append(`${SAY[k]} `); if (k === "Source" && /^https?:\/\//.test(v)) { let shown = v; try { shown = new URL(v).hostname; } catch { /* as written */ } line.append(link(v, shown)); } else line.append(v); line.append(" · "); }
+    line.lastChild.remove(); f.append(line); }
+  f.append(
+    p(el("b", "", "STEP Bible. "), "The English under each word, the division of a word into its parts, the number on each part and the brief lexicon are data created by STEPBible.org based on work at Tyndale House, Cambridge (CC BY 4.0). Source: ", link("https://STEPBible.github.io/STEPBible-Data", "STEPBible.github.io/STEPBible-Data"), `. Revision ${rev("step_tahot")}.`),
+    p(el("b", "", "MACULA. "), "MACULA Hebrew Linguistic Datasets, available at ", link("https://github.com/Clear-Bible/macula-hebrew/"), ` (CC BY 4.0). Its English is from the Cherith Glosses for the Hebrew Old Testament, by Andi Wu, © 2022 Cherith Analytics (CC BY 4.0). Revision ${rev("macula_hebrew")}.`),
+    p(el("b", "", "UBS Dictionary of Biblical Hebrew. "), "© United Bible Societies, 2023. Adapted from Semantic Dictionary of Biblical Hebrew © 2000-2023 United Bible Societies. Licensed under ", link("http://creativecommons.org/licenses/by-sa/4.0/", "CC BY-SA 4.0"), ". Shown here in part: each sense with its glosses, definition and fields, and the count of the verses it cites in place of the list. ", link("https://github.com/ubsicap/ubs-open-license"), `, ${rev("ubs_sdbh_hebrew_v0_9_2")}.`),
+    p(el("b", "", "Strong's dictionary, Brown-Driver-Briggs and the Lexical Index, the Open Scriptures files. "), "From the Open Scriptures Hebrew Bible Project's Hebrew Lexicon (CC BY 4.0); Strong's dictionary (1890) and Brown, Driver and Briggs (1906) are in the public domain. ", link("https://github.com/openscriptures/HebrewLexicon"), `, revision ${rev("openscriptures_strongs")}. Where that file of Strong's has lost a sign, the sign named is the one the Hebrew Wikisource edition of Strong's writes (CC BY-SA 4.0).`),
+    p(el("b", "", "Brown-Driver-Briggs, unabridged. "), "The Brown-Driver-Briggs Hebrew and English Lexicon: a public domain document; formatting developed for use in marvel.bible by Eliran Wong; source provided by Tim Morton, the developer of Bible Analyzer; Scripture references parsed by Stephen Ku and his associates. ", link("https://github.com/eliranwong/unabridged-BDB-Hebrew-lexicon"), `, revision ${rev("unabridged_bdb_1906")}.`),
+    p(el("b", "", "unfoldingWord Hebrew and Aramaic Lexicon. "), "© unfoldingWord (CC BY-SA 4.0). Only some of its entries are on hand here."),
+    p("Every line on this page stands where its source puts it: at this verse and word, or under the number STEP gives the word. The file and revision of each source are written in this page's data (", link(DATA + "index.json", "index.json"), ")."),
+  );
+  f.hidden = false;
+}
+
+// ---------------------------------------------------------------- the card
+/** The line of a row: a list of pieces joined by a plus sign. */
+const joinPlus = (nodes) => { const out = []; nodes.forEach((n, i) => { if (i) out.push(el("span", "plus", "+")); out.push(n); }); return out; };
+
+/** What each source says at this very word: one row a source, in a fixed order; a source with no answer is not drawn. */
+function drawHere(f, body) {
+  const t = f.t;
+  if (t && t.p) {
+    const row = el("div", "row", srcHead("step"));
+    row.append(el("p", "line", ...joinPlus(t.p.map((p) => el("span", "", he(p[3]), " ", p[0] === null ? el("span", "gap", "(no English given)") : rd(p[0].trim()))))));
+    row.append(el("p", "sub", `STEP's own address: ${t.rows.join(" + ")}`));
+    body.append(row);
+  } else if (t && t.other) {
+    const row = el("div", "row", srcHead("step", "another word stands here in its text"));
+    row.append(el("p", "line", ...joinPlus(t.other.map((p) => el("span", "", he(p[0]), " ", p[1] === null ? "" : rd(p[1].trim()))))), el("p", "sub", `STEP's own address: ${t.rows.join(" + ")}. Its reading is not laid on this word.`));
+    body.append(row);
+  }
+  const m = f.m || f.mo;
+  if (m) {
+    const row = el("div", "row", srcHead("macula", f.mo ? "another word stands here in its text" : ""));
+    row.append(el("p", "line", ...joinPlus(m.map((x) => el("span", "", he(x[2]), " ", rd(x[0]), x[1] && x[1] !== x[0] ? el("span", "gap", ` (${x[1]})`) : "")))));
+    if (m.some((x) => x[1] && x[1] !== x[0])) row.append(el("p", "sub", "MACULA gives two English columns: its gloss in the sentence, and in brackets its plain English word."));
+    body.append(row);
+  }
+  const h = f.h || {};
+  if (h.u) {
+    const very = h.u.filter((u) => u[1] < 2), verse = h.u.filter((u) => u[1] >= 2);
+    const glosses = (u) => (u[2].length ? u[2].map((g) => `«${tidy(g)}»`).join(", ") : "(a sense with no gloss)");
+    if (very.length) {
+      const row = el("div", "row", srcHead("ubs_sdbh_hebrew_v0_9_2", "cites this very word"));
+      // a sense under the entry STEP's number reaches is the word's own; one found by MACULA's dictionary form names the part it stands on
+      for (const u of very) row.append(el("p", "line", u[1] === 1 ? he(u[3]) : "", u[1] === 1 ? " " : "", rd(glosses(u)), u[1] === 1 ? el("span", "gap", " *") : ""));
+      if (very.some((u) => u[1] === 1)) row.append(el("p", "sub", "* STEP's number for this part reaches no entry of this dictionary; the entry is the one under MACULA's dictionary form of the part."));
+      body.append(row);
+    }
+    if (verse.length) {
+      const row = el("div", "row", srcHead("ubs_sdbh_hebrew_v0_9_2", "cites this verse"));
+      for (const u of verse) row.append(el("p", "line", rd(glosses(u))));
+      row.append(el("p", "sub", "The dictionary counts the words of a verse in its own way. Here its count does not land on this word, so this is said of the verse, under the same entry, and not of the word."));
+      body.append(row);
+    }
+  }
+  if (h.o) {
+    const row = el("div", "row", srcHead("openscriptures_bdb_1906", "cites this verse"));
+    for (const o of h.o) row.append(el("p", "line", o[2] ? el("span", "gap", `${o[2]} `) : "", rd(o[3].length ? o[3].map((d) => `«${tidy(d)}»`).join(", ") : "(no meaning is marked in this sense)")));
+    body.append(row);
+  }
+  if (h.b) {
+    const row = el("div", "row", srcHead("unabridged_bdb_1906", "cites this verse"));
+    for (const b of h.b) row.append(el("p", "line", he(b[7]), " ", el("span", "gap", `${[b[4], b[5]].filter(Boolean).join(" ") || "the opening"} `), b[6].length ? rd(b[6].map((d) => `«${tidy(d)}»`).join(", ")) : ""));
+    const many = Math.max(...h.b.map((b) => b[8]));
+    if (many > 1) row.append(el("p", "sub", `STEP's number for this word reaches ${many} records of this file, and nothing in the files says which is meant; the record shown is the one that cites this verse.`));
+    body.append(row);
+  }
+}
+
+// ---- each dictionary's entry, in the dictionary's own structure
+/** A stretch of text with marked runs: marks are [offset, length, how to wrap]. */
+function marked(text, from, to, marks) {
+  const out = []; let at = from;
+  for (const [a, n, wrap] of marks.filter((m) => m[0] >= from && m[0] + m[1] <= to).sort((x, y) => x[0] - y[0])) { if (a < at) continue; if (a > at) out.push(printable(text.slice(at, a))); out.push(wrap(printable(text.slice(a, a + n)))); at = a + n; }
+  if (at < to) out.push(printable(text.slice(at, to)));
+  return out;
+}
+const kv = (k, ...v) => el("p", "", el("span", "k", k), ...v);
+
+const DRAW = {
+  stepbible_tbesh_gloss: {
+    first: (e) => [he(e.Hebrew), " ", rd(`«${tidy(e.Gloss)}»`)],
+    whole: (e) => [kv("STEP's number", e.uStrong), kv("Strong's number", e.eStrong), kv("word", he(e.Hebrew), ` ${e.Transliteration}`), kv("kind", e.Morph), kv("gloss", rd(tidy(e.Gloss))), e.relation ? kv("STEP's note", tidy(e.relation)) : null],
+  },
+  openscriptures_strongs: {
+    first: (e) => { const r = ((e.usage || {}).renderings || []).filter((x) => !x.empty); if (!r.length) return [el("span", "gap", "(no list of renderings)")]; const show = r.slice(0, 8).map((x) => (x.sign ? `${x.sign} ` : "") + tidy(x.t)).join(" · "); return [rd(show), r.length > 8 ? el("span", "gap", ` … (${r.length} in his list)`) : ""]; },
+    whole: (e) => {
+      const out = [el("p", "", he(e.w.t), ` ${e.w.pron ? `(${e.w.pron}) ` : ""}${e.w.pos || ""}`)];
+      const field = (name, f) => { if (!f) return; const marks = []; for (const d of f.defs || []) marks.push([d[0], d[1], (s) => el("span", "def", s)]); for (const w of f.words || []) marks.push([w.at, w.t.length, (s) => he(s)]); out.push(kv(name, ...marked(f.t, 0, f.t.length, marks))); };
+      field("derivation", e.source); field("meaning", e.meaning);
+      const u = e.usage;
+      if (u) {
+        const r = (u.renderings || []).filter((x) => !x.empty);
+        out.push(kv("his list of renderings", `as he lists it${r.some((x) => x.sign) ? "; × marks a rendering from a Hebrew idiom, + one made with other words" : ""}`));
+        const ol = el("ol", "rend");
+        for (const x of r) { const li = el("li", "", x.sign ? el("span", "sign", x.sign) : "", tidy(x.t));
+          if (x.lost_sign_trace && x.wikisource_sign) li.append(el("small", "", `this file lost a sign here; the Wikisource edition writes ${x.wikisource_sign}`));
+          if (x.lost_sign_trace_inside && x.as_wikisource_writes_it) li.append(el("small", "", `a sign is lost inside; the Wikisource edition writes ${tidy(x.as_wikisource_writes_it)}`));
+          if (x.unbalanced) li.append(el("small", "", "the file's brackets do not balance here; kept whole, as written"));
+          ol.append(li); }
+        out.push(ol);
+        if (u.after_list) out.push(kv("after his list", tidy(u.after_list.t)));
+      }
+      for (const n of e.provider_notes || []) out.push(el("p", "how", `Open Scriptures' note: ${tidy(typeof n === "string" ? n : n.t)}`));
+      return out;
+    },
+  },
+  openscriptures_lexical_index: {
+    first: (e) => [he(e.w), " ", e.def !== undefined ? rd(`«${tidy(e.def)}»`) : el("span", "gap", "(no gloss)")],
+    whole: (e) => [kv("word", he(e.w), ` ${e.xlit || ""} ${e.pos || ""}`), e.def !== undefined ? kv("gloss", rd(tidy(e.def))) : null, kv("points to", [e.xref.bdb ? `Brown-Driver-Briggs ${e.xref.bdb}` : "", e.xref.strong ? `Strong's ${e.xref.strong}${e.xref.aug || ""}` : "", e.xref.twot ? `TWOT ${e.xref.twot}` : ""].filter(Boolean).join(" · "))],
+  },
+  openscriptures_bdb_1906: {
+    first: (e) => {
+      // the meanings the file marks, in its order, grouped by the sense each stands in: the first group is the line
+      const seen = new Set(); const groups = [];
+      for (const df of e.defs || []) { if (df.phrase) { if (seen.has(df.phrase.at)) continue; seen.add(df.phrase.at); } const key = df.sense ? df.sense.join(".") : ""; let g = groups[groups.length - 1]; if (!g || g.key !== key) { g = { key, d: [] }; groups.push(g); } g.d.push(tidy(df.phrase ? df.phrase.t : df.joined ? df.joined.whole : df.t)); }
+      const w = (e.w || [])[0]; const more = groups.slice(1).reduce((a, g) => a + g.d.length, 0);
+      return [w ? he(w.t) : "", " ", groups.length ? rd(groups[0].d.map((x) => `«${x}»`).join(", ")) : el("span", "gap", "(no meaning is marked in this entry)"), more ? el("span", "gap", ` … and ${more} more in its senses`) : ""];
+    },
+    whole: (e, cited) => {
+      // the entry's running text, its senses in their own nesting; the meanings the file marks are drawn as glosses
+      const marks = []; for (const d of e.defs || []) marks.push([d.at, d.t.length, (s) => el("span", "def", s)]); for (const w of e.w || []) marks.push([w.at, w.t.length, (s) => he(s)]);
+      const text = e.text; const top = e.senses || []; const out = [];
+      const run = (a, b) => { const p = el("span", "", ...marked(text, a, b, marks)); return p; };
+      out.push(el("p", "", run(0, top.length ? top[0].at : text.length)));
+      const sense = (s, path) => {
+        const kids = s.senses || []; const label = s.n !== undefined ? `${s.n}.` : ""; // a stem's name (Qal, Niph.) stands in the sense's own text
+        const d = el("div", "sense", label ? el("span", "lab", label) : "", run(s.at, kids.length ? kids[0].at : s.at + s.len));
+        if (cited.has(path.join("."))) { d.classList.add("cited"); d.append(el("span", "cited-note", "cites this verse")); }
+        kids.forEach((k, i) => d.append(sense(k, [...path, i])));
+        return d;
+      };
+      top.forEach((s, i) => out.push(sense(s, [i])));
+      if (cited.has("")) out.push(el("p", "how", "This verse is cited in the entry outside its numbered senses."));
+      out.push(el("p", "how", `${e.type === "root" ? "A root entry. " : ""}${e.status && e.status.p ? `Page ${e.status.p} of the lexicon. ` : ""}The file's own account: a work in progress; it marks the meanings and keeps the outline of the senses, not the whole of the printed entry.`));
+      return out;
+    },
+  },
+  ubs_sdbh_hebrew_v0_9_2: {
+    first: (e) => { const s = []; for (const b of e.BaseForms || []) for (const m of b.LEXMeanings || []) s.push((((m.LEXSenses || [])[0] || {}).Glosses || []).map((g) => `«${tidy(g)}»`).join(", ") || "(no gloss)"); return [he(e.Lemma), " ", rd(s.slice(0, 3).join(" | ")), s.length > 3 ? el("span", "gap", ` … (${s.length} senses)`) : ""]; },
+    whole: (e, cited) => {
+      const out = [el("p", "", he(e.Lemma), (e.StrongCodes || []).length ? ` · its numbers: ${e.StrongCodes.join(", ")}` : "")];
+      (e.BaseForms || []).forEach((b, bi) => {
+        out.push(el("p", "", el("span", "k", `base form ${bi + 1}`), (b.PartsOfSpeech || []).join(", ")));
+        for (const m of b.LEXMeanings || []) {
+          const s = (m.LEXSenses || [])[0] || {}; const d = el("div", "sense", rd((s.Glosses || []).map((g) => `«${tidy(g)}»`).join(", ") || "(no gloss)"));
+          if (cited.has(m.LEXID)) { d.classList.add("cited"); d.append(el("span", "cited-note", "cites this place")); }
+          if (s.DefinitionShort) d.append(el("p", "", tidy(s.DefinitionShort)));
+          const facts = []; if ((m.LEXForms || []).length) facts.push(m.LEXForms.join(", ")); if ((m.LEXDomains || []).length) facts.push(`field: ${m.LEXDomains.map((x) => x.Domain).join(", ")}`); facts.push(`cited at ${m.verses_cited} ${m.verses_cited === 1 ? "place" : "places"}`);
+          const fp = el("p", "how", facts.join(" · ")); if ((m.LEXCollocations || []).length) { fp.append(" · with "); m.LEXCollocations.forEach((c, i) => { if (i) fp.append(", "); fp.append(he(c)); }); } d.append(fp);
+          if (s.Comments) d.append(el("p", "how", tidy(s.Comments)));
+          out.push(d);
+        }
+      });
+      return out;
+    },
+  },
+  unfoldingword_uhal: {
+    first: (e) => { const g = []; for (const s of e.senses || []) for (const x of s.glosses || []) g.push(tidy(x.t)); return [he(e.headword.t), " ", g.length ? rd(g.slice(0, 6).map((x) => `«${x}»`).join(", ")) : el("span", "gap", "(no gloss)"), g.length > 6 ? el("span", "gap", ` … (${g.length})`) : ""]; },
+    whole: (e) => [el("p", "", he(e.headword.t), ` ${e.part_of_speech ? tidy(e.part_of_speech.t) : ""}`), ...(e.senses || []).map((s) => el("div", "sense", el("span", "lab", `sense ${s.label}`), s.title ? `${tidy(s.title.t)} ` : "", rd((s.glosses || []).map((x) => `«${tidy(x.t)}»`).join(", ")), (s.citations || []).length ? el("p", "how", `cites ${s.citations.map((c) => tidy(c.t)).join("; ")}`) : ""))],
+  },
+};
+
+/** One line for a record of the unabridged BDB, from the head a tag's file holds of it. */
+function unabridgedFirst(hd, several) {
+  const main = (hd.head.italics || []).filter((x) => x.kind === "main_gloss").map((x) => tidy(x.t)); const open = (hd.head.italics || []).filter((x) => x.kind === "opening").map((x) => tidy(x.t));
+  return [hd.head.headword ? he(hd.head.headword.t) : "", " ", main.length ? rd(main.map((x) => `«${x}»`).join(", ")) : open.length ? rd(open.map((x) => `«${x}»`).join(", ")) : el("span", "gap", "(its opening carries no meaning in italics)"), several ? el("span", "gap", ` (${hd.language === "BIBLICAL ARAMAIC" ? "Biblical Aramaic" : "Biblical Hebrew"})`) : ""];
+}
+const ITALIC_SAYS = { main_gloss: "the entry's meaning", tagged_gloss: "a meaning", opening: "the words this point opens with", rendering_of_hebrew: "the English of the Hebrew just quoted", verse_wording: "the English of the verse cited", grammar_word: "a grammar word", abbreviation: "an abbreviation", other_language: "a word of another language", outline_letter: "an outline letter", unclassed: "italic in the lexicon; the file does not tell what it is" };
+/** A record of the unabridged BDB whole: its paragraphs, each with its opening and its points in order. */
+function unabridgedWhole(e, cited) {
+  const out = []; const kindOf = new Map();
+  const note = (u) => { for (const it of u.italics || []) kindOf.set(it.k, it.kind); };
+  e.blocks.forEach((blk, bi) => {
+    const starts = new Map(); note(blk.head); (blk.head.sub || []).forEach((s, si) => { starts.set(s.k[0], ["sub", `${bi}|-1|${si}`]); note(s); });
+    (blk.points || []).forEach((pt, pi) => { starts.set(pt.k[0], [pt.div === "remarks" ? "point" : "point", `${bi}|${pi}|-1`]); note(pt); (pt.sub || []).forEach((s, si) => { starts.set(s.k[0], ["sub", `${bi}|${pi}|${si}`]); note(s); }); });
+    let unit = el("div", "unit"); if (cited.has(`${bi}|-1|-1`)) { unit.classList.add("cited"); unit.append(el("span", "cited-note", "cites this verse")); }
+    const para = el("div", ""); para.append(unit); let empty = true;
+    for (let i = blk.k[0]; i < blk.k[1]; i += 1) {
+      if (starts.has(i)) { const [cls, key] = starts.get(i); unit = el("div", `unit ${cls}`); if (cited.has(key)) { unit.classList.add("cited"); unit.append(el("span", "cited-note", "cites this verse")); } para.append(unit); empty = true; }
+      const p = e.k[i];
+      if (typeof p === "string") { let s = printable(p).replace(/[  ]/g, " "); if (empty) s = s.replace(/^\s+/, ""); if (s) { unit.append(s); empty = false; } continue; }
+      const [what, text] = p;
+      if (what === "<") { if (text === "<br>" && !empty) unit.append(el("br")); else if (/^<placeholder/.test(text)) { const g = el("span", "gap", "[…]"); g.title = "a word in another script, which this file leaves out"; unit.append(g); } continue; }
+      empty = false;
+      if (what === "bdbheb" || what === "bdbarc") unit.append(he(printable(text)));
+      else if (what === "b") unit.append(el("b", "", printable(text)));
+      else if (what === "highlight" || what === "highlightword") { const k = kindOf.get(i) || "unclassed"; const em = el("em", ["main_gloss", "tagged_gloss", "opening"].includes(k) ? "gl" : ["grammar_word", "abbreviation", "other_language", "outline_letter"].includes(k) ? "gr" : "", printable(text)); em.title = ITALIC_SAYS[k]; unit.append(em); }
+      else if (what === "ref") unit.append(el("span", "ref", printable(text)));
+      else if (what === "sup") unit.append(el("sup", "", printable(text)));
+      else if (what === "sub") unit.append(el("sub", "", printable(text)));
+      else if (what === "transliteration") unit.append(el("em", "gr", printable(text)));
+      else unit.append(printable(text));
+    }
+    if (e.blocks.length > 1) out.push(el("p", "k", `paragraph ${bi + 1} of ${e.blocks.length}`));
+    out.push(para);
+  });
+  out.push(el("p", "how", `${e.language === "BIBLICAL ARAMAIC" ? "Biblical Aramaic" : "Biblical Hebrew"}${e.strong && e.strong.length ? `. The file lists this record under the numbers ${e.strong.join(", ")}` : ""}. Italic words are the lexicon's own. Where the record's structure tells what an italic run is, it is drawn so: a meaning in blue; a grammar word, an abbreviation or a word of another language in gray.`));
+  return out;
+}
+
+/** The dictionaries under one of STEP's numbers: each in the fixed order, one line, opening to the whole entry. */
+async function drawEntries(tag, forms, body, token) {
+  const box = el("div", ""); body.append(box);
+  box.append(el("h3", "", "In the dictionaries"), el("p", "form-h", `STEP gives this word the number ${tag}. Each dictionary's own entry under that number:`));
+  const wait = el("p", "form-h", "Opening the dictionaries…"); box.append(wait);
+  let F; try { F = await getFile(tagFile(tag)); } catch (err) { wait.textContent = "The dictionaries could not be fetched."; state.errors.push(String(err.message)); return; }
+  if (token !== state.open) return; wait.remove();
+  const line = F.tags[tag]; if (!line) { box.append(el("p", "form-h", "STEP writes this number only in its note on the form written. The dictionaries are listed here for the numbers of STEP's main text, so none is shown under it.")); box.dataset.ready = "1"; return; }
+  // what cites this place, by entry, so that the sense can be marked when the entry is opened
+  const citedO = new Map(), citedB = new Map(), citedU = new Map();
+  for (const f of forms) { const h = f.h || {}; for (const o of h.o || []) { if (!citedO.has(o[0])) citedO.set(o[0], new Set()); citedO.get(o[0]).add(o[1] ? o[1].join(".") : ""); } for (const b of h.b || []) { if (!citedB.has(b[0])) citedB.set(b[0], new Set()); citedB.get(b[0]).add(`${b[1]}|${b[2]}|${b[3]}`); } for (const u of h.u || []) { const id = `${u[0].slice(0, 6)}000000000`; if (!citedU.has(id)) citedU.set(id, new Set()); citedU.get(id).add(u[0]); } }
+  for (const key of INDEX.dictionaries) {
+    const [how, ...ids0] = line.b[key]; const row = el("div", "row", srcHead(key)); box.append(row);
+    if (!ids0.length) { row.append(el("p", "sub", ABSENT[how] || "No entry.")); continue; }
+    const citedOf = key === "openscriptures_bdb_1906" ? citedO : key === "unabridged_bdb_1906" ? citedB : key === "ubs_sdbh_hebrew_v0_9_2" ? citedU : new Map();
+    // where a number reaches several records, the one that cites this place stands first
+    const ids = ids0.slice().sort((a, b) => (citedOf.has(b) ? 1 : 0) - (citedOf.has(a) ? 1 : 0));
+    if (ids.length > 1) row.append(el("p", "sub", `This number reaches ${ids.length} records of this dictionary; nothing in the files says which is meant.${ids.some((id) => citedOf.has(id)) ? " The record that cites this place stands first." : ""}`));
+    const list = ids.length > 1 ? el("ul", "records") : null; if (list) row.append(list);
+    for (const id of ids) {
+      const holder = list ? el("li", "") : row; if (list) list.append(holder);
+      const cited = citedOf.get(id) || new Set();
+      const first = el("p", "line"); holder.append(first);
+      if (key === "unabridged_bdb_1906") first.append(...unabridgedFirst(F.unabridged[id], ids.length > 1)); else first.append(...DRAW[key].first(F.entries[key][id]));
+      if (cited.size) first.append(el("span", "cited-note", key === "ubs_sdbh_hebrew_v0_9_2" ? "cites this place" : "cites this verse"));
+      const btn = el("button", "open", "Open the whole entry"); btn.type = "button"; btn.setAttribute("aria-expanded", "false"); btn.dataset.src = key; btn.dataset.id = id;
+      const whole = el("div", "entry"); whole.hidden = true; holder.append(btn, whole);
+      btn.addEventListener("click", async () => {
+        const open = whole.hidden; btn.setAttribute("aria-expanded", String(open)); btn.textContent = open ? "Close the entry" : "Open the whole entry"; whole.hidden = !open;
+        if (!open || whole.dataset.drawn) return;
+        whole.dataset.drawn = "1";
+        try {
+          if (key === "unabridged_bdb_1906") { whole.append(el("p", "how", "Opening the record…")); const U = await getFile(unFile(id)); whole.replaceChildren(...unabridgedWhole(U.entries[id], cited)); }
+          else whole.append(...DRAW[key].whole(F.entries[key][id], cited).filter(Boolean));
+          if (REACHED[how]) whole.append(el("p", "how", `This entry is ${REACHED[how]} (${id}).`));
+          whole.dataset.ready = "1";
+        } catch (err) { whole.replaceChildren(el("p", "how", "The entry could not be fetched.")); state.errors.push(String(err.message)); }
+      });
+    }
+  }
+  box.dataset.ready = "1";
+}
+
+function closeCard() {
+  if (!state.open) return;
+  state.open.wb.classList.remove("active"); state.open = null; $("card").hidden = true; document.body.classList.remove("card-open");
+}
+function openCard(wb) {
+  if (state.open && state.open.wb === wb) { closeCard(); return; }
+  const t0 = performance.now();
+  if (state.open) state.open.wb.classList.remove("active");
+  const v = DOC.verses.find((x) => x.l === wb.dataset.v), e = v.e[Number(wb.dataset.e)];
+  const token = { wb, verse: v.l, entry: Number(wb.dataset.e) }; state.open = token; wb.classList.add("active");
+  $("cWord").textContent = e.s; $("cAt").replaceChildren(el("b", "", `${DOC.title} ${v.l}`), `word ${wb.dataset.n}${e.k ? ` · ${KIND_WORDS[e.k]}` : ""}`);
+  const body = $("cBody"); body.replaceChildren(); body.scrollTop = 0;
+  // how the two editions meet at this word, where it is not one for one with the same letters
+  const says = []; for (const f of e.f) for (const s of (f.t || {}).say || []) if (!says.includes(s)) says.push(s);
+  if (says.length) body.append(el("div", "say", ...says.map((s) => el("p", "", s))));
+  if (e.f.some((f) => f.t && f.t.w === 0) && v.un) body.append(el("div", "say", el("p", "", "In this verse STEP's text has words that meet no word of ours:"), ...v.un.map((u) => el("p", "", he(u[1]), " ", rd(u[2]), el("span", "gap", ` (${u[0]})`)))));
+  body.append(el("h3", "", "At this word"));
+  const here = el("div", ""); body.append(here); let drawn = 0;
+  for (const f of e.f) {
+    if (e.f.length > 1) here.append(el("p", "form-h", f.r === 2 ? "The form written: " : "The form read: ", he(f.s)));
+    const before = here.childElementCount; drawHere(f, here); drawn += here.childElementCount - before;
+  }
+  if (!drawn) here.append(el("p", "form-h", "No source gives a reading at this word."));
+  // the dictionaries, under each number of the word that a dictionary can be filed by: the root's first
+  const parts = []; for (const f of e.f) for (const p of (f.t || {}).p || []) if (numberOf(p[1])) parts.push([p[0], numberOf(p[1]), p[2], p[3]]);
+  const tags = []; for (const p of parts.slice().sort((a, b) => b[2] - a[2])) if (!stepsOwn(p[1]) && !tags.includes(p[1])) tags.push(p[1]);
+  const own = parts.filter((p) => stepsOwn(p[1]));
+  for (const tag of tags) drawEntries(tag, e.f, body, token);
+  const tail = el("div", ""); body.append(tail);
+  if (own.length) {
+    const seen = new Set(); const box = el("div", "", el("h3", "", "The other parts of this word"));
+    for (const p of own) { const k = `${p[3]}|${p[1]}`; if (seen.has(k)) continue; seen.add(k); box.append(el("p", "form-h", he(p[3]), " ", p[0] === null ? "" : rd(p[0].trim()), ` · STEP's own number ${p[1]} for a prefix, an ending or a mark. No dictionary is filed under STEP's own numbers.`)); }
+    tail.append(box);
+  }
+  tail.append(el("p", "c-credit", "STEP Bible: Tyndale House, Cambridge, and STEPBible.org, CC BY 4.0. MACULA Hebrew Linguistic Datasets, CC BY 4.0; its English is Cherith's. UBS Dictionary of Biblical Hebrew © United Bible Societies, CC BY-SA 4.0. Strong's and Brown-Driver-Briggs: the Open Scriptures files, CC BY 4.0; the unabridged Brown-Driver-Briggs as formatted by Eliran Wong, public domain. The credits in full stand at the foot of the page."));
+  $("card").hidden = false; document.body.classList.add("card-open");
+  // the word is brought into the band of the window the card leaves free; the card itself does not move
+  const r = wb.getBoundingClientRect(), free = window.innerHeight - $("card").getBoundingClientRect().height;
+  if (r.top < 6 || r.bottom > free - 6) window.scrollBy(0, r.top + r.height / 2 - free / 2);
+  state.times.push({ verse: v.l, entry: token.entry, ms: performance.now() - t0 });
+}
+
+document.addEventListener("click", (ev) => { const wb = ev.target.closest && ev.target.closest(".wb:not(.mark)"); if (wb) openCard(wb); });
+document.addEventListener("keydown", (ev) => {
+  if (ev.key === "Escape") closeCard();
+  const wb = ev.target.closest && ev.target.closest(".wb:not(.mark)"); if (wb && (ev.key === "Enter" || ev.key === " ")) { ev.preventDefault(); openCard(wb); }
+});
+$("cClose").addEventListener("click", closeCard);
+
+(async () => {
+  try {
+    INDEX = await getFile("index.json"); FILED = INDEX.filed || FILED;
+    const b = INDEX.books.find((x) => x.book === params.get("b")) || INDEX.books[0]; BOOK = b.book;
+    CH = b.chapters.includes(Number(params.get("c"))) ? Number(params.get("c")) : b.chapters[0];
+    DOC = await getFile(`${BOOK}/${CH}.json.gz`);
+    drawChapter(); drawToc(); drawCredits(); state.ready = true;
+  } catch (err) { $("status").textContent = "This chapter could not be opened."; state.errors.push(String(err.message)); state.ready = true; }
+})();
+</script>
+</body>
+</html>
