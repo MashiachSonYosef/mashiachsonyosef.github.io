@@ -1,0 +1,16 @@
+# Helper E: the sources off by default — which could come back, and which were we applying badly
+
+The owner: «figuring out which of the other 28 we hold can be reintroduced, not all of them were bad, or maybe some of them we were applying badly». The twelve Bible dictionaries are open by default on the 39 books; everything else is off by default (a press away), held, or refused. «Come back» means: its readings open on the cards by default again. It never means leading the line under a word; STEP leads that.
+
+**The population.** Every family in `data/dictionary-kinds-v1.json` whose kind is not `bible` (17 families, with their M-ids from `data/route-store/index.json`), plus what is held or refused and so not served: PanLex (held with its source), Harkavy (refused 6 September), the M51 Bible dictionaries list, the ETCBC and STEP's expanded Strong (relay v215), and anything `data/source-corpus-v1.json`, `data/source-strikes-v1.json`, `data/landings/PIN.json` (`held_sources`, `held_lines`) and `data/readmission-v1.json` name as refused, struck or held. Read how each was taken off and why (`data/dictionary-kinds-v1.json` `rests_off` rulings; the ship records under `/home/user/mashiachsonyosef.github.io/wip/2026-11-19/`, `2026-11-20/`, `2026-11-15/each-dictionary-as-a-category/`; relays v210, v215, v217 in `S/dl-letters-v210-v217/`).
+
+**For each family, measure on the 39 books:**
+1. How many rows we hold; under how many distinct Hebrew keys; at how many of the 305,417 words it has at least one row.
+2. With today's gates applied as if the family were open: at how many words a row of it would stand on the card; how many of those rows carry an entry (Strong's number, STEP letter, BDB entry) and agree with STEP's tag there; how many disagree; how many carry no entry at all (so no gate can bind them to the place).
+3. What it would add: at how many words it gives a reading none of the twelve gives.
+4. A hand-read sample of 60 placings across at least 10 books (open the page with `?kinds=open`): for each, is the reading right for the word in that verse / another word spelled the same / a modern or post-biblical sense / a name / a grammar note or dictionary apparatus / wrong language / unusable. Give the tally and five examples of each kind found.
+5. **Applied badly?** What does the source itself give that would bind its reading to the right word (pointing, part of speech, a sense inventory, a root, a verse reference, an entry id, a language tag), which of that we hold, and which we ignore when deciding where it shows. Name the concrete mend that would make it serve as it serves itself, and whether the page lane can make it from data we hold or the corpus lane must supply something.
+
+**The answer the owner needs:** one table, a row per family: what it is, rows, words reached, right-for-the-place rate in the sample, what it adds, how it was applied badly (if it was), and a recommendation: reopen as it is / reopen after a named mend / keep off / needs the corpus lane. Rank the «reopen» candidates by what they add per wrong reading they bring. Be plain about the weak ones; the owner asked for what stands forever.
+
+Output: `findings.md` with that table first, `families.tsv`, and per family `sample-<id>.tsv`.
