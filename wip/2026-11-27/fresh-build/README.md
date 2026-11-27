@@ -304,7 +304,7 @@ The owner: «you can ship dont wait for my approval». So the place card goes li
 - **No verdict yet:** compspan.
 
 **Next, in order:**
-1. **The ninth cut's merge** (`BRIEF-H2-CUT-9-MERGE.md`, sent).
+1. **The ninth cut's merge**: done (`H2/hand-back-cut-9-merge.md`). The pins equal S/s14's; the page pin is a173241d9367. 10,700 of 13,497 walked cards draw an unfoldingWord row, and 1,514 say W. Every proof holds.
 2. **The frame's laws** (`BRIEF-H2-FRAME-LAWS.md`): every law of the 70 at rest, with no law edited, except a written list of the spelling card's own laws, each passing with the old card forced.
    - At the 141 words the line stays as it is and the card says so plainly. Their lines move in the next ship, read word by word (task 169).
 3. **Ship 23**, from the lead's tree:
