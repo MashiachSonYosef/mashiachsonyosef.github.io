@@ -123,3 +123,18 @@ Three new helpers carry each on: the sixth cut (the language from the row; the s
 **What the page says that the files cannot show.** unfoldingWord's row says «has an entry» at about 97% of words where its file is not on hand; that cannot be confirmed. Italic runs such as «Special uses:» are printed in «» like meanings.
 
 **Where each goes.** The data faults go to the sixth cut (its scope widened by message); the page's wording goes to builder H2.
+
+## The sixth cut (builder V6, `V/hand-back-cut-6.md`, evidence in `V/cut6/`)
+
+Built, every proof passing (the one command, 219 s; the comparison tool: the line under the word did not move; the eight tree checks; 11 spoiled copies each failing):
+
+- **The word's language from STEP's row at the word**, not from the lexicon's one answer per number. «God» in Daniel and Ezra (95 words) gets its Aramaic record back. Read by hand: all 95, and 19 of 20 names. The one against the source's meaning, Gen 31:47 «Jegar-sahadutha», is STEP's row marking Laban's Aramaic name Hebrew; the rule follows the row, and the place goes on the list for the corpus lane.
+- **The unabridged BDB's senses held under their stems.** Agreement of the cited sense's stem with STEP's stem at the word: 43,381 before, 50,178 after; disagreement 6,955 before, 1,450 after, mostly another word of the same verse or BDB analyzing the form otherwise. 30 changed words read by hand, all right. Of the auditor's 6,038 flagged lines, 5,791 now show a line in the word's own stem.
+- **Written-and-read pairs:** a line whose stem is one form's stands on that form only (82 lines at 45 pairs, all read and right).
+
+Measured, then decided by the lead (the seventh cut, asked):
+
+- **BDB's own homonym numeral** («II.») is printed by both editions; under the number STEP's letter reaches exactly, it parts 785 numbers (29,868 words) to one record and parts «kinsman», «press, squeeze» and «mound, hill» from the word rightly. To be built, after 30 read by hand.
+- **One record cited at two words of a verse:** BDB quotes the form it means at only 25% of such references, so the quoted form can decide only some. The lines whose quoted form names another word go to that word (1,025 lines); the rest are said plainly as «BDB cites this verse; this number stands n times in it, and BDB does not say which word it means».
+
+**For the corpus lane:** 27 numbers on 692 Hebrew words reach only an Aramaic record of the unabridged BDB, 659 of them «to lift» (the file lists its Hebrew record under other Strong's numbers); 8 numbers on 39 Aramaic words reach only Hebrew records (`V/cut6/lang-only-other-language.tsv`).
