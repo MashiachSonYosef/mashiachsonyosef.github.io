@@ -17,6 +17,22 @@ The plan is `wip/2026-11-25/WEEK-PLAN-39-12.md`; the principle `wip/2026-11-24/T
 
 `COMMON.md` is what every helper reads first.
 
+## Wave 2 (started 27 November, 00:40 UTC)
+
+| Helper | Pass | Brief |
+|---|---|---|
+| G | The chain pages of the twelve minor prophets, link by link against the cards | `briefs/G.md` |
+| R, Ruth | The reading loop's pilot: Ruth read whole on the page | `briefs/R.md` |
+| R, Genesis 1–5 | The reading loop's pilot: Genesis 1 to 5 read on the page | `briefs/R.md` |
+
+Each pilot reader also reports on the brief and on how many words an honest hour covers, so the loop over all 929 chapters can be planned.
+
 ## To follow
 
-Wave 2: the other six Bible dictionaries (the UBS dictionary, the SDBH, Davidson; the Lexical Index, UHAL, BiblicalTools), the chain pages, and the reading loop over the 929 chapters.
+- C3a (the UBS dictionary, the SDBH, Davidson) and C3b (the Lexical Index, UHAL, BiblicalTools): `briefs/C3a.md`, `briefs/C3b.md`. They start when C1 and C2 report, with what those two learned.
+- The reading loop over the 39 books, in batches, with a ledger here of what was read and what was flagged.
+
+## Beside the pass
+
+- **The card moves when a reader presses another reading** (`../card-hold/`): the record at the card's foot takes a different height per reading, and the card, held by its foot at its word, moves its top and its pills by that amount (2 to 20px on 7 of 7 cards traced; the check that holds the law is red on live). A builder is mending it in a sandbox.
+- **Ship 23** is being built in a sandbox: STEP's pieces at the 30 places where STEP writes our spelling, the read form on the 17 written-and-read pairs, and no line under the 8 words written and not read (`../FOR-MOSES-2026-11-27-the-lines-step-does-not-lead.md`, `the-124-words.md`).
