@@ -91,3 +91,9 @@ Steps after it, each its own ship once the owner says go:
 | Ship 28 (#176) | The text's own marks said truly | Untouched by the card; it is the face's work and still stands as written |
 | Ship 29 (#177) | The chain pages say how the reading was reached | To be made again from the place answers once the line is (step 2) |
 | The footing mends (#170) | Manifests, the path map, the pins | Stand as written; independent |
+
+## The fourth cut: measured, not built (`V/hand-back-cut-4.md`)
+
+- **The headword with its vowels does not part the records safely.** Read by hand it chose the wrong record at 3 of 60 numbers, from two causes in the files themselves: the unabridged BDB's file points about one headword in twenty with a slip (a vowel on the wrong letter, a vowel left off), and STEP's lexicon points sibling numbers of one Strong's entry alike («Canaan» and «merchant», «quarry» and «missile»: 15 such groups, 36 numbers, 2,959 words). Not built.
+- **The language both sources declare does.** STEP's lexicon says Hebrew or Aramaic for a number; each record says its own language. Of the 1,483 numbers still on several records, 357 (61,136 words) part to one record of the declared language, and none is left with no record. All 17 such partings read by hand were right. Asked of builder V as a fifth cut.
+- **The record's one line.** At 952 records the line says «no meaning in italics» though the record's head holds italic words the file does not class. The page will print the first two as they stand, said as «in italics in the record», with no claim of what they are. The change is in the page's code and goes to builder H with the card.
