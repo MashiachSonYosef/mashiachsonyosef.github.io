@@ -1,4 +1,4 @@
-# Builder H2, after the pills: take the ninth cut into S/s16 (nothing ships)
+# Builder H2, after the pills: take the ninth cut into S/s16 (the lead ships after the next step; you commit nothing)
 
 `S` = `/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad`
 `N` = `/home/user/mashiachsonyosef.github.io/wip/2026-11-27/fresh-build`
@@ -34,7 +34,7 @@ Read `N/V/hand-back-cut-9.md`, `N/V/hand-back-cut-9-W.md` and `N/V/cut9/FOR-THE-
 
 ## House rules
 
-As before: no Hebrew in tool string literals or zone.html's own code; American English; one browser at a time; small logs (about 3 GB free); if a write or a fetch is refused, say so and do not route around it. No commit, push or ship.
+As before: no Hebrew in tool string literals or zone.html's own code; American English; one browser at a time; small logs (about 3 GB free); if a write or a fetch is refused, say so and do not route around it. No commit, push or ship. The owner has said the lead may ship without waiting («you can ship dont wait for my approval»); the lead ships from its own tree once your next step's proofs hold, so keep S/s16 at the «after» state when you hand back (no meta reader-card line).
 
 ## Hand back
 

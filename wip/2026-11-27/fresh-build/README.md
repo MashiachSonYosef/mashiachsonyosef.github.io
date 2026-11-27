@@ -279,3 +279,35 @@ Thirty were read by hand and all confirm it (`V/cut9/uhal-other-bdb-hand-30.txt`
 **Taken.** The bridge parts them as W, «absent: the source files one entry under this number, and that entry says itself (its own BDB reference) that it is another word», and the card says so. The patch is `V/cut9/patch-uhal-another-bdb-entry.diff`; V7 applies it and proves it again.
 
 **Open, for the corpus lane:** the source's own title is «Unlocked Hebrew and Aramaic Lexicon» (its manifest and README), while both lanes' files say «unfoldingWord Hebrew and Aramaic Lexicon».
+
+## The pills in today's card, and the way to the ship (27 November, night)
+
+The owner: «you can ship dont wait for my approval». So the place card goes live once the frame's laws hold under it.
+
+**The pills step** (H2, `H2/hand-back-pills.md`) fills today's card from the place answers: the line at the top, the divisions and cells, READINGS and its pills, the record, the run and chain lattices, and the listing under the frame.
+- Each pill stands by its source's own address.
+- 9,038,035 pills fill 616,975 cells; 539 cells hold no reading.
+- The one-place check passes 20 of 20, with three new laws, each shown failing on a spoiled copy.
+- The walk opened 13,497 cards, all matching the files.
+- 70 of 70 card checks pass with the old card forced; 33 of 70 pass at rest.
+
+**The lead's reading of the 37 reds at rest:**
+- **Real, and the place card's to close (20):**
+  - the line and the pressed pill under the order switches and the default sources;
+  - the export and the chip;
+  - pairs, runs and read forms;
+  - what rests shut by the kinds record: today a root's cell can carry about 150 pills.
+- **About a feature that stands only behind «readings matched by spelling»:**
+  - the concordance;
+  - the store's own withheld and graded rows;
+  - the store's own kinds of reading.
+- **No verdict yet:** compspan.
+
+**Next, in order:**
+1. **The ninth cut's merge** (`BRIEF-H2-CUT-9-MERGE.md`, sent).
+2. **The frame's laws** (`BRIEF-H2-FRAME-LAWS.md`): every law of the 70 at rest, with no law edited, except a written list of the spelling card's own laws, each passing with the old card forced.
+   - At the 141 words the line stays as it is and the card says so plainly. Their lines move in the next ship, read word by word (task 169).
+3. **Ship 23**, from the lead's tree:
+   - It carries the page files only (`data/place-answers-v1/page/` with the pin, the sources and the known differences). The intermediates, which hold whole copies of STEP's files and the dictionaries, stay out, as STEP asks.
+   - The suite runs twice: at rest, and with the old card forced.
+   - The gate holds the lines.
