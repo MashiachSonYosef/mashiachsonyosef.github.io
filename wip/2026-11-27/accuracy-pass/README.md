@@ -64,3 +64,28 @@ No recorded hash is wrong (1,551 files hashed again). The 39 books are the resto
 | 6 to 8 | The dump's hash, `declarations_sha256`, the store's writer | corpus lane | asked of Moses |
 
 Letter: `../FOR-MOSES-2026-11-27-the-footing.md`.
+
+### C1, STEP's TAHOT and TBESH, and MACULA, each as it serves itself (`C1/findings.md`)
+
+The helper could not write its findings file (the file tool refuses report files from a helper); the lead saved its hand-back as `C1/findings.md` (`lead/save-handback.cjs`).
+
+**The words are the sources' own.** STEP's pieces under 304,463 of the 304,484 words that carry them are TAHOT's translation column byte for byte; the « + » stands exactly at TAHOT's slashes; all 139,204 served rows of the three sources are in their source. What is not the sources' own is which readings a card offers at rest, whose name and year a reading carries, and a few marks.
+
+The lead opened eight of the cited cards on live (`lead/c1-verify-rest.json`); each was as the helper said.
+
+| # | Finding | Count | Whose mend | Seen by the lead |
+|---|---|---|---|---|
+| T1 | The signs switch (off by default) counts STEP's square bracket as a sign; STEP's own key says bracketed words «are best included in a translation». A reading that holds one is not offered as a pill | 20,048 of STEP's 91,301 served rows (19,193 for the square bracket alone) | page lane; the owner's ruling of 3 October («preselect it off for now») is what it revisits | Genesis 15:9 word 7: no «[is] a goat»; Exodus 22:9 word 6: no «donkey[s]». `zone.html` line 3684 |
+| M3 | MACULA gives each English at one place («in its specific context»); the card offers every rendering of the same letters and entry at every place | 30,062 of MACULA's 45,095 served rows are one-place renderings; 4,397 of forms that stand at 50 places or more | page lane, on the owner's call (it changes most cards) | Micah 3:3 word 12 «just + as» offers MACULA's «(happy)» |
+| B1, M1, T2 | The store keeps one row for the same words and credits one source, so a reading of one of the twelve stands under another name | TBESH 6,688 of 9,804; MACULA 6,796 of 51,985; TAHOT 5,580 of 76,234; 484 stand only under a source that is off by default | corpus lane (one row per key, text and source); page lane until then (a reading rests open when any source that gives it is open) | Joel 4:13 word 10: TBESH's «wine press» is not a pill (Strong's «wine-press» is) |
+| M2 | A reading that holds « ~ » is not offered; MACULA does not declare the sign | 1,862 rows | page lane, with T1 | by the helper, 13 cards |
+| T5 | STEP's tag is not carried where our text spells the word otherwise | 1,091 words | corpus lane's rule («No tag is written»); asked | by machine |
+| Y | A row prints an older source's year under its own source's name: «STEP … · wording 1890» | 587 rows | page lane | Deuteronomy 1:12 word 4 «a burden»: «1890 · STEP …» |
+| B5 | TBESH's row for the place's own tag is withheld as a name | 576 places by machine, 1 read | page lane, after a measure | Joshua 12:7 word 18: the line is right («Halak», MACULA's); TBESH's own row is withheld |
+| T6 | The sign rule is uneven: a piece of two signs prints («<in> <the> + it», 336); a sign-only word prints where it stands free (598) and not where a maqaf ties it (6,593); the lone «!» prints («you should die + !», 708 lines) | as given | page lane, on the owner's call for «!» and the sign-only word | by the helper |
+| T3 | At the Aramaic ending TAHOT writes its English against its own order | 140 places; at 62 STEP's noun is not among the root's readings | corpus lane | Daniel 2:20 word 10: the line «antiquity», no such pill |
+| B2 | Seven TBESH rows whose slash means «or» print with TAHOT's joiner | 7 rows, 19 places at least | page lane | 2 Chronicles 32:1 word 16 «to break up + open» |
+| T4 | STEP's brackets are taken off at 13 of the 28 read forms of several words | 13 places | corpus lane (the read-words list) | by the helper, 3 cards |
+| C | MACULA's license asks for set wording and a link; STEP asks for a link to its site; neither is on the card | 2 sources | page lane | by the helper |
+
+Letter: `../FOR-MOSES-2026-11-27-step-and-macula-as-served.md`.
