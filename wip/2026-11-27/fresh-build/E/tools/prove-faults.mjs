@@ -1,0 +1,32 @@
+// Proof 3: today's faults, answered by the structure. Reads only the files the build wrote, and one row of STEP's file.
+import { readFileSync, readdirSync } from "node:fs";
+import { readGzJson, printable } from "../s15/reader/tools/place-answers-entries-lib-v1.mjs";
+const S = process.argv[2], OUT = S + "/s15/reader/data/place-answers-v1";
+const E = (k) => readGzJson(OUT + "/entries/" + k + ".json.gz").entries;
+const say = (...a) => console.log(...a);
+const os = E("openscriptures_strongs"), ws = E("wikisource_strongs_explicit_forms");
+say("1. Strong's H1961, the item that holds «be»:");
+for (const [name, list] of [["Open Scriptures", os.H1961.usage.renderings], ["Wikisource", ws.H1961.renderings]]) { const it = list.find((r) => r.t.startsWith("be(")); say("   " + name + ": one item", JSON.stringify(it), "| items in all:", list.length, "| «accomplished» as an item of its own:", list.some((r) => r.t === "accomplished")); }
+say("2. Strong's H68 «carbuncle»:", JSON.stringify(os.H68.usage.renderings[0]), "| Wikisource:", JSON.stringify(ws.H68.renderings[0]));
+const ub = E("unabridged_bdb_1906"), b = ub.BDB5808.blocks[0];
+const allItalics = []; const walk = (u) => { for (const x of u.italics || []) allItalics.push(x); for (const s of u.sub || []) walk(s); }; walk(b.head); for (const p of b.points || []) walk(p);
+say("3. BDB unabridged, the record of «until» (BDB5808): bold in the head:", JSON.stringify(b.head.bold.map((x) => x.t)), "| main gloss:", JSON.stringify(b.head.italics.filter((x) => x.kind === "main_gloss").map((x) => x.t)), "| italic runs whose text is «preposition» or «conjunction»:", allItalics.filter((x) => /^(preposition|conjunction)$/.test(x.t.trim())).length, "| point labels:", JSON.stringify((b.points || []).map((p) => p.label).filter(Boolean).slice(0, 6)));
+const bdb = E("openscriptures_bdb_1906"), ev = bdb["p.ff.ab"];
+say("4. BDB Open Scriptures p.ff.ab:", ev.w[0].t, "| first def:", JSON.stringify(ev.defs[0]), "| the entry's text opens:", JSON.stringify(ev.text.slice(0, 60)));
+const na = Object.values(bdb).find((e) => (e.defs || []).some((d) => d.phrase && d.phrase.t === "I (we) pray"));
+say("   and «I (we) pray»:", na ? na.id + " " + JSON.stringify(na.defs.filter((d) => d.phrase).map((d) => [d.t, d.phrase.t])) : "not found");
+const ubs = E("ubs_sdbh_hebrew_v0_9_2"), so = Object.values(ubs).find((e) => e.StrongCodes.includes("H3651"));
+say("5. UBS, the entry of the letters of «so»:", so.MainId, so.Lemma, "codes on the entry:", JSON.stringify(so.StrongCodes));
+for (const bf of so.BaseForms) say("   base form", bf.BaseFormID, JSON.stringify(bf.PartsOfSpeech), bf.LEXMeanings.map((m) => m.LEXID + " " + JSON.stringify(m.LEXSenses[0].Glosses) + " " + m.LEXReferences.length + " verses" + (m.LEXSenses[0].Glosses.includes("mosquito") ? " " + JSON.stringify(m.LEXReferences) : "")).join(" ; "));
+const vb = readGzJson(OUT + "/bridges/verse-to-sense-ubs_sdbh_hebrew_v0_9_2.json.gz");
+const lexOfSo = new Set(so.BaseForms.flatMap((bf) => bf.LEXMeanings.map((m) => m.LEXID)));
+say("   at Genesis 1:7 the senses of this entry that cite the verse:", JSON.stringify(vb.verses.genesis["1:7"].filter((v) => lexOfSo.has(v[0]))), "| at Exodus 8:13:", JSON.stringify(vb.verses.exodus["8:13"].filter((v) => lexOfSo.has(v[0]))));
+const dir = S + "/s38w/dl-step-latest/", f = readdirSync(dir).find((n) => n.startsWith("TAHOT_Isa-Mal"));
+const row = readFileSync(dir + f, "utf8").split("\n").find((l) => l.startsWith("Amo.7.12#06="));
+const cols = row.split("\t");
+say("6. STEP's row at Amos 7:12 word 6:", cols[0], cols[1], JSON.stringify(cols[3]), cols[4]);
+const tag = /\{(H\d{4}[A-Z]?)\}/.exec(cols[4])[1];
+const br = readGzJson(OUT + "/bridges/step-tag-to-entry.json.gz");
+const r = br.tags[tag];
+for (const k of ["openscriptures_strongs", "wikisource_strongs_explicit_forms", "openscriptures_bdb_1906", "unabridged_bdb_1906", "ubs_sdbh_hebrew_v0_9_2"]) say("   " + tag + " → " + k + ": " + br.class_of[r[k][0]] + " " + JSON.stringify(r[k].slice(1)) + (k === "openscriptures_bdb_1906" ? " " + bdb[r[k][1]].w[0].t + " first defs " + JSON.stringify(bdb[r[k][1]].defs.slice(0, 3).map((d) => d.t)) : k === "openscriptures_strongs" ? " renderings " + os[r[k][1]].usage.renderings.length : ""));
+say("7. «be fat» on «he created»: H1254A →", JSON.stringify(br.tags.H1254A.openscriptures_bdb_1906), bdb[br.tags.H1254A.openscriptures_bdb_1906[1]].defs.slice(0, 2).map((d) => d.t).join(", "), "| H1254B →", JSON.stringify(br.tags.H1254B.openscriptures_bdb_1906), bdb[br.tags.H1254B.openscriptures_bdb_1906[1]].defs.slice(0, 1).map((d) => d.t).join(", "));
