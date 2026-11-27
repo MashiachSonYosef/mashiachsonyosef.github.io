@@ -179,3 +179,37 @@ Builder H2 (S/s16) finished the place card inside `reader/zone.html`. Its report
 - **Left for the owner:** «Special uses:» (90 lines) is classed by our reader of the file as an opening (the first italic run of a point), so it keeps «».
 
 Next: H2 brings S/s16 to cut 8 (S/s16 is now the one tree; S/s14 is frozen), puts the cut 5–8 page changes into the block, removes the `say`/`why` hooks no data writes, proves again and retakes the pictures under `S/s46w/shots-cut8/`. Nothing ships.
+
+## 27 November, evening: the card at cut 8 (builder H2)
+
+H2 brought S/s16 to the eighth cut and put the page changes of cuts 5 to 8 into the card's one block. Its report is in `H2/hand-back-cut-8.md`. S/s16 is now the one tree of the fresh build; S/s14 is frozen.
+
+**The data:**
+- The pins equal S/s14's. The comparison tool exits 0 (141 known differences).
+- Each citation's italic runs now carry their kind in the page files ([words, kind]), so the card no longer fetches the record. The chapter files grow by 214 KB gzipped (+1.1%).
+- `lineAgain` in the page check builds the runs the same way, so G6 now also holds the kinds.
+
+**The card:**
+- The `say`/`why` hooks are gone.
+- Six new laws (P10–P15: †, ‡, stem placement, the stray label, the pair, the language) and a reworked P8. Each fails on a spoiled copy.
+- The ‡ gloss is quoted run by run (Isaiah 38:13).
+- The switch's note is shortened to «every reading any dictionary files under these letters».
+
+**The proofs:**
+- The walk: 13,497 words pressed, opened and matched; median 13.2 ms to open.
+- Switch on equals S/base at 50 of 50 places.
+- Resting lines unmoved (30,559).
+- All eight tree checks pass.
+- With the old card forced on, 10 of 10 suite checks pass.
+
+**Pictures:** in `S/s46w/shots-cut8/`.
+- Genesis 1:11 «yielding» now reads «Hiph`il 1. «produce seed»» (it read «2. be fructified» under the stem fault).
+- Daniel 2:20 «God» stands on its Aramaic record by the row.
+- Exodus 30:33 shows the ‡ sentence. It said «STEP's number is I.», which is not true; it is being reworded to name STEP's tag («STEP's number H5971A is BDB's I.»).
+
+**Still reads badly:**
+- the «**» label as the file gives it;
+- «the opening» without saying of what;
+- long row sentences;
+- «Special uses:» (left for the owner);
+- the line under the 8 written-not-read words (Ruth 3:12 still «mother»: the later step of the 141).
