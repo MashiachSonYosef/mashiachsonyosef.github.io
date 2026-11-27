@@ -54,6 +54,12 @@ Your pills hand-back (`N/H2/hand-back-pills.md`) found that the 70 card checks p
 
 **F8. compspan.** Give check-compspan-coverage-v1 a verdict, run alone with the runner's own limit (`--timeout 1500`), both at rest and with the old card forced.
 
+**F9. STEP's asked credit, on both cards and in the export.** STEP's new licence summary (relay v224) asks users to «Attribute the data to Tyndale House and STEPBible.org, and include a link to STEPBible.github.io/STEPBible-Data as the source of this data». The place card's credits already do this. Today's card does not: its record line (`mLine`) names «STEP Bible Translators Amalgamated…» with its chip and nothing more.
+- Wherever today's card names a STEP record, it carries STEP's credit and the link to `https://STEPBible.github.io/STEPBible-Data`, after the chip. STEP's records are the store's sources whose key begins `stepbible_`: M4, M19 and M197. M45 is BiblicalTools; its STEPBible lemma data is said in its own license words, so leave it as it is.
+- So does the export's citation of a STEP record, on either card.
+- The words come from **one place**: the place card block's own credit, not a second copy. The place card names it «data created by STEPBible.org based on work at Tyndale House, Cambridge».
+- Prove it with the old card forced: a STEP row's line names Tyndale House and links the source. Show it in one picture of each card.
+
 ## 2. Keep
 
 - Every proof from the pills step still holds: the one-place check (every law, the new ones each failing on a spoiled copy), the walk, the presses, the switch proofs (switch on equals S/base on 50 places; resting lines unmoved off, on and off again, five books), and the eight tree checks, each alone.
