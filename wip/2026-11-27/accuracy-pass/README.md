@@ -128,3 +128,18 @@ Each helper's hand-back was saved by the lead as its `findings.md`. The lead ope
 **The sources off by default (E): none can reopen as it is; two can after the piece mend.** English Wiktionary's Hebrew entries, by its rows of the place's own entry only (86% right in the sample), and Wikidata's lexemes (89% once the piece is graded). STEP's Expanded Strong tags (held) are the best thing we hold back, and must be served at their own verse and word, never by letters. Four need the corpus lane first; the rest stay off. The table: `E/findings.md`.
 
 **The reading loop's size.** Both pilots: 2,500 to 3,000 words an hour with the tools in hand; the card faults repeat by cause and are counted by machine after the first books, and the lines are almost wholly STEP's own bytes, already checked by machine for all 39 books (C1). So the loop follows the mends: the causes above are mended first, then every card is walked by machine for them, and the hand reading goes to the lines.
+
+## What the reports turned into (27 November, 01:40 UTC)
+
+| Work | What | Where | State |
+|---|---|---|---|
+| Ship 23 | STEP's pieces where STEP writes our spelling (30), on written-and-read pairs (17), on held places under no line (7, the four Psalms places from STEP's latest file); no line under a word written and not read (8); the check that hashes a book's text again | `../ship-23/` | builder at work |
+| The card holds | A press of another reading does not move the card | `../card-hold/` | builder at work |
+| Ship 24 | A piece of a divided word is served as a whole word is | `../ship-24/BRIEF.md` | builder at work |
+| Ship 25 | Each source's own marks, year and credit | `../ship-25/BRIEF.md` | builder at work |
+| U | Each provider's latest file against our pin | `briefs/U.md` | helper at work |
+| C3a | The UBS dictionary, the SDBH, Davidson; UBS's numbers per base form, from the source | `briefs/C3a.md` | helper at work |
+| C2, F, G | Strong's and the two BDBs; the text's own marks; the chain pages | `briefs/` | helpers at work |
+| To follow | The footing mends; other-place renderings a press away; the homonyms by BDB's own entry; pills that are not readings; C3b; the line readers | | queued |
+
+Each builder hands back a patch against live main (ea6e1ad08e); the lead applies them in order on the ship tree, runs the round, the gate and the suite, and ships each as its own ship.
