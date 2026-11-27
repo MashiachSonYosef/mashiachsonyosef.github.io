@@ -47,3 +47,20 @@ The plan's baseline (`../../2026-11-25/WEEK-PLAN-39-12.md`) said the thirty-nine
 ## The reading loop's parts
 
 `lead/loop-parts-4000.tsv`: the thirty-nine books cut at chapter ends into 86 parts of about 4,000 words (`lead/loop-plan.cjs`; 110 parts at 3,000, 64 at 6,000). The size is fixed after the two pilots report.
+
+## Reports in
+
+### B, the footing (`B/findings.md`)
+
+No recorded hash is wrong (1,551 files hashed again). The 39 books are the restore's text byte for byte: each served zone's words, rejoined, hash to the rights record's `restore_surface_sha256`, 39 of 39 (the lead ran it again: `lead/surface-rehash.cjs`). Six of the twelve dictionaries were followed back to their provider and match. The gaps are in what holds the chain, not in the bytes:
+
+| # | Gap | Whose | Standing |
+|---|---|---|---|
+| 1 | No check hashed a book's text again; the check read a flag written on 6 September | page lane | **mended for ship 23**: `check-restore-serve-v1` gains L5 (rejoin and hash the served words) and L4 hashes the rights record; proven both ways (`../ship-23/tools/patch-restore-check.py`: 39 zones pass, a zone with one changed letter passes L1 to L4 and fails L5) |
+| 2 | No dictionary's file as received is on the store; one pin names a folder that is gone | corpus lane (the files); page lane (the path map's check) | asked of Moses; the check is the page lane's to widen |
+| 3 | Five served stores carry no pin (412 files, 208.5 MB) | page lane | to build: a manifest per served store |
+| 4 | Received-file hashes only in relay receipts; nine families have none | both | asked of Moses for the nine |
+| 5 | `pins-not-kept-v1.json` out of date and unread | page lane | to build |
+| 6 to 8 | The dump's hash, `declarations_sha256`, the store's writer | corpus lane | asked of Moses |
+
+Letter: `../FOR-MOSES-2026-11-27-the-footing.md`.
