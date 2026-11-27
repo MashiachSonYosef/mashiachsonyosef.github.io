@@ -103,7 +103,23 @@ Steps after it, each its own ship once the owner says go:
 At about 06:30 all three helpers stopped at a usage limit of the model they ran on. The owner moved the session to another model; the work each left on disk was read before going on.
 
 - **Builder V's fifth cut was finished** but for its report; the lead wrote it from the logs (`V/hand-back-cut-5.md`). The declared language parts 357 more numbers to one record (61,136 words), but STEP's lexicon says «god» (H0426, 95 words in Daniel and Ezra) is Hebrew where STEP's own word rows say Aramaic. The sixth cut reads the language from the row at the word.
-- **Auditor Q had finished its five checks on 599 sampled words** (STEP, MACULA, UBS, BDB, the dictionaries' one lines: every line it could test was found in the raw file at the right word), and a sweep that found a placement fault: **the unabridged BDB's «cites this verse» line can name a sense from another stem.** The record numbers its senses afresh under each stem (Qal, Niph`al, Hiph`il …), and the reader of the record keeps the numbered points but not the stems, so a reference standing under one stem is put in the last numbered point of the stem before. The lead read one case in the raw file: at Genesis 1:11 «yielding seed» (Hiphil) the card says «2. be fructified, made pregnant», a sense of the Niph`al; the record lists Gen 1:11 under Hiph`il, whose first sense is «produce seed». The sweep lists about 4,000 such words (`Q/sweep_unit_label_not_the_references-first-200.tsv`). This goes to the sixth cut with the language.
+- **Auditor Q had finished its five checks on 599 sampled words** (STEP, MACULA, UBS, BDB, the dictionaries' one lines; the finished audit below corrects this: every line it could test was found in the raw file at the right word but 14 lines of the unabridged BDB), and a sweep that found a placement fault: **the unabridged BDB's «cites this verse» line can name a sense from another stem.** The record numbers its senses afresh under each stem (Qal, Niph`al, Hiph`il …), and the reader of the record keeps the numbered points but not the stems, so a reference standing under one stem is put in the last numbered point of the stem before. The lead read one case in the raw file: at Genesis 1:11 «yielding seed» (Hiphil) the card says «2. be fructified, made pregnant», a sense of the Niph`al; the record lists Gen 1:11 under Hiph`il, whose first sense is «produce seed». The first sweep listed about 4,000 such words (`Q/sweep_unit_label_not_the_references-first-200.tsv`); that was a cap in its script, see below. This goes to the sixth cut with the language.
 - **Builder H had begun** seating the place card in the live reader (674 lines in `reader/zone.html` in `S/s16`).
 
 Three new helpers carry each on: the sixth cut (the language from the row; the stems of the unabridged BDB), builder H's card, and auditor Q's report.
+
+## The audit, finished (auditor Q2, `Q/hand-back.md`)
+
+**What holds.** On 599 sampled words, drawn by a stated rule (every 1,000th word and up to 40 of each hard class), 6,008 lines were confirmed in the raw source files at the right word with no failure: STEP's parts (672), MACULA's words (613), the UBS dictionary at this very word (559) and at the verse (74), the Open Scriptures BDB (11), and the one lines of six dictionaries (3,696, plus 19 of unfoldingWord's). The auditor read the raw files with its own readers, never the builders'.
+
+**What fails.** All on the unabridged BDB's «cites this verse» line:
+
+- **Another stem's sense** (14 of 381 sampled lines; 6,052 lines on 6,018 words over the whole page by the auditor's stricter test): 3,457 print a numbered sense of another stem, 2,595 another stem's name with no sense. A further 544 print «the opening» for a verse cited under a later stem, and 236 carry a stray stem label from a cross-reference the file marks up as a point.
+- **One record cited at two words of a verse:** where a word's number recurs in its verse (29,728 lines), the citation is often another word's («go» at Exodus 4:18 shows the later «go in peace»).
+- **Homonym records standing as the word's own:** II. עַם «kinsman» at «the people»; «press, squeeze» at «doers»; «mound, hill» beside «tumour»; the Aramaic «death» at «we should die».
+- **«To lift»** (about 650 Hebrew words): the unabridged file files its Hebrew record under other Strong's numbers, so these words reach only the Aramaic record.
+- **Written-and-read pairs** show both forms' stem lines on both forms.
+
+**What the page says that the files cannot show.** unfoldingWord's row says «has an entry» at about 97% of words where its file is not on hand; that cannot be confirmed. Italic runs such as «Special uses:» are printed in «» like meanings.
+
+**Where each goes.** The data faults go to the sixth cut (its scope widened by message); the page's wording goes to builder H2.
