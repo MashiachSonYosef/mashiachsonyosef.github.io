@@ -138,3 +138,13 @@ Measured, then decided by the lead (the seventh cut, asked):
 - **One record cited at two words of a verse:** BDB quotes the form it means at only 25% of such references, so the quoted form can decide only some. The lines whose quoted form names another word go to that word (1,025 lines); the rest are said plainly as «BDB cites this verse; this number stands n times in it, and BDB does not say which word it means».
 
 **For the corpus lane:** 27 numbers on 692 Hebrew words reach only an Aramaic record of the unabridged BDB, 659 of them «to lift» (the file lists its Hebrew record under other Strong's numbers); 8 numbers on 39 Aramaic words reach only Hebrew records (`V/cut6/lang-only-other-language.tsv`).
+
+## The seventh cut (`V/hand-back-cut-7.md`, evidence in `V/cut7/`)
+
+Built, every proof passing (the one command, 210 s; the line under the word did not move; 5 spoiled copies each failing; the eight tree checks):
+
+- **BDB's own homonym numeral** parts the records: 661 numbers (17,985 words) parted to one record. Words whose number now reaches exactly one own record: 138,323 before, 156,287 after. All 30 read by hand were the same BDB entry in both editions. «Kinsman», «press, squeeze» and «mound, hill» no longer stand as the word's own.
+- **One record cited at two words of a verse:** 1,114 lines withheld at the word BDB's quoted form does not name; 25,085 lines (21,682 words) marked so the card says «BDB cites this verse; this number stands n times in it, and BDB does not say which word it means». Read by hand: 27 of 30, then 28 of 30, then 12 of 12; each miss was a reading of the quote (a maqaf joining two words, another verse's wording, a quote without its proclitic), each mended.
+- **The page changes of the fifth, sixth and seventh cuts are one file** for builder H2: `V/cut7/page-changes-cuts-5-6-7.mjs` (9 exact edits, run in node).
+
+One refinement asked: where a record of another numeral cites this very verse (Exod 30:33: BDB reads «cut off from his kinsmen», STEP's letter «people»), the card shows both sources' readings with a sentence, instead of withholding BDB's own citation.
