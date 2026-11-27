@@ -57,3 +57,30 @@ Seven things, each by rule with counts before and after (`V/hand-back-cut-2.md`)
 - A sign-only word tied to the next stands as an empty box (Ruth 3:2); the live reader joins it to its neighbor under one outline.
 - The UBS dictionary's gloss for the object marker is «-», and that is what leads there.
 - 1,479 numbers still reach several records of the unabridged BDB with the same headword letters; the card says so and shows the one that cites the verse first.
+
+## How the live reader should take the new card (the lead's recommendation, put to the owner 27 November)
+
+Held side by side (`V/shots/15-…` both), the live reader's face is already right: the line under a word is the fresh line at 305,290 of 305,431 words, and the face carries every look the owner has ruled on (the frames, the metals, the bar, export). What is wrong on the live page is the card. So: **the live reader keeps its face and takes the new card on the 39 books; the old card (every reading matched by spelling, with its gates) stays whole behind one named switch, off at rest.** Layer 5 of `../THE-LAYERS.md`, named and switched off, where today it is the card.
+
+Being made ready in a sandbox, not shipped: `BRIEF-H.md` (builder H, `S/s16`). The other way, growing the trial page until it is the reader, would mean drawing the frames, the menu, export and the chain pages again from nothing and leaving the suite's 87 card-reading checks behind; the trial page stays what it is, a card on trial.
+
+Steps after it, each its own ship once the owner says go:
+
+1. The place card in the live reader; the old card behind the switch (builder H's work, then the suite's checks pointed at the switch).
+2. The line under the word from the place answers at the 141 words where today's is not STEP's (the 14 bare words, the 8 written and not read, the 4 Psalms places, the rest of the builder's list; the two-sign fault of the live page).
+3. A reader's choice of which source's answer at this word stands on the line (STEP at rest; MACULA; the UBS sense): a toggle, reversible, each still its source's own words at this very word.
+
+## The stopped ships, read again against the fresh build
+
+| Stopped | What it was | Under the fresh build |
+|---|---|---|
+| Ship 23 (#169) | STEP leads at 30 + 17 + 7 words; no line under 8 words written and not read; the L5 hash check | The words become step 2 above, by the places' own rule instead of three lists. The L5 check stands on its own and rides the next ship |
+| The card hold (#168) | The card moves when a reading is switched | The place card has no reading switch and holds still (16,251 words pressed). The fault stays only in the old card behind the switch |
+| Ship 24 (#173) | A piece of a divided word served as a whole word | Withdrawn as framed. Answered: each part carries STEP's own number; the root's number reaches the dictionaries, a prefix or suffix shows STEP's own word only |
+| Ship 25 (#171) | Each source's own signs, joiner, year, credit | In the place card each source's row is its own words exactly, with its own credit. A row's year is still to add |
+| Ship 26 (#174) | What a source's own bytes say is a reading | Answered by the entries: BDB's grammar words are held as grammar words, Strong's item is whole, his pointers stand apart, the lost «+» is marked |
+| Ship 27 (#175) | A source filed by entry is found by its entry | Answered by the bridges: Strong's and both BDBs at every inflected word, homonyms parted by the files |
+| One-place renderings (#172) | Another place's rendering a press away | Answered: «At this word» holds only what a source says at this word |
+| Ship 28 (#176) | The text's own marks said truly | Untouched by the card; it is the face's work and still stands as written |
+| Ship 29 (#177) | The chain pages say how the reading was reached | To be made again from the place answers once the line is (step 2) |
+| The footing mends (#170) | Manifests, the path map, the pins | Stand as written; independent |
