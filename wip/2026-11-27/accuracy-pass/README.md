@@ -162,3 +162,26 @@ Each builder hands back a patch against live main (ea6e1ad08e); the lead applies
 | 10 | Strong's pointer by bare number rides on the last rendering («Levi. See also 3879, 3881») | 253 readings at 13,572 places | ship 26 |
 | 11 | A credit line with another source's year | 2,010 rows | ship 25 |
 | 12 | The declarations: one ledger says Strong's key was not found while its sister quotes it; «×» is declared «not a plain rendering» against Strong's words | 69 of 181 shapes «unverified:» | corpus lane |
+
+### F, the text's own marks and whose each division is (`F/findings.md`)
+
+**Every character of the 39 books is on the page, in place.** The provider's published text fetched that day, the corpus lane's restore, our zones and the page as a browser draws it agree in all 23,206 verses: 1,205,351 letters, 1,297,940 points and accents, every mark count equal; the page was read entry by entry for every book (334,826 entries, no difference from the zone). All 71 letter marks (large, small, hung, dotted) sit on the right letter. **The divisions are sound:** at 301,686 words lined up with STEP's rows the pieces under the word equal STEP's own cut, none differing; of 742 joined cells 451 are STEP's own joint tag and 286 a dictionary's.
+
+What goes wrong is what the page calls a mark, or says of it (ship 28, task 176):
+
+| # | Finding | Places |
+|---|---|---|
+| F1 | A legarmeh is named and drawn as a paseq; the edition tells them apart | 1,795 |
+| F2 | The gray maqaf (one the edition added where the manuscripts write none) is drawn as any maqaf; its card says the source writes it «spaced out», which it does not; 9 words wear the flag wrongly | 109 + 9 |
+| F3 | A hover title says «Leningrad differs» and shows the same letters on both sides, or prints a code | 107 of 1,173 |
+| F4 | The edition's notes on scroll differences are carried nowhere | 31 |
+| F5 | «A ketiv-qere of spelling» said of words the source does not mark | 30 |
+| F6 | The English under a pair is marked on the written form though it is the read form's | 19 (11 against STEP's own row) |
+| F7 | The 14 words with no English (as the lead found; ship 23) | 14 |
+| F8 | STEP's brackets taken off at read forms (as C1's T4) | 9 |
+| F9 | A word written and not read wears a wrong line (ship 23 prints none; better, STEP's own word for it and «written, not read» on the card) | 8 of 8 |
+| F10–F12 | Three card sentences (read-not-written, the empty verse, dots below) | 9, 2, 1 |
+
+Two standing rulings, shown for their size and not as faults: on a first visit none of the 29,056 sof pasuq, bars and section marks is drawn, and 35,715 of the 42,635 maqaf strokes are followed by a space.
+
+**The edition has moved on from the provider's copy.** The edition's own latest files (documented 26 October 2026) count 1,787 legarmeh, 508 paseq, 1,047 pairs, 149 trivial pairs and 116 gray maqaf, and carry no notes; the provider serves, and we carry, 1,795, 498, 1,045, 130, 109 and 31 notes. Under the owner's word of 27 November that is a question for them: follow the provider, or the edition.
