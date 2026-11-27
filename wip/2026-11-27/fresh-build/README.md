@@ -213,3 +213,5 @@ H2 brought S/s16 to the eighth cut and put the page changes of cuts 5 to 8 into 
 - long row sentences;
 - «Special uses:» (left for the owner);
 - the line under the 8 written-not-read words (Ruth 3:12 still «mother»: the later step of the 141).
+
+The ‡ sentence now names both numbers: «‡ BDB files this verse under another word of the same letters (II. «kinsman»); STEP's number H5971A is BDB's I.» P11 checks the new wording, and its spoiled copy still fails. Reports are in `H2/hand-back-cut-8-fix.md`. The pictures sent to the owner are in `H2/shots-cut8/`.
