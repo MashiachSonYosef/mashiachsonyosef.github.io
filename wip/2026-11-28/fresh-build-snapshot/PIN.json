@@ -1,0 +1,2885 @@
+{
+ "schema": "PLACE_ANSWERS_PIN_JOINED_V1",
+ "rule_id": "place-answers-rule-v1-a-reading-stands-at-a-word-only-where-a-source-puts-it-there-by-that-sources-own-address",
+ "what": "the one pin of data/place-answers-v1/: the pin of each part, whole and as its builder wrote it, under the part's own key (parts.<key>.record), with the bytes and sha256 of the part's pin file",
+ "made_by": "tools/join-place-answers-pin-v1.mjs, the last step of tools/make-place-answers-v1.sh <sources folder>",
+ "sources_map": {
+  "file": "sources.json",
+  "bytes": 11842,
+  "sha256": "9950bf1accad1bf8f4ac5cc3051816229dd72faa77c60487dfa0de2601b7872d"
+ },
+ "parts": {
+  "places": {
+   "what": "STEP and MACULA at every word of our text",
+   "pin_file": "places/PIN.json",
+   "bytes": 42043,
+   "sha256": "641953e29f93c701900bfc4407e58211c5223ccb50bed802610bdb537841cdd8",
+   "record": {
+    "schema": "PLACE_ANSWERS_PLACES_PIN_V1",
+    "rule_id": "place-answers-rule-v1-a-reading-stands-at-a-word-only-where-a-source-puts-it-there-by-that-sources-own-address",
+    "rule": "A reading stands at a word only where a source puts it there by that source's own address, or by a bridge a source declares. Our text and STEP's text (and MACULA's) are two editions of the same verses: a word of ours meets a row of theirs by its place in the verse, never by its letters alone, and the record names how they meet (one for one; one word for two; two for one; the same letters or the letters by which the spelling differs; a verse numbered otherwise; a word written one way and read another, each form with the reading the source gives for it; another word; no row). A source's cells are held whole, byte for byte; nothing is cut, joined, hidden or respelled.",
+    "generated_by": "tools/build-place-answers-places-v1.mjs",
+    "made_again_by": "node tools/build-place-answers-places-v1.mjs --step <dir of STEP's four TAHOT files> --step-revision <id> --macula <macula-hebrew.tsv> --macula-revision <id>",
+    "sources": {
+     "step_tahot": {
+      "provider": "STEPBible.org, based on work at Tyndale House Cambridge",
+      "repository": "https://github.com/STEPBible/STEPBible-Data",
+      "folder": "Translators Amalgamated OT+NT",
+      "license": "CC BY 4.0",
+      "credit": "Tyndale House and STEPBible.org; source: STEPBible.github.io/STEPBible-Data",
+      "revision": "5de0a47f35f0fc13dfe1430d104e5db8a4285f9c",
+      "files": [
+       {
+        "name": "TAHOT_Gen-Deu_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt",
+        "bytes": 18190495,
+        "sha256": "7763ef367bb0e6e1c1a95fb9b652e1d611b2481827611433e82abbf229216d70"
+       },
+       {
+        "name": "TAHOT_Jos-Est_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt",
+        "bytes": 24500357,
+        "sha256": "b79add01a8c95673e31ec3ab8ad86183d2312cd96421ddf21f3d1f74377526a7"
+       },
+       {
+        "name": "TAHOT_Job-Sng_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt",
+        "bytes": 9540663,
+        "sha256": "e0416880bb78f46715bb17ce526b623c3051da0ef83f7bf83beaad350e6272e8"
+       },
+       {
+        "name": "TAHOT_Isa-Mal_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt",
+        "bytes": 17977558,
+        "sha256": "d5a609f5a4b9f7757a2615e55877b07f9f6931a8afccef012c0b4bf662caf540"
+       }
+      ]
+     },
+     "macula_hebrew": {
+      "provider": "Clear Bible, Inc. (MACULA Hebrew Linguistic Datasets)",
+      "repository": "https://github.com/Clear-Bible/macula-hebrew",
+      "path": "WLC/tsv/macula-hebrew.tsv (in large file storage)",
+      "license": "CC BY 4.0",
+      "revision": "47db250bd55d0d8577f2a94fba114ef16c35b23c",
+      "files": [
+       {
+        "name": "macula-hebrew.tsv",
+        "bytes": 84382719,
+        "sha256": "965cb0599beed2fe31283b615bcc369178141c0e718a66d97518d94309cfc124"
+       }
+      ]
+     },
+     "our_text": {
+      "what": "the zones of the 39 books: the surface of each entry, its marks, and the forms of a word written one way and read another; nothing else of a zone is read",
+      "files": {
+       "data/zones/genesis.bin": "ab433bd8c2381adeea4a721b3bc27225a901538d2dd8bf557fa2931f024c8c28",
+       "data/zones/exodus.bin": "15922ad4a839fc350763a029913c9a1830ef3c78e5f279360a04bbdbbdb4b91f",
+       "data/zones/leviticus.bin": "16ebb630e081c59adfe5dc8e390f6f411cb61efb5be59c2d36245d79364f284f",
+       "data/zones/numbers.bin": "cada3c3e61e3064be1686192542d8df0d9e5363bf1d87d43547107df2be2eb20",
+       "data/zones/deuteronomy.bin": "3453aa00f55e42b37327ac050eb9a65ae519007a9fccb82d53adfcf1d4a7c7e5",
+       "data/zones/joshua.bin": "d1777a544b14b8890e9bdf59054bc73253ceec4b0e3afdf740116dba33af59dd",
+       "data/zones/judges.bin": "ee1f301b53ba95168866b1682eefea72c7715b1eb345183599638c3afa6d87ed",
+       "data/zones/ruth.bin": "cef547f73cad3a74dc7976f8346077ae714e6d69d227a8e6a2b5e71c85fba4f9",
+       "data/zones/i-samuel.bin": "ba57078b2c56d43f0fbfeacb7e45834fb98db1a1e20ad93bd4a8e7eb06605d10",
+       "data/zones/ii-samuel.bin": "fb9453470849021c90db3d62e4bfc3de7a8a1a142eab6ebb566c56b6639ea470",
+       "data/zones/i-kings.bin": "bd8cc0c14f7c07ffc55586b0bbf716f3a340b7d16e610768ba9a5f693c4a00f2",
+       "data/zones/ii-kings.bin": "7f9f5b2c1b683fbf7d5076e8c548c899442aec87debdd99487036567a120d5a9",
+       "data/zones/i-chronicles.bin": "25a2424addc94ce0758be65d3823e8c74b6c24d54425b3ed80926df0e3b6ebcd",
+       "data/zones/ii-chronicles.bin": "61bd5a83d4ccc0cd76f4624c0b6ad7e988785becb0915e91863e369f0bd65260",
+       "data/zones/ezra.bin": "7d702efaf83981ccd6fcbb274a25f49ebffb6313ec66fcd274de71db411dfdb3",
+       "data/zones/nehemiah.bin": "6f1fff04313edbf0f76ca549667f82dbc84d470bef99df47f2de81b1a627ff51",
+       "data/zones/esther.bin": "774b8f6ab97486c0bf52d8f67b0007ca87e672bf8fb8fcdb73607aa995521eff",
+       "data/zones/job.bin": "07a7b9b5c4013b3c30e396fea503f61b63245838b2f03ac12eeff79417a79412",
+       "data/zones/psalms.bin": "58c4986e8a24681c875dc27db96f1b83ae6020ee09a3542fdd578693f7328e24",
+       "data/zones/proverbs.bin": "d8d36e6c9906e3f50faf42a54d9faa0fe15f8e7ff4b35f4ed48b768f0212734d",
+       "data/zones/ecclesiastes.bin": "67ecc2dc464fa3fa95d4c83e345141f9ea22c5c1ee0416e804be2b6b9c844d43",
+       "data/zones/song-of-songs.bin": "954b113c6d6a82ef64e529e0dc6c36f8218a0e43ed2c805c30bf584c30aa3700",
+       "data/zones/isaiah.bin": "f22f9b98a3f59ab316f2122c8d43b04c0e0406ee2f5d79d404c3b7947fe53fa0",
+       "data/zones/jeremiah.bin": "8a7ee1e6b62e7807ced15af6d84a869227e8ea4c97806c5b68f77719213f80de",
+       "data/zones/lamentations.bin": "24edbe280bf4801ac0f6f26d7751ce4a608c59dbb20bf8e19df5ff50bdde9671",
+       "data/zones/ezekiel.bin": "460869039875ae32219f6099f44a574b2bd9cad21c928d2b0c08fe0124e9acbd",
+       "data/zones/daniel.bin": "72689b26ef08e8191394d33d20e6e176866a9c38db33bc6e628d48ee95a14454",
+       "data/zones/hosea.bin": "263fa0d7a3d6f53e20d28339c699dd71732864fb8a25daa4c9ffa7788186ba4d",
+       "data/zones/joel.bin": "005f7f6cd337a2c8a044da8e030f507744c7d2e4d5bdbd8695e6d49d187b2dc9",
+       "data/zones/amos.bin": "6fa9b5b826da41f8960b9ff4a1c64504725dc8d486577b185852cd53cd213afc",
+       "data/zones/obadiah.bin": "665fc829a1f21eda80cfbd09d68b95750cfdcbc9e3fe9913aa632fc26495f39c",
+       "data/zones/jonah.bin": "57ef4a6202bbc08c3a110a6dee395b398b14f89612fe56d72c5e7afc029a84c3",
+       "data/zones/micah.bin": "df8833b255edd5c05ed8c05fa6b7b7c8c83ff8b26021f9ae161c57db2d28e262",
+       "data/zones/nahum.bin": "fd2d2bd099bce9db9530c443460ef02fd90d9c758d55c56437cc0a4ff48845a3",
+       "data/zones/habakkuk.bin": "e65e8dbc3e6f904fc53c31e96c37ea813271886d9921c023bd8764f58eb02b5d",
+       "data/zones/zephaniah.bin": "b513e122d801c5f38cd895dfdd32e33fa5fd4cc54ff3783e8e67a3cef331aa01",
+       "data/zones/haggai.bin": "f1985c8d4c656a63a9d3b35a7798cb9d84d03dc24524d5f7961fbee7c8fbad72",
+       "data/zones/zechariah.bin": "97160c72f0d9e03dde3a2f283dd48f7bfb74d64130c822c6c3ec4ebc61d246e7",
+       "data/zones/malachi.bin": "9bf176def31c2201946acba85986b21f02b4ad289fdb1ba451a36e35b9213b78"
+      }
+     }
+    },
+    "counts": {
+     "books": 39,
+     "words": 305431,
+     "kinds": {
+      "plain": 304369,
+      "written and read": 1045,
+      "read, not written": 9,
+      "written, not read": 8
+     },
+     "words_with_steps_parts": 305429,
+     "words_with_maculas_morphs": 305423,
+     "words_with_neither": 2,
+     "words_with_neither_named": [
+      "ii-samuel 7:22 section 179 entry 4 אֱלֹהִ֑ים",
+      "psalms 68:27 section 1035 entry 3 אֲ֝דֹנָ֗י"
+     ],
+     "words_by_how_the_editions_meet": {
+      "plain · one for one · the same letters": 302863,
+      "written and read · read: one for one · the same letters ; written: one for one · the same letters · on STEP's written form (K=)": 962,
+      "plain · one for one · spelled otherwise (a letter less) · cut carried": 410,
+      "plain · one for one · the same letters · verse numbered otherwise": 396,
+      "plain · one for one · spelled otherwise (a letter more) · cut carried": 251,
+      "plain · one for one · spelled otherwise (a letter less) · cut STEP's own, from its variant with our letters · STEP reads this row one way and gives another as written (K=): our letters are the written form's": 185,
+      "plain · one for one · spelled otherwise (another letter) · cut carried": 55,
+      "plain · one of ours, two rows of theirs · the same letters": 42,
+      "plain · one for one · spelled otherwise (another letter) · cut STEP's own, from its variant with our letters · STEP reads this row one way and gives another as written (K=): our letters are the written form's": 32,
+      "plain · one for one · spelled otherwise (a letter more) · cut not carried": 23,
+      "plain · one for one · spelled otherwise (two letters in the other order) · cut carried": 23,
+      "plain · two of ours, one of theirs: at their part cut · the same letters": 14,
+      "plain · one for one · spelled otherwise (a letter more) · cut STEP's own, from its variant with our letters · STEP reads this row one way and gives another as written (K=): our letters are the written form's": 13,
+      "written and read · read: two of ours, one row: their seam mark between · the same letters ; read: two of ours, one row: their seam mark between · the same letters ; written: one for one · the same letters · on STEP's written form (K=)": 13,
+      "plain · two of ours, one of theirs: no mark at the seam · the same letters": 10,
+      "plain · two of ours, one row: their seam mark between · the same letters · STEP reads this row one way and gives another as written (K=): our letters are both": 9,
+      "read, not written · read: two of ours, one row: their seam mark between · the same letters": 9,
+      "plain · one for one · spelled otherwise (another letter; not only alef, he, vav, yod) · cut carried": 8,
+      "written and read · read: one for one · spelled otherwise (a letter less) · cut carried ; written: one for one · the same letters": 8,
+      "written and read · read: one for one · spelled otherwise (a letter less) · cut carried ; written: one for one · the same letters · on STEP's written form (K=)": 8,
+      "written and read · read: one for one · the same letters ; read: one for one · the same letters ; written: one for one · the same letters · on STEP's written form (K=) ; written: one for one · the same letters · on STEP's written form (K=)": 8,
+      "plain · one for one · the same letters · STEP reads this row one way and gives another as written (K=): our letters are the read form's": 7,
+      "written, not read · written: one for one · the same letters · on STEP's written form (K=)": 7,
+      "written and read · read: one for one · spelled otherwise (a letter more) · cut carried ; written: one for one · the same letters · on STEP's written form (K=)": 5,
+      "written and read · read: one for one · the same letters ; written: one for one · spelled otherwise (a letter more) · cut carried · on STEP's written form (K=)": 5,
+      "written and read · read: one for one · the same letters ; written: one for one · the same letters · on STEP's written form (K=) ; written: one for one · the same letters · on STEP's written form (K=)": 5,
+      "written and read · read: one for one · the same letters ; written: one for one · spelled otherwise (another letter) · cut carried · on STEP's written form (K=)": 4,
+      "plain · one for one · spelled otherwise (another letter) · cut carried · STEP reads this row one way and gives another as written (K=): our letters are the written form's": 3,
+      "plain · one for one · spelled otherwise (another letter; not only alef, he, vav, yod) · cut STEP's own, from its variant with our letters": 3,
+      "written and read · read: one for one · the same letters ; written: one for one · spelled otherwise (two letters in the other order) · cut carried · on STEP's written form (K=)": 3,
+      "plain · one for one · spelled otherwise (a letter less) · cut carried · STEP reads this row one way and gives another as written (K=): our letters are neither's exactly": 2,
+      "plain · one for one · spelled otherwise (a letter less) · cut not carried · STEP reads this row one way and gives another as written (K=): our letters are the written form's": 2,
+      "plain · one for one · spelled otherwise (letters less) · cut STEP's own, from its variant with our letters · STEP reads this row one way and gives another as written (K=): our letters are the written form's": 2,
+      "plain · one for one · spelled otherwise (mixed) · cut carried · STEP reads this row one way and gives another as written (K=): our letters are neither's exactly": 2,
+      "plain · two of ours, one row: their seam mark between · the same letters": 2,
+      "written and read · read: one for one · spelled otherwise (a letter more) · cut not carried ; written: one for one · the same letters · on STEP's written form (K=)": 2,
+      "written and read · read: one for one · the same letters ; read: one for one · the same letters ; written: one of ours, two rows of theirs · the same letters · on STEP's written form (K=)": 2,
+      "plain · no row": 1,
+      "plain · one for one · another word": 1,
+      "plain · one for one · spelled otherwise (a letter less) · cut STEP's own, from its variant with our letters": 1,
+      "plain · one for one · spelled otherwise (a letter less) · cut STEP's own, from its variant with our letters · STEP reads this row one way and gives another as written (K=): our letters are neither's exactly": 1,
+      "plain · one for one · spelled otherwise (a letter less) · cut carried · STEP reads this row one way and gives another as written (K=): our letters are the written form's": 1,
+      "plain · one for one · spelled otherwise (mixed) · cut carried": 1,
+      "plain · one for one · spelled otherwise (mixed) · cut not carried": 1,
+      "plain · one for one · spelled otherwise (other letters; not only alef, he, vav, yod) · cut carried": 1,
+      "plain · one for one · spelled otherwise (other letters; not only alef, he, vav, yod) · cut carried · STEP reads this row one way and gives another as written (K=): our letters are neither's exactly": 1,
+      "plain · one for one · the same letters · STEP reads this row one way and gives another as written (K=): our letters are both": 1,
+      "plain · one of ours, one row marked as two words · the same letters": 1,
+      "plain · two of ours, one of theirs: no mark at the seam · the same letters · STEP reads this row one way and gives another as written (K=): our letters are both": 1,
+      "written and read · read: one for one · spelled otherwise (a letter less) · cut carried ; written: one for one · spelled otherwise (a letter less) · cut carried · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · spelled otherwise (a letter less) · cut carried ; written: one for one · spelled otherwise (two letters in the other order) · cut carried · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · spelled otherwise (a letter more) · cut carried ; written: one for one · spelled otherwise (a letter more) · cut carried · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · spelled otherwise (a letter more) · cut carried ; written: one for one · spelled otherwise (another letter) · cut carried · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · spelled otherwise (a letter more) · cut carried ; written: one for one · spelled otherwise (mixed) · cut carried · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · spelled otherwise (a letter more) · cut carried ; written: one for one · the same letters · on STEP's written form (K=) ; written: one for one · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · spelled otherwise (other letters) · cut carried ; written: one for one · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · spelled otherwise (other letters) · cut not carried ; written: one for one · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · the same letters ; read: one for one · the same letters ; read: one for one · the same letters ; written: one for one · the same letters · on STEP's written form (K=) ; written: one for one · the same letters · on STEP's written form (K=) ; written: one for one · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · the same letters ; written: one for one · spelled otherwise (a letter less) · cut carried · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · the same letters ; written: one for one · spelled otherwise (a letter more) · cut not carried · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · the same letters ; written: one for one · spelled otherwise (another letter; not only alef, he, vav, yod) · cut carried · on STEP's written form (K=) ; written: one for one · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · the same letters ; written: one for one · spelled otherwise (two letters in the other order) · cut carried": 1,
+      "written and read · read: one for one · the same letters ; written: one of ours, one row marked as two words · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: one for one · the same letters ; written: two of ours, one of theirs: no mark at the seam · the same letters · on STEP's written form (K=) ; written: two of ours, one of theirs: no mark at the seam · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: two of ours, one of theirs: at their part cut · the same letters ; read: two of ours, one of theirs: at their part cut · the same letters ; written: one for one · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: two of ours, one of theirs: no mark at the seam · the same letters ; written: two of ours, one row: their seam mark between · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: two of ours, one row: their seam mark between · spelled otherwise (a letter less) · cut carried ; read: two of ours, one row: their seam mark between · the same letters ; written: one for one · the same letters · on STEP's written form (K=)": 1,
+      "written and read · read: two of ours, one row: their seam mark between · the same letters ; read: two of ours, one row: their seam mark between · the same letters ; written: one for one · spelled otherwise (a letter less) · cut carried · on STEP's written form (K=)": 1,
+      "written and read · read: two of ours, one row: their seam mark between · the same letters ; read: two of ours, one row: their seam mark between · the same letters ; written: one of ours, one row marked as two words · the same letters · on STEP's written form (K=)": 1,
+      "written, not read · written: one for one · the same letters": 1
+     },
+     "step_meetings_by_form": {
+      "plain | read line | one for one · the same letters": 302871,
+      "written | written line | one for one · the same letters · on STEP's written form (K=)": 1033,
+      "read | read line | one for one · the same letters": 1008,
+      "plain | read line | one for one · spelled otherwise (a letter less) · cut carried": 413,
+      "plain | read line | one for one · the same letters · verse numbered otherwise": 396,
+      "plain | read line | one for one · spelled otherwise (a letter more) · cut carried": 251,
+      "plain | written line | one for one · the same letters · on STEP's written form (K=)": 248,
+      "plain | read line | one for one · spelled otherwise (a letter less) · cut STEP's own, from its variant with our letters": 187,
+      "plain | read line | one for one · spelled otherwise (another letter) · cut carried": 58,
+      "plain | read line | one of ours, two rows of theirs · the same letters": 42,
+      "read | read line | two of ours, one row: their seam mark between · the same letters": 40,
+      "plain | read line | one for one · spelled otherwise (another letter) · cut STEP's own, from its variant with our letters": 32,
+      "plain | read line | one for one · spelled otherwise (a letter more) · cut not carried": 23,
+      "plain | read line | one for one · spelled otherwise (two letters in the other order) · cut carried": 23,
+      "read | read line | one for one · spelled otherwise (a letter less) · cut carried": 18,
+      "plain | read line | two of ours, one of theirs: at their part cut · the same letters": 14,
+      "plain | read line | one for one · spelled otherwise (a letter more) · cut STEP's own, from its variant with our letters": 13,
+      "plain | read line | two of ours, one of theirs: no mark at the seam · the same letters": 11,
+      "plain | read line | two of ours, one row: their seam mark between · the same letters": 11,
+      "read | read line | one for one · spelled otherwise (a letter more) · cut carried": 9,
+      "written | written line | one for one · the same letters": 9,
+      "plain | read line | one for one · spelled otherwise (another letter; not only alef, he, vav, yod) · cut carried": 8,
+      "written | written line | one for one · spelled otherwise (a letter more) · cut carried · on STEP's written form (K=)": 6,
+      "plain | written line | one for one · spelled otherwise (another letter) · cut carried · on STEP's written form (K=)": 5,
+      "written | written line | one for one · spelled otherwise (another letter) · cut carried · on STEP's written form (K=)": 5,
+      "plain | written line | one for one · spelled otherwise (a letter more) · cut carried · on STEP's written form (K=)": 4,
+      "written | written line | one for one · spelled otherwise (two letters in the other order) · cut carried · on STEP's written form (K=)": 4,
+      "plain | read line | one for one · spelled otherwise (another letter; not only alef, he, vav, yod) · cut STEP's own, from its variant with our letters": 3,
+      "plain | read line | one for one · spelled otherwise (mixed) · cut carried": 3,
+      "written | written line | one for one · spelled otherwise (a letter less) · cut carried · on STEP's written form (K=)": 3,
+      "plain | read line | one for one · spelled otherwise (a letter less) · cut not carried": 2,
+      "plain | read line | one for one · spelled otherwise (letters less) · cut STEP's own, from its variant with our letters": 2,
+      "plain | read line | one for one · spelled otherwise (other letters; not only alef, he, vav, yod) · cut carried": 2,
+      "plain | written line | one for one · spelled otherwise (a letter more) · cut not carried · on STEP's written form (K=)": 2,
+      "read | read line | one for one · spelled otherwise (a letter more) · cut not carried": 2,
+      "read | read line | two of ours, one of theirs: at their part cut · the same letters": 2,
+      "written | written line | one of ours, one row marked as two words · the same letters · on STEP's written form (K=)": 2,
+      "written | written line | one of ours, two rows of theirs · the same letters · on STEP's written form (K=)": 2,
+      "written | written line | two of ours, one of theirs: no mark at the seam · the same letters · on STEP's written form (K=)": 2,
+      "plain | read line | no row": 1,
+      "plain | read line | one for one · another word": 1,
+      "plain | read line | one for one · spelled otherwise (mixed) · cut not carried": 1,
+      "plain | read line | one of ours, one row marked as two words · the same letters": 1,
+      "plain | written line | one for one · spelled otherwise (a letter less) · cut carried · on STEP's written form (K=)": 1,
+      "plain | written line | one for one · spelled otherwise (two letters in the other order) · cut carried · on STEP's written form (K=)": 1,
+      "plain | written line | two of ours, one row: their seam mark between · the same letters · on STEP's written form (K=)": 1,
+      "read | read line | one for one · spelled otherwise (other letters) · cut carried": 1,
+      "read | read line | one for one · spelled otherwise (other letters) · cut not carried": 1,
+      "read | read line | two of ours, one of theirs: no mark at the seam · the same letters": 1,
+      "read | read line | two of ours, one row: their seam mark between · spelled otherwise (a letter less) · cut carried": 1,
+      "written | written line | one for one · spelled otherwise (a letter more) · cut not carried · on STEP's written form (K=)": 1,
+      "written | written line | one for one · spelled otherwise (another letter; not only alef, he, vav, yod) · cut carried · on STEP's written form (K=)": 1,
+      "written | written line | one for one · spelled otherwise (mixed) · cut carried · on STEP's written form (K=)": 1,
+      "written | written line | one for one · spelled otherwise (two letters in the other order) · cut carried": 1,
+      "written | written line | two of ours, one row: their seam mark between · the same letters · on STEP's written form (K=)": 1
+     },
+     "macula_meetings_by_form": {
+      "plain | one for one · the same letters": 302920,
+      "read | one for one · the same letters": 1033,
+      "plain | one for one · spelled otherwise (a letter less) · cut carried": 584,
+      "plain | one for one · the same letters · verse numbered otherwise": 396,
+      "plain | one for one · spelled otherwise (a letter more) · cut carried": 263,
+      "plain | one for one · spelled otherwise (another letter) · cut carried": 77,
+      "plain | one of ours, two rows of theirs · the same letters": 50,
+      "read | one for one · spelled otherwise (a letter less) · cut carried": 31,
+      "plain | one for one · spelled otherwise (a letter more) · cut not carried": 25,
+      "plain | one for one · spelled otherwise (two letters in the other order) · cut carried": 23,
+      "plain | two of ours, one of theirs: no mark at the seam · the same letters": 11,
+      "plain | one for one · spelled otherwise (another letter; not only alef, he, vav, yod) · cut carried": 10,
+      "read | one for one · spelled otherwise (a letter more) · cut carried": 9,
+      "written | no row": 6,
+      "plain | one for one · spelled otherwise (mixed) · cut carried": 3,
+      "read | one for one · spelled otherwise (other letters) · cut not carried": 3,
+      "plain | one for one · spelled otherwise (letters less) · cut carried": 2,
+      "read | one for one · spelled otherwise (a letter more) · cut not carried": 2,
+      "read | two of ours, one of theirs: no mark at the seam · spelled otherwise (a letter more)": 2,
+      "written | one for one · the same letters": 2,
+      "plain | no row": 1,
+      "plain | one for one · another word": 1,
+      "plain | one for one · spelled otherwise (a letter less) · cut not carried": 1,
+      "plain | one for one · spelled otherwise (mixed) · cut not carried": 1,
+      "plain | one for one · spelled otherwise (other letters; not only alef, he, vav, yod) · cut carried": 1,
+      "read | one for one · spelled otherwise (another letter) · cut carried": 1,
+      "read | one for one · spelled otherwise (two letters in the other order) · cut carried": 1,
+      "read | two of ours, one of theirs: no mark at the seam · the same letters": 1
+     },
+     "step_seams_named_by_form": {
+      "one word of ours is two (or three) rows of theirs · STEP's row cut, the first row ending in its maqaf mark «\\־»": 40,
+      "one word of ours is one of the words their row holds; their own seam mark stands between (two of ours, one row) · STEP's seam mark «/ /» inside one row": 30,
+      "one word of ours is one of the words their row holds; their own seam mark stands between (two of ours, one row) · STEP's seam mark «/־/» inside one row": 16,
+      "two (or three) words of ours are one word of theirs, parted at their own part cut · STEP's part cut «/» inside one row": 16,
+      "two (or three) words of ours are one word of theirs, with no mark of theirs at the seam · no mark of STEP's (the word is one part of one row)": 14,
+      "one word of ours is one of the words their row holds; their own seam mark stands between (two of ours, one row) · STEP's seam mark «//» inside one row": 8,
+      "one word of ours is two (or three) rows of theirs · STEP's row cut, no maqaf mark on the first row": 4,
+      "one word of ours is one row of theirs that marks two words inside it · STEP's seam mark «//» inside one row": 2,
+      "one word of ours is one row of theirs that marks two words inside it · STEP's seam mark «/ /» inside one row": 1
+     },
+     "forms_whose_letters_a_variant_of_steps_row_writes": {
+      "K+L": 238,
+      "ABH": 2,
+      "AH": 2,
+      "L": 1
+     },
+     "cut_taken_from_steps_own_variant": {
+      "the rule carried the same cut": 235,
+      "the rule could not carry the cut": 2
+     },
+     "cut_by_rule_against_steps_own_variant": [],
+     "step_rows": 305648,
+     "step_rows_no_word_of_ours_meets_by_type": {
+      "X": 152,
+      "R": 27,
+      "L": 1
+     },
+     "macula_morph_rows": 475911,
+     "macula_words": 305517,
+     "macula_words_no_word_of_ours_meets": 21,
+     "verses": 23206,
+     "verses_met_whole_under_the_same_number": {
+      "step_read": 23138,
+      "step_written": 23139,
+      "macula": 23169
+     },
+     "stretches_met_between_them": {
+      "step_read": 40,
+      "step_written": 39,
+      "macula": 13
+     },
+     "plain_words_the_two_lines_place_otherwise": [],
+     "bytes": 28371887
+    },
+    "files": {
+     "genesis": {
+      "file": "genesis.json.gz",
+      "bytes": 1772223,
+      "sha256": "1ba5fc8b4239c70814c29c9181f5435d87ee750c3eb5c35e80e6ba0247785cea",
+      "zone_sha256": "ab433bd8c2381adeea4a721b3bc27225a901538d2dd8bf557fa2931f024c8c28",
+      "words": 20612,
+      "step_rows": 20614,
+      "macula_rows": 32365,
+      "macula_words": 20613
+     },
+     "exodus": {
+      "file": "exodus.json.gz",
+      "bytes": 1404839,
+      "sha256": "9160cac434e80d133c6d17d02bb332abda930ae8d738aecc286f8ccc4eac7766",
+      "zone_sha256": "15922ad4a839fc350763a029913c9a1830ef3c78e5f279360a04bbdbbdb4b91f",
+      "words": 16713,
+      "step_rows": 16713,
+      "macula_rows": 26102,
+      "macula_words": 16714
+     },
+     "leviticus": {
+      "file": "leviticus.json.gz",
+      "bytes": 951032,
+      "sha256": "c82a417ac120df581d95146ffa63dcc229aa6577c035084021e2945d2be064d4",
+      "zone_sha256": "16ebb630e081c59adfe5dc8e390f6f411cb61efb5be59c2d36245d79364f284f",
+      "words": 11950,
+      "step_rows": 11950,
+      "macula_rows": 18912,
+      "macula_words": 11950
+     },
+     "numbers": {
+      "file": "numbers.json.gz",
+      "bytes": 1306206,
+      "sha256": "3e9123c6cf1f0827fd0e5d745253e309e465b5934fc54f69ab09d10dc026aae7",
+      "zone_sha256": "cada3c3e61e3064be1686192542d8df0d9e5363bf1d87d43547107df2be2eb20",
+      "words": 16408,
+      "step_rows": 16413,
+      "macula_rows": 25253,
+      "macula_words": 16413
+     },
+     "deuteronomy": {
+      "file": "deuteronomy.json.gz",
+      "bytes": 1264274,
+      "sha256": "9083f4e23cacf090c360835db27b71d0252b83ca69407c77d9234fc0c4a34525",
+      "zone_sha256": "3453aa00f55e42b37327ac050eb9a65ae519007a9fccb82d53adfcf1d4a7c7e5",
+      "words": 14294,
+      "step_rows": 14300,
+      "macula_rows": 23175,
+      "macula_words": 14295
+     },
+     "joshua": {
+      "file": "joshua.json.gz",
+      "bytes": 877188,
+      "sha256": "ec6db6d95744cbd28152d1f9d1a3400acbd9d0a482f3f88d0d6a8fc83d5a32be",
+      "zone_sha256": "d1777a544b14b8890e9bdf59054bc73253ceec4b0e3afdf740116dba33af59dd",
+      "words": 10031,
+      "step_rows": 10051,
+      "macula_rows": 15953,
+      "macula_words": 10051
+     },
+     "judges": {
+      "file": "judges.json.gz",
+      "bytes": 915988,
+      "sha256": "e0bd1646c19afe6d96c17c70b02cd1b23a1d35912c202f25980c04e687a217d1",
+      "zone_sha256": "ee1f301b53ba95168866b1682eefea72c7715b1eb345183599638c3afa6d87ed",
+      "words": 9885,
+      "step_rows": 9901,
+      "macula_rows": 15541,
+      "macula_words": 9885
+     },
+     "ruth": {
+      "file": "ruth.json.gz",
+      "bytes": 146913,
+      "sha256": "a61cd3b5ff98c719298b89622fe6c2e603d81434f1d66e6892c4bb958fbd5e1e",
+      "zone_sha256": "cef547f73cad3a74dc7976f8346077ae714e6d69d227a8e6a2b5e71c85fba4f9",
+      "words": 1296,
+      "step_rows": 1294,
+      "macula_rows": 2041,
+      "macula_words": 1295
+     },
+     "i-samuel": {
+      "file": "i-samuel.json.gz",
+      "bytes": 1196314,
+      "sha256": "95d311bf55019d4351c33887d4e85ab61e5f6af1d7824895c289ece958e93f17",
+      "zone_sha256": "ba57078b2c56d43f0fbfeacb7e45834fb98db1a1e20ad93bd4a8e7eb06605d10",
+      "words": 13258,
+      "step_rows": 13323,
+      "macula_rows": 20892,
+      "macula_words": 13262
+     },
+     "ii-samuel": {
+      "file": "ii-samuel.json.gz",
+      "bytes": 1023769,
+      "sha256": "8cfb3dafe873de94cdff6d27308087ac44e51d0cc9872d69cdcb2cde6951987d",
+      "zone_sha256": "fb9453470849021c90db3d62e4bfc3de7a8a1a142eab6ebb566c56b6639ea470",
+      "words": 11032,
+      "step_rows": 11054,
+      "macula_rows": 17155,
+      "macula_words": 11042
+     },
+     "i-kings": {
+      "file": "i-kings.json.gz",
+      "bytes": 1144251,
+      "sha256": "ea8b023830710ed9aaad079560dea2f04bd6abf42336a4bc8c0d4db69dc598c2",
+      "zone_sha256": "bd8cc0c14f7c07ffc55586b0bbf716f3a340b7d16e610768ba9a5f693c4a00f2",
+      "words": 13139,
+      "step_rows": 13140,
+      "macula_rows": 20429,
+      "macula_words": 13140
+     },
+     "ii-kings": {
+      "file": "ii-kings.json.gz",
+      "bytes": 1063055,
+      "sha256": "22d502d825dc6f67fb114668ce41aa5a67f7ef08284d0b48ebe6652e7ac25959",
+      "zone_sha256": "7f9f5b2c1b683fbf7d5076e8c548c899442aec87debdd99487036567a120d5a9",
+      "words": 12275,
+      "step_rows": 12282,
+      "macula_rows": 18831,
+      "macula_words": 12282
+     },
+     "i-chronicles": {
+      "file": "i-chronicles.json.gz",
+      "bytes": 1022976,
+      "sha256": "1d437bdbf6760d63e0cc802a9a822de89ef76434768fb506521bdbcf5729ddc4",
+      "zone_sha256": "25a2424addc94ce0758be65d3823e8c74b6c24d54425b3ed80926df0e3b6ebcd",
+      "words": 10740,
+      "step_rows": 10774,
+      "macula_rows": 16739,
+      "macula_words": 10749
+     },
+     "ii-chronicles": {
+      "file": "ii-chronicles.json.gz",
+      "bytes": 1215109,
+      "sha256": "f1a14edbfc10c3a001234493b7f8e6c5a84427268835c37415d36dd3b5dfb8dd",
+      "zone_sha256": "61bd5a83d4ccc0cd76f4624c0b6ad7e988785becb0915e91863e369f0bd65260",
+      "words": 13314,
+      "step_rows": 13314,
+      "macula_rows": 21400,
+      "macula_words": 13315
+     },
+     "ezra": {
+      "file": "ezra.json.gz",
+      "bytes": 393709,
+      "sha256": "5a317c1dd6298c4fa12d87ea60f31195751934e45da8f2f68b8467896addc5b1",
+      "zone_sha256": "7d702efaf83981ccd6fcbb274a25f49ebffb6313ec66fcd274de71db411dfdb3",
+      "words": 3754,
+      "step_rows": 3755,
+      "macula_rows": 5856,
+      "macula_words": 3754
+     },
+     "nehemiah": {
+      "file": "nehemiah.json.gz",
+      "bytes": 559378,
+      "sha256": "d52ec5fbc9ef2ff707fd1e8a9c812e678c18211ab2cf2a6ffb7eb0a06ce26407",
+      "zone_sha256": "6f1fff04313edbf0f76ca549667f82dbc84d470bef99df47f2de81b1a627ff51",
+      "words": 5312,
+      "step_rows": 5319,
+      "macula_rows": 8557,
+      "macula_words": 5313
+     },
+     "esther": {
+      "file": "esther.json.gz",
+      "bytes": 295060,
+      "sha256": "c2f305689bcb9b6ac6650fcc13a3b4a4e50155207d171bc973d776673305f7a5",
+      "zone_sha256": "774b8f6ab97486c0bf52d8f67b0007ca87e672bf8fb8fcdb73607aa995521eff",
+      "words": 3045,
+      "step_rows": 3052,
+      "macula_rows": 4917,
+      "macula_words": 3045
+     },
+     "job": {
+      "file": "job.json.gz",
+      "bytes": 898815,
+      "sha256": "18d34b3d6506759b34a1f971948e4c53f389df9f8c97462ba9d54c1bfb752f22",
+      "zone_sha256": "07a7b9b5c4013b3c30e396fea503f61b63245838b2f03ac12eeff79417a79412",
+      "words": 8339,
+      "step_rows": 8343,
+      "macula_rows": 12660,
+      "macula_words": 8343
+     },
+     "psalms": {
+      "file": "psalms.json.gz",
+      "bytes": 1952853,
+      "sha256": "ef4089e657dae7c32eee082f164c05a82543fc3eb3c89b618ce3ab4458f19b2b",
+      "zone_sha256": "58c4986e8a24681c875dc27db96f1b83ae6020ee09a3542fdd578693f7328e24",
+      "words": 19583,
+      "step_rows": 19591,
+      "macula_rows": 30299,
+      "macula_words": 19589
+     },
+     "proverbs": {
+      "file": "proverbs.json.gz",
+      "bytes": 726380,
+      "sha256": "017a29f907bd89d721d98499bb7be163a8af248238487cd8954cb105c403aa97",
+      "zone_sha256": "d8d36e6c9906e3f50faf42a54d9faa0fe15f8e7ff4b35f4ed48b768f0212734d",
+      "words": 6914,
+      "step_rows": 6915,
+      "macula_rows": 9834,
+      "macula_words": 6915
+     },
+     "ecclesiastes": {
+      "file": "ecclesiastes.json.gz",
+      "bytes": 308779,
+      "sha256": "52a43f476fb33edebde93aa55e4f05253d339e95ca7d9e751de3c965e3fb8304",
+      "zone_sha256": "67ecc2dc464fa3fa95d4c83e345141f9ea22c5c1ee0416e804be2b6b9c844d43",
+      "words": 2987,
+      "step_rows": 2988,
+      "macula_rows": 4542,
+      "macula_words": 2987
+     },
+     "song-of-songs": {
+      "file": "song-of-songs.json.gz",
+      "bytes": 155704,
+      "sha256": "6b6685977e8484ab4dc826349d84546ed9c992d57e263b72f26347f2c9e41a1b",
+      "zone_sha256": "954b113c6d6a82ef64e529e0dc6c36f8218a0e43ed2c805c30bf584c30aa3700",
+      "words": 1250,
+      "step_rows": 1249,
+      "macula_rows": 2022,
+      "macula_words": 1251
+     },
+     "isaiah": {
+      "file": "isaiah.json.gz",
+      "bytes": 1717099,
+      "sha256": "1ff9f3a07ec84f91fbb436d947071ccf031c5c39cf72b2e7b0b20285e0741fc0",
+      "zone_sha256": "f22f9b98a3f59ab316f2122c8d43b04c0e0406ee2f5d79d404c3b7947fe53fa0",
+      "words": 16923,
+      "step_rows": 16931,
+      "macula_rows": 25697,
+      "macula_words": 16933
+     },
+     "jeremiah": {
+      "file": "jeremiah.json.gz",
+      "bytes": 1894368,
+      "sha256": "fb52a44c9759a462d57fd6221fc7eb5cd4980eae653a1e783115d85b4c9ea90d",
+      "zone_sha256": "8a7ee1e6b62e7807ced15af6d84a869227e8ea4c97806c5b68f77719213f80de",
+      "words": 21831,
+      "step_rows": 21835,
+      "macula_rows": 33016,
+      "macula_words": 21836
+     },
+     "lamentations": {
+      "file": "lamentations.json.gz",
+      "bytes": 194793,
+      "sha256": "bb5a894242fb719233909ece25c07e163a4324a825f89d5cc09b75189b0de938",
+      "zone_sha256": "24edbe280bf4801ac0f6f26d7751ce4a608c59dbb20bf8e19df5ff50bdde9671",
+      "words": 1540,
+      "step_rows": 1542,
+      "macula_rows": 2303,
+      "macula_words": 1540
+     },
+     "ezekiel": {
+      "file": "ezekiel.json.gz",
+      "bytes": 1638236,
+      "sha256": "56d424b93c6f3883226fdf376e5d1ba2f4d1cfa38e70fa32912a87b1234c501a",
+      "zone_sha256": "460869039875ae32219f6099f44a574b2bd9cad21c928d2b0c08fe0124e9acbd",
+      "words": 18729,
+      "step_rows": 18730,
+      "macula_rows": 29882,
+      "macula_words": 18731
+     },
+     "daniel": {
+      "file": "daniel.json.gz",
+      "bytes": 598162,
+      "sha256": "438a76b19328329180149ebd0bb5c69f7b172675c0dabce1bc3b190d10492883",
+      "zone_sha256": "72689b26ef08e8191394d33d20e6e176866a9c38db33bc6e628d48ee95a14454",
+      "words": 5923,
+      "step_rows": 5920,
+      "macula_rows": 9587,
+      "macula_words": 5919
+     },
+     "hosea": {
+      "file": "hosea.json.gz",
+      "bytes": 277799,
+      "sha256": "223809eddfb8ff80d1a289c56e6fcf20e0a93b2910d020bd8e703dc53f38da59",
+      "zone_sha256": "263fa0d7a3d6f53e20d28339c699dd71732864fb8a25daa4c9ffa7788186ba4d",
+      "words": 2381,
+      "step_rows": 2381,
+      "macula_rows": 3641,
+      "macula_words": 2381
+     },
+     "joel": {
+      "file": "joel.json.gz",
+      "bytes": 122548,
+      "sha256": "0363cda21de28472009f931ba109f35c04d273a68d4182482cfd064e3cfdf4a9",
+      "zone_sha256": "005f7f6cd337a2c8a044da8e030f507744c7d2e4d5bdbd8695e6d49d187b2dc9",
+      "words": 957,
+      "step_rows": 957,
+      "macula_rows": 1459,
+      "macula_words": 957
+     },
+     "amos": {
+      "file": "amos.json.gz",
+      "bytes": 231346,
+      "sha256": "733f217bc3cb1f6a8e6d579f9816664656075c675703085aa1a598d87bbd6a25",
+      "zone_sha256": "6fa9b5b826da41f8960b9ff4a1c64504725dc8d486577b185852cd53cd213afc",
+      "words": 2042,
+      "step_rows": 2042,
+      "macula_rows": 3057,
+      "macula_words": 2042
+     },
+     "obadiah": {
+      "file": "obadiah.json.gz",
+      "bytes": 43830,
+      "sha256": "33a88efb755b5cbe29352eb436aa94e5acf58551c989d9b96af68a487ce6b838",
+      "zone_sha256": "665fc829a1f21eda80cfbd09d68b95750cfdcbc9e3fe9913aa632fc26495f39c",
+      "words": 291,
+      "step_rows": 291,
+      "macula_rows": 440,
+      "macula_words": 291
+     },
+     "jonah": {
+      "file": "jonah.json.gz",
+      "bytes": 85908,
+      "sha256": "8a876de18b8e82e751531d0d4f97ff90013c8636ddf2d03d597f4b2187755143",
+      "zone_sha256": "57ef4a6202bbc08c3a110a6dee395b398b14f89612fe56d72c5e7afc029a84c3",
+      "words": 688,
+      "step_rows": 688,
+      "macula_rows": 1089,
+      "macula_words": 688
+     },
+     "micah": {
+      "file": "micah.json.gz",
+      "bytes": 179159,
+      "sha256": "86f48b7920e0735b91600fbaf22d606051bafcda5683a8d48f8abd9c4c3724c8",
+      "zone_sha256": "df8833b255edd5c05ed8c05fa6b7b7c8c83ff8b26021f9ae161c57db2d28e262",
+      "words": 1396,
+      "step_rows": 1396,
+      "macula_rows": 2134,
+      "macula_words": 1396
+     },
+     "nahum": {
+      "file": "nahum.json.gz",
+      "bytes": 83091,
+      "sha256": "f6a445b7cfe312220af424026b039aaea381b87a47d7df1454187864024f8008",
+      "zone_sha256": "fd2d2bd099bce9db9530c443460ef02fd90d9c758d55c56437cc0a4ff48845a3",
+      "words": 558,
+      "step_rows": 558,
+      "macula_rows": 849,
+      "macula_words": 558
+     },
+     "habakkuk": {
+      "file": "habakkuk.json.gz",
+      "bytes": 98323,
+      "sha256": "0f954b9275fd915a9d8921dd9de6c499d43f18c890a19e7955a534254210c892",
+      "zone_sha256": "e65e8dbc3e6f904fc53c31e96c37ea813271886d9921c023bd8764f58eb02b5d",
+      "words": 671,
+      "step_rows": 671,
+      "macula_rows": 1018,
+      "macula_words": 671
+     },
+     "zephaniah": {
+      "file": "zephaniah.json.gz",
+      "bytes": 100892,
+      "sha256": "844f7c67f35898557927860009ee54db6c1b573bf7f4d10571b90e5b1696ec8f",
+      "zone_sha256": "b513e122d801c5f38cd895dfdd32e33fa5fd4cc54ff3783e8e67a3cef331aa01",
+      "words": 767,
+      "step_rows": 767,
+      "macula_rows": 1146,
+      "macula_words": 767
+     },
+     "haggai": {
+      "file": "haggai.json.gz",
+      "bytes": 70931,
+      "sha256": "0bf152f2badf826ea44c6e188caccb4136b59b74d4e015d3e051ed0087aaa105",
+      "zone_sha256": "f1985c8d4c656a63a9d3b35a7798cb9d84d03dc24524d5f7961fbee7c8fbad72",
+      "words": 600,
+      "step_rows": 600,
+      "macula_rows": 928,
+      "macula_words": 600
+     },
+     "zechariah": {
+      "file": "zechariah.json.gz",
+      "bytes": 330762,
+      "sha256": "1c461499de27d464110d91da436f0c8fe2e06f9cd2445a58551767181135f40b",
+      "zone_sha256": "97160c72f0d9e03dde3a2f283dd48f7bfb74d64130c822c6c3ec4ebc61d246e7",
+      "words": 3127,
+      "step_rows": 3128,
+      "macula_rows": 4867,
+      "macula_words": 3128
+     },
+     "malachi": {
+      "file": "malachi.json.gz",
+      "bytes": 109825,
+      "sha256": "ba236fed09e94869813f05823a9b04067ef18fe31534da4c0dae68acd4227d2c",
+      "zone_sha256": "9bf176def31c2201946acba85986b21f02b4ad289fdb1ba451a36e35b9213b78",
+      "words": 876,
+      "step_rows": 876,
+      "macula_rows": 1323,
+      "macula_words": 876
+     }
+    }
+   }
+  },
+  "entries_and_bridges": {
+   "what": "each dictionary's entries by its own id, and the bridges from STEP's tag and from a verse to them",
+   "pin_file": "entries/PIN.json",
+   "bytes": 52607,
+   "sha256": "f555ad5702c952bac4223270bdd198c7a658e4631bac9f23a77c07d6c116fe29",
+   "record": {
+    "schema": "PLACE_ANSWERS_PIN_V1",
+    "part": "entries and bridges (builder E). The places (builder P) pin their own sources in their own tree; the two are to be joined under these same keys",
+    "of": "27 November 2026",
+    "rule": "A reading stands at a word only where a source puts it there by that source's own address, or by a bridge that a source declares. Nothing is matched by bare letters. Each source's own structure is held whole inside whatever we do with it.",
+    "made_by": "reader/tools/build-place-answers-entries-v1.mjs <sources.json>; checked by reader/tools/check-place-answers-entries-v1.mjs",
+    "sources": {
+     "wikisource_strongs_explicit_forms": {
+      "work": "Strong's dictionary of 1890, the Hebrew Wikisource edition with each entry's spelled forms and verses",
+      "files": [
+       {
+        "role": "a page of the edition as its site gave it (raw wikitext), as the corpus lane received it",
+        "file": "SRCEXP-0037-H0-strongs.wikitext.txt",
+        "bytes": 1768432,
+        "sha256": "ee85711cb0c3f1c988be4f0c8d4a3f92a6449b9012bf9ad2cae3b6fddcf5d244",
+        "provider": "Hebrew Wikisource, the edition of Strong's dictionary with explicit form lists, pages H0 to H8",
+        "public_host": "he.wikisource.org",
+        "why_not_fetched_there": "Hebrew Wikisource is refused from this machine",
+        "how_it_came": "the corpus lane cached the nine pages' raw wikitext on 12 July 2026 (its cache wikisource-strongs-2026-07-12) and put them on its store as received, each gzipped, under v2/sources/received/strongs/; each unpacks to the page's received sha256 as its ledger lists it (v2/ledgers/all/elijah-asks-2026-11-27/sources-v1/sources-received-files-v1.tsv.gz). Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "revision": "no revision recorded: the pages carry no oldid or revision, and the lane's import list gives none and no time (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the site's)",
+        "page": "H0 of the edition (entries 1 to 999)"
+       },
+       {
+        "role": "a page of the edition as its site gave it (raw wikitext), as the corpus lane received it",
+        "file": "SRCEXP-0037-H1-strongs.wikitext.txt",
+        "bytes": 1029002,
+        "sha256": "16b4a3aa707e3217efdb377934420faaf15bfa80fd3e1942bc597d602c8e5a9b",
+        "provider": "Hebrew Wikisource, the edition of Strong's dictionary with explicit form lists, pages H0 to H8",
+        "public_host": "he.wikisource.org",
+        "why_not_fetched_there": "Hebrew Wikisource is refused from this machine",
+        "how_it_came": "the corpus lane cached the nine pages' raw wikitext on 12 July 2026 (its cache wikisource-strongs-2026-07-12) and put them on its store as received, each gzipped, under v2/sources/received/strongs/; each unpacks to the page's received sha256 as its ledger lists it (v2/ledgers/all/elijah-asks-2026-11-27/sources-v1/sources-received-files-v1.tsv.gz). Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "revision": "no revision recorded: the pages carry no oldid or revision, and the lane's import list gives none and no time (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the site's)",
+        "page": "H1 of the edition (entries 1000 to 1999)"
+       },
+       {
+        "role": "a page of the edition as its site gave it (raw wikitext), as the corpus lane received it",
+        "file": "SRCEXP-0037-H2-strongs.wikitext.txt",
+        "bytes": 716781,
+        "sha256": "878eaaf3146515308b4503df0035221a89416adaa2557ff9ae18dc1536649eb0",
+        "provider": "Hebrew Wikisource, the edition of Strong's dictionary with explicit form lists, pages H0 to H8",
+        "public_host": "he.wikisource.org",
+        "why_not_fetched_there": "Hebrew Wikisource is refused from this machine",
+        "how_it_came": "the corpus lane cached the nine pages' raw wikitext on 12 July 2026 (its cache wikisource-strongs-2026-07-12) and put them on its store as received, each gzipped, under v2/sources/received/strongs/; each unpacks to the page's received sha256 as its ledger lists it (v2/ledgers/all/elijah-asks-2026-11-27/sources-v1/sources-received-files-v1.tsv.gz). Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "revision": "no revision recorded: the pages carry no oldid or revision, and the lane's import list gives none and no time (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the site's)",
+        "page": "H2 of the edition (entries 2000 to 2999)"
+       },
+       {
+        "role": "a page of the edition as its site gave it (raw wikitext), as the corpus lane received it",
+        "file": "SRCEXP-0037-H3-strongs.wikitext.txt",
+        "bytes": 1630722,
+        "sha256": "dcd6e01979bbacfede81126169b6c148b947c3866a1f6626cb996836a9a4eb83",
+        "provider": "Hebrew Wikisource, the edition of Strong's dictionary with explicit form lists, pages H0 to H8",
+        "public_host": "he.wikisource.org",
+        "why_not_fetched_there": "Hebrew Wikisource is refused from this machine",
+        "how_it_came": "the corpus lane cached the nine pages' raw wikitext on 12 July 2026 (its cache wikisource-strongs-2026-07-12) and put them on its store as received, each gzipped, under v2/sources/received/strongs/; each unpacks to the page's received sha256 as its ledger lists it (v2/ledgers/all/elijah-asks-2026-11-27/sources-v1/sources-received-files-v1.tsv.gz). Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "revision": "no revision recorded: the pages carry no oldid or revision, and the lane's import list gives none and no time (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the site's)",
+        "page": "H3 of the edition (entries 3000 to 3999)"
+       },
+       {
+        "role": "a page of the edition as its site gave it (raw wikitext), as the corpus lane received it",
+        "file": "SRCEXP-0037-H4-strongs.wikitext.txt",
+        "bytes": 766909,
+        "sha256": "6969452da2f4e8333765d9ac141410a6c680939f5b1e27baf513c44fadfc0bec",
+        "provider": "Hebrew Wikisource, the edition of Strong's dictionary with explicit form lists, pages H0 to H8",
+        "public_host": "he.wikisource.org",
+        "why_not_fetched_there": "Hebrew Wikisource is refused from this machine",
+        "how_it_came": "the corpus lane cached the nine pages' raw wikitext on 12 July 2026 (its cache wikisource-strongs-2026-07-12) and put them on its store as received, each gzipped, under v2/sources/received/strongs/; each unpacks to the page's received sha256 as its ledger lists it (v2/ledgers/all/elijah-asks-2026-11-27/sources-v1/sources-received-files-v1.tsv.gz). Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "revision": "no revision recorded: the pages carry no oldid or revision, and the lane's import list gives none and no time (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the site's)",
+        "page": "H4 of the edition (entries 4000 to 4999)"
+       },
+       {
+        "role": "a page of the edition as its site gave it (raw wikitext), as the corpus lane received it",
+        "file": "SRCEXP-0037-H5-strongs.wikitext.txt",
+        "bytes": 1106923,
+        "sha256": "3b88a8de418808816f435a1bb9710e3603e02f0e0b7d0bba5a0975b61bd96710",
+        "provider": "Hebrew Wikisource, the edition of Strong's dictionary with explicit form lists, pages H0 to H8",
+        "public_host": "he.wikisource.org",
+        "why_not_fetched_there": "Hebrew Wikisource is refused from this machine",
+        "how_it_came": "the corpus lane cached the nine pages' raw wikitext on 12 July 2026 (its cache wikisource-strongs-2026-07-12) and put them on its store as received, each gzipped, under v2/sources/received/strongs/; each unpacks to the page's received sha256 as its ledger lists it (v2/ledgers/all/elijah-asks-2026-11-27/sources-v1/sources-received-files-v1.tsv.gz). Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "revision": "no revision recorded: the pages carry no oldid or revision, and the lane's import list gives none and no time (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the site's)",
+        "page": "H5 of the edition (entries 5000 to 5999)"
+       },
+       {
+        "role": "a page of the edition as its site gave it (raw wikitext), as the corpus lane received it",
+        "file": "SRCEXP-0037-H6-strongs.wikitext.txt",
+        "bytes": 789314,
+        "sha256": "669883c8a36f1d32345a48d4a86902b340af6c5e13ce8a454e99f9e828f049cc",
+        "provider": "Hebrew Wikisource, the edition of Strong's dictionary with explicit form lists, pages H0 to H8",
+        "public_host": "he.wikisource.org",
+        "why_not_fetched_there": "Hebrew Wikisource is refused from this machine",
+        "how_it_came": "the corpus lane cached the nine pages' raw wikitext on 12 July 2026 (its cache wikisource-strongs-2026-07-12) and put them on its store as received, each gzipped, under v2/sources/received/strongs/; each unpacks to the page's received sha256 as its ledger lists it (v2/ledgers/all/elijah-asks-2026-11-27/sources-v1/sources-received-files-v1.tsv.gz). Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "revision": "no revision recorded: the pages carry no oldid or revision, and the lane's import list gives none and no time (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the site's)",
+        "page": "H6 of the edition (entries 6000 to 6999)"
+       },
+       {
+        "role": "a page of the edition as its site gave it (raw wikitext), as the corpus lane received it",
+        "file": "SRCEXP-0037-H7-strongs.wikitext.txt",
+        "bytes": 815507,
+        "sha256": "d70f9d26a9e3fe13e799a3c9d6f95300a0a0ee54957de6e547fbe791f416b758",
+        "provider": "Hebrew Wikisource, the edition of Strong's dictionary with explicit form lists, pages H0 to H8",
+        "public_host": "he.wikisource.org",
+        "why_not_fetched_there": "Hebrew Wikisource is refused from this machine",
+        "how_it_came": "the corpus lane cached the nine pages' raw wikitext on 12 July 2026 (its cache wikisource-strongs-2026-07-12) and put them on its store as received, each gzipped, under v2/sources/received/strongs/; each unpacks to the page's received sha256 as its ledger lists it (v2/ledgers/all/elijah-asks-2026-11-27/sources-v1/sources-received-files-v1.tsv.gz). Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "revision": "no revision recorded: the pages carry no oldid or revision, and the lane's import list gives none and no time (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the site's)",
+        "page": "H7 of the edition (entries 7000 to 7999)"
+       },
+       {
+        "role": "a page of the edition as its site gave it (raw wikitext), as the corpus lane received it",
+        "file": "SRCEXP-0037-H8-strongs.wikitext.txt",
+        "bytes": 547090,
+        "sha256": "76cad9e2d8add81e6b746bf151ac598b5caf793794aa5c372210e74175176fa1",
+        "provider": "Hebrew Wikisource, the edition of Strong's dictionary with explicit form lists, pages H0 to H8",
+        "public_host": "he.wikisource.org",
+        "why_not_fetched_there": "Hebrew Wikisource is refused from this machine",
+        "how_it_came": "the corpus lane cached the nine pages' raw wikitext on 12 July 2026 (its cache wikisource-strongs-2026-07-12) and put them on its store as received, each gzipped, under v2/sources/received/strongs/; each unpacks to the page's received sha256 as its ledger lists it (v2/ledgers/all/elijah-asks-2026-11-27/sources-v1/sources-received-files-v1.tsv.gz). Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "revision": "no revision recorded: the pages carry no oldid or revision, and the lane's import list gives none and no time (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the site's)",
+        "page": "H8 of the edition (entries 8000 to 8674)"
+       }
+      ]
+     },
+     "openscriptures_strongs": {
+      "work": "Strong, A Concise Dictionary of the Words in the Hebrew Bible, 1890",
+      "files": [
+       {
+        "role": "HebrewStrong.xml",
+        "file": "HebrewStrong.xml",
+        "bytes": 2749042,
+        "sha256": "a628f4f89f8bdaf2483fd3faf1abc8653cc6717758dfc9f24beb7571d9bdd0c4",
+        "provider": "Open Scriptures Hebrew Bible Project",
+        "repository": "github.com/openscriptures/HebrewLexicon",
+        "revision": "21c9add13bc727d3a951361778e97e3ff7afd1ce (2 September 2019)",
+        "license": "CC BY 4.0; the text of Strong's and of Brown, Driver, Briggs is in the public domain"
+       }
+      ]
+     },
+     "stepbible_tbesh_gloss": {
+      "work": "TBESH, Translators Brief lexicon of Extended Strongs for Hebrew",
+      "files": [
+       {
+        "role": "TBESH",
+        "file": "TBESH_-_Translators_Brief_lexicon_of_Extended_Strongs_for_Hebrew_-_STEPBible.org_CC_BY.txt",
+        "bytes": 3288115,
+        "sha256": "848eef2ac16753a43694897dbb9e8f266725e7cc9da4809f367ee5b990f05dbb",
+        "provider": "STEPBible.org (Tyndale House, Cambridge)",
+        "repository": "github.com/STEPBible/STEPBible-Data",
+        "revision": "5de0a47f (the latest on 27 November 2026; the site today was built from b86d26cd)",
+        "license": "CC BY 4.0"
+       }
+      ]
+     },
+     "openscriptures_bdb_1906": {
+      "work": "Brown, Driver, Briggs, A Hebrew and English Lexicon of the Old Testament, 1906, the Open Scriptures transcription (a work in progress by its own readme)",
+      "files": [
+       {
+        "role": "BrownDriverBriggs.xml",
+        "file": "BrownDriverBriggs.xml",
+        "bytes": 2911253,
+        "sha256": "2b52658a4323d91674cda4090ab8b3ebddfff640f4f18143c28300e80b2c38f8",
+        "provider": "Open Scriptures Hebrew Bible Project",
+        "repository": "github.com/openscriptures/HebrewLexicon",
+        "revision": "21c9add13bc727d3a951361778e97e3ff7afd1ce (2 September 2019)",
+        "license": "CC BY 4.0; the text of Strong's and of Brown, Driver, Briggs is in the public domain"
+       },
+       {
+        "role": "BdbSchema.xsd (the provider's own account of the file; read by the builder, not parsed)",
+        "file": "BdbSchema.xsd",
+        "bytes": 4381,
+        "sha256": "1ab135774b937572c7216b65404669dd0b7ec2cc465e7f2fc6da8e8593e56a7d",
+        "provider": "Open Scriptures Hebrew Bible Project",
+        "repository": "github.com/openscriptures/HebrewLexicon",
+        "revision": "21c9add13bc727d3a951361778e97e3ff7afd1ce (2 September 2019)",
+        "license": "CC BY 4.0; the text of Strong's and of Brown, Driver, Briggs is in the public domain"
+       },
+       {
+        "role": "readme.md (the provider's own account of the file; read by the builder, not parsed)",
+        "file": "readme.md",
+        "bytes": 2503,
+        "sha256": "9a129c25674387c494571c3828aa3a8eb78459c165e275c313ae26994ce8ff22",
+        "provider": "Open Scriptures Hebrew Bible Project",
+        "repository": "github.com/openscriptures/HebrewLexicon",
+        "revision": "21c9add13bc727d3a951361778e97e3ff7afd1ce (2 September 2019)",
+        "license": "CC BY 4.0; the text of Strong's and of Brown, Driver, Briggs is in the public domain"
+       }
+      ]
+     },
+     "openscriptures_lexical_index": {
+      "work": "the Open Scriptures Lexical Index: the meeting place of BDB, Strong's and the TWOT numbers (its readme's words)",
+      "files": [
+       {
+        "role": "LexicalIndex.xml",
+        "file": "LexicalIndex.xml",
+        "bytes": 1782592,
+        "sha256": "8f7a605c58899d2f44430149c143c00903976e1e91232476677972a69e5bc85f",
+        "provider": "Open Scriptures Hebrew Bible Project",
+        "repository": "github.com/openscriptures/HebrewLexicon",
+        "revision": "21c9add13bc727d3a951361778e97e3ff7afd1ce (2 September 2019)",
+        "license": "CC BY 4.0; the text of Strong's and of Brown, Driver, Briggs is in the public domain"
+       }
+      ]
+     },
+     "unabridged_bdb_1906": {
+      "work": "Brown, Driver, Briggs, 1906, the unabridged text as formatted for marvel.bible",
+      "files": [
+       {
+        "role": "the zip as the provider gives it",
+        "file": "unabridged-BDB-Hebrew-lexicon.csv.zip",
+        "bytes": 6735645,
+        "sha256": "056276bd606cb394a8b5026dfd3401c3a8e27e9d3f858e45a20a48ce520a98e6",
+        "provider": "Eliran Wong (marvel.bible); source provided by Tim Morton; references parsed by Stephen Ku and his associates",
+        "repository": "github.com/eliranwong/unabridged-BDB-Hebrew-lexicon",
+        "revision": "6e8326c6884f8ef1399c7a365d660da9bb9e2d01 (24 November 2018)",
+        "license": "Public domain document; formatting by Eliran Wong (the README's words)"
+       },
+       {
+        "role": "README.md (the provider's own account; read by the builder, not parsed)",
+        "file": "README.md",
+        "bytes": 3524,
+        "sha256": "c52b20a9356089a3d041b806576066b5eacd40eeef6c7e993f7ad540136f9fb8",
+        "provider": "Eliran Wong (marvel.bible); source provided by Tim Morton; references parsed by Stephen Ku and his associates",
+        "repository": "github.com/eliranwong/unabridged-BDB-Hebrew-lexicon",
+        "revision": "6e8326c6884f8ef1399c7a365d660da9bb9e2d01 (24 November 2018)",
+        "license": "Public domain document; formatting by Eliran Wong (the README's words)"
+       },
+       {
+        "role": "the member read out of the zip",
+        "file": "unabridged-BDB-Hebrew-lexicon.csv",
+        "bytes": 33717788,
+        "sha256": "5e865974edbc704b58e6b33c2ccf96690fe1e2cda2fbc3442d2a30e8b2292ccc"
+       }
+      ]
+     },
+     "ubs_sdbh_hebrew_v0_9_2": {
+      "work": "UBS Dictionary of Biblical Hebrew, extracted from the Semantic Dictionary of Biblical Hebrew",
+      "files": [
+       {
+        "role": "the dictionary's JSON, English",
+        "file": "UBSHebrewDic-v0.9.4-en.JSON",
+        "bytes": 25244742,
+        "sha256": "28d0b53a17240b6225201c4cadcb82718c2761efab309d045018f764cf618217",
+        "provider": "United Bible Societies",
+        "repository": "github.com/ubsicap/ubs-open-license, dictionaries/hebrew",
+        "revision": "a15a96cfaa4ca18a6c0339016645ba1e534db3c8 (21 October 2026, «Version 0.9.4 Hebrew»)",
+        "license": "CC BY-SA 4.0"
+       },
+       {
+        "role": "README.md of the dictionary's folder (the key to its encodings; read by the builder, not parsed)",
+        "file": "README.md",
+        "bytes": 3193,
+        "sha256": "f18eab18a4bad4a83f45981064139f89a96cb4ae97e0e72833d709ae2fb52940",
+        "provider": "United Bible Societies",
+        "repository": "github.com/ubsicap/ubs-open-license, dictionaries/hebrew",
+        "revision": "a15a96cfaa4ca18a6c0339016645ba1e534db3c8 (21 October 2026, «Version 0.9.4 Hebrew»)",
+        "license": "CC BY-SA 4.0"
+       },
+       {
+        "role": "LICENSE.md of the dictionary's folder",
+        "file": "LICENSE.md",
+        "bytes": 20131,
+        "sha256": "7abe19ec9bb73b36141b999b861d24ad855e808bafe0f81e84cce28556f6c297",
+        "provider": "United Bible Societies",
+        "repository": "github.com/ubsicap/ubs-open-license, dictionaries/hebrew",
+        "revision": "a15a96cfaa4ca18a6c0339016645ba1e534db3c8 (21 October 2026, «Version 0.9.4 Hebrew»)",
+        "license": "CC BY-SA 4.0"
+       }
+      ]
+     },
+     "unfoldingword_uhal": {
+      "work": "unfoldingWord Hebrew and Aramaic Lexicon",
+      "files": [
+       {
+        "role": "the repository zip as its host packs it, as the corpus lane received it",
+        "file": "en_uhal-master.zip",
+        "bytes": 4427005,
+        "sha256": "6b018322cac96c621d453526b7ead67b845fc2d19fc517a68c8babc56c8ddd01",
+        "provider": "unfoldingWord, the Hebrew and Aramaic lexicon (en_uhal), one file per Strong's number under content/",
+        "repository": "en_uhal on git.door43.org (the zip's top folder; the zip's name says its branch, master)",
+        "revision": "0a2b9bf1e43fc37130e331504b43c69f8c16563c (the commit the host writes in the zip's own comment)",
+        "public_host": "git.door43.org",
+        "why_not_fetched_there": "the provider's host refuses this machine",
+        "how_it_came": "the corpus lane received the repository zip on 12 July 2026 (its cache unfoldingword-uhal-2026-07-12) and put it on its store as received: v2/sources/received/uhal/en_uhal-master.zip, 4,427,005 bytes. Read from the store with a read-only client (the corpus lane, relay v223 (27 November 2026), section FB1)",
+        "license": "CC BY-SA 4.0 (the zip's manifest.yaml, rights)"
+       }
+      ]
+     },
+     "stepbible_tahot_tags": {
+      "work": "TAHOT, Translators Amalgamated Hebrew OT (read here for its tags only)",
+      "files": [
+       {
+        "role": "TAHOT (read for its tags only: every part of every word)",
+        "file": "TAHOT_Gen-Deu_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt",
+        "bytes": 18190495,
+        "sha256": "7763ef367bb0e6e1c1a95fb9b652e1d611b2481827611433e82abbf229216d70",
+        "provider": "STEPBible.org (Tyndale House, Cambridge)",
+        "repository": "github.com/STEPBible/STEPBible-Data",
+        "revision": "5de0a47f (the latest on 27 November 2026; the site today was built from b86d26cd)",
+        "license": "CC BY 4.0"
+       },
+       {
+        "role": "TAHOT (read for its tags only: every part of every word)",
+        "file": "TAHOT_Jos-Est_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt",
+        "bytes": 24500357,
+        "sha256": "b79add01a8c95673e31ec3ab8ad86183d2312cd96421ddf21f3d1f74377526a7",
+        "provider": "STEPBible.org (Tyndale House, Cambridge)",
+        "repository": "github.com/STEPBible/STEPBible-Data",
+        "revision": "5de0a47f (the latest on 27 November 2026; the site today was built from b86d26cd)",
+        "license": "CC BY 4.0"
+       },
+       {
+        "role": "TAHOT (read for its tags only: every part of every word)",
+        "file": "TAHOT_Job-Sng_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt",
+        "bytes": 9540663,
+        "sha256": "e0416880bb78f46715bb17ce526b623c3051da0ef83f7bf83beaad350e6272e8",
+        "provider": "STEPBible.org (Tyndale House, Cambridge)",
+        "repository": "github.com/STEPBible/STEPBible-Data",
+        "revision": "5de0a47f (the latest on 27 November 2026; the site today was built from b86d26cd)",
+        "license": "CC BY 4.0"
+       },
+       {
+        "role": "TAHOT (read for its tags only: every part of every word)",
+        "file": "TAHOT_Isa-Mal_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt",
+        "bytes": 17977558,
+        "sha256": "d5a609f5a4b9f7757a2615e55877b07f9f6931a8afccef012c0b4bf662caf540",
+        "provider": "STEPBible.org (Tyndale House, Cambridge)",
+        "repository": "github.com/STEPBible/STEPBible-Data",
+        "revision": "5de0a47f (the latest on 27 November 2026; the site today was built from b86d26cd)",
+        "license": "CC BY 4.0"
+       }
+      ]
+     },
+     "our_text": {
+      "work": "the zones of the 39 books in this tree (reader/data/zones), read for their verse labels only",
+      "files": [
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "genesis.bin",
+        "bytes": 1030850,
+        "sha256": "ab433bd8c2381adeea4a721b3bc27225a901538d2dd8bf557fa2931f024c8c28"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "exodus.bin",
+        "bytes": 843859,
+        "sha256": "15922ad4a839fc350763a029913c9a1830ef3c78e5f279360a04bbdbbdb4b91f"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "leviticus.bin",
+        "bytes": 553778,
+        "sha256": "16ebb630e081c59adfe5dc8e390f6f411cb61efb5be59c2d36245d79364f284f"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "numbers.bin",
+        "bytes": 783583,
+        "sha256": "cada3c3e61e3064be1686192542d8df0d9e5363bf1d87d43547107df2be2eb20"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "deuteronomy.bin",
+        "bytes": 810011,
+        "sha256": "3453aa00f55e42b37327ac050eb9a65ae519007a9fccb82d53adfcf1d4a7c7e5"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "joshua.bin",
+        "bytes": 546519,
+        "sha256": "d1777a544b14b8890e9bdf59054bc73253ceec4b0e3afdf740116dba33af59dd"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "judges.bin",
+        "bytes": 578178,
+        "sha256": "ee1f301b53ba95168866b1682eefea72c7715b1eb345183599638c3afa6d87ed"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "ruth.bin",
+        "bytes": 126147,
+        "sha256": "cef547f73cad3a74dc7976f8346077ae714e6d69d227a8e6a2b5e71c85fba4f9"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "i-samuel.bin",
+        "bytes": 740719,
+        "sha256": "ba57078b2c56d43f0fbfeacb7e45834fb98db1a1e20ad93bd4a8e7eb06605d10"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "ii-samuel.bin",
+        "bytes": 640271,
+        "sha256": "fb9453470849021c90db3d62e4bfc3de7a8a1a142eab6ebb566c56b6639ea470"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "i-kings.bin",
+        "bytes": 697320,
+        "sha256": "bd8cc0c14f7c07ffc55586b0bbf716f3a340b7d16e610768ba9a5f693c4a00f2"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "ii-kings.bin",
+        "bytes": 660298,
+        "sha256": "7f9f5b2c1b683fbf7d5076e8c548c899442aec87debdd99487036567a120d5a9"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "i-chronicles.bin",
+        "bytes": 684409,
+        "sha256": "25a2424addc94ce0758be65d3823e8c74b6c24d54425b3ed80926df0e3b6ebcd"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "ii-chronicles.bin",
+        "bytes": 749856,
+        "sha256": "61bd5a83d4ccc0cd76f4624c0b6ad7e988785becb0915e91863e369f0bd65260"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "ezra.bin",
+        "bytes": 299791,
+        "sha256": "7d702efaf83981ccd6fcbb274a25f49ebffb6313ec66fcd274de71db411dfdb3"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "nehemiah.bin",
+        "bytes": 394619,
+        "sha256": "6f1fff04313edbf0f76ca549667f82dbc84d470bef99df47f2de81b1a627ff51"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "esther.bin",
+        "bytes": 206502,
+        "sha256": "774b8f6ab97486c0bf52d8f67b0007ca87e672bf8fb8fcdb73607aa995521eff"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "job.bin",
+        "bytes": 732130,
+        "sha256": "07a7b9b5c4013b3c30e396fea503f61b63245838b2f03ac12eeff79417a79412"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "psalms.bin",
+        "bytes": 1302151,
+        "sha256": "58c4986e8a24681c875dc27db96f1b83ae6020ee09a3542fdd578693f7328e24"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "proverbs.bin",
+        "bytes": 591319,
+        "sha256": "d8d36e6c9906e3f50faf42a54d9faa0fe15f8e7ff4b35f4ed48b768f0212734d"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "ecclesiastes.bin",
+        "bytes": 228083,
+        "sha256": "67ecc2dc464fa3fa95d4c83e345141f9ea22c5c1ee0416e804be2b6b9c844d43"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "song-of-songs.bin",
+        "bytes": 155501,
+        "sha256": "954b113c6d6a82ef64e529e0dc6c36f8218a0e43ed2c805c30bf584c30aa3700"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "isaiah.bin",
+        "bytes": 1232790,
+        "sha256": "f22f9b98a3f59ab316f2122c8d43b04c0e0406ee2f5d79d404c3b7947fe53fa0"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "jeremiah.bin",
+        "bytes": 1221722,
+        "sha256": "8a7ee1e6b62e7807ced15af6d84a869227e8ea4c97806c5b68f77719213f80de"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "lamentations.bin",
+        "bytes": 187155,
+        "sha256": "24edbe280bf4801ac0f6f26d7751ce4a608c59dbb20bf8e19df5ff50bdde9671"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "ezekiel.bin",
+        "bytes": 1016336,
+        "sha256": "460869039875ae32219f6099f44a574b2bd9cad21c928d2b0c08fe0124e9acbd"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "daniel.bin",
+        "bytes": 408130,
+        "sha256": "72689b26ef08e8191394d33d20e6e176866a9c38db33bc6e628d48ee95a14454"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "hosea.bin",
+        "bytes": 239862,
+        "sha256": "263fa0d7a3d6f53e20d28339c699dd71732864fb8a25daa4c9ffa7788186ba4d"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "joel.bin",
+        "bytes": 119345,
+        "sha256": "005f7f6cd337a2c8a044da8e030f507744c7d2e4d5bdbd8695e6d49d187b2dc9"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "amos.bin",
+        "bytes": 202535,
+        "sha256": "6fa9b5b826da41f8960b9ff4a1c64504725dc8d486577b185852cd53cd213afc"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "obadiah.bin",
+        "bytes": 55918,
+        "sha256": "665fc829a1f21eda80cfbd09d68b95750cfdcbc9e3fe9913aa632fc26495f39c"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "jonah.bin",
+        "bytes": 84558,
+        "sha256": "57ef4a6202bbc08c3a110a6dee395b398b14f89612fe56d72c5e7afc029a84c3"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "micah.bin",
+        "bytes": 175057,
+        "sha256": "df8833b255edd5c05ed8c05fa6b7b7c8c83ff8b26021f9ae161c57db2d28e262"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "nahum.bin",
+        "bytes": 94949,
+        "sha256": "fd2d2bd099bce9db9530c443460ef02fd90d9c758d55c56437cc0a4ff48845a3"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "habakkuk.bin",
+        "bytes": 111274,
+        "sha256": "e65e8dbc3e6f904fc53c31e96c37ea813271886d9921c023bd8764f58eb02b5d"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "zephaniah.bin",
+        "bytes": 105325,
+        "sha256": "b513e122d801c5f38cd895dfdd32e33fa5fd4cc54ff3783e8e67a3cef331aa01"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "haggai.bin",
+        "bytes": 69243,
+        "sha256": "f1985c8d4c656a63a9d3b35a7798cb9d84d03dc24524d5f7961fbee7c8fbad72"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "zechariah.bin",
+        "bytes": 253841,
+        "sha256": "97160c72f0d9e03dde3a2f283dd48f7bfb74d64130c822c6c3ec4ebc61d246e7"
+       },
+       {
+        "role": "the zone of the book (read for its verse labels only)",
+        "file": "malachi.bin",
+        "bytes": 101778,
+        "sha256": "9bf176def31c2201946acba85986b21f02b4ad289fdb1ba451a36e35b9213b78"
+       }
+      ]
+     }
+    },
+    "ubs_earlier_version": {
+     "file": "UBSHebrewDic-v0.9.2-en.JSON",
+     "bytes": 23110129,
+     "sha256": "1686a25dd31dc9afb7b932927e160070667c73caedad11aa7e4482c21f800e8e",
+     "repository": "github.com/ubsicap/ubs-open-license, dictionaries/hebrew/JSON/UBSHebrewDic-v0.9.2-en.JSON",
+     "revision": "3a6edd8212df2e1189037ad39687726990c80d56 (9 July 2026; the same bytes since 0592471d, 21 March 2026)",
+     "note": "the file the site today was built from; read here only to count what changed",
+     "counts": {
+      "entries": 7932,
+      "base_forms": 8902,
+      "senses": 16224,
+      "glosses": 23881,
+      "definitions": 16220,
+      "references": 260813,
+      "senses_with_no_reference": 1,
+      "entries_with_no_strong_code": 5,
+      "entries_with_one_code": 6984,
+      "entries_with_several_codes": 943,
+      "entries_with_several_base_forms": 796,
+      "entries_with_several_codes_and_several_base_forms": 468,
+      "strong_codes": 9079,
+      "codes_with_a_letter": 697,
+      "codes_aramaic": 655,
+      "codes_of_another_shape": 37,
+      "strong_codes_on_a_base_form_or_a_sense": 0,
+      "notes": 2321,
+      "strings": 320246
+     },
+     "against_the_one_read": {
+      "entries_only_in_the_earlier_by_lemma": 894,
+      "entries_only_in_the_later_by_lemma": 905,
+      "entries_of_the_same_lemma_whose_MainId_moved": 4226,
+      "entries_of_the_same_lemma_whose_StrongCodes_changed": 3
+     }
+    },
+    "left_for_now": [
+     "the SDBH as HiperBiblia gives it (a second copy of the UBS dictionary's work, read from a web page)",
+     "BiblicalTools (read from a web site)",
+     "Davidson (85 rows read from page images)"
+    ],
+    "counts": {
+     "wikisource_strongs_explicit_forms": {
+      "entries": 8674,
+      "pages": 9,
+      "from_page_file": 8674,
+      "numbers_missing_below_the_last": 0,
+      "no_list_opener": 22,
+      "entries_with_no_form_line": 34,
+      "renderings": 20301,
+      "renderings_signed_x": 837,
+      "renderings_signed_plus": 494,
+      "renderings_unbalanced": 20,
+      "form_lines": 8640,
+      "forms": 23613,
+      "verses": 263246,
+      "verses_not_read": 0,
+      "links": 7949,
+      "strings": 332740,
+      "last_number": 8674,
+      "list_openers": {
+       ":": 8505,
+       "; --": 16,
+       ":--": 40,
+       "; -": 10,
+       ": -": 78,
+       ":-": 3
+      }
+     },
+     "openscriptures_strongs": {
+      "entries": 8674,
+      "with_meaning": 8435,
+      "with_usage": 8673,
+      "defs": 15469,
+      "renderings": 20345,
+      "renderings_signed_x": 838,
+      "renderings_signed_plus": 38,
+      "renderings_after_two_or_more_blanks": 453,
+      "of_those_wikisource_writes_plus": 451,
+      "of_those_wikisource_writes_x": 0,
+      "of_those_wikisource_has_the_rendering_unsigned": 0,
+      "of_those_no_wikisource_entry_on_hand": 0,
+      "of_those_wikisource_entry_lacks_the_rendering": 2,
+      "renderings_with_two_or_more_blanks_inside": 35,
+      "of_those_wikisource_writes_a_sign_there": 33,
+      "renderings_unbalanced": 19,
+      "comma_pieces_held_whole_in_unbalanced_items": 22,
+      "empty_pieces": 3,
+      "pointers": 266,
+      "links": 7934,
+      "provider_notes": 167,
+      "strings": 46398,
+      "tags_not_nesting": 0
+     },
+     "stepbible_tbesh_gloss": {
+      "lines": 11682,
+      "lettered_by_step": 4350,
+      "with_an_open_scriptures_letter_in_the_first_column": 1424,
+      "relation_named": 2098,
+      "strings": 81774,
+      "columns_per_line": {
+       "8": 11682
+      }
+     },
+     "openscriptures_bdb_1906": {
+      "entries": 11845,
+      "root_entries": 2595,
+      "entries_with_a_numeral": 1934,
+      "entries_marked_form_false": 2787,
+      "senses": 8989,
+      "senses_numbered": 6427,
+      "stems": 3149,
+      "defs": 21343,
+      "defs_joined_to_text": 111,
+      "defs_in_a_phrase": 240,
+      "defs_in_a_bracket_before_the_first_sense_or_with_no_sense": 2007,
+      "defs_of_one_letter": 34,
+      "defs_a_reference_follows": 285,
+      "refs": 3952,
+      "refs_inside_a_sense": 905,
+      "pos": 9195,
+      "strings": 66979,
+      "character_references": 219,
+      "tags_not_nesting": 0,
+      "parts": 46,
+      "sections": 2599
+     },
+     "openscriptures_lexical_index": {
+      "entries": 10221,
+      "with_a_strong_number": 9299,
+      "with_a_bdb_id": 10175,
+      "with_an_added_letter": 1157,
+      "with_a_twot_number": 7303,
+      "with_a_gloss": 9304,
+      "strings": 28829,
+      "tags_not_nesting": 0,
+      "parts": {
+       "heb": 9432,
+       "arc": 789
+      }
+     },
+     "unabridged_bdb_1906": {
+      "records": 10022,
+      "with_a_strong_number": 9176,
+      "strong_numbers": 10636,
+      "hebrew": 9263,
+      "aramaic": 759,
+      "paragraphs": 11522,
+      "points": 9802,
+      "sub_points": 4511,
+      "references": 165681,
+      "references_of_another_shape": 0,
+      "italic_runs": 57429,
+      "italic_by_kind": {
+       "opening": 6456,
+       "unclassed": 25889,
+       "other_language": 1969,
+       "main_gloss": 7190,
+       "rendering_of_hebrew": 4215,
+       "grammar_word": 7163,
+       "abbreviation": 1547,
+       "outline_letter": 606,
+       "tagged_gloss": 640,
+       "verse_wording": 1754
+      },
+      "bold_runs": 27278,
+      "records_whose_divs_do_not_pair": 0,
+      "strings": 88080,
+      "stem_headings": {
+       "a_divs_label": 1430,
+       "a_label_that_numbers_the_stems_first_point": 40,
+       "the_heads_part_of_speech_or_running_text": 1903,
+       "paragraphs_with_a_stem": 1687
+      }
+     },
+     "ubs_sdbh_hebrew_v0_9_2": {
+      "entries": 7943,
+      "base_forms": 8918,
+      "senses": 16619,
+      "glosses": 24566,
+      "definitions": 16615,
+      "references": 291411,
+      "senses_with_no_reference": 1,
+      "entries_with_no_strong_code": 6,
+      "entries_with_one_code": 6991,
+      "entries_with_several_codes": 946,
+      "entries_with_several_base_forms": 800,
+      "entries_with_several_codes_and_several_base_forms": 469,
+      "strong_codes": 9092,
+      "codes_with_a_letter": 697,
+      "codes_aramaic": 659,
+      "codes_of_another_shape": 34,
+      "strong_codes_on_a_base_form_or_a_sense": 0,
+      "notes": 2265,
+      "strings": 351892
+     },
+     "unfoldingword_uhal": {
+      "entries": 8235,
+      "senses": 14421,
+      "senses_with_a_gloss": 10596,
+      "senses_titled": 3,
+      "senses_with_a_definition": 0,
+      "senses_with_an_explanation": 0,
+      "glosses": 19627,
+      "entries_with_a_gloss": 6196,
+      "citations": 3529,
+      "citations_read_as_a_verse": 3518,
+      "citations_of_a_book_code_written_otherwise": 79,
+      "citations_of_a_book_not_ours": 2,
+      "citations_whose_target_is_no_verse": 9,
+      "with_a_bdb_reference": 8235,
+      "with_a_status": 8235,
+      "statuses": {
+       "NeedsEdits": 8235
+      },
+      "with_other_fields": 3,
+      "strings": 103740,
+      "members": 8244,
+      "listed_by_its_own_index": 8235,
+      "entry_files_not_listed": 0,
+      "listed_but_not_in_the_zip": 0
+     }
+    },
+    "tag_counts": {
+     "rows": 305648,
+     "rows_with_no_tag": 14,
+     "parts": 540463,
+     "root_parts": 305671,
+     "rows_with_one_root": 305597,
+     "rows_with_no_root": 14,
+     "rows_with_several_roots": 37,
+     "parts_not_of_the_tag_shape": 0,
+     "by_file": {
+      "TAHOT_Gen-Deu_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt": 79990,
+      "TAHOT_Jos-Est_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt": 107259,
+      "TAHOT_Job-Sng_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt": 39086,
+      "TAHOT_Isa-Mal_-_Translators_Amalgamated_Hebrew_OT_-_STEPBible.org_CC_BY.txt": 79313
+     },
+     "rows_with_tags_in_the_variants_column": 1039,
+     "variant_items": 1041,
+     "variant_parts": 1969,
+     "variant_parts_not_of_the_tag_shape": 0,
+     "tags_only_in_the_variants_column": 75
+    },
+    "bridge_counts": {
+     "openscriptures_strongs": {
+      "tags": {
+       "N": 11487,
+       "P": 49
+      },
+      "rows_the_tag_stands_on": {
+       "N": 299589,
+       "P": 240873
+      },
+      "parts": {
+       "N": 299590,
+       "P": 240873
+      },
+      "root_parts": {
+       "N": 299590,
+       "P": 6081
+      },
+      "by_class": {
+       "tags": {
+        "exact": 11487,
+        "absent": 49
+       },
+       "parts": {
+        "exact": 299590,
+        "absent": 240873
+       },
+       "root_parts": {
+        "exact": 299590,
+        "absent": 6081
+       }
+      }
+     },
+     "wikisource_strongs_explicit_forms": {
+      "tags": {
+       "N": 11487,
+       "P": 49
+      },
+      "rows_the_tag_stands_on": {
+       "N": 299589,
+       "P": 240873
+      },
+      "parts": {
+       "N": 299590,
+       "P": 240873
+      },
+      "root_parts": {
+       "N": 299590,
+       "P": 6081
+      },
+      "by_class": {
+       "tags": {
+        "exact": 11487,
+        "absent": 49
+       },
+       "parts": {
+        "exact": 299590,
+        "absent": 240873
+       },
+       "root_parts": {
+        "exact": 299590,
+        "absent": 6081
+       }
+      }
+     },
+     "stepbible_tbesh_gloss": {
+      "tags": {
+       "T": 11515,
+       "A": 10,
+       "N": 11
+      },
+      "rows_the_tag_stands_on": {
+       "T": 540079,
+       "A": 329,
+       "N": 54
+      },
+      "parts": {
+       "T": 540080,
+       "A": 329,
+       "N": 54
+      },
+      "root_parts": {
+       "T": 305288,
+       "A": 329,
+       "N": 54
+      },
+      "by_class": {
+       "tags": {
+        "exact": 11526,
+        "ambiguous": 10
+       },
+       "parts": {
+        "exact": 540134,
+        "ambiguous": 329
+       },
+       "root_parts": {
+        "exact": 305342,
+        "ambiguous": 329
+       }
+      }
+     },
+     "openscriptures_lexical_index": {
+      "tags": {
+       "0": 1,
+       "N": 10090,
+       "E": 1392,
+       "A": 4,
+       "P": 49
+      },
+      "rows_the_tag_stands_on": {
+       "0": 30,
+       "N": 240504,
+       "E": 59046,
+       "A": 9,
+       "P": 240873
+      },
+      "parts": {
+       "0": 30,
+       "N": 240505,
+       "E": 59046,
+       "A": 9,
+       "P": 240873
+      },
+      "root_parts": {
+       "0": 30,
+       "N": 240505,
+       "E": 59046,
+       "A": 9,
+       "P": 6081
+      },
+      "by_class": {
+       "tags": {
+        "exact": 11482,
+        "ambiguous": 4,
+        "absent": 50
+       },
+       "parts": {
+        "exact": 299551,
+        "ambiguous": 9,
+        "absent": 240903
+       },
+       "root_parts": {
+        "exact": 299551,
+        "ambiguous": 9,
+        "absent": 6111
+       }
+      }
+     },
+     "openscriptures_bdb_1906": {
+      "tags": {
+       "0": 1,
+       "N": 10090,
+       "E": 1392,
+       "A": 4,
+       "P": 49
+      },
+      "rows_the_tag_stands_on": {
+       "0": 30,
+       "N": 240504,
+       "E": 59046,
+       "A": 9,
+       "P": 240873
+      },
+      "parts": {
+       "0": 30,
+       "N": 240505,
+       "E": 59046,
+       "A": 9,
+       "P": 240873
+      },
+      "root_parts": {
+       "0": 30,
+       "N": 240505,
+       "E": 59046,
+       "A": 9,
+       "P": 6081
+      },
+      "by_class": {
+       "tags": {
+        "exact": 11482,
+        "ambiguous": 4,
+        "absent": 50
+       },
+       "parts": {
+        "exact": 299551,
+        "ambiguous": 9,
+        "absent": 240903
+       },
+       "root_parts": {
+        "exact": 299551,
+        "ambiguous": 9,
+        "absent": 6111
+       }
+      }
+     },
+     "unabridged_bdb_1906": {
+      "tags": {
+       "0": 66,
+       "N": 8467,
+       "A": 2954,
+       "P": 49
+      },
+      "rows_the_tag_stands_on": {
+       "0": 681,
+       "N": 113601,
+       "A": 185307,
+       "P": 240873
+      },
+      "parts": {
+       "0": 681,
+       "N": 113602,
+       "A": 185307,
+       "P": 240873
+      },
+      "root_parts": {
+       "0": 681,
+       "N": 113602,
+       "A": 185307,
+       "P": 6081
+      },
+      "by_class": {
+       "tags": {
+        "exact": 8467,
+        "ambiguous": 2954,
+        "absent": 115
+       },
+       "parts": {
+        "exact": 113602,
+        "ambiguous": 185307,
+        "absent": 241554
+       },
+       "root_parts": {
+        "exact": 113602,
+        "ambiguous": 185307,
+        "absent": 6762
+       }
+      }
+     },
+     "ubs_sdbh_hebrew_v0_9_2": {
+      "tags": {
+       "0": 61,
+       "A": 991,
+       "N": 10435,
+       "P": 49
+      },
+      "rows_the_tag_stands_on": {
+       "0": 28432,
+       "A": 29261,
+       "N": 241896,
+       "P": 240873
+      },
+      "parts": {
+       "0": 28432,
+       "A": 29261,
+       "N": 241897,
+       "P": 240873
+      },
+      "root_parts": {
+       "0": 28432,
+       "A": 29261,
+       "N": 241897,
+       "P": 6081
+      },
+      "by_class": {
+       "tags": {
+        "ambiguous": 991,
+        "exact": 10435,
+        "absent": 110
+       },
+       "parts": {
+        "ambiguous": 29261,
+        "exact": 241897,
+        "absent": 269305
+       },
+       "root_parts": {
+        "ambiguous": 29261,
+        "exact": 241897,
+        "absent": 34513
+       }
+      }
+     },
+     "unfoldingword_uhal": {
+      "tags": {
+       "0": 636,
+       "N": 10106,
+       "W": 745,
+       "P": 49
+      },
+      "rows_the_tag_stands_on": {
+       "0": 25503,
+       "N": 238688,
+       "W": 35398,
+       "P": 240873
+      },
+      "parts": {
+       "0": 25503,
+       "N": 238689,
+       "W": 35398,
+       "P": 240873
+      },
+      "root_parts": {
+       "0": 25503,
+       "N": 238689,
+       "W": 35398,
+       "P": 6081
+      },
+      "by_class": {
+       "tags": {
+        "exact": 10106,
+        "absent": 1430
+       },
+       "parts": {
+        "exact": 238689,
+        "absent": 301774
+       },
+       "root_parts": {
+        "exact": 238689,
+        "absent": 66982
+       }
+      }
+     }
+    },
+    "lettered_homonyms": {
+     "openscriptures_bdb_1906": {
+      "tags": 1377,
+      "rows": 58443,
+      "parted_by_the_open_scriptures_letter": {
+       "tags": 1373,
+       "rows": 58434
+      },
+      "parted_because_the_entries_name_one_bdb_entry": {
+       "tags": 0,
+       "rows": 0
+      },
+      "not_parted": {
+       "tags": 4,
+       "rows": 9
+      },
+      "of_those_tags_lettered_by_step": {
+       "tags": 1377,
+       "rows": 58443
+      }
+     },
+     "unabridged_bdb_1906": {
+      "tags": 2954,
+      "rows": 185307,
+      "not_parted": {
+       "tags": 2954,
+       "rows": 185307
+      },
+      "of_those_tags_lettered_by_step": {
+       "tags": 2067,
+       "rows": 106823
+      },
+      "of_those_the_open_scriptures_bridge_is_exact": {
+       "tags": 2949,
+       "rows": 185268
+      },
+      "what_the_files_state_that_could_part_them_measured_not_applied": {
+       "ambiguous": {
+        "tags": 2954,
+        "rows": 185307
+       },
+       "one_record_of_the_tags_language": {
+        "tags": 468,
+        "rows": 65277
+       },
+       "one_record_lists_the_number_first": {
+        "tags": 921,
+        "rows": 50661
+       },
+       "one_record_by_language_and_first_place_together": {
+        "tags": 1168,
+        "rows": 93186
+       },
+       "one_record_carries_bdbs_own_numeral_of_the_open_scriptures_entry": {
+        "tags": 905,
+        "rows": 42965
+       },
+       "one_record_by_any_of_these_facts": {
+        "tags": 1869,
+        "rows": 116894
+       },
+       "the_facts_name_different_records": {
+        "tags": 22,
+        "rows": 585
+       },
+       "left_ambiguous_by_all_these_facts": {
+        "tags": 1085,
+        "rows": 68413
+       },
+       "tags_with_no_language_in_tbesh": {
+        "tags": 868,
+        "rows": 16875
+       }
+      }
+     }
+    },
+    "headwords_measured_not_used": {
+     "tags_by_letter_E": 1392,
+     "tbesh_and_lexical_index_headwords_agree_in_letters": 1382,
+     "differ": 10,
+     "examples_differ": [
+      [
+       "H0805A",
+       "אֲשׁוּרִי",
+       "אַשּׁוּרִם"
+      ],
+      [
+       "H0953B",
+       "בּוֹר",
+       "בּוֹר הַסִּרָה"
+      ],
+      [
+       "H1419B",
+       "גָּדוֹל",
+       "הַגְּדוֹלִים"
+      ],
+      [
+       "H2148B",
+       "זְכַרְיָהוּ",
+       "זְכַרְיָה"
+      ],
+      [
+       "H2148v",
+       "זְכַרְיָה",
+       "זְכַרְיָהוּ"
+      ],
+      [
+       "H3039B",
+       "יָדִידָה",
+       "יָדִיד"
+      ],
+      [
+       "H3820B",
+       "לֵב",
+       "לֵב קָמָי"
+      ],
+      [
+       "H5531A",
+       "שִׂכְלוּת",
+       "סִכְלוּת"
+      ],
+      [
+       "H5543A",
+       "סַלָּ֑י",
+       "גַּבַּי סַלָּ֑י"
+      ],
+      [
+       "H6965A",
+       "קָמָי",
+       "לֵב קָמָי"
+      ]
+     ]
+    },
+    "uhal_bdb_reference_measured_not_applied": {
+     "the_same_bdb_entry": {
+      "tags": 10102,
+      "rows": 238679
+     },
+     "lettered_tags: the_same_bdb_entry": {
+      "tags": 3222,
+      "rows": 85034
+     },
+     "another_bdb_entry": {
+      "tags": 745,
+      "rows": 35398
+     },
+     "lettered_tags: another_bdb_entry": {
+      "tags": 745,
+      "rows": 35398
+     },
+     "one_of_the_tags_several_bdb_entries": {
+      "tags": 4,
+      "rows": 9
+     },
+     "lettered_tags: one_of_the_tags_several_bdb_entries": {
+      "tags": 4,
+      "rows": 9
+     }
+    },
+    "verse_bridges": {
+     "openscriptures_bdb_1906": {
+      "references": 3952,
+      "references_indexed": 3897,
+      "references_outside_the_39_books": 22,
+      "references_to_a_verse_our_text_does_not_number_so": 12,
+      "references_of_another_shape": 21,
+      "shown_verse_differs_from_the_attribute": 4,
+      "examples_not_numbered_so": [
+       "judges 8:52",
+       "isaiah 4:18",
+       "numbers 30:31",
+       "judges 8:57",
+       "proverbs 29:30",
+       "leviticus 26:89",
+       "leviticus 13:62",
+       "leviticus 7:51",
+       "jeremiah 44:50",
+       "ezra 13:17",
+       "isaiah 27:18",
+       "numbers 11:44"
+      ],
+      "senses_citing": 2932,
+      "entries_citing": 2826,
+      "verses_cited": 3021,
+      "our_verses": 23206
+     },
+     "unabridged_bdb_1906": {
+      "references": 165681,
+      "references_indexed": 164499,
+      "references_outside_the_39_books": 96,
+      "references_to_a_verse_our_text_does_not_number_so": 1076,
+      "whole_chapter_references": 323,
+      "whole_chapter_references_to_a_chapter_our_text_lacks": 20,
+      "spans_over_several_verses": 140,
+      "verses_of_spans_our_text_lacks": 3,
+      "spans_over_chapters": 11,
+      "examples_not_numbered_so": [
+       "deuteronomy 20:22",
+       "job 28:32",
+       "i-kings 50:1",
+       "i-kings 50:5",
+       "esther 11:32",
+       "ii-samuel 25:18",
+       "i-samuel 3:26",
+       "i-samuel 33:9",
+       "exodus 20:25",
+       "exodus 20:24",
+       "ezekiel 20:49",
+       "ii-chronicles 48:14"
+      ],
+      "senses_citing": 19669,
+      "entries_citing": 9030,
+      "references_by_stem": {
+       "under_a_stem_in_a_point": 33052,
+       "in_a_stems_own_head": 22305,
+       "under_no_stem_heading": 110324
+      },
+      "verses_cited": 22954,
+      "our_verses": 23206
+     },
+     "ubs_sdbh_hebrew_v0_9_2": {
+      "references": 291411,
+      "references_indexed": 291319,
+      "references_outside_the_39_books": 0,
+      "references_to_a_verse_our_text_does_not_number_so": 89,
+      "references_of_another_shape": 3,
+      "references_with_a_note_caller": 2811,
+      "examples_not_numbered_so": [
+       "exodus 20:25",
+       "exodus 20:24",
+       "numbers 25:19",
+       "deuteronomy 5:32",
+       "deuteronomy 5:33",
+       "exodus 20:25",
+       "deuteronomy 5:31",
+       "deuteronomy 5:33",
+       "deuteronomy 5:31",
+       "deuteronomy 5:33",
+       "exodus 20:24",
+       "deuteronomy 5:31"
+      ],
+      "examples_of_another_shape": [
+       "01300202400022!{N:001}",
+       "01100400700050{N:-033}",
+       "01804100700002{N:002}{N:003}"
+      ],
+      "senses_citing": 16617,
+      "senses": 16619,
+      "entries_citing": 7884,
+      "verses_cited": 23206,
+      "our_verses": 23206
+     }
+    },
+    "our_verses": 23206,
+    "made": {
+     "entries/wikisource_strongs_explicit_forms.json.gz": {
+      "bytes": 2145941,
+      "sha256": "592196e4d3cad2e4d83c78672f5691c33551342d32a3aaa238b420fe03035196",
+      "raw_bytes": 12148062,
+      "entries": 8674
+     },
+     "entries/openscriptures_strongs.json.gz": {
+      "bytes": 1225153,
+      "sha256": "16195c3dd3d93964cf2efe547d9485f33f218e93f825468f2b522e781c6cff7f",
+      "raw_bytes": 7395026,
+      "entries": 8674
+     },
+     "entries/stepbible_tbesh_gloss.json.gz": {
+      "bytes": 375769,
+      "sha256": "5996be819ccd597427e9ab4688c19298906286218748c5bd95810475dcf6f7f0",
+      "raw_bytes": 2200242,
+      "entries": 11682
+     },
+     "entries/openscriptures_bdb_1906.json.gz": {
+      "bytes": 1496371,
+      "sha256": "5324670e5046bf4ae9c6ebdc277d109d23f89ac8caf25591476e0c1298db731c",
+      "raw_bytes": 8869748,
+      "entries": 11845
+     },
+     "entries/openscriptures_lexical_index.json.gz": {
+      "bytes": 658424,
+      "sha256": "60a6ea9a00e0e5863edf4064a4304cebc55d177079ed7c0c4764d8cef1444fea",
+      "raw_bytes": 4523531,
+      "entries": 10221
+     },
+     "entries/unabridged_bdb_1906.json.gz": {
+      "bytes": 6274459,
+      "sha256": "9ebdc32ba027e3d55b32a248959174d13dba36f6c677d570c3d68e4109729cf0",
+      "raw_bytes": 32227089,
+      "entries": 10022
+     },
+     "entries/ubs_sdbh_hebrew_v0_9_2.json.gz": {
+      "bytes": 2813210,
+      "sha256": "122241af55dea461738d6e3b67f33c81475f8998193246eac3783695ec66c284",
+      "raw_bytes": 13920078,
+      "entries": 7943
+     },
+     "entries/unfoldingword_uhal.json.gz": {
+      "bytes": 1102399,
+      "sha256": "863eb1d879465989a7315aaa37adabb8f0dddb315fd1f9262ffde6e17ad94fd6",
+      "raw_bytes": 12852633,
+      "entries": 8235
+     },
+     "bridges/step-tag-to-entry.json.gz": {
+      "bytes": 293899,
+      "sha256": "9b37d4937c78c3f2b1bad77fc22d55433c09a1b346d67f0adaf6a02a75ea60ea",
+      "tags": 11536
+     },
+     "bridges/step-tag-to-openscriptures_strongs.json.gz": {
+      "bytes": 915,
+      "sha256": "31b8560f6636d8dff722d9740414c6abf990737451131632df9c1c1f1f764281",
+      "ambiguous_tags": 0
+     },
+     "bridges/step-tag-to-wikisource_strongs_explicit_forms.json.gz": {
+      "bytes": 924,
+      "sha256": "d54eb815b083171181ecb20d1872bebbb8830332dda7f0bf4c5f35ceb74cdcbc",
+      "ambiguous_tags": 0
+     },
+     "bridges/step-tag-to-stepbible_tbesh_gloss.json.gz": {
+      "bytes": 1688,
+      "sha256": "b901629c85bb647536049a629c137d2f2ef71c066dd9e0fcd594413642f2aae2",
+      "ambiguous_tags": 10
+     },
+     "bridges/step-tag-to-openscriptures_lexical_index.json.gz": {
+      "bytes": 1290,
+      "sha256": "257a550820c0c3788cc5f61884fe258f5ece41a79962f82892c4ca4b677a1edd",
+      "ambiguous_tags": 4
+     },
+     "bridges/step-tag-to-openscriptures_bdb_1906.json.gz": {
+      "bytes": 1286,
+      "sha256": "fb88c86c0edc98fa7dd459524a6d2cefc5f8d41a24bd2f4377af028cfa0be80e",
+      "ambiguous_tags": 4
+     },
+     "bridges/step-tag-to-unabridged_bdb_1906.json.gz": {
+      "bytes": 105561,
+      "sha256": "8881fdeb35b235d3b103276a629d6335bf029a2ff63222d863ae637c3e992a33",
+      "ambiguous_tags": 2954
+     },
+     "bridges/step-tag-to-ubs_sdbh_hebrew_v0_9_2.json.gz": {
+      "bytes": 18131,
+      "sha256": "7d996ecc194ffc678e0ca0a1150e0ecf373da0c48e68afbc7e6baae5dd732069",
+      "ambiguous_tags": 991
+     },
+     "bridges/step-tag-to-unfoldingword_uhal.json.gz": {
+      "bytes": 16918,
+      "sha256": "cc6074093f625562ca757eba8e46e35f1ed795007f7ed803e4d13984ef1c8de8",
+      "ambiguous_tags": 0
+     },
+     "bridges/verse-to-sense-openscriptures_bdb_1906.json.gz": {
+      "bytes": 24713,
+      "sha256": "feb63d89014f9369808a28f6e52674416704bf4c9d0e182725163c08c42d85e4",
+      "verses_cited": 3021
+     },
+     "bridges/verse-to-sense-unabridged_bdb_1906.json.gz": {
+      "bytes": 956763,
+      "sha256": "632074fb1cbd7d471adb3e6b62cad9cac733743ffd025e432467c1b641376733",
+      "verses_cited": 22954
+     },
+     "bridges/verse-to-sense-ubs_sdbh_hebrew_v0_9_2.json.gz": {
+      "bytes": 1049110,
+      "sha256": "cadce69d33efcd83f544c17c59ba9424c1e03085641bb95ff3ddcad0c2814275",
+      "verses_cited": 23206
+     }
+    }
+   }
+  },
+  "page": {
+   "what": "the second reader's files, projected by rule from the two parts above",
+   "pin_file": "page/PIN.json",
+   "bytes": 17530,
+   "sha256": "a173241d9367592b923627a8bbca2e6a28ea1367a9547a829d29752160ac0341",
+   "record": {
+    "schema": "PLACE_ANSWERS_PAGE_PIN_V1",
+    "rule_id": "place-answers-rule-v1-a-reading-stands-at-a-word-only-where-a-source-puts-it-there-by-that-sources-own-address",
+    "rule": "The card shows what each source says at this word, by that source's own address, and then each dictionary's own entry. Every string of these files is a string of the places, the entries or the zones, but for the sentences that say how our text and STEP's meet at a word, which are made by rule from the places' record. Nothing is matched by letters.",
+    "part": "the second reader's files (reader/place.html), projected by rule from the places, the entries, the bridges and the zones",
+    "made_by": "tools/project-place-answers-page-v1.mjs; held by tools/check-place-answers-page-v1.mjs",
+    "made_from": {
+     "places/PIN.json": {
+      "bytes": 42043,
+      "sha256": "641953e29f93c701900bfc4407e58211c5223ccb50bed802610bdb537841cdd8"
+     },
+     "entries/PIN.json": {
+      "bytes": 52607,
+      "sha256": "f555ad5702c952bac4223270bdd198c7a658e4631bac9f23a77c07d6c116fe29"
+     },
+     "the_zones": "each book's zone by the sha256 the places' pin names (files.<book>.zone_sha256)"
+    },
+    "a_list_is": "sha256_of_the_list is the sha256 of the files' lines «path under page/ TAB bytes TAB sha256 NEWLINE» in the order of their paths",
+    "counts": {
+     "books": 39,
+     "chapters": 929,
+     "verses": 23206,
+     "words": 305431,
+     "marks": 29395,
+     "forms": 306523,
+     "forms_with_steps_parts": 306521,
+     "forms_with_maculas_morphs": 305452,
+     "words_where_the_editions_differ": 1188,
+     "sentences": 2133,
+     "here": {
+      "ubs_at_this_very_word_by_the_tags_entry": 259552,
+      "ubs_at_this_very_word_by_maculas_lemma": 19846,
+      "ubs_at_the_verse_another_word_number": 9909,
+      "ubs_at_the_verse_no_word_of_maculas": 702,
+      "bdb_open_scriptures_at_the_verse": 3606,
+      "bdb_unabridged_at_the_verse": 153999,
+      "words_with_a_ubs_sense_at_this_very_word": 262200,
+      "words_with_any": 277183
+     },
+     "steps_rows_no_word_of_ours_meets": 180,
+     "lines_under_a_word_with_a_sign_hidden": 20863,
+     "headword": {
+      "unabridged_lines_not_drawn_under_a_number_of_one_record": 1243,
+      "unabridged_lines_not_drawn_under_a_number_of_several_records": 3478,
+      "unabridged_lines_drawn_by_maculas_lemma_alone": 435,
+      "words_where_a_line_is_not_drawn": 4136,
+      "forms_with_a_record_by_maculas_lemma_alone": 1421,
+      "words_under_a_number_of_several_records": {
+       "one_record_is_the_words": 75078,
+       "several_are": 108422,
+       "none_is": 1854
+      },
+      "steps_headwords_read_without_their_square_brackets": {
+       "H0518B": "a Part of",
+       "H3588B": "combination of",
+       "H3588C": "combination of",
+       "H3651B": "a Meaning of",
+       "H5921B": "a Meaning of"
+      }
+     },
+     "language": {
+      "unabridged_lines_not_drawn_under_a_number_of_one_record": 1,
+      "unabridged_lines_not_drawn_under_a_number_of_several_records": 24,
+      "words_where_a_line_is_not_drawn": 25,
+      "words_under_a_number_of_several_records": {
+       "one_record_is_the_words": 138323,
+       "several_are": 45142,
+       "none_is": 1889
+      },
+      "where_the_language_is_read": {
+       "steps_row": 299512,
+       "the_lexicon": 0,
+       "neither": 0
+      },
+      "forms_with_a_record_of_the_other_language": 135568,
+      "forms_whose_rows_say": {
+       "h": 301400,
+       "a": 4877
+      }
+     },
+     "numeral": {
+      "unabridged_lines_of_another_numeral_under_a_number_of_one_record": 50,
+      "unabridged_lines_of_another_numeral_under_a_number_of_several_records": 118,
+      "words_with_such_a_line": 161,
+      "drawn_as_bdbs_reading_of_this_word": 95,
+      "withheld_bdb_names_another_word": 1,
+      "drawn_neither_can_be_told": 11,
+      "withheld_bdbs_pointer_to_another_entry": 46,
+      "withheld_another_word_holds_it_as_its_own": 15,
+      "words_under_a_number_of_several_records": {
+       "one_record_is_the_words": 156287,
+       "several_are": 27169,
+       "none_is": 1898
+      }
+     },
+     "recurring": {
+      "lines_withheld": 1115,
+      "the_named_word_already_holds_the_line": 1194,
+      "the_named_words_tests_do_not_draw_it": 2,
+      "lines_marked": 25096,
+      "words_with_a_marked_line": 21691,
+      "words_with_a_line_withheld": 1088
+     },
+     "stems": {
+      "unabridged_lines_under_a_stem_in_a_point": 33787,
+      "unabridged_lines_in_a_stems_own_head": 18530,
+      "unabridged_lines_under_no_stem": 101682,
+      "lines_whose_points_label_names_another_stem": 295,
+      "words_where_a_stems_head_line_follows_a_point_line_of_its_stem": 7741,
+      "pair_lines_taken_off_the_form_whose_stem_they_are_not": 82,
+      "pairs_whose_lines_are_parted": 45
+     }
+    },
+    "tags": {
+     "tags": 11536,
+     "files": 175,
+     "entries": {
+      "stepbible_tbesh_gloss": 11536,
+      "openscriptures_strongs": 8567,
+      "openscriptures_bdb_1906": 8942,
+      "unabridged_bdb_1906": 9681,
+      "ubs_sdbh_hebrew_v0_9_2": 8046,
+      "openscriptures_lexical_index": 9167,
+      "unfoldingword_uhal": 8162
+     },
+     "by_how": {
+      "stepbible_tbesh_gloss": {
+       "T": 11515,
+       "A": 10,
+       "N": 11
+      },
+      "openscriptures_strongs": {
+       "N": 11487,
+       "P": 49
+      },
+      "openscriptures_bdb_1906": {
+       "0": 1,
+       "N": 10090,
+       "E": 1392,
+       "A": 4,
+       "P": 49
+      },
+      "unabridged_bdb_1906": {
+       "0": 66,
+       "N": 8467,
+       "A": 2954,
+       "P": 49
+      },
+      "ubs_sdbh_hebrew_v0_9_2": {
+       "0": 61,
+       "A": 991,
+       "N": 10435,
+       "P": 49
+      },
+      "openscriptures_lexical_index": {
+       "0": 1,
+       "N": 10090,
+       "E": 1392,
+       "A": 4,
+       "P": 49
+      },
+      "unfoldingword_uhal": {
+       "0": 636,
+       "N": 10106,
+       "W": 745,
+       "P": 49
+      }
+     },
+     "unabridged_by_headword": {
+      "a_number_of_one_record": {
+       "the_record_is_the_words": {
+        "tags": 8072,
+        "words": 111480
+       },
+       "it_is_not": {
+        "tags": 395,
+        "words": 2121
+       }
+      },
+      "a_number_of_several_records": {
+       "one_record_is_the_words": {
+        "tags": 1416,
+        "words": 75545
+       },
+       "several_are": {
+        "tags": 1483,
+        "words": 107826
+       },
+       "none_is": {
+        "tags": 55,
+        "words": 1936
+       }
+      }
+     },
+     "unabridged_by_numeral": {
+      "several_own_records": {
+       "parted_to_one": {
+        "tags": 661,
+        "words": 17985
+       },
+       "still_several": {
+        "tags": 119,
+        "words": 7536
+       },
+       "none_left": {
+        "tags": 1,
+        "words": 1
+       }
+      },
+      "its_one_own_record_bears_another_numeral": {
+       "tags": 17,
+       "words": 312
+      }
+     },
+     "unabridged_by_language": {
+      "the_language_is_said": {
+       "tags": 7032,
+       "words": 262646
+      },
+      "it_is_not_said": {
+       "tags": 4389,
+       "words": 36262
+      },
+      "a_number_of_one_record": {
+       "its_record_is_of_the_other_language": {
+        "tags": 23,
+        "words": 792
+       }
+      },
+      "a_number_of_several_records": {
+       "one_record_is_the_words": {
+        "tags": 1773,
+        "words": 136681
+       },
+       "several_are": {
+        "tags": 1126,
+        "words": 46690
+       },
+       "none_is": {
+        "tags": 55,
+        "words": 1936
+       }
+      }
+     }
+    },
+    "unabridged_records": 10022,
+    "made": {
+     "chapters": {
+      "files": 929,
+      "bytes": 19527357,
+      "bytes_unpacked": 103850022,
+      "smallest": 2236,
+      "median": 20226,
+      "largest": 69550,
+      "sha256_of_the_list": "66e71f287da0c035b6947ffdfe13d7a4613560228314a49485c01597eb67a9bf"
+     },
+     "chapters_by_book": {
+      "genesis": {
+       "files": 50,
+       "bytes": 1232573,
+       "bytes_unpacked": 7010294,
+       "smallest": 12640,
+       "median": 22828,
+       "largest": 55783,
+       "sha256_of_the_list": "05d452ee6a71e856f904a8bef49e83a18c5503cb69467b92458a635b3643c1fc"
+      },
+      "exodus": {
+       "files": 40,
+       "bytes": 972059,
+       "bytes_unpacked": 5605659,
+       "smallest": 11584,
+       "median": 24313,
+       "largest": 44426,
+       "sha256_of_the_list": "1c6e07a87a7d4cd3fb7dbdffa0dec1f9dcd3f16a934e8f6622443fd96986b3ed"
+      },
+      "leviticus": {
+       "files": 27,
+       "bytes": 634159,
+       "bytes_unpacked": 3954710,
+       "smallest": 8110,
+       "median": 23531,
+       "largest": 40914,
+       "sha256_of_the_list": "e141cb5f94cf1697a694aa87b8927d33abae2cde38a2b25d517f954b0b25b0e6"
+      },
+      "numbers": {
+       "files": 36,
+       "bytes": 855319,
+       "bytes_unpacked": 5374285,
+       "smallest": 11940,
+       "median": 23788,
+       "largest": 37006,
+       "sha256_of_the_list": "7e4f42be471fba5f84179cba32262086c12c1202761487a7b995411fcca2661e"
+      },
+      "deuteronomy": {
+       "files": 34,
+       "bytes": 891222,
+       "bytes_unpacked": 4811196,
+       "smallest": 11392,
+       "median": 22350,
+       "largest": 63211,
+       "sha256_of_the_list": "9e329aa1c354c10e77133f7fca49e307b1942f84ee5b17f1eafa099a2acc0461"
+      },
+      "joshua": {
+       "files": 24,
+       "bytes": 579405,
+       "bytes_unpacked": 3333243,
+       "smallest": 8856,
+       "median": 24882,
+       "largest": 39042,
+       "sha256_of_the_list": "2ffd99942036bb683c89e5a4d5d000f0fa5972dfb1325e794a39715e84180f74"
+      },
+      "judges": {
+       "files": 21,
+       "bytes": 588744,
+       "bytes_unpacked": 3294591,
+       "smallest": 11795,
+       "median": 28396,
+       "largest": 48801,
+       "sha256_of_the_list": "4feb6c318b72a463285c6ed144000c4608c49c76c0728b396363f632963847d3"
+      },
+      "i-samuel": {
+       "files": 31,
+       "bytes": 807480,
+       "bytes_unpacked": 4373777,
+       "smallest": 12767,
+       "median": 24154,
+       "largest": 53856,
+       "sha256_of_the_list": "903a5e33ecfbc95d4bf8aa64b7d2299a15cf5159c212e49a7583b39c282877a7"
+      },
+      "ii-samuel": {
+       "files": 24,
+       "bytes": 665274,
+       "bytes_unpacked": 3605719,
+       "smallest": 11861,
+       "median": 28149,
+       "largest": 45062,
+       "sha256_of_the_list": "fd77da853c4c9e884e2aad2a91ade54a73148a11215a40f920df6026511d45bb"
+      },
+      "i-kings": {
+       "files": 22,
+       "bytes": 748622,
+       "bytes_unpacked": 4308754,
+       "smallest": 13371,
+       "median": 31637,
+       "largest": 61968,
+       "sha256_of_the_list": "cacdaba7c69e856ea4aae2d079b8709c9cc5010e95584ec85263045ab6f4bfa3"
+      },
+      "ii-kings": {
+       "files": 25,
+       "bytes": 716487,
+       "bytes_unpacked": 4019232,
+       "smallest": 18750,
+       "median": 27612,
+       "largest": 43008,
+       "sha256_of_the_list": "cc4f84cf6a070084b0d5a95eee02ce26144e93fc6170c2e226d9b59b2fdf8d3f"
+      },
+      "isaiah": {
+       "files": 66,
+       "bytes": 1279519,
+       "bytes_unpacked": 6047844,
+       "smallest": 5788,
+       "median": 19144,
+       "largest": 36721,
+       "sha256_of_the_list": "7756fc6228e794405a280d97e66a9b2c80a41fa8fa6489bd52a6b67a88c75b01"
+      },
+      "jeremiah": {
+       "files": 52,
+       "bytes": 1383797,
+       "bytes_unpacked": 7179011,
+       "smallest": 6681,
+       "median": 25226,
+       "largest": 58208,
+       "sha256_of_the_list": "2b572a84cd1f0b358bb67fff68d0b7ff1928912b381fd3240a0cc42e771f315d"
+      },
+      "ezekiel": {
+       "files": 48,
+       "bytes": 1134147,
+       "bytes_unpacked": 6358859,
+       "smallest": 7294,
+       "median": 23094,
+       "largest": 54582,
+       "sha256_of_the_list": "92cf62623eb675efd28791e34a55cd0d44693454f99ef5e24f723b3cc5b720f4"
+      },
+      "hosea": {
+       "files": 14,
+       "bytes": 188410,
+       "bytes_unpacked": 848116,
+       "smallest": 6504,
+       "median": 13709,
+       "largest": 23407,
+       "sha256_of_the_list": "375719856cd9b0b2237e3558058cad824723df3206e16999c67b76b06f6fb272"
+      },
+      "joel": {
+       "files": 4,
+       "bytes": 69207,
+       "bytes_unpacked": 332172,
+       "smallest": 6178,
+       "median": 19090,
+       "largest": 27343,
+       "sha256_of_the_list": "48503cc1b1bc7f1c0a488db93a539bafa7752b28605d93d267657369962ea5aa"
+      },
+      "amos": {
+       "files": 9,
+       "bytes": 145401,
+       "bytes_unpacked": 709437,
+       "smallest": 13690,
+       "median": 15159,
+       "largest": 22791,
+       "sha256_of_the_list": "eb9e1808cadeb2636a0a3323a4458f086551c476139dda97fce5dcabcdd27ffe"
+      },
+      "obadiah": {
+       "files": 1,
+       "bytes": 20063,
+       "bytes_unpacked": 99935,
+       "smallest": 20063,
+       "median": 20063,
+       "largest": 20063,
+       "sha256_of_the_list": "776255a5191d10be07fccc6364bd2bdcb753c8e8260a2e3c46d7c558afae9cf8"
+      },
+      "jonah": {
+       "files": 4,
+       "bytes": 46784,
+       "bytes_unpacked": 229437,
+       "smallest": 9021,
+       "median": 12277,
+       "largest": 15394,
+       "sha256_of_the_list": "80f08466ec655405a407653281c2f60da5cdfe342be6882bbfafd27523cc8e8f"
+      },
+      "micah": {
+       "files": 7,
+       "bytes": 110218,
+       "bytes_unpacked": 496157,
+       "smallest": 13006,
+       "median": 16241,
+       "largest": 20226,
+       "sha256_of_the_list": "591a7009f365e079f18a8fe46fdaf085ccc1a9e0ff411bad727195f60259c701"
+      },
+      "nahum": {
+       "files": 3,
+       "bytes": 48332,
+       "bytes_unpacked": 208727,
+       "smallest": 13090,
+       "median": 15843,
+       "largest": 19399,
+       "sha256_of_the_list": "d12d48bd4b7c0e4377cf0379b2d0fb4e32f0935cf16eae8ea238e620df7d0dff"
+      },
+      "habakkuk": {
+       "files": 3,
+       "bytes": 55443,
+       "bytes_unpacked": 242157,
+       "smallest": 16533,
+       "median": 18604,
+       "largest": 20306,
+       "sha256_of_the_list": "f7aaddd5c6aff218068c58c3e42e77f18edf96e560600d5000d6c0f1e911ce9d"
+      },
+      "zephaniah": {
+       "files": 3,
+       "bytes": 55018,
+       "bytes_unpacked": 262107,
+       "smallest": 16981,
+       "median": 17734,
+       "largest": 20303,
+       "sha256_of_the_list": "b87d8d2d2d9303a23e12a614fa2820b9b4258bbcabd8073ec949ff21844f45d3"
+      },
+      "haggai": {
+       "files": 2,
+       "bytes": 37195,
+       "bytes_unpacked": 197807,
+       "smallest": 15422,
+       "median": 21773,
+       "largest": 21773,
+       "sha256_of_the_list": "ba2a9308f20ead12f7e84d9043c20f3cfc203a4fffd202425354ecf4e28852cf"
+      },
+      "zechariah": {
+       "files": 14,
+       "bytes": 203139,
+       "bytes_unpacked": 1049109,
+       "smallest": 9662,
+       "median": 13386,
+       "largest": 22174,
+       "sha256_of_the_list": "0846cab6cf890e64ba10b10a7e5f9bd876104a1055febd2ca2dca9438463a178"
+      },
+      "malachi": {
+       "files": 3,
+       "bytes": 59378,
+       "bytes_unpacked": 299068,
+       "smallest": 15622,
+       "median": 18377,
+       "largest": 25379,
+       "sha256_of_the_list": "b28b62bef9da406ac8cb69f834ed42cdc2af7e7e0b9fec27235f4e602d602b01"
+      },
+      "psalms": {
+       "files": 150,
+       "bytes": 1627320,
+       "bytes_unpacked": 7204110,
+       "smallest": 2236,
+       "median": 9251,
+       "largest": 69550,
+       "sha256_of_the_list": "d6648c2a4727be266d21cf29f6261c9b1f95aa6390ead0b3a950b1b189ab7e1c"
+      },
+      "proverbs": {
+       "files": 31,
+       "bytes": 559797,
+       "bytes_unpacked": 2527383,
+       "smallest": 10391,
+       "median": 18814,
+       "largest": 22158,
+       "sha256_of_the_list": "6ace5033a0604606b4e6e4facea3b937b14d37c1c09e2d1f2cdd51978034c99a"
+      },
+      "job": {
+       "files": 42,
+       "bytes": 677823,
+       "bytes_unpacked": 3016760,
+       "smallest": 4373,
+       "median": 15997,
+       "largest": 24686,
+       "sha256_of_the_list": "d49f8742b45ab86597f42eb6a2ac46950162eb7e1f7decfd52e4a917e9454872"
+      },
+      "song-of-songs": {
+       "files": 8,
+       "bytes": 102765,
+       "bytes_unpacked": 472583,
+       "smallest": 10101,
+       "median": 13562,
+       "largest": 14893,
+       "sha256_of_the_list": "7faaa832f2fe6e01c27f4a42055346dd97aee003c43222a77f2567445b0aa6cd"
+      },
+      "ruth": {
+       "files": 4,
+       "bytes": 82120,
+       "bytes_unpacked": 437969,
+       "smallest": 17574,
+       "median": 19851,
+       "largest": 24909,
+       "sha256_of_the_list": "c539f9849716b38c2d72c21c6d50d42c41a77a1ac125ea49e1bc63588b723079"
+      },
+      "lamentations": {
+       "files": 5,
+       "bytes": 117197,
+       "bytes_unpacked": 549638,
+       "smallest": 12129,
+       "median": 26447,
+       "largest": 28905,
+       "sha256_of_the_list": "8feaf44c0e0a2725b6aea2c5be775ab63788cb16d32fe3aceabe56e467bc15aa"
+      },
+      "ecclesiastes": {
+       "files": 12,
+       "bytes": 206334,
+       "bytes_unpacked": 1024450,
+       "smallest": 10965,
+       "median": 17212,
+       "largest": 24630,
+       "sha256_of_the_list": "a42ee791627b4b72ab63dcaad065df6642de00d396ac48404b0622c83609b57d"
+      },
+      "esther": {
+       "files": 10,
+       "bytes": 189687,
+       "bytes_unpacked": 1034777,
+       "smallest": 4774,
+       "median": 19591,
+       "largest": 31279,
+       "sha256_of_the_list": "5947a8d8bbd91b95f381ba43546e8a0a840209ff07879a0985463244f743117f"
+      },
+      "daniel": {
+       "files": 12,
+       "bytes": 388236,
+       "bytes_unpacked": 2150589,
+       "smallest": 13725,
+       "median": 33252,
+       "largest": 51250,
+       "sha256_of_the_list": "c3a46d70448c56bd0e514bc8817027d2f8cfd090089ad7158dcae1b43524d402"
+      },
+      "ezra": {
+       "files": 10,
+       "bytes": 237392,
+       "bytes_unpacked": 1305118,
+       "smallest": 12098,
+       "median": 26433,
+       "largest": 31673,
+       "sha256_of_the_list": "fba57b1e5042e5216ea512798d7273321873e0ef210f503a6f5f7aa48186c371"
+      },
+      "nehemiah": {
+       "files": 13,
+       "bytes": 338013,
+       "bytes_unpacked": 1837042,
+       "smallest": 14614,
+       "median": 23220,
+       "largest": 43962,
+       "sha256_of_the_list": "b0f4a9cc3c950bc076635fe37e4193461ad669d0b8ecfe680f7bd6fad3df4dd1"
+      },
+      "i-chronicles": {
+       "files": 29,
+       "bytes": 644479,
+       "bytes_unpacked": 3622278,
+       "smallest": 10510,
+       "median": 22957,
+       "largest": 32339,
+       "sha256_of_the_list": "b182c1c1b18ac75a4377168f7c853f990e34ed2c357fed85bf3fa831ee6b5874"
+      },
+      "ii-chronicles": {
+       "files": 36,
+       "bytes": 828799,
+       "bytes_unpacked": 4415922,
+       "smallest": 9230,
+       "median": 23186,
+       "largest": 40212,
+       "sha256_of_the_list": "ec7c71d2ba35976c4512ec99bbf629ff025b62e56ddc33964b45e75e4f2ecf74"
+      }
+     },
+     "the_largest_chapter": {
+      "bytes": 69550,
+      "file": "psalms/119.json.gz"
+     },
+     "tag_files": {
+      "files": 175,
+      "bytes": 5776048,
+      "bytes_unpacked": 33609987,
+      "smallest": 2239,
+      "median": 32753,
+      "largest": 51863,
+      "sha256_of_the_list": "a6752bdaf43fecbe9f2fd32d70f95a1aa60b3ee02fbb92cc5fa7d91a3f58e56d"
+     },
+     "unabridged_files": {
+      "files": 201,
+      "bytes": 6377920,
+      "bytes_unpacked": 31898669,
+      "smallest": 6464,
+      "median": 29661,
+      "largest": 91173,
+      "sha256_of_the_list": "c65a446634c105da93b48d3f40f3947d75d53be32c21f3708f37d0dcedfd3d32"
+     },
+     "index.json": {
+      "bytes": 29460,
+      "sha256": "b572b99bf27c75aa08cd4a9b555f1ad799f17d19c92a021f13351183cd304135"
+     }
+    }
+   }
+  }
+ }
+}

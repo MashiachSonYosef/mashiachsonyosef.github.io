@@ -1,0 +1,1734 @@
+diff --git a/reader/zone.html b/reader/zone.html
+index fa7e18877f..63f01295f2 100644
+--- a/reader/zone.html
++++ b/reader/zone.html
+@@ -1586,6 +1586,28 @@
+     display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
+     background: var(--bg); border: 1px solid var(--bronze-dim); border-radius: 0.7rem;
+     padding: 0.85rem 1.05rem; box-shadow: var(--shadow-card); }
++  /* THE PLACE CARD IN THE SAME SHEET (27 November 2026). On a book that has
++     place answers the sheet's body is what each source says at this very
++     word and then each dictionary's own entry (placeCardOf, in the script).
++     The sheet is the same sheet: placed at its word by the same law, moved by
++     its head, shut the same ways. It takes the whole height the placement
++     gives it from the first frame and keeps it, and what is opened inside it
++     scrolls inside it, so an entry opened or shut moves nothing. The look of
++     what stands inside the body travels with the code that draws it. */
++  #hud.place { height: min(84vh, 50rem); }
++  /* a pill of the row that is not offered (the older card's switch on a work with no place answers; the switches
++     that act only on the older card while the place card stands) leaves the row, and the Menu with it: a pick's
++     own display would otherwise show it through its hidden attribute */
++  #modeRow .mode-pick[hidden] { display: none; }
++  /* the listing takes what the frame leaves; on a window tall enough it keeps a floor of its own, and on a short one
++     the frame's bands keep every floor they are owed */
++  #hud > .place-card { flex: 1 1 0; min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding-bottom: 0.6rem; border-top: 1px solid var(--bronze-dim); margin-top: 0.4rem; padding-top: 0.3rem; }
++  #hud.place > .rows { flex-grow: 0; }
++  @media (min-height: 600px) { #hud > .place-card { min-height: min(8rem, 14vh); } }
++  /* where the room at the word holds the frame but not the listing's floor too, the listing gives the floor up
++     (placeHud's fitsHere): the frame's bands are owed first, and the card keeps its place at its word */
++  #hud.place.yield > .place-card { min-height: 0; }
++  #hud.place.yield > .rows { flex-grow: 1; }
+   /* what scrolls, and what does not */
+   /* The card is a stack of bands, and each keeps its own share.
+      One region that scrolled as a whole meant whichever band came first could
+@@ -1836,6 +1858,11 @@
+   #hud .head button { background: none; border: 0; color: var(--link); font-size: 1.15rem; cursor: pointer; }
+   #hud p { margin: 0.45rem 0; }
+   #hud .att { color: var(--muted); font-size: 0.78rem; }
++  /* STEP's asked credit rides its record's line in the line's own small type, a step smaller still (stepCreditOf) */
++  #hud .att .step-credit { font-size: 0.9em; }
++  /* the line no source gives at this place (unoffered): a sentence in the record's own ink, set small enough to stand
++     whole where a record would */
++  #hud .d-text.line-unoffered { font-size: 1rem; line-height: 1.45; }
+   #hud .att a { color: var(--link); }
+   /* R pills — one route per pill, one selected at a time (the reader's law). */
+   #hud .r-label { margin: 0.5rem 0 0.3rem; color: var(--faint); font-size: 0.74rem;
+@@ -2579,6 +2606,18 @@
+          the toggle"). Off, a word's card is the card. On, it opens to the table
+          of the word's exact readings and where each stands, from the corpus
+          lane's dictionary store (data/dictionary-store/). Kept on this device. -->
++    <!-- READINGS MATCHED BY SPELLING (27 November 2026; the layers, layer 5).
++         On a book that has place answers (data/place-answers-v1/page/, its
++         index says which) a word's card says what each source says at this
++         very word, by that source's own address, and then each dictionary's
++         own entry. The older card, every reading any dictionary files under
++         the word's letters with its gates and switches, stays whole behind
++         this one switch, off at rest. Off, the switches that act only on
++         that card (the two pills after this one; in the rail, the
++         dictionaries off by default, the names' sort and the source
++         suggested) are not offered. Hidden on a work with no place answers,
++         where nothing changes. Kept on this device. -->
++    <span class="mode-pick" id="cardPick" hidden><button type="button" class="blob-btn" id="cardPill" aria-pressed="false" aria-describedby="cardState" title="every reading any dictionary files under these letters, wherever it comes from: the older card, with its own switches. Off, a word&#8217;s card says what each source says at this very word, and then each dictionary&#8217;s own entry">readings matched by spelling</button><span class="mode-dir" id="cardState"></span></span>
+     <span class="mode-pick"><button type="button" class="blob-btn" id="dictPill" aria-pressed="false" aria-describedby="dictState" title="a word&#8217;s card opens to its exact reading and every place it stands, and the other readings of its letters">concordance hud</button><span class="mode-dir" id="dictState"></span></span>
+     <!-- THE WORD SENSES PILL (word-senses-rule-v1; the owner, 2026-11-13:
+          "toggle on word senses"). Off, where it rests, a note Jastrow sets in
+@@ -3477,6 +3516,7 @@
+   // the 39 books, 4,129 of them in the first book.
+   let openVerse = null;                 // the label of the verse the open card stands in
+   let openPlaceWord = null;             // the word of the book the open card stands at
++  let placeOpen = null;                 // the open card's place answers: { doc: its chapter's file, gen: the card's hudGen } (THE PLACE ANSWERS' PILLS)
+   let openTags = null;                  // the core tags of that place, where the form standing open is the one they tag
+   let openByLemma = false;              // and whether they are the entries of MACULA's lemma (te), STEP giving the word no tag
+   let openName = null;                  // whether that place is a name; null where the card stands at no place of the book
+@@ -4113,6 +4153,830 @@
+     }
+     return b;
+   };
++  // RULE: place-answers-rule-v1-a-reading-stands-at-a-word-only-where-a-source-puts-it-there-by-that-sources-own-address
++  // THE PLACE CARD, AND THE OLDER CARD BEHIND ONE SWITCH (27 November 2026;
++  // the owner: «we follow their dictionary, times 12 other times, each
++  // individually, and converge them ... we found it overextended to where we
++  // started applying definitions wrongly that no dictionary recommended»).
++  // Two systems stood on this page. The line under a word is each source
++  // answering at the place by its own address, and it is nearly clean. The
++  // card was every row of every dictionary whose headword has the letters of
++  // whatever piece the card stood on, trimmed by filters added one at a time,
++  // and every fault found on a card lives there. So on a book that has place
++  // answers (data/place-answers-v1/page/: its index names the books, and no
++  // list of them is typed here) a word of the book opens the place card in
++  // this page's own sheet: what each source says at this very word, then each
++  // dictionary's own entry under the number STEP gives the word. Nothing in
++  // it is matched by letters. The older card stays in this page whole, with
++  // its filters, its grades and its switches, behind one switch of the row
++  // («readings matched by spelling»), off at rest. On: this page as it was
++  // before the place card, card for card. Off: the switches that act only on
++  // the older card are not offered (CARD_ONLY, below, says which and why).
++  // WHAT THE SWITCH DOES NOT TOUCH: the line under a word. No line is drawn,
++  // repainted or forgotten by it; it closes or reopens the open card, shows
++  // or hides those switches, and nothing else. A reading the reader pressed
++  // on the older card stays on its line when the switch goes off, as it
++  // stays when that card closes, and the reset pill forgets it as before.
++  // A word of a commentary, a Targum or a dictionary (a card whose words are
++  // not this book's), a word of the title, a scribes' mark and a work with
++  // no place answers open what they opened before, whatever the switch says.
++  // Kept on this device; ?card=spelling or ?card=place sets it for one load
++  // (the checks ask it), and a page whose head carries the meta reader-card
++  // with «spelling» rests on the older card, so a build, or the checks'
++  // browser, can hold this page to the older card without a press.
++  // ONE RULE, ONE PLACE: the lines from the one that opens placeCardOf to the
++  // one that closes it are the module's (tools/place-card-v1.mjs) but for
++  // "export", as the trial page (place.html) carries them too, and
++  // tools/check-place-card-one-place-v1.mjs holds the three copies line for
++  // line; nothing between them reaches outside them. This page hands the
++  // block where its files are and takes its faults.
++  const placeCardOf = (host) => {
++    const DATA = String(host.data);
++    const fault = (words) => { if (typeof host.fault === "function") host.fault(String(words)); };
++    /** An element with a class and text or children. */
++    const el = (tag, cls, ...kids) => { const n = document.createElement(tag); if (cls) n.className = cls; for (const k of kids) if (k !== null && k !== undefined && k !== "") n.append(k); return n; };
++    /** A file of the page's data: plain JSON, or the gzip of JSON (.json.gz), fetched once. A fetch that failed is let go, so the next asking asks again. */
++    const fetched = new Map();
++    const getFile = (rel) => {
++      if (!fetched.has(rel)) fetched.set(rel, (async () => {
++        const r = await fetch(DATA + rel); if (!r.ok) throw new Error(`${rel}: ${r.status}`);
++        if (!rel.endsWith(".gz")) return r.json();
++        return new Response(r.body.pipeThrough(new DecompressionStream("gzip"))).json();
++      })().catch((err) => { fetched.delete(rel); throw err; }));
++      return fetched.get(rel);
++    };
++    let INDEX = null;
++    let FILED = { tags_a_file: 50, unabridged_records_a_file: 50 };
++    const index = () => getFile("index.json").then((ix) => { INDEX = ix; FILED = ix.filed || FILED; return ix; });
++    const chapter = (book, n) => index().then(() => getFile(`${book}/${n}.json.gz`));
++    const entryAt = (doc, label, i) => { const v = ((doc && doc.verses) || []).find((x) => x.l === label); const e = v ? v.e.find((x) => x.m === undefined && x.i === i) : null; return e ? { v, e } : null; };
++    /** For printing only: a source file's own character references resolved (the data keeps them as the file
++     *  writes them, so that every string is the file's). The unabridged BDB's file writes a backslash before
++     *  the wide space that indents a lettered point; the two are a blank here. */
++    const NAMED = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", emsp: "\u2003", nbsp: "\u00a0" };
++    const printable = (s) => String(s).replace(/\\?&(#x[0-9A-Fa-f]+|#[0-9]+|amp|lt|gt|quot|apos|emsp|nbsp);/g, (all, r) => (r[0] === "#" ? String.fromCodePoint(r[1] === "x" ? parseInt(r.slice(2), 16) : parseInt(r.slice(1), 10)) : NAMED[r]));
++    const tidy = (s) => printable(s).replace(/\s+/g, " ").trim();
++    const he = (s) => el("span", "he", s);
++    const rd = (s) => el("span", "rd", s);
++    const lic = (s) => el("span", "lic", s);
++    const pad3 = (n) => String(n).padStart(3, "0");
++    const tagFile = (tag) => `entries/t/${pad3(Math.floor(Number(tag.slice(1, 5)) / FILED.tags_a_file))}.json.gz`;
++    const unFile = (id) => `entries/u/${pad3(Math.floor(Number(id.slice(3)) / FILED.unabridged_records_a_file))}.json.gz`;
++    const stepsOwn = (tag) => /^H9\d\d\d$/.test(tag);
++    /** The number in a tag as STEP writes it (a written form's tag can come with its brackets and a blank). */
++    const numberOf = (tag) => (/H\d{4}[A-Za-z]?/.exec(tag || "") || [null])[0];
++    // WHAT THE DATA SAYS, THE CARD SAYS (27 November 2026). A record's language is the record's own line («BIBLICAL
++    // ARAMAIC»), in the card's letter case; where a verse is cited in a record (its stem, its point's labels) is what the
++    // chapter file gives the citation (h.b, read by unabridgedWhere alone); never a word typed here.
++    const languageOf = (rec) => String((rec && rec.language) || "").toLowerCase().replace(/\b\p{L}/gu, (c) => c.toUpperCase());
++    // THE RECORD'S ITALICS, SAID ONE WAY WHEREVER THE CARD PRINTS THEM (the audit of 27 November 2026, section 7: «Special
++    // uses:», «see, further», «phrases:», «note here» printed inside «» as if they were meanings). The unabridged BDB sets
++    // a meaning in italics, and also a grammar word, a heading, a cross-reference. Only a run the entries file classes as
++    // the entry's meaning (main_gloss) or as the words a unit opens with (opening) is printed as a meaning, inside «»;
++    // any other run is printed plain, as the record's italics, after «in italics in the record:», with no claim of what
++    // it is. runs: [{ t, kind }], in the record's order; most: how many plain runs to print before saying how many. A
++    // citation's runs come with their kinds in the chapter file (h.b: its seventh place, [words, kind] each), so the card
++    // fetches no record to say them.
++    const SAID_AS_MEANING = ["main_gloss", "opening"];
++    const italicsSaid = (runs, most = Infinity) => {
++      const meant = runs.filter((x) => SAID_AS_MEANING.includes(x.kind)).map((x) => tidy(x.t)).filter(Boolean);
++      const plain = [...new Set(runs.filter((x) => !SAID_AS_MEANING.includes(x.kind)).map((x) => tidy(x.t)).filter(Boolean))];
++      const out = [];
++      if (meant.length) out.push(rd(meant.map((x) => `«${x}»`).join(", ")));
++      if (plain.length) {
++        out.push(el("span", "gap", `${meant.length ? " · " : ""}in italics in the record: `));
++        plain.slice(0, most).forEach((x, i) => { if (i) out.push(el("span", "gap", " · ")); out.push(el("span", "it", x)); });
++        if (plain.length > most) out.push(el("span", "gap", ` … (${plain.length})`));
++      }
++      return out;
++    };
++
++    // what each source is called on the card, and its license (plain names; the credits in full say the rest)
++    const SRC = {
++      step: ["STEP Bible", "CC BY 4.0"],
++      macula: ["MACULA Hebrew", "CC BY 4.0"],
++      stepbible_tbesh_gloss: ["STEP Bible's brief lexicon", "CC BY 4.0"],
++      openscriptures_strongs: ["Strong's dictionary", "Open Scriptures file, CC BY 4.0"],
++      openscriptures_bdb_1906: ["Brown-Driver-Briggs, the Open Scriptures file", "CC BY 4.0"],
++      unabridged_bdb_1906: ["Brown-Driver-Briggs, unabridged", "public domain"],
++      ubs_sdbh_hebrew_v0_9_2: ["UBS Dictionary of Biblical Hebrew", "CC BY-SA 4.0"],
++      openscriptures_lexical_index: ["Lexical Index", "Open Scriptures, CC BY 4.0"],
++      unfoldingword_uhal: ["unfoldingWord Hebrew and Aramaic Lexicon", "CC BY-SA 4.0"],
++    };
++    const srcHead = (key, extra) => { const d = el("div", "src", el("b", "", SRC[key][0]), lic(SRC[key][1])); if (extra) d.append(el("span", "", extra)); return d; };
++    // how a number reaches an entry, in plain words, by the letter the data gives
++    const REACHED = { N: "found by the number alone", L: "found by the number and its letter", T: "filed under STEP's own number", E: "found by the number and the letter that STEP's list and the Lexical Index both give", S: "several lines of the index name this one entry" };
++    const ABSENT = { 0: "This dictionary has no entry under this number.", B: "The index names no entry of Brown-Driver-Briggs for this number.", P: "This is STEP's own number; no dictionary is filed under it.", W: "This dictionary files one entry under this number, and by its own reference to Brown-Driver-Briggs that entry is another word of the number than the one STEP's letter names." };
++    const KIND_WORDS = ["", "written and read", "written, not read", "read, not written"];
++    const kindWords = (k) => KIND_WORDS[k] || "";
++
++    /** The line of a row: a list of pieces joined by a plus sign. */
++    const joinPlus = (nodes) => { const out = []; nodes.forEach((n, i) => { if (i) out.push(el("span", "plus", "+")); out.push(n); }); return out; };
++    /** A row of a word's parts, in the record's order: the parts run right to left, as Hebrew does, so the part the
++     *  record puts first stands furthest right (the live reader's law, parts-direction-rule-v1); each part reads its
++     *  Hebrew and then its English, left to right inside it. */
++    const partsLine = (parts) => { const p = el("p", "line part-row", ...joinPlus(parts.map((x) => { x.classList.add("part-of-row"); return x; }))); p.dir = "rtl"; return p; };
++
++    /** Where an unabridged line stands in its record, from the line's stem fields (b[10] the stem as the record names it,
++     *  b[12] 1 in the stem's own head, b[13] 1 where the point's label names another stem): the stem with its point, or
++     *  the stem's own head before its numbered senses; the point's labels as the file gives them (b[4], b[5]). */
++    const unabridgedWhere = (b) => {
++      const label = [b[4], b[5]].filter(Boolean).join(" ");
++      if (b[12]) return `${b[10]}, before its numbered senses`;
++      if (!b[10]) return label || "the opening";
++      if (b[13]) return `${b[10]}, at a point the file labels «${label}»`;
++      return label.startsWith(b[10]) ? label : `${b[10]} ${label || "(its opening)"}`;
++    };
++    /** The unabridged BDB's «cites this verse» lines at one form. A line BDB's quoted form does not give to one of the
++     *  words that carry the number (b[14]: how many words of the verse carry it) is marked †, and the card says so once.
++     *  A line of a paragraph BDB numbers otherwise than STEP's number (b[15]: {another, gloss, entry}, BDB's numeral and
++     *  gloss for the paragraph and the entry's numeral) is marked ‡, and the card says so once for each such paragraph, with the
++     *  number the line stands under (b[9]) and the numeral BDB gives the entry that number reaches. */
++    const drawUnabridgedHere = (h, body) => {
++      if (!h.b) return;
++      const row = el("div", "row", srcHead("unabridged_bdb_1906", "cites this verse"));
++      for (const b of h.b) row.append(el("p", "line", he(b[7]), " ", el("span", "gap", `${unabridgedWhere(b)} `), ...italicsSaid(b[6].map(([t, kind]) => ({ t, kind }))), b[14] ? el("span", "gap", " †") : "", b[15] ? el("span", "gap", " ‡") : ""));
++      const many = Math.max(...h.b.map((b) => b[8]));
++      if (many > 1) row.append(el("p", "sub", `STEP's number for this word stands on ${many} records of this file. Only a record whose own headword is this word's is shown here.`));
++      if (h.b.some((b) => b[13])) row.append(el("p", "sub", "Where a point's label names another stem, the file has written a cross-reference into the label; the line names the stem the record's own headings put the verse under."));
++      const times = Math.max(0, ...h.b.map((b) => b[14] || 0));
++      if (times) row.append(el("p", "sub", `† BDB cites this verse; this number stands ${times} times in it, and BDB does not say which word it means.`));
++      const numbered = new Set(); for (const b of h.b) if (b[15]) { const g = b[15].gloss.length ? ` ${b[15].gloss.map((x) => `«${tidy(x)}»`).join(", ")}` : ""; numbered.add(`‡ BDB files this verse under another word of the same letters (${b[15].another}.${g}); STEP's number ${b[9]} is BDB's ${b[15].entry}.`); }
++      for (const s of numbered) row.append(el("p", "sub", s));
++      body.append(row);
++    };
++    /** At a word written one way and read another, the unabridged lines that stand under both forms, said once. */
++    const pairSentence = (e, here) => {
++      if (e.k !== 1 || e.f.length !== 2) return;
++      const key = (b) => JSON.stringify(b.slice(0, 13)); const first = new Set(((e.f[0].h || {}).b || []).map(key));
++      const both = ((e.f[1].h || {}).b || []).filter((b) => first.has(key(b))).length;
++      if (both) here.append(el("p", "form-h", `${both === 1 ? "One line" : `${both} lines`} of the unabridged Brown-Driver-Briggs stand${both === 1 ? "s" : ""} under both forms: STEP's grammar does not give the two forms different stems there, so nothing in the files tells which form the record means.`));
++    };
++    /** What the card says of the records a number stands on: how many are this word's, and how many are set behind for their language. */
++    const unabridgedSays = (ids0, first, other, tongue, said, citesFirst) => {
++      const set = ids0.filter((id) => other.has(id)).length;
++      const lang = set ? ` ${set === 1 ? "One is a" : `${set} are`} Biblical ${tongue[1]} record${set === 1 ? "" : "s"}; ${said} this word is ${tongue[0]}.` : "";
++      const head = `This number stands on ${ids0.length} records of this file.`;
++      if (first.length === 1) return `${head}${lang} One has this word's own headword${set ? " in its language" : ""}.`;
++      if (first.length) return `${head}${lang} ${first.length} of them have this word's own headword${set ? " in its language" : ""}, and nothing in the files says which is meant.${citesFirst ? " The record that cites this verse stands first." : ""}`;
++      return `${head}${lang} None has this word's own headword${set ? " in its language" : ""}.`;
++    };
++
++    /** What each source says at this very word: one row a source, in a fixed order; a source with no answer is not drawn. */
++    const drawHere = (f, body) => {
++      const t = f.t;
++      if (t && t.p) {
++        const row = el("div", "row", srcHead("step"));
++        row.append(partsLine(t.p.map((p) => el("span", "", he(p[3]), " ", p[0] === null ? el("span", "gap", "(no English given)") : rd(p[0].trim())))));
++        row.append(el("p", "sub", `STEP's own address: ${t.rows.join(" + ")}`));
++        body.append(row);
++      } else if (t && t.other) {
++        const row = el("div", "row", srcHead("step", "another word stands here in its text"));
++        row.append(partsLine(t.other.map((p) => el("span", "", he(p[0]), " ", p[1] === null ? "" : rd(p[1].trim())))), el("p", "sub", `STEP's own address: ${t.rows.join(" + ")}. Its reading is not laid on this word.`));
++        body.append(row);
++      }
++      const m = f.m || f.mo;
++      if (m) {
++        // MACULA's plain English word is the reading; its wording of the part in this sentence stands smaller beside it where the two differ
++        const dotted = (x) => x[0].replace(/\./g, " ");
++        const row = el("div", "row", srcHead("macula", f.mo ? "another word stands here in its text" : ""));
++        row.append(partsLine(m.map((x) => el("span", "", he(x[2]), " ", rd(x[1]), x[0] && dotted(x) !== x[1] ? el("small", "ctx", ` ${dotted(x)}`) : ""))));
++        if (m.some((x) => x[0] && dotted(x) !== x[1])) row.append(el("p", "sub", "In small letters: MACULA's wording of the part in this sentence, where it differs from its plain English word."));
++        body.append(row);
++      }
++      const h = f.h || {};
++      if (h.u) {
++        const very = h.u.filter((u) => u[1] < 2), verse = h.u.filter((u) => u[1] >= 2);
++        const glosses = (u) => (u[2].length ? u[2].map((g) => `«${tidy(g)}»`).join(", ") : "(a sense with no gloss)");
++        if (very.length) {
++          const row = el("div", "row", srcHead("ubs_sdbh_hebrew_v0_9_2", "cites this very word"));
++          // a sense under the entry STEP's number reaches is the word's own; one found by MACULA's dictionary form names the part it stands on
++          for (const u of very) row.append(el("p", "line", u[1] === 1 ? he(u[3]) : "", u[1] === 1 ? " " : "", rd(glosses(u)), u[1] === 1 ? el("span", "gap", " *") : ""));
++          if (very.some((u) => u[1] === 1)) row.append(el("p", "sub", "* STEP's number for this part reaches no entry of this dictionary; the entry is the one under MACULA's dictionary form of the part."));
++          body.append(row);
++        }
++        if (verse.length) {
++          const row = el("div", "row", srcHead("ubs_sdbh_hebrew_v0_9_2", "cites this verse"));
++          for (const u of verse) row.append(el("p", "line", rd(glosses(u))));
++          row.append(el("p", "sub", "The dictionary counts the words of a verse in its own way. Here its count does not land on this word, so this is said of the verse, under the same entry, and not of the word."));
++          body.append(row);
++        }
++      }
++      if (h.o) {
++        const row = el("div", "row", srcHead("openscriptures_bdb_1906", "cites this verse"));
++        for (const o of h.o) row.append(el("p", "line", o[2] ? el("span", "gap", `${o[2]} `) : "", rd(o[3].length ? o[3].map((d) => `«${tidy(d)}»`).join(", ") : "(no meaning is marked in this sense)")));
++        body.append(row);
++      }
++      drawUnabridgedHere(h, body);
++    };
++
++    // ---- each dictionary's entry, in the dictionary's own structure
++    /** A stretch of text with marked runs: marks are [offset, length, how to wrap]. */
++    const marked = (text, from, to, marks) => {
++      const out = []; let at = from;
++      for (const [a, n, wrap] of marks.filter((m) => m[0] >= from && m[0] + m[1] <= to).sort((x, y) => x[0] - y[0])) { if (a < at) continue; if (a > at) out.push(printable(text.slice(at, a))); out.push(wrap(printable(text.slice(a, a + n)))); at = a + n; }
++      if (at < to) out.push(printable(text.slice(at, to)));
++      return out;
++    };
++    const kv = (k, ...v) => el("p", "", el("span", "k", k), ...v);
++
++    const DRAW = {
++      stepbible_tbesh_gloss: {
++        first: (e) => [he(e.Hebrew), " ", rd(`«${tidy(e.Gloss)}»`)],
++        whole: (e) => [kv("STEP's number", e.uStrong), kv("Strong's number", e.eStrong), kv("word", he(e.Hebrew), ` ${e.Transliteration}`), kv("kind", e.Morph), kv("gloss", rd(tidy(e.Gloss))), e.relation ? kv("STEP's note", tidy(e.relation)) : null],
++      },
++      openscriptures_strongs: {
++        // the row's one line is his meaning as he wrote it, the glosses the file tags drawn as on the opened entry; his list of
++        // renderings (the Authorized Version's, in the order of the alphabet) stands in the opened entry
++        first: (e) => {
++          if (e.meaning) { const marks = (e.meaning.defs || []).map((d) => [d[0], d[1], (s) => el("span", "def", s)]); for (const w of e.meaning.words || []) marks.push([w.at, w.t.length, (s) => he(s)]); return marked(e.meaning.t, 0, e.meaning.t.length, marks); }
++          if (e.source) return [el("span", "gap", "(he gives no meaning apart; his derivation:) "), printable(e.source.t)];
++          return [el("span", "gap", "(he gives no meaning)")];
++        },
++        whole: (e) => {
++          const out = [el("p", "", he(e.w.t), ` ${e.w.pron ? `(${e.w.pron}) ` : ""}${e.w.pos || ""}`)];
++          const field = (name, f) => { if (!f) return; const marks = []; for (const d of f.defs || []) marks.push([d[0], d[1], (s) => el("span", "def", s)]); for (const w of f.words || []) marks.push([w.at, w.t.length, (s) => he(s)]); out.push(kv(name, ...marked(f.t, 0, f.t.length, marks))); };
++          field("derivation", e.source); field("meaning", e.meaning);
++          const u = e.usage;
++          if (u) {
++            const r = (u.renderings || []).filter((x) => !x.empty);
++            out.push(kv("his list of renderings", `as he lists it${r.some((x) => x.sign) ? "; × marks a rendering from a Hebrew idiom, + one made with other words" : ""}`));
++            const ol = el("ol", "rend");
++            for (const x of r) {
++              const li = el("li", "", x.sign ? el("span", "sign", x.sign) : "", tidy(x.t));
++              if (x.lost_sign_trace && x.wikisource_sign) li.append(el("small", "", `this file lost a sign here; the Wikisource edition writes ${x.wikisource_sign}`));
++              if (x.lost_sign_trace_inside && x.as_wikisource_writes_it) li.append(el("small", "", `a sign is lost inside; the Wikisource edition writes ${tidy(x.as_wikisource_writes_it)}`));
++              if (x.unbalanced) li.append(el("small", "", "the file's brackets do not balance here; kept whole, as written"));
++              ol.append(li);
++            }
++            out.push(ol);
++            if (u.after_list) out.push(kv("after his list", tidy(u.after_list.t)));
++          }
++          for (const n of e.provider_notes || []) out.push(el("p", "how", `Open Scriptures' note: ${tidy(typeof n === "string" ? n : n.t)}`));
++          return out;
++        },
++      },
++      openscriptures_lexical_index: {
++        first: (e) => [he(e.w), " ", e.def !== undefined ? rd(`«${tidy(e.def)}»`) : el("span", "gap", "(no gloss)")],
++        whole: (e) => [kv("word", he(e.w), ` ${e.xlit || ""} ${e.pos || ""}`), e.def !== undefined ? kv("gloss", rd(tidy(e.def))) : null, kv("points to", [e.xref.bdb ? `Brown-Driver-Briggs ${e.xref.bdb}` : "", e.xref.strong ? `Strong's ${e.xref.strong}${e.xref.aug || ""}` : "", e.xref.twot ? `TWOT ${e.xref.twot}` : ""].filter(Boolean).join(" · "))],
++      },
++      openscriptures_bdb_1906: {
++        first: (e) => {
++          // the meanings the file marks, in its order, grouped by the sense each stands in: the first group is the line
++          const seen = new Set(); const groups = [];
++          for (const df of e.defs || []) { if (df.phrase) { if (seen.has(df.phrase.at)) continue; seen.add(df.phrase.at); } const key = df.sense ? df.sense.join(".") : ""; let g = groups[groups.length - 1]; if (!g || g.key !== key) { g = { key, d: [] }; groups.push(g); } g.d.push(tidy(df.phrase ? df.phrase.t : df.joined ? df.joined.whole : df.t)); }
++          const w = (e.w || [])[0]; const more = groups.slice(1).reduce((a, g) => a + g.d.length, 0);
++          return [w ? he(w.t) : "", " ", groups.length ? rd(groups[0].d.map((x) => `«${x}»`).join(", ")) : el("span", "gap", "(no meaning is marked in this entry)"), more ? el("span", "gap", ` … and ${more} more in its senses`) : ""];
++        },
++        whole: (e, cited) => {
++          // the entry's running text, its senses in their own nesting; the meanings the file marks are drawn as glosses
++          const marks = []; for (const d of e.defs || []) marks.push([d.at, d.t.length, (s) => el("span", "def", s)]); for (const w of e.w || []) marks.push([w.at, w.t.length, (s) => he(s)]);
++          const text = e.text; const top = e.senses || []; const out = [];
++          const run = (a, b) => el("span", "", ...marked(text, a, b, marks));
++          out.push(el("p", "", run(0, top.length ? top[0].at : text.length)));
++          const sense = (s, path) => {
++            const kids = s.senses || []; const label = s.n !== undefined ? `${s.n}.` : ""; // a stem's name (Qal, Niph.) stands in the sense's own text
++            const d = el("div", "sense", label ? el("span", "lab", label) : "", run(s.at, kids.length ? kids[0].at : s.at + s.len));
++            if (cited.has(path.join("."))) { d.classList.add("cited"); d.append(el("span", "cited-note", "cites this verse")); }
++            kids.forEach((k, i) => d.append(sense(k, [...path, i])));
++            return d;
++          };
++          top.forEach((s, i) => out.push(sense(s, [i])));
++          if (cited.has("")) out.push(el("p", "how", "This verse is cited in the entry outside its numbered senses."));
++          out.push(el("p", "how", `${e.type === "root" ? "A root entry. " : ""}${e.status && e.status.p ? `Page ${e.status.p} of the lexicon. ` : ""}The file's own account: a work in progress; it marks the meanings and keeps the outline of the senses, not the whole of the printed entry.`));
++          return out;
++        },
++      },
++      ubs_sdbh_hebrew_v0_9_2: {
++        // The dictionary's numbers sit on the whole entry, and an entry can hold several words of one spelling (its base forms).
++        // The base form that holds a sense cited at this very word stands first; where none is, the base forms in the file's
++        // order, said as such. `cited` is { very, verse }: the senses cited at this very word, and at the verse only.
++        first: (e, cited) => {
++          const forms = e.BaseForms || []; const gl = (m) => (((m.LEXSenses || [])[0] || {}).Glosses || []).map((g) => `«${tidy(g)}»`).join(", ") || "(no gloss)";
++          const lead = forms.filter((b) => (b.LEXMeanings || []).some((m) => cited.very.has(m.LEXID)));
++          const out = [he(e.Lemma), " "];
++          if (lead.length) { lead.forEach((b, i) => { const ms = b.LEXMeanings || []; const hit = ms.filter((m) => cited.very.has(m.LEXID)); if (i) out.push(el("span", "gap", " | ")); out.push(rd(hit.map(gl).join(" | ")), ms.length > hit.length ? el("span", "gap", ` … (${ms.length} senses of this word)`) : ""); }); return out; }
++          if (forms.length > 1) out.push(el("span", "gap", "no sense is cited at this very word; the words of this entry in the file's order: "));
++          forms.forEach((b, i) => { const ms = b.LEXMeanings || []; if (i) out.push(el("span", "gap", " | ")); if (forms.length > 1) out.push(el("span", "gap", `${i + 1}. `)); out.push(rd(ms.length ? gl(ms[0]) : "(no sense)"), ms.length > 1 ? el("span", "gap", ` … (${ms.length} senses)`) : ""); });
++          return out;
++        },
++        whole: (e, cited) => {
++          const forms = e.BaseForms || []; const lead = forms.filter((b) => (b.LEXMeanings || []).some((m) => cited.very.has(m.LEXID)));
++          const out = [el("p", "", he(e.Lemma), (e.StrongCodes || []).length ? ` · its numbers: ${e.StrongCodes.join(", ")}` : "")];
++          const draw = (b) => {
++            const nodes = [el("p", "", el("span", "k", forms.length > 1 ? `word ${forms.indexOf(b) + 1} of ${forms.length} under this entry` : "the word"), (b.PartsOfSpeech || []).join(", "))];
++            for (const m of b.LEXMeanings || []) {
++              const s = (m.LEXSenses || [])[0] || {}; const d = el("div", "sense", rd((s.Glosses || []).map((g) => `«${tidy(g)}»`).join(", ") || "(no gloss)"));
++              if (cited.very.has(m.LEXID) || cited.verse.has(m.LEXID)) { d.classList.add("cited"); d.append(el("span", "cited-note", cited.very.has(m.LEXID) ? "cites this very word" : "cites this verse")); }
++              if (s.DefinitionShort) d.append(el("p", "", tidy(s.DefinitionShort)));
++              const facts = []; if ((m.LEXForms || []).length) facts.push(m.LEXForms.join(", ")); if ((m.LEXDomains || []).length) facts.push(`field: ${m.LEXDomains.map((x) => x.Domain).join(", ")}`); facts.push(`cited at ${m.verses_cited} ${m.verses_cited === 1 ? "place" : "places"}`);
++              const fp = el("p", "how", facts.join(" · ")); if ((m.LEXCollocations || []).length) { fp.append(" · with "); m.LEXCollocations.forEach((c, i) => { if (i) fp.append(", "); fp.append(he(c)); }); } d.append(fp);
++              if (s.Comments) d.append(el("p", "how", tidy(s.Comments)));
++              nodes.push(d);
++            }
++            return nodes;
++          };
++          const rest = lead.length ? forms.filter((b) => !lead.includes(b)) : [];
++          if (!lead.length && forms.length > 1) out.push(el("p", "how", "No sense of this entry is cited at this very word; its words stand in the file's order."));
++          for (const b of lead.length ? lead : forms) out.push(...draw(b));
++          if (rest.length) {
++            const btn = el("button", "more-btn", `Other words under this entry: ${rest.length}`); btn.type = "button"; btn.setAttribute("aria-expanded", "false");
++            const more = el("div", "more"); more.hidden = true; for (const b of rest) more.append(...draw(b));
++            btn.addEventListener("click", () => { more.hidden = !more.hidden; btn.setAttribute("aria-expanded", String(!more.hidden)); });
++            out.push(btn, more);
++          }
++          return out;
++        },
++      },
++      unfoldingword_uhal: {
++        first: (e) => { const g = []; for (const s of e.senses || []) for (const x of s.glosses || []) g.push(tidy(x.t)); return [he(e.headword.t), " ", g.length ? rd(g.slice(0, 6).map((x) => `«${x}»`).join(", ")) : el("span", "gap", "(no gloss)"), g.length > 6 ? el("span", "gap", ` … (${g.length})`) : ""]; },
++        whole: (e) => [el("p", "", he(e.headword.t), ` ${e.part_of_speech ? tidy(e.part_of_speech.t) : ""}`), ...(e.senses || []).map((s) => el("div", "sense", el("span", "lab", `sense ${s.label}`), s.title ? `${tidy(s.title.t)} ` : "", rd((s.glosses || []).map((x) => `«${tidy(x.t)}»`).join(", ")), (s.citations || []).length ? el("p", "how", `cites ${s.citations.map((c) => tidy(c.t)).join("; ")}`) : ""))],
++      },
++    };
++
++    /** One line for a record of the unabridged BDB, from the head a tag's file holds of it. The entry's meaning, or the
++     *  words its opening opens with, where the file classes italic runs so. Else the italic runs the file does not
++     *  class as a grammar word, a word of another language, a verse's wording, an abbreviation or an outline letter:
++     *  the first two, printed as they stand and said as the record's italics, with no claim of what they are, and how
++     *  many there are where there are more. Else what its head has in bold. */
++    const NOT_SAID_AS_ITALICS = ["grammar_word", "other_language", "verse_wording", "abbreviation", "outline_letter"];
++    const unabridgedFirst = (hd, several) => {
++      const its = (hd.head.italics || []).filter((x) => tidy(x.t));
++      const main = its.filter((x) => x.kind === "main_gloss"), open = its.filter((x) => x.kind === "opening");
++      const plain = its.filter((x) => !SAID_AS_MEANING.includes(x.kind) && !NOT_SAID_AS_ITALICS.includes(x.kind));
++      const said = main.length ? italicsSaid(main)
++        : open.length ? italicsSaid(open)
++        : plain.length ? italicsSaid(plain, 2)
++        : (hd.head.bold || []).length ? [el("span", "gap", `(no meaning in italics; in bold: ${hd.head.bold.map((x) => tidy(x.t)).join(", ")})`)]
++        : [el("span", "gap", "(its opening carries no meaning in italics)")];
++      return [hd.head.headword ? he(hd.head.headword.t) : "", " ", ...said, several && languageOf(hd) ? el("span", "gap", ` (${languageOf(hd)})`) : ""];
++    };
++    const ITALIC_SAYS = { main_gloss: "the entry's meaning", tagged_gloss: "a meaning", opening: "the words this point opens with", rendering_of_hebrew: "the English of the Hebrew just quoted", verse_wording: "the English of the verse cited", grammar_word: "a grammar word", abbreviation: "an abbreviation", other_language: "a word of another language", outline_letter: "an outline letter", unclassed: "italic in the lexicon; the file does not tell what it is" };
++    /** A record of the unabridged BDB whole: its paragraphs, each with its opening and its points in order. */
++    const unabridgedWhole = (e, cited, own) => {
++      const out = []; const kindOf = new Map();
++      const note = (u) => { for (const it of u.italics || []) kindOf.set(it.k, it.kind); };
++      e.blocks.forEach((blk, bi) => {
++        const starts = new Map(); note(blk.head); (blk.head.sub || []).forEach((s, si) => { starts.set(s.k[0], ["sub", `${bi}|-1|${si}`]); note(s); });
++        (blk.points || []).forEach((pt, pi) => { starts.set(pt.k[0], ["point", `${bi}|${pi}|-1`]); note(pt); (pt.sub || []).forEach((s, si) => { starts.set(s.k[0], ["sub", `${bi}|${pi}|${si}`]); note(s); }); });
++        // a stem heading inside running text starts a unit of its own (the stem's head); a heading that labels a point makes that point the stem's head too
++        const also = new Map(); (blk.stems || []).forEach((h, x) => { if (h.point === undefined) starts.set(h.k, ["stem", `${bi}|s${x}`]); else also.set(`${bi}|${h.point}|-1`, `${bi}|s${x}`); });
++        const isCited = (key) => cited.has(key) || (also.has(key) && cited.has(also.get(key)));
++        let unit = el("div", "unit"); if (isCited(`${bi}|-1|-1`)) { unit.classList.add("cited"); unit.append(el("span", "cited-note", "cites this verse")); }
++        const para = el("div", ""); para.append(unit); let empty = true;
++        for (let i = blk.k[0]; i < blk.k[1]; i += 1) {
++          if (starts.has(i)) { const [cls, key] = starts.get(i); unit = el(cls === "stem" ? "span" : "div", `unit ${cls}`); if (isCited(key)) { unit.classList.add("cited"); unit.append(el("span", "cited-note", "cites this verse")); } para.append(unit); empty = true; }
++          const p = e.k[i];
++          if (typeof p === "string") { let s = printable(p).replace(/[\u2003\u00a0]/g, " "); if (empty) s = s.replace(/^\s+/, ""); if (s) { unit.append(s); empty = false; } continue; }
++          const [what, text] = p;
++          if (what === "<") { if (text === "<br>" && !empty) unit.append(el("br")); else if (/^<placeholder/.test(text)) { const g = el("span", "gap", "[…]"); g.title = "a word in another script, which this file leaves out"; unit.append(g); } continue; }
++          empty = false;
++          if (what === "bdbheb" || what === "bdbarc") unit.append(he(printable(text)));
++          else if (what === "b") unit.append(el("b", "", printable(text)));
++          else if (what === "highlight" || what === "highlightword") { const k = kindOf.get(i) || "unclassed"; const em = el("em", SAID_AS_MEANING.includes(k) ? "gl" : ["grammar_word", "abbreviation", "other_language", "outline_letter"].includes(k) ? "gr" : "", printable(text)); em.title = ITALIC_SAYS[k]; unit.append(em); }
++          else if (what === "ref") unit.append(el("span", "ref", printable(text)));
++          else if (what === "sup") unit.append(el("sup", "", printable(text)));
++          else if (what === "sub") unit.append(el("sub", "", printable(text)));
++          else if (what === "transliteration") unit.append(el("em", "gr", printable(text)));
++          else unit.append(printable(text));
++        }
++        if (e.blocks.length > 1) out.push(el("p", "k", `paragraph ${bi + 1} of ${e.blocks.length}${own ? (own.includes(bi) ? " · this word's headword" : " · another headword") : ""}`));
++        out.push(para);
++      });
++      out.push(el("p", "how", `${languageOf(e) || "The record names no language"}${e.strong && e.strong.length ? `. The file lists this record under the numbers ${e.strong.join(", ")}` : ""}. Italic words are the lexicon's own. Where the record's structure tells what an italic run is, it is drawn so: the entry's meaning, or the words a point opens with, in blue; a grammar word, an abbreviation or a word of another language in gray; any other italic as the record sets it.`));
++      return out;
++    };
++
++    /** The dictionaries under one of STEP's numbers: each in the fixed order, one line, opening to the whole entry. */
++    const drawEntries = async (tag, forms, body, alive) => {
++      const box = el("div", ""); body.append(box);
++      box.append(el("h3", "", "In the dictionaries"), el("p", "form-h", `STEP gives this word the number ${tag}. Each dictionary's own entry under that number:`));
++      const wait = el("p", "form-h", "Opening the dictionaries…"); box.append(wait);
++      let F; try { F = await getFile(tagFile(tag)); } catch (err) { wait.textContent = "The dictionaries could not be fetched."; fault(err.message); return; }
++      if (!alive()) return; wait.remove();
++      const line = F.tags[tag]; if (!line) { box.append(el("p", "form-h", "STEP writes this number only in its note on the form written. The dictionaries are listed here for the numbers of STEP's main text, so none is shown under it.")); box.dataset.ready = "1"; return; }
++      // what cites this place, by entry, so that the sense can be marked when the entry is opened
++      const citedO = new Map(), citedB = new Map(), citedU = new Map(); const byMacula = new Set();
++      for (const f of forms) {
++        const h = f.h || {}; for (const id of f.ow || []) byMacula.add(id);
++        for (const o of h.o || []) { if (!citedO.has(o[0])) citedO.set(o[0], new Set()); citedO.get(o[0]).add(o[1] ? o[1].join(".") : ""); }
++        for (const b of h.b || []) { if (!citedB.has(b[0])) citedB.set(b[0], new Set()); citedB.get(b[0]).add(b[12] ? `${b[1]}|s${b[11]}` : `${b[1]}|${b[2]}|${b[3]}`); }
++        for (const u of h.u || []) { const id = `${u[0].slice(0, 6)}000000000`; if (!citedU.has(id)) citedU.set(id, { very: new Set(), verse: new Set() }); citedU.get(id)[u[1] < 2 ? "very" : "verse"].add(u[0]); }
++      }
++      for (const key of INDEX.dictionaries) {
++        const [how, ...ids0] = line.b[key];
++        // A DICTIONARY WHOSE ENTRY IS NOT ON HAND HERE HAS NO ROW (the audit of 27 November 2026, section 7): the data
++        // says «absent here» (H) where a number's entry is not among the files on hand, and nothing on hand shows that
++        // the entry is there, so the card says nothing of it, as of any source with no answer here. Since the ninth cut
++        // no dictionary's line says H (unfoldingWord's lexicon is read whole); the rule stays for a source read in part.
++        // A line that says W (unfoldingWord's one entry under the number is, by its own reference to Brown-Driver-Briggs,
++        // another word of the number than STEP's letter names) names no entry, and its row says why (ABSENT.W)
++        if (how === "H") continue;
++        const row = el("div", "row", srcHead(key)); box.append(row);
++        if (!ids0.length) { row.append(el("p", "sub", ABSENT[how] || "No entry.")); continue; }
++        const isU = key === "ubs_sdbh_hebrew_v0_9_2", isB = key === "unabridged_bdb_1906";
++        const citedOf = key === "openscriptures_bdb_1906" ? citedO : isB ? citedB : isU ? citedU : new Map();
++        const citedAt = (id) => citedOf.get(id) || (isU ? { very: new Set(), verse: new Set() } : new Set());
++        const cites = (id) => { const c = citedOf.get(id); return !!c && (isU ? c.very.size + c.verse.size > 0 : c.size > 0); };
++        const several = ids0.length > 1;
++        // where a number reaches several records, the one that cites this place stands first
++        let ids = ids0.slice().sort((x, y) => (cites(y) ? 1 : 0) - (cites(x) ? 1 : 0)); let behind = [];
++        let numeralOther = new Set(), numeralHere = null;
++        if (isB) {
++          // The unabridged file lists a number on several records, and a record can be another word's. A record is this word's
++          // where its own headword has the letters of the word's dictionary form (own; on the word, ow), where it is of the
++          // word's language (the forms name the records of the other: ol; the word's language is what STEP's row at this word
++          // says, t.lg, else what STEP's lexicon says, lg), and where BDB does not number it as another word of the same
++          // letters (on; the entry's numeral: nm). Those stand; the others wait behind one line.
++          const other = new Set(forms.flatMap((f) => f.ol || []).filter((id) => ids0.includes(id)));
++          const rowLg = forms.map((f) => (f.t || {}).lg).find(Boolean); const lg = rowLg || line.lg || null;
++          const said = rowLg ? "STEP's row at this word says" : "STEP's lexicon says"; const tongue = lg === "a" ? ["Aramaic", "Hebrew"] : ["Hebrew", "Aramaic"];
++          numeralOther = new Set((line.on || []).filter((id) => ids0.includes(id) && !other.has(id))); numeralHere = line.nm || null;
++          const own = new Set([...Object.keys(line.own || {}), ...ids0.filter((id) => byMacula.has(id))].filter((id) => !other.has(id) && !numeralOther.has(id)));
++          if (several) {
++            behind = ids.filter((id) => !own.has(id)); ids = ids.filter((id) => own.has(id));
++            const n = numeralOther.size;
++            row.append(el("p", "sub", unabridgedSays(ids0, ids, other, tongue, said, ids.some(cites)) + (n ? ` ${n === 1 ? "One" : n} BDB numbers as another word of the same letters, and ${n === 1 ? "it waits" : "they wait"} behind.` : "")));
++          } else if (other.has(ids0[0])) row.append(el("p", "sub", `This record is a Biblical ${tongue[1]} record, and ${said} this word is ${tongue[0]}, so it is not said to cite this word.`));
++          else if (numeralOther.has(ids0[0])) row.append(el("p", "sub", "BDB numbers this record another word of the same letters, so it is not said to cite this word."));
++          else if (!own.has(ids0[0])) row.append(el("p", "sub", "This record's headword is spelled otherwise than this word's dictionary form, so it is not said to cite this word."));
++        } else if (several) row.append(el("p", "sub", `This number reaches ${ids.length} records of this dictionary; nothing in the files says which is meant.${ids.some(cites) ? " The record that cites this place stands first." : ""}`));
++        const drawRecords = (list, into) => {
++          for (const id of list) {
++            const holder = several ? el("li", "") : into; if (several) into.append(holder);
++            const cited = citedAt(id);
++            const first = el("p", "line"); holder.append(first);
++            if (isB) first.append(...unabridgedFirst(F.unabridged[id], several)); else first.append(...DRAW[key].first(F.entries[key][id], cited));
++            if (cites(id)) first.append(el("span", "cited-note", isU ? (cited.very.size ? "cites this very word" : "cites this verse") : "cites this verse"));
++            if (isB && numeralOther.has(id)) holder.append(el("p", "sub", `BDB numbers this another word of the same letters (${[numeralHere, F.unabridged[id].head.numeral].filter(Boolean).map((x) => `${x}.`).join(", ")})`));
++            const btn = el("button", "open", "Open the whole entry"); btn.type = "button"; btn.setAttribute("aria-expanded", "false"); btn.dataset.src = key; btn.dataset.id = id;
++            const whole = el("div", "entry"); whole.hidden = true; holder.append(btn, whole);
++            btn.addEventListener("click", async () => {
++              const open = whole.hidden; btn.setAttribute("aria-expanded", String(open)); btn.textContent = open ? "Close the entry" : "Open the whole entry"; whole.hidden = !open;
++              if (!open || whole.dataset.drawn) return;
++              whole.dataset.drawn = "1";
++              try {
++                if (isB) { whole.append(el("p", "how", "Opening the record…")); const U = await getFile(unFile(id)); whole.replaceChildren(...unabridgedWhole(U.entries[id], cited, (line.own || {})[id] || null)); }
++                else whole.append(...DRAW[key].whole(F.entries[key][id], cited).filter(Boolean));
++                if (REACHED[how]) whole.append(el("p", "how", `This entry is ${REACHED[how]} (${id}).`));
++                whole.dataset.ready = "1";
++              } catch (err) { whole.replaceChildren(el("p", "how", "The entry could not be fetched.")); delete whole.dataset.drawn; fault(err.message); }
++            });
++          }
++        };
++        if (ids.length) { const list = several ? el("ul", "records") : row; if (several) row.append(list); drawRecords(ids, list); }
++        if (behind.length) {
++          const btn = el("button", "more-btn", `Other records this number also stands on: ${behind.length}`); btn.type = "button"; btn.setAttribute("aria-expanded", "false");
++          const ul = el("ul", "records"); ul.hidden = true; drawRecords(behind, ul);
++          btn.addEventListener("click", () => { ul.hidden = !ul.hidden; btn.setAttribute("aria-expanded", String(!ul.hidden)); });
++          row.append(btn, ul);
++        }
++      }
++      box.dataset.ready = "1";
++    };
++
++    // ---- THE PILLS (27 November 2026; the owner, on the card of Genesis 1:3 word 5: «you dont get to skip R pills and
++    // compspan and selectable gloss just because we can play around with how the cards list off D/M»). The live
++    // reader's card keeps its frame, its divisions, its cells and its pills, and fills a cell's pills from these files:
++    // a pill stands in a cell only where a source puts that reading on that part of the word by its own address, or by
++    // a bridge a source declares. Nothing is matched by letters. A cell is named as the frame names it: the verse's
++    // label, the word's number in the verse as written (marks not counted), which reading of a pair (form, ketiv,
++    // qere), and the cell's letters [a, b] among the word's t letters.
++    //   STEP          its gloss of each of its pieces in that piece's cell; its pieces' glosses joined as the line
++    //                 joins them ("/") in the whole word's cell
++    //   MACULA        its words in the cells its own letters make (a part with no letters of its own stands only in the
++    //                 whole word's reading); its parts joined in the whole word's cell
++    //   dictionaries  under the number STEP gives a piece, each dictionary's own entry as «In the dictionaries» draws
++    //                 it, in that piece's cell: the strings the card prints as the entry's meaning, split only at the
++    //                 source's own marks (a «» run of a meaning or an opening, a <def>, a gloss); never a run printed
++    //                 plain as the record's italics, never Strong's list of renderings; where a number stands on several
++    //                 records of the unabridged BDB, those the card shows as this word's alone
++    //   first         in a dictionary's pills, a UBS sense that cites this very word, and a BDB line or sense that
++    //                 cites this verse
++    //   order         STEP, MACULA, UBS, the two BDB files, then the others as «In the dictionaries» lists them
++    // Each pill names its source (src: the place's "step" and "macula", else the dictionary's key) and its address
++    // (how): the words a reader can find it by in the listing under the pills.
++    const LETTER_FROM = "\u05d0", LETTER_TO = "\u05ea";
++    const lettersIn = (s) => [...String(s || "")].filter((c) => c >= LETTER_FROM && c <= LETTER_TO).length;
++    /** Each part's letters [a, b] in its word, in order; a part with no letters of its own has none (null). */
++    const spansOf = (hebs) => { let a = 0; return hebs.map((h) => { const n = lettersIn(h); const r = n ? [a, a + n - 1] : null; a += n; return r; }); };
++    const nthWord = (v, n) => { let k = 0; for (const x of v.e) { if (x.m !== undefined) continue; k += 1; if (k === n) return x; } return null; };
++    /** The form of a word a reading names: the only one, else the written (ketiv) or the read (qere) form; «qere:1»
++     *  (or «ketiv:1») names the second word of a half written as several words, each a form of its own. */
++    const formFor = (e, reading, t) => {
++      const nth = /^(ketiv|qere):(\d+)$/u.exec(String(reading));
++      if (nth) { const half = e.f.filter((f) => (nth[1] === "ketiv" ? f.r === 2 : f.r !== 2)); return half.length > 1 ? half[Number(nth[2])] || null : half[0] || null; }
++      if (e.f.length === 1) return e.f[0];
++      const pick = reading === "ketiv" ? e.f.filter((f) => f.r === 2) : reading === "qere" ? e.f.filter((f) => f.r !== 2) : [];
++      if (pick.length < 2) return pick[0] || null;
++      return pick.find((f) => f.t && f.t.p && f.t.p.reduce((n, p) => n + lettersIn(p[3]), 0) === t) || null;
++    };
++    /** «In the dictionaries»: the records of a dictionary under a number that the card shows as this word's (drawEntries' rule). */
++    const recordsShown = (key, line, forms) => {
++      const [how, ...ids0] = line.b[key] || ["0"];
++      if (how === "H" || !ids0.length) return [];
++      if (key !== "unabridged_bdb_1906") return ids0;
++      const byMacula = new Set(forms.flatMap((f) => f.ow || []));
++      const other = new Set(forms.flatMap((f) => f.ol || []).filter((id) => ids0.includes(id)));
++      const numeralOther = new Set((line.on || []).filter((id) => ids0.includes(id) && !other.has(id)));
++      const own = new Set([...Object.keys(line.own || {}), ...ids0.filter((id) => byMacula.has(id))].filter((id) => !other.has(id) && !numeralOther.has(id)));
++      return ids0.filter((id) => own.has(id));
++    };
++    /** The strings «In the dictionaries» prints as an entry's meaning: its one line's, and the whole entry's. */
++    const meaningsOf = (key, e) => {
++      if (!e) return [];
++      if (key === "stepbible_tbesh_gloss") return [e.Gloss];
++      if (key === "openscriptures_strongs") return e.meaning ? (e.meaning.defs || []).map((d) => e.meaning.t.slice(d[0], d[0] + d[1])) : [];
++      if (key === "openscriptures_lexical_index") return e.def !== undefined ? [e.def] : [];
++      if (key === "unfoldingword_uhal") return (e.senses || []).flatMap((x) => (x.glosses || []).map((g) => g.t));
++      if (key === "ubs_sdbh_hebrew_v0_9_2") return (e.BaseForms || []).flatMap((b) => (b.LEXMeanings || []).flatMap((m) => ((m.LEXSenses || [])[0] || {}).Glosses || []));
++      if (key === "openscriptures_bdb_1906") {
++        // the one line's meanings (the first sense's, as the line prints them), then every meaning the whole entry marks
++        const seen = new Set(); const groups = [];
++        for (const df of e.defs || []) { if (df.phrase) { if (seen.has(df.phrase.at)) continue; seen.add(df.phrase.at); } const k = df.sense ? df.sense.join(".") : ""; let g = groups[groups.length - 1]; if (!g || g.key !== k) { g = { key: k, d: [] }; groups.push(g); } g.d.push(df.phrase ? df.phrase.t : df.joined ? df.joined.whole : df.t); }
++        return [...(groups[0] ? groups[0].d : []), ...bdbMarked(e)];
++      }
++      if (key === "unabridged_bdb_1906") {
++        // the record's one line: its head's runs the file classes as the entry's meaning, else as its opening
++        const its = (e.head.italics || []).filter((x) => tidy(x.t));
++        const main = its.filter((x) => x.kind === "main_gloss");
++        return (main.length ? main : its.filter((x) => x.kind === "opening")).map((x) => x.t);
++      }
++      return [];
++    };
++    /** The meanings the Open Scriptures BDB's whole entry prints (DRAW.openscriptures_bdb_1906.whole, by marked): each
++     *  run of its text (its head, then each sense up to its first sub-sense), the marks inside the run in order, a mark
++     *  that starts inside the one before it skipped; a meaning mark prints the entry's own letters at its place. */
++    const bdbMarked = (e) => {
++      const marks = [...(e.defs || []).map((d) => [d.at, d.t.length, 1]), ...(e.w || []).map((w) => [w.at, w.t.length, 0])];
++      const out = []; const top = e.senses || [];
++      const run = (from, to) => { let at = from; for (const [a, n, def] of marks.filter((m) => m[0] >= from && m[0] + m[1] <= to).sort((x, y) => x[0] - y[0])) { if (a < at) continue; if (def) out.push(e.text.slice(a, a + n)); at = a + n; } };
++      run(0, top.length ? top[0].at : e.text.length);
++      const sense = (x) => { const kids = x.senses || []; run(x.at, kids.length ? kids[0].at : x.at + x.len); kids.forEach(sense); };
++      top.forEach(sense);
++      return out;
++    };
++    const MEANT = ["main_gloss", "opening"];
++    /** UBS's own phrase mark: the glosses of the meanings the entries under a number give under a collocation (their
++     *  LEXCollocations), where no meaning of those entries without one gives the same gloss. The page rests them shut by
++     *  the dictionary kinds record, except where UBS cites this very word. */
++    const ubsCollocations = (es) => {
++      const ms = es.flatMap((e) => ((e && e.BaseForms) || []).flatMap((x) => x.LEXMeanings || []));
++      const gl = (m) => (((m.LEXSenses || [])[0] || {}).Glosses || []).map(tidy);
++      const plain = new Set(ms.filter((m) => !(m.LEXCollocations || []).length).flatMap(gl));
++      return new Set(ms.filter((m) => (m.LEXCollocations || []).length).flatMap(gl).filter((g) => !plain.has(g)));
++    };
++    /** A cell's pills: { pills: [{ text, src, how, cites, colloc }], form, why } (why: a sentence where the cell can have none;
++     *  colloc: a UBS gloss of a meaning under a collocation alone, ubsCollocations). */
++    const pillsAt = async (doc, ref, n, reading, a, b, t) => {
++      await index();
++      const v = ((doc && doc.verses) || []).find((x) => x.l === ref); const e = v ? nthWord(v, n) : null;
++      if (!e) return { pills: [], form: null, why: "The card's files hold no word at this place." };
++      const f = formFor(e, reading, t);
++      if (!f) return { pills: [], form: null, why: "The card's files do not say which form of the word this is." };
++      const out = []; const seen = new Set();
++      const add = (text, src, how, cites = false, colloc = false) => { const s = tidy(text); if (!s || seen.has(`${src}\u0001${s}`)) return; seen.add(`${src}\u0001${s}`); out.push({ text: s, src, how, cites, ...(colloc ? { colloc: true } : {}) }); };
++      const whole = a === 0 && b === t - 1;
++      const tp = f.t && f.t.p ? f.t.p : null; const rows = f.t && f.t.rows ? f.t.rows.join(" + ") : "";
++      const stepSpans = tp ? spansOf(tp.map((p) => p[3])) : [];
++      const stepFits = !!tp && tp.reduce((k, p) => k + lettersIn(p[3]), 0) === t;
++      const at = (spans) => spans.findIndex((r) => r && r[0] === a && r[1] === b);
++      const part = stepFits ? at(stepSpans) : -1;
++      // STEP at this word
++      if (tp) {
++        if (whole && tp.every((p) => p[0] !== null && tidy(p[0]))) add(tp.map((p) => tidy(p[0])).join("/"), "step", `STEP at this word (${rows}), its parts as the line joins them`);
++        if (part >= 0 && tp[part][0] !== null) add(tp[part][0], "step", `STEP at this word (${rows}), part ${part + 1} of ${tp.length}`);
++      }
++      // MACULA at this word, by its own division of the word
++      const m = f.m || null;
++      if (m) {
++        const ms = spansOf(m.map((x) => x[2]));
++        if (whole && m.every((x) => tidy(x[1]))) add(m.map((x) => tidy(x[1])).join("/"), "macula", "MACULA at this word, its parts joined");
++        const i = m.reduce((k, x, j) => (k >= 0 ? k : ms[j] && ms[j][0] === a && ms[j][1] === b ? j : -1), -1);
++        if (i >= 0) add(m[i][1], "macula", `MACULA at this word, part ${i + 1} of ${m.length}`);
++      }
++      // the dictionaries, under the number STEP gives the piece this cell is
++      const tag = part >= 0 ? numberOf(tp[part][1]) : null;
++      const h = f.h || {};
++      if (tag && !stepsOwn(tag)) {
++        let F = null; try { F = await getFile(tagFile(tag)); } catch (err) { fault(err.message); }
++        const line = F && F.tags ? F.tags[tag] : null;
++        const lists = new Map(INDEX.dictionaries.map((k) => [k, []]));
++        const put = (key, text, how, cites = false, colloc = false) => lists.get(key).push([text, how, cites, colloc]);
++        // what cites here comes first in its dictionary's pills
++        for (const u of h.u || []) {
++          if (u[1] >= 2) continue;
++          const ent = `${u[0].slice(0, 6)}000000000`;
++          const mine = u[1] === 0 ? !!line && (line.b.ubs_sdbh_hebrew_v0_9_2 || []).slice(1).includes(ent) : lettersIn(u[3]) === b - a + 1 && (f.m || []).some((x, j) => { const r = spansOf(f.m.map((y) => y[2]))[j]; return r && r[0] === a && r[1] === b && x[2] === u[3]; });
++          if (mine) for (const g of u[2]) put("ubs_sdbh_hebrew_v0_9_2", g, `UBS sense ${u[0]}, cited at this very word${u[1] === 1 ? " (its entry by MACULA's dictionary form of the part)" : ""}`, true);
++        }
++        for (const bl of h.b || []) if (bl[9] === tag) for (const [txt, kind] of bl[6]) if (MEANT.includes(kind)) put("unabridged_bdb_1906", txt, `unabridged BDB ${bl[0]}, its line that cites this verse`, true);
++        for (const o of h.o || []) if (o[4] === tag) for (const d of o[3]) put("openscriptures_bdb_1906", d, `Open Scriptures BDB ${o[0]}, its sense that cites this verse`, true);
++        const coll = line ? ubsCollocations(recordsShown("ubs_sdbh_hebrew_v0_9_2", line, e.f).map((id) => ((F.entries || {}).ubs_sdbh_hebrew_v0_9_2 || {})[id])) : new Set();
++        if (line) for (const key of INDEX.dictionaries) for (const id of recordsShown(key, line, e.f)) {
++          const ent = key === "unabridged_bdb_1906" ? (F.unabridged || {})[id] : ((F.entries || {})[key] || {})[id];
++          for (const txt of meaningsOf(key, ent)) put(key, txt, `${SRC[key][0]} ${id}, under ${tag}`, false, key === "ubs_sdbh_hebrew_v0_9_2" && coll.has(tidy(txt)));
++        }
++        const ORDER = ["ubs_sdbh_hebrew_v0_9_2", "openscriptures_bdb_1906", "unabridged_bdb_1906"];
++        for (const key of [...ORDER, ...INDEX.dictionaries.filter((k) => !ORDER.includes(k))]) {
++          const list = lists.get(key) || [];
++          // the BDB lines and senses that cite here lead both BDB files
++          if (key === "openscriptures_bdb_1906") for (const x of (lists.get("unabridged_bdb_1906") || []).filter((y) => y[2])) add(x[0], "unabridged_bdb_1906", x[1], true);
++          for (const x of list) add(x[0], key, x[1], x[2], x[3]);
++        }
++      }
++      // a UBS sense found by MACULA's dictionary form stands on its part where STEP gives that part no dictionary's
++      // number (none, or one of STEP's own)
++      if (!tag || stepsOwn(tag)) for (const u of h.u || []) if (u[1] === 1 && f.m) { const ms = spansOf(f.m.map((y) => y[2])); f.m.forEach((x, j) => { if (ms[j] && ms[j][0] === a && ms[j][1] === b && x[2] === u[3]) for (const g of u[2]) add(g, "ubs_sdbh_hebrew_v0_9_2", `UBS sense ${u[0]}, cited at this very word (its entry by MACULA's dictionary form of the part)`, true); }); }
++      return { pills: out, form: f.s || e.s, why: out.length ? null : "No source reads this part by itself here." };
++    };
++    // STEP's credit as its license summary asks it (relay v224: «Attribute the data to Tyndale House and STEPBible.org,
++    // and include a link to STEPBible.github.io/STEPBible-Data as the source of this data»), in one place: the credits
++    // below print it, and credits("step") hands it to the page, which prints it under every STEP record of the older
++    // card and in its export
++    // (name: the data's own name, for the link where a line has little room: the older card's record line)
++    const STEP_CREDIT = { words: "data created by STEPBible.org based on work at Tyndale House, Cambridge", href: "https://STEPBible.github.io/STEPBible-Data", text: "STEPBible.github.io/STEPBible-Data", name: "STEPBible-Data" };
++    /** The credits in full: one paragraph a source, as each source asks to be credited; the revisions are the data's own.
++     *  credits("step"): STEP's own credit, its words and its link, for a page that names a STEP record elsewhere. */
++    const credits = (only) => {
++      if (only === "step") return { ...STEP_CREDIT };
++      const S = (INDEX && INDEX.sources) || {}; const rev = (k) => ((S[k] || {}).revision || (((S[k] || {}).files || [])[0] || {}).revision || "");
++      const link = (href, text) => { const a = el("a", "", text || href.replace(/^https?:\/\//, "")); a.href = href; a.rel = "noopener"; return a; };
++      const p = (...kids) => el("p", "", ...kids);
++      return [
++        p(el("b", "", "STEP Bible. "), `The English under each word, the division of a word into its parts, the number on each part and the brief lexicon are ${STEP_CREDIT.words} (CC BY 4.0). Source: `, link(STEP_CREDIT.href, STEP_CREDIT.text), `. Revision ${rev("step_tahot")}.`),
++        p(el("b", "", "MACULA. "), "MACULA Hebrew Linguistic Datasets, available at ", link("https://github.com/Clear-Bible/macula-hebrew/"), ` (CC BY 4.0). Its English is from the Cherith Glosses for the Hebrew Old Testament, by Andi Wu, © 2022 Cherith Analytics (CC BY 4.0). Revision ${rev("macula_hebrew")}.`),
++        p(el("b", "", "UBS Dictionary of Biblical Hebrew. "), "© United Bible Societies, 2023. Adapted from Semantic Dictionary of Biblical Hebrew © 2000-2023 United Bible Societies. Licensed under ", link("http://creativecommons.org/licenses/by-sa/4.0/", "CC BY-SA 4.0"), ". Shown here in part: each sense with its glosses, definition and fields, and the count of the verses it cites in place of the list. ", link("https://github.com/ubsicap/ubs-open-license"), `, ${rev("ubs_sdbh_hebrew_v0_9_2")}.`),
++        p(el("b", "", "Strong's dictionary, Brown-Driver-Briggs and the Lexical Index, the Open Scriptures files. "), "From the Open Scriptures Hebrew Bible Project's Hebrew Lexicon (CC BY 4.0); Strong's dictionary (1890) and Brown, Driver and Briggs (1906) are in the public domain. ", link("https://github.com/openscriptures/HebrewLexicon"), `, revision ${rev("openscriptures_strongs")}. Where that file of Strong's has lost a sign, the sign named is the one the Hebrew Wikisource edition of Strong's writes (CC BY-SA 4.0).`),
++        p(el("b", "", "Brown-Driver-Briggs, unabridged. "), "The Brown-Driver-Briggs Hebrew and English Lexicon: a public domain document; formatting developed for use in marvel.bible by Eliran Wong; source provided by Tim Morton, the developer of Bible Analyzer; Scripture references parsed by Stephen Ku and his associates. ", link("https://github.com/eliranwong/unabridged-BDB-Hebrew-lexicon"), `, revision ${rev("unabridged_bdb_1906")}.`),
++        p(el("b", "", "unfoldingWord Hebrew and Aramaic Lexicon. "), `© unfoldingWord (CC BY-SA 4.0). The whole lexicon is read here: one entry under each Strong's number its own list names, with no letter, and unfoldingWord marks every entry as needing edits. Under a number it has no entry for, the card says so. Where its entry is, by its own reference to Brown-Driver-Briggs, another word of the number than the one STEP's letter names, the card says so and does not show it. Revision ${rev("unfoldingword_uhal")}.`),
++        p("Every line of the card stands where its source puts it: at this verse and word, or under the number STEP gives the word. The file and revision of each source are written in the card's data (", link(`${DATA}index.json`, "index.json"), ")."),
++      ];
++    };
++
++    /** The card's body for one word of a chapter's file: how the two editions meet at it, what each source says at
++     *  it, the dictionaries under each number of the word a dictionary can be filed by, the word's other parts,
++     *  and the credits. */
++    const draw = (body, doc, v, e, alive) => {
++      body.replaceChildren(); body.scrollTop = 0;
++      // how the two editions meet at this word, where it is not one for one with the same letters
++      const says = []; for (const f of e.f) for (const s of (f.t || {}).say || []) if (!says.includes(s)) says.push(s);
++      if (says.length) body.append(el("div", "say", ...says.map((s) => el("p", "", s))));
++      if (e.f.some((f) => f.t && f.t.w === 0) && v.un) body.append(el("div", "say", el("p", "", "In this verse STEP's text has words that meet no word of ours:"), ...v.un.map((u) => el("p", "", he(u[1]), " ", rd(u[2]), el("span", "gap", ` (${u[0]})`)))));
++      body.append(el("h3", "", "At this word"));
++      const here = el("div", ""); body.append(here); let drawn = 0;
++      for (const f of e.f) {
++        if (e.f.length > 1) here.append(el("p", "form-h", f.r === 2 ? "The form written: " : "The form read: ", he(f.s)));
++        const before = here.childElementCount; drawHere(f, here); drawn += here.childElementCount - before;
++      }
++      // what each source says here is drawn whole at once from the chapter's file: nothing at this word waits on a record
++      here.dataset.ready = "1";
++      pairSentence(e, here);
++      if (!drawn) here.append(el("p", "form-h", "No source gives a reading at this word."));
++      // the dictionaries, under each number of the word that a dictionary can be filed by: the root's first
++      const parts = []; for (const f of e.f) for (const p of (f.t || {}).p || []) if (numberOf(p[1])) parts.push([p[0], numberOf(p[1]), p[2], p[3]]);
++      const tags = []; for (const p of parts.slice().sort((a, b) => b[2] - a[2])) if (!stepsOwn(p[1]) && !tags.includes(p[1])) tags.push(p[1]);
++      const own = parts.filter((p) => stepsOwn(p[1]));
++      for (const tag of tags) drawEntries(tag, e.f, body, alive);
++      const tail = el("div", ""); body.append(tail);
++      if (own.length) {
++        const seen = new Set(); const box = el("div", "", el("h3", "", "The other parts of this word"));
++        for (const p of own) { const k = `${p[3]}|${p[1]}`; if (seen.has(k)) continue; seen.add(k); box.append(el("p", "form-h", he(p[3]), " ", p[0] === null ? "" : rd(p[0].trim()), ` · STEP's own number ${p[1]} for a prefix, an ending or a mark. No dictionary is filed under STEP's own numbers.`)); }
++        tail.append(box);
++      }
++      // each source credited in short on the card, and in full one press away, inside the card
++      const full = el("div", "credits-full"); full.hidden = true;
++      const btn = el("button", "more-btn", "Whose words these are: the credits in full"); btn.type = "button"; btn.setAttribute("aria-expanded", "false");
++      btn.addEventListener("click", () => { if (!full.childElementCount) full.append(...credits()); full.hidden = !full.hidden; btn.setAttribute("aria-expanded", String(!full.hidden)); });
++      tail.append(el("p", "c-credit", "STEP Bible: Tyndale House, Cambridge, and STEPBible.org, CC BY 4.0. MACULA Hebrew Linguistic Datasets, CC BY 4.0; its English is Cherith's. UBS Dictionary of Biblical Hebrew © United Bible Societies, CC BY-SA 4.0. Strong's and Brown-Driver-Briggs: the Open Scriptures files, CC BY 4.0; the unabridged Brown-Driver-Briggs as formatted by Eliran Wong, public domain."), btn, full);
++    };
++
++    // the card body's own look, each rule under the element `draw` draws into; the colors and the faces are the page's own
++    // names, and every glyph is one of the page's inks (tools/check-color-channels-v1.mjs): the three dyes and their dims,
++    // the marks' gold, silver for numbers alone; our own small words (a label, a note, a reference) in the argaman's dim
++    const RULES = [
++      ["&", "direction: ltr; text-align: left; font: 16px/1.6 Georgia, \"Times New Roman\", serif; color: var(--ink);"],
++      [".he", "font-family: \"Frank Ruehl CLM\", \"Frank Ruehl\", \"David Libre\", \"SBL Hebrew\", Georgia, serif; color: var(--shani-ink); direction: rtl; unicode-bidi: isolate;"],
++      [".rd", "font-family: 'reading', Georgia, serif; font-weight: 500; color: var(--tekhelet-ink);"],
++      ["a", "color: var(--argaman-dim);"],
++      ["button", "font: inherit; color: inherit;"],
++      ["p", "margin: 0;"],
++      ["h3", "font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 400; color: var(--faint); margin: 0.9rem 0 0.3rem;"],
++      ["h3:first-child", "margin-top: 0.1rem;"],
++      [".say", "margin: 0 0 0.5rem; padding: 0.35rem 0.55rem; border: 1px dashed var(--bronze-dim); border-radius: 0.45rem; font-size: 0.84rem; line-height: 1.4; color: var(--ink);"],
++      [".say .he", "font-size: 1.15rem;"],
++      [".say p", "margin: 0 0 0.25rem;"],
++      [".say p:last-child", "margin: 0;"],
++      [".form-h", "font-size: 0.8rem; color: var(--muted); margin: 0.6rem 0 0.2rem;"],
++      [".form-h .he", "font-size: 1.15rem;"],
++      [".row", "border-top: 1px solid rgba(127, 96, 68, 0.35); padding: 0.4rem 0 0.42rem;"],
++      [".row:first-of-type", "border-top: none;"],
++      [".row .src", "display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.5rem; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted);"],
++      [".row .src b", "font-weight: 400; color: var(--ink-strong); font-size: 0.8rem; letter-spacing: 0.02em;"],
++      [".lic", "font-size: 0.62rem; letter-spacing: 0.05em; border: 1px solid var(--bronze-dim); border-radius: 999px; padding: 0 0.42rem; color: var(--muted); white-space: nowrap;"],
++      [".row .line", "margin: 0.12rem 0 0; font-size: 0.95rem; line-height: 1.45; overflow-wrap: anywhere;"],
++      [".row .line .he", "font-size: 1.2rem;"],
++      [".row .line.part-row", "direction: rtl; text-align: left;"],
++      [".row .line.part-row > .part-of-row", "direction: ltr; unicode-bidi: isolate;"],
++      [".row .sub", "margin: 0.1rem 0 0; font-size: 0.76rem; color: var(--muted); line-height: 1.4;"],
++      [".row .sub .he", "font-size: 1.02rem;"],
++      [".def", "font-family: 'reading', Georgia, serif; font-weight: 500; color: var(--tekhelet-ink);"],
++      [".row .line small.ctx", "font-size: 0.72em; color: var(--muted);"],
++      [".records[hidden], .more[hidden], .entry[hidden], .credits-full[hidden]", "display: none;"],
++      [".more-btn", "display: block;"],
++      [".plus", "color: var(--faint); padding: 0 0.3em;"],
++      [".open, .more-btn", "margin-top: 0.3rem; border: 1px solid var(--line); border-radius: 0.45rem; background: var(--bg); padding: 0.2rem 0.6rem; font-size: 0.74rem; letter-spacing: 0.03em; cursor: pointer; min-height: 2rem;"],
++      [".open[aria-expanded=\"true\"], .more-btn[aria-expanded=\"true\"]", "background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze);"],
++      [".entry", "margin: 0.4rem 0 0.1rem; padding: 0.45rem 0.55rem; border: 1px solid var(--bronze-dim); border-radius: 0.45rem; font-size: 0.86rem; line-height: 1.5; overflow-wrap: anywhere;"],
++      [".entry .he", "font-size: 1.12rem;"],
++      [".entry p", "margin: 0 0 0.35rem;"],
++      [".entry p:last-child", "margin: 0;"],
++      [".entry .k", "font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin-right: 0.4em;"],
++      [".entry .how", "font-size: 0.74rem; color: var(--muted); font-style: italic;"],
++      [".entry ol.rend", "margin: 0.1rem 0 0.4rem; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 0.25rem 0.3rem;"],
++      [".entry ol.rend li", "border: 1px solid rgba(127, 96, 68, 0.45); border-radius: 0.4rem; padding: 0 0.4rem;"],
++      [".entry ol.rend li .sign", "color: var(--shani-dim); padding-right: 0.25em;"],
++      [".entry ol.rend li small", "display: block; font-size: 0.66rem; color: var(--muted); line-height: 1.3;"],
++      [".entry .def", "font-family: 'reading', Georgia, serif; font-weight: 500; color: var(--tekhelet-ink);"],
++      [".sense", "margin: 0.2rem 0 0.2rem 0; padding-left: 0.7rem; border-left: 1px solid rgba(127, 96, 68, 0.35);"],
++      [".sense > .lab", "font-weight: 400; color: var(--ink-strong); margin-right: 0.35em;"],
++      [".cited", "background: var(--press-wash); outline: 1px solid var(--bronze); border-radius: 0.3rem; padding-right: 0.35rem;"],
++      [".cited-note", "font: 0.68rem/1.3 Georgia, serif; letter-spacing: 0.05em; color: var(--muted); margin-left: 0.5em; white-space: nowrap; border: 1px solid var(--bronze-dim); border-radius: 999px; padding: 0 0.4rem;"],
++      [".unit > .cited-note, .sense > .cited-note", "display: table; margin: 0.1rem 0 0.2rem;"],
++      [".unit", "margin: 0.25rem 0;"],
++      [".unit.stem", "display: inline; margin: 0;"],
++      [".unit.point", "padding-left: 0.6rem; border-left: 1px solid rgba(127, 96, 68, 0.35);"],
++      [".unit.sub", "padding-left: 1.3rem; border-left: 1px solid rgba(127, 96, 68, 0.2);"],
++      [".entry em", "font-style: italic;"],
++      [".entry em.gl", "font-style: normal; font-family: 'reading', Georgia, serif; font-weight: 500; color: var(--tekhelet-ink);"],
++      [".entry em.gr", "color: var(--faint);"],
++      [".entry .ref", "color: var(--muted); font-size: 0.82em; white-space: nowrap;"],
++      [".gap", "color: var(--faint); font-size: 0.8em;"],
++      [".it", "font-style: italic;"],
++      [".records", "margin: 0.2rem 0 0; padding: 0; list-style: none;"],
++      [".records li", "margin: 0.25rem 0; padding-left: 0.6rem; border-left: 2px solid rgba(127, 96, 68, 0.35);"],
++      [".c-credit", "margin-top: 1rem; font-size: 0.7rem; line-height: 1.45; color: var(--muted); border-top: 1px solid rgba(127, 96, 68, 0.35); padding-top: 0.5rem;"],
++      [".credits-full", "margin: 0.4rem 0 0.2rem; font-size: 0.74rem; line-height: 1.5; color: var(--muted); overflow-wrap: anywhere;"],
++      [".credits-full p", "margin: 0 0 0.5rem;"],
++      [".credits-full b", "font-weight: 400; color: var(--ink-strong);"],
++    ];
++    const style = (scope) => RULES.map(([sel, decl]) => `${sel.split(", ").map((s) => (s === "&" ? scope : `${scope} ${s}`)).join(", ")} { ${decl} }`).join("\n");
++
++    return { index, chapter, entryAt, draw, kindWords, credits, style, pillsAt };
++  };
++  // end of the place card (tools/place-card-v1.mjs)
++  const CARD_KEY = "fh.card", CARDS = ["place", "spelling"];
++  // where the page rests: the place card, unless its head says the older card (the meta, above)
++  const CARD_REST = META("reader-card") === "spelling" ? "spelling" : "place";
++  let cardPref = (() => {
++    const q = QUERY.get("card"); if (CARDS.includes(q)) return q;
++    try { const v = localStorage.getItem(CARD_KEY); return CARDS.includes(v) ? v : CARD_REST; } catch { return CARD_REST; }
++  })();
++  const PLACE = placeCardOf({ data: `${ROOT}data/place-answers-v1/page/`, fault: (words) => { window.__placeCard.faults.push(words); } });
++  // STEP'S ASKED CREDIT (the brief of 27 November 2026, F9; STEP's license summary, relay v224): wherever this page
++  // names a record of STEP's (a source whose key begins stepbible_: TAHOT's aligned translation, the brief lexicon
++  // and TAHOT's expanded Strong frame), the record's line on the card and its citation in the export carry STEP's
++  // credit and its link, in the place card's own words (credits("step"), the one place they are written). The
++  // BiblicalTools lexicon's STEP lemmas are said in its own license words and keep them.
++  const stepCreditOf = (mId) => { const m = index && index.m_sources && index.m_sources[mId]; return m && /^stepbible_/u.test(String(m.key || "")) ? PLACE.credits("step") : null; };
++  let PLACE_BOOK = null;                  // this book's line of the place answers' index, where it has one
++  let placeMissed = false;                // the index did not arrive (a fault, not an absence): the next card asks again
++  let paintCardSwitch = () => {};         // the row's pill and what it hides (set where the row is wired)
++  // for a check to read: whether this book has place answers, which card a word opens, each place card's time to
++  // open (from the press to its body drawn) and what could not be fetched
++  window.__placeCard = { here: false, on: cardPref, rest: CARD_REST, times: [], faults: [], open: null };
++  // a word of this book opens the place card: the book has place answers and the older card's switch is off
++  const placeCardOn = () => !!PLACE_BOOK && cardPref === "place";
++  const placeIndexAsked = () => PLACE.index().then((ix) => {
++    placeMissed = false;
++    PLACE_BOOK = ix && ix.schema === "PLACE_ANSWERS_PAGE_INDEX_V1" && Array.isArray(ix.books) ? ix.books.find((b) => b.book === BOOK) || null : null;
++    window.__placeCard.here = !!PLACE_BOOK;
++    return ix;
++  }, (e) => { placeMissed = !/: 404$/u.test(String((e && e.message) || "")); PLACE_BOOK = null; window.__placeCard.here = false; return null; });
++  // THE SWITCHES THAT ACT ONLY ON THE OLDER CARD, each with why (they are not offered while the place card stands;
++  // every other switch moves the line under a word, or the page's face, and stays):
++  //   dictPill    the concordance hud: the card opens to a table of the readings of the word's letters and where
++  //               each stands; it changes which card opens and no line
++  //   sensesPill  word senses: a note Jastrow sets on a sense, held back from that card or shown on it; «the
++  //               resting line is the store's, and no switch moves it» (the note above SENSES_KEY)
++  //   senses, names, suggested (rows of the rail): the same word senses; the order of a name's readings on the
++  //               card, «a sort, and only on the card»; the Berean Standard Bible's cell on the card under the
++  //               readings, «never on the line»
++  //   (the dictionaries off by default, the block over the sources' shelves, were on this list until the place card
++  //   rested shut what the record rests shut, 27 November 2026, F3: the block stands under either card)
++  //   order, reads (rows of the rail: «reads first» and «the line reads», one switch): each order other than «at this
++  //               place» ranks the readings the catalog files under the word's letters, and so is a match by letters
++  //               (the brief of 27 November 2026, F2): corpus and outside the era, the corpus lane's era class of the
++  //               letters' records («Dibri» for «[the] words of» at Amos 1:1:2, a name the letters spell); masoretic,
++  //               cites here and vowels differ, the lattice's grade and citations of the letters' cards; characters,
++  //               «letters match exactly … how every key on this shelf is made»; the three witnessed columns, baked
++  //               one reading per key of letters; oldest first, the oldest witness for the form, anywhere. «At this
++  //               place» is the place card's own meaning, the reading the source gives at this very word, and is
++  //               where the page rests. A remembered order keeps its lines, as every other line stays under this
++  //               switch; the place card's pills keep their own order under it (sortPool), and where its line is
++  //               not among them the card says so (unoffered, in the readings band)
++  const CARD_ONLY = { pills: ["dictPill", "sensesPill"], rows: ["senses", "names", "suggested", "order", "reads"] };
++  { const st = document.createElement("style"); st.textContent = PLACE.style("#hud > .place-card"); document.head.append(st); }
+   // RULE: default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second
+   // THE DEFAULT SOURCES (the owner, 14 November 2026: "can we serve up each of
+   // the default toggles now so its not just STEP, thats just one option";
+@@ -4926,6 +5790,10 @@
+       })
+       .catch(() => null);
+   }
++  // which books have place answers (the place card, above): the index of the
++  // card's files, asked beside the zone, once; a work it does not list, and a
++  // shelf without it, open the older card as before and draw no switch
++  const placeAsked = placeIndexAsked();
+   try {
+     [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, WORD_SENSES, DFLT_IX, KINDS_REC, ...OVERLAY_IX] = await Promise.all([
+       fetchBin(BOOK),
+@@ -4982,6 +5850,7 @@
+       fetch(`${ROOT}data/dictionary-kinds-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
+     ]);
++    await placeAsked;
+     // THE DICTIONARIES THAT REST SHUT (dictionary-kinds-rule-v1): the rule is
+     // read over the index once the overlays' ids have joined it, below (an
+     // overlay's dictionary is filed in the record beside the store, under the
+@@ -5985,7 +6854,8 @@
+   // card parked out of the way would jump back the moment the next word was
+   // tapped, which is the whole thing being fixed.
+   const closeHud = (release = true) => {
+-    hud.hidden = true; hud.replaceChildren(); hud.classList.remove("dict");
++    hud.hidden = true; hud.replaceChildren(); hud.classList.remove("dict", "place");
++    window.__placeCard.open = null;
+     hudGen += 1;
+     redrawReadings = null;
+     // a hidden card that keeps its pop replays it the moment it is shown
+@@ -7047,7 +7917,9 @@
+   const EARLIEST_FIRST = (a, c) => {
+     const pa = OVERLAY_ROWS.get(a) === "piece-store" ? 1 : 0, pc = OVERLAY_ROWS.get(c) === "piece-store" ? 1 : 0;
+     if (pa !== pc) return pa - pc;
+-    const ya = orderYearOf(a), yc = orderYearOf(c);
++    // a pill of the place answers keeps their order among its sources (STEP, MACULA, UBS, the two BDB files, then the
++    // others: THE PLACE ANSWERS' PILLS): the year its source states is said on its record (placeYear) and ranks nothing
++    const ya = PLACE_PILLS.has(a) ? Infinity : orderYearOf(a), yc = PLACE_PILLS.has(c) ? Infinity : orderYearOf(c);
+     return (Number.isFinite(ya) ? ya : 9e9) - (Number.isFinite(yc) ? yc : 9e9);
+   };
+   const leadRecord = (route) => [...route.records].sort(EARLIEST_FIRST)[0];
+@@ -7075,17 +7947,25 @@
+   // open (dictionary-kinds-rule-v1), for the masthead's name, below. An
+   // answer with miss set found nothing to cite under this key, so another may
+   // be asked.
+-  const attributionFor = async (surface, shownText, at = null, named = null, everySource = false, word = null, everyKind = false) => {
++  // placedList: a cell's pills as the place answers give them at the word's own address (placeCite), asked of no store
++  const attributionFor = async (surface, shownText, at = null, named = null, everySource = false, word = null, everyKind = false, placedList = null) => {
+     let pool = null;
+-    try { pool = await poolFor(surface, { ...(at && spanJoin(at.text) === shownText ? { place: at } : {}), everySource, ...(word ? { word } : {}), ...(everyKind ? { everyKind } : {}) }); }
+-    catch { return { ok: false, unreachable: true, why: "the catalog could not be reached for this form; export again" }; }
+-    if (!pool || !pool.length) return { ok: false, miss: true, why: "no record in the catalog for this form" };
++    if (!placedList) {
++      try { pool = await poolFor(surface, { ...(at && spanJoin(at.text) === shownText ? { place: at } : {}), everySource, ...(word ? { word } : {}), ...(everyKind ? { everyKind } : {}) }); }
++      catch { return { ok: false, unreachable: true, why: "the catalog could not be reached for this form; export again" }; }
++    }
++    // a reading on a card whose pills are the place answers' (THE PLACE ANSWERS' PILLS) is cited from the record its
++    // pill stands on, the record the card shows: the place answers' pill of that cell, asked by the word's own
++    // address (placedList), or where a card asked for it
++    const placed = (placedList || PLACE_SEEN.get(surface) || []).filter((r) => spanJoin(r.text) === shownText);
++    if ((!pool || !pool.length) && !placed.length) return { ok: false, miss: true, why: "no record in the catalog for this form" };
++    pool = pool || [];
+     // every pill that prints the words shown: the store keeps "name" and
+     // "name." apart, and the record the line credits can stand in either.
+     // Under the signs switch the line leaves a reading's sign-only pieces
+     // undrawn ("<the> + Gilead" stands as "Gilead"), so a reading drawn so is
+     // one of them too, after those printed as shown.
+-    const hits = pool.filter((r) => spanJoin(r.text) === shownText);
++    const hits = placed.length ? [...placed] : pool.filter((r) => spanJoin(r.text) === shownText);
+     if (!hits.length) { const h = pool.find((r) => r.text === shownText); if (h) hits.push(h); }
+     if (signsPref === "off") hits.push(...pool.filter((r) => !hits.includes(r) && signsOffLine(spanJoin(r.text)) === shownText));
+     if (!hits.length) return { ok: false, miss: true, why: "the reading on the page does not match any record in the store" };
+@@ -7135,6 +8015,42 @@
+       : { ok: false, why: post.why, label: m.label };
+   };
+ 
++  // THE PLACE ANSWERS' RECORD IN THE FILE (the brief of 27 November 2026, F4). Under the place card a word's line is
++  // cited from the record the card shows for it, asked by the word's own address (its chapter's file, its verse, its
++  // number, its letters), whether or not a card of the word was opened on this page: the whole word's cell first,
++  // where a pill reads the line whole (STEP's parts joined, or one source's reading of the undivided word). A line
++  // the reader made of pieces (a pill pressed on a cell of a divided word) is cited piece by piece, each piece from
++  // the record its own cell's pill stands on, the cells read off the line's own pieces (their letters' counts); a
++  // piece that is a hidden sign's gap cites nothing. A line it cannot place is asked of the store as before.
++  const placeCite = async (sec, w, n, wb, asked, at, named) => {
++    const node = Array.isArray(zone.nodes) ? zone.nodes[sec.node] : null;
++    const ch = node && Number.isInteger(node.num) ? node.num : Number(String(sec.label).split(":")[0]);
++    let doc = null;
++    try { doc = await PLACE.chapter(BOOK, ch); } catch { return null; }
++    const t = lettersIn(w.k).length;
++    if (!doc || !t || !n) return null;
++    const word = { s: w.s, k: w.k, v: sec.label ?? null, tg: placeTags(w), name: isNamePlace(w) };
++    const cell = (a, b, place) => placePool(`${w.k}\u0001${a}`, { piecePlace: { ref: sec.label, n, reading: "form", a, b, t }, doc, quiet: true, ...(place ? { place } : {}) });
++    const whole = await attributionFor(w.k, asked, at, named, false, word, false, await cell(0, t - 1, at));
++    if (whole.ok) return whole;
++    const pcs = wb ? [...wb.querySelectorAll(":scope > .g > .g-pcs > .g-pc")] : [];
++    const counts = pcs.length ? String(pcs[0].parentElement.dataset.counts || "").split(",").map(Number) : [];
++    if (pcs.length < 2 || counts.length !== pcs.length || counts.reduce((x, y) => x + y, 0) !== t) return null;
++    const parts = [];
++    let a0 = 0;
++    for (const [i, pc] of pcs.entries()) {
++      const c = pc.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
++      const text = spanJoin(c.textContent.replace(/\u200b/gu, "").trim()), b0 = a0 + counts[i] - 1;
++      if (text) {
++        const r = await attributionFor(w.k, text, null, null, false, word, false, await cell(a0, b0, null));
++        if (!r.ok) return null;
++        parts.push({ ...r, of: `piece ${i + 1} of ${pcs.length}` });
++      }
++      a0 = b0 + 1;
++    }
++    return parts.length ? { ...parts[0], text: asked, parts } : null;
++  };
++
+   const EXPORT_RULE = "export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work";
+   // The border is where a hash does its work. On the page a word carries its
+   // ids and the seal stays in the colophon — a hash on a card was asked for
+@@ -7230,6 +8146,8 @@
+         const named = ruled ? lineNamed(wb.querySelector(".g")) : at && at.why === "default" && spanJoin(at.text) === asked ? { mId: at.mId } : null;
+         const tries = keys.map((k) => [k, false]).concat(named && sourcesOff.size ? keys.map((k) => [k, true]) : []);
+         let a = null, missed = null;
++        // under the place card, the record the card shows, by the word's own address (placeCite)
++        if (placeCardOn() && w.s && !w.kq) { const pa = await placeCite(sec, w, wordN, wb, asked, at, named); if (pa && pa.ok) a = pa; }
+         // AN UNRULED LINE IS ASKED FIRST OF THE POOL ITS WORD'S OWN CARD STANDS
+         // ON: the word is named, so its pointing gates the pool as it gates
+         // the card, and the record cited is the one the card's foot shows.
+@@ -7239,7 +8157,7 @@
+         // hold is asked of the whole pool next, as before, so what the file
+         // found until now it still finds; a ruled line goes straight there,
+         // as a ruling outranks the pointing as it outranks a switch.
+-        if (!ruled && w.s) for (const k of keys) {
++        if (!a && !ruled && w.s) for (const k of keys) {
+           const r = await attributionFor(k, asked, at, named, false, { s: w.s, k: w.k, v: sec.label ?? null, tg: placeTags(w), name: isNamePlace(w) });
+           if (!r.miss) { a = r; break; }
+         }
+@@ -7293,9 +8211,10 @@
+       if (w.mark) continue;
+       if (w.unreachable) { unreachable += 1; continue; }
+       if (w.held) { held += 1; continue; }
+-      const s = w.source;
+-      if (!sources.has(s.label)) sources.set(s.label, s);
+-      (s.obligations || []).forEach((o) => obligations.add(o));
++      for (const s of w.source.parts || [w.source]) {
++        if (!sources.has(s.label)) sources.set(s.label, s);
++        (s.obligations || []).forEach((o) => obligations.add(o));
++      }
+     }
+     return { sec, words, sources: [...sources.values()], obligations: [...obligations], held, unreachable };
+   };
+@@ -7405,7 +8324,8 @@
+       for (const w of b.words) {
+         if (w.mark) continue;
+         if (w.unreachable) notReached += 1; else if (w.held) held += 1;
+-        else if (w.source && w.source.received) recs.push({ ...w.source, at: w.at || null });
++        // a line cited piece by piece (placeCite) is one record a piece, each saying which piece of the word it is
++        else if (w.source && w.source.received) for (const x of w.source.parts || [w.source]) recs.push({ ...x, at: w.at ? `${w.at}${x.of ? ` (${x.of})` : ""}` : null });
+       }
+       b.obligations.forEach((o) => allObl.add(o));
+     }
+@@ -7444,6 +8364,7 @@
+         L.push(`    source: [${cite(src)}] ${src.label}${hasYear(src.wy) ? ` \u00b7 wording ${adYear(src.wy)}${yearMarkOf(src.received.mId, src.wy) ? ` (${yearMarkOf(src.received.mId, src.wy)})` : ""}` : ""}`);
+         const deed = licenseDeed(src.posture);
+         L.push(`    license: ${licenseName(src.posture)}${deed ? ` \u2014 ${deed}` : ""}`);
++        { const sc = stepCreditOf(src.received.mId); if (sc) L.push(`    credit: ${sc.words.charAt(0).toUpperCase()}${sc.words.slice(1)}. Source: ${sc.href}`); }
+         if (/^https?:\/\//u.test(src.pointer || "")) L.push(`    from: ${src.pointer}`);
+         L.push("");
+       });
+@@ -7495,6 +8416,8 @@
+           L.push(`- [${n}] ${s.posture} — ${s.label}${yearTag(s.year, "edition")}`);
+           L.push(`    license: ${licenseName(s.posture)}${licenseDeed(s.posture) ? ` \u2014 ${licenseDeed(s.posture)}` : ""}`);
+           (s.obligations || []).forEach((o) => L.push(`    obligation, in our words: ${o}`));
++          // a STEP record's citation carries STEP's credit and its link (stepCreditOf), as its line on the card does
++          { const sc = s.received ? stepCreditOf(s.received.mId) : null; if (sc) L.push(`    credit: ${sc.words.charAt(0).toUpperCase()}${sc.words.slice(1)}. Source: ${sc.href}`); }
+           if (s.pointer) L.push(`    record: ${s.pointer}`);
+           (s.also || []).forEach((x) => L.push(`    also attested by: ${x}`));
+         }
+@@ -8464,8 +9387,23 @@
+     // those still imposed, a 758px card read 650px, "fit" above its word
+     // uncapped, and grew onto it (2026-10-09). The bands are refitted to the
+     // uncapped card before anything is measured.
+-    hud.style.maxHeight = "";
++    hud.style.maxHeight = ""; hud.classList.remove("yield");
+     fitBands();
++    // THE PLACE CARD'S LISTING YIELDS ITS FLOOR BEFORE THE CARD YIELDS ITS PLACE (the brief of 27 November 2026,
++    // readers-faults-load law 10): the frame's bands are owed first, so where the room under the word holds the frame
++    // but not the listing's own floor as well, the listing gives its floor up (yield) and takes what the frame
++    // leaves, and the card stands at its word with the page unmoved, as the older card does. Only where the frame
++    // itself does not fit does the card take the scroll
++    const fitsHere = () => {
++      hud.classList.remove("yield");
++      if (fitBands() !== false) return true;
++      // (only where the listing has a floor to give: on a window under 600px tall it has none, #hud > .place-card)
++      if (!hud.classList.contains("place") || !window.matchMedia("(min-height: 600px)").matches) return false;
++      hud.classList.add("yield");
++      if (fitBands() !== false) return true;
++      hud.classList.remove("yield"); fitBands();
++      return false;
++    };
+     // The card must clear the word's whole block, not just the span that was
+     // pressed: a ruled reading painted under the word grows the block (the
+     // growth law), and a card anchored on the span alone covered the ruled
+@@ -8496,7 +9434,9 @@
+     // the scroll below runs exactly as it did, and is now the rare case it
+     // was written for. The owner, 2026-09-07: opening a hud moves the Hebrew
+     // under it, very confusing.
+-    const FLOOR = 200;
++    // (the place card holds prose, not rows of buttons: a side of the word serves it from 320px, where the older
++    // card's bands are served from 200; under that the card stands on the word's other side, by the same law)
++    const FLOOR = hud.classList.contains("place") ? 320 : 200;
+     const roomNow = window.innerHeight - pad - rect.bottom - pad;
+     // set whether or not the card looks like it needs it: at this moment the
+     // card is a shell whose readings have not rendered, so asking "is it taller
+@@ -8509,7 +9449,7 @@
+       // the same law as below: a card that cannot hold a row of every band at
+       // that height does not hold them at that height, and takes the scroll
+       // instead of standing there with dead controls in it
+-      if (fitBands() === false) { hud.style.maxHeight = ""; fitBands(); }
++      if (!fitsHere()) { hud.style.maxHeight = ""; fitBands(); }
+       h = hud.offsetHeight || 0;
+     }
+     // THE PAGE IS NOT MOVED WHILE A SIDE OF THE WORD CAN HOLD THE CARD. The
+@@ -8537,7 +9477,7 @@
+       // and if the card cannot hold a row of every band at that height, it does
+       // not hold them at that height. A card under the word with dead controls
+       // in it is worse than a card that had to open somewhere else.
+-      if (fitBands() === false) {
++      if (!fitsHere()) {
+         hud.style.maxHeight = ""; fitBands();
+         // released, the card stands where its whole height fits: under the
+         // word or above it. Where it fits neither, the release only sent it
+@@ -8827,7 +9767,137 @@
+   // the rows the page stands up for a place's own reading, so a record can say
+   // where it came from and a check can tell them from the store's
+   const PLACE_ROWS = new WeakSet();
++  // THE PLACE ANSWERS' PILLS (27 November 2026; the owner, on the card of Genesis 1:3 word 5: «you dont get to skip
++  // R pills and compspan and selectable gloss just because we can play around with how the cards list off D/M»). On
++  // a book that has place answers, with the older card's switch off (placeCardOn), the card is this card, frame and
++  // all, and the pills a cell draws are what each source reads on that part of the word by its own address
++  // (PLACE.pillsAt: THE PILLS, in placeCardOf), never rows matched by the cell's letters. This is the one place the
++  // source of the pills changes: poolFor answers a card's asking (opts.pills) from the place answers of the word the
++  // card stands on (placeOpen, set by openHud) and asks nothing else. A pill is one reading, credited to every source
++  // that gives it, in the place answers' order (STEP, MACULA, UBS, the two BDB files, then the others); a source the
++  // reader switched off gives none, and the card says so as it says it of any pool. A cell no source reads by its
++  // own address has no pills, and the card says that in plain words (pool.placeWhy).
++  const PLACE_PILLS = new WeakMap();   // a pill's row -> the place answers' pill it stands for (its source and address)
++  const PLACE_SEEN = new Map();        // a cell's letters -> the pills the place answers last gave it, for the exporter to cite (attributionFor)
++  const PLACE_RESTS = new WeakMap();   // a pill's row of a kind that rests shut -> the kinds record's entry that rests it (placeRestsOf)
++  // the kinds record's entry that rests a pill of the place answers shut: a gloss of UBS's own phrase mark (the block's
++  // colloc: UBS's LEXCollocations, the record's fact collocations) of a family the entry names, not cited at this very
++  // word (the entry's stands_at: the place UBS's own pick names, which the place answers give as its citing here)
++  const placeRestsOf = (x) => {
++    if (!x || !x.colloc || x.cites || !KINDS_REC) return null;
++    const fam = (id) => ((KINDS_REC.families || []).find((f) => f.id === id) || { keys: [] }).keys;
++    return (KINDS_REC.rests_off || []).find((e) => e.fact === "collocations" && (e.families || []).some((id) => fam(id).includes(x.src))) || null;
++  };
++  // a pill's record carries the year its source states of itself, where the store says it does (sourceYear: MACULA's
++  // 2022, UBS's 2023), so the card's record line and the file say «wording» as they do for every dated record; a
++  // source that states none is undated here as in the store (S_NO_SOURCE_YEAR)
++  const placeYear = (mId) => { const y = ((index && index.m_sources && index.m_sources[mId]) || {}).sourceYear; return hasYear(y) && Number.isInteger(Number.parseInt(y, 10)) ? String(y) : null; };
++  const placePillM = (src) => (src === "step" ? (readingOfPiece("tahot") || {}).mId : src === "macula" ? (readingOfPiece("macula") || {}).mId
++    : Object.keys((index && index.m_sources) || {}).find((id) => index.m_sources[id] && index.m_sources[id].key === src)) || null;
++  // opts.doc and opts.quiet: the exporter asks a word's cells by their own address with no card open (the chapter's
++  // file it fetched itself), and what it asks is neither the open card's pools nor the cells it last drew
++  const placePool = async (surface, opts) => {
++    const pp = opts.piecePlace || null;
++    const doc = opts.doc || (placeOpen && placeOpen.doc) || null;
++    let got = null;
++    // a block of several words of a run (piecePlaceOf's ns): each word read whole at its own address; a source that
++    // reads every word of the block gives one pill, its readings of the words in order, joined as a line joins parts
++    if (pp && pp.ns && doc) {
++      const each = await Promise.all(pp.ns.map((n, j) => PLACE.pillsAt(doc, pp.ref, n, pp.reads ? pp.reads[j] : pp.reading, 0, pp.ts[j] - 1, pp.ts[j])));
++      const pills = [];
++      for (const [src, who] of [["step", "STEP"], ["macula", "MACULA"]]) {
++        const rs = each.map((g) => ((g.pills || []).find((x) => x.src === src) || {}).text);
++        if (rs.every(Boolean)) pills.push({ text: rs.join("/"), src, how: `${who} at these words, each word's own reading in order`, cites: false });
++      }
++      got = { pills, form: null, why: pills.length ? null : "No source reads every word of this block at its place." };
++    } else if (pp && doc) got = await PLACE.pillsAt(doc, pp.ref, pp.n, pp.reading, pp.a, pp.b, Number.isInteger(pp.t) ? pp.t : pp.b + 1);
++    const groups = new Map(); let off = 0;
++    // what the place answers gave this cell, and what the card offers of it, for a check to read
++    if (!opts.quiet) (window.__placeCard.pools || (window.__placeCard.pools = {}))[surface] = { at: pp ? { ref: pp.ref, n: pp.n, reading: pp.reading, a: pp.a, b: pp.b, t: Number.isInteger(pp.t) ? pp.t : pp.b + 1, ...(pp.ns ? { ns: pp.ns, ts: pp.ts } : {}) } : null, surface, gave: ((got && got.pills) || []).map((x) => [x.text, x.src]), colloc: ((got && got.pills) || []).filter((x) => x.colloc && !x.cites).map((x) => x.text), why: got ? got.why : null };
++    // under a default source other than STEP, the line's own reading at this place (opts.place, why "default": that
++    // source's own words here, by the default picks' address) is a pill of the cell, first, credited as the line is
++    const layerNow = dfltLayerNow();
++    const dp = opts.place && opts.place.why === "default" && opts.place.text && opts.place.mId && index.m_sources[opts.place.mId] && layerNow && layerNow !== "step" ? opts.place : null;
++    const made = new Set();   // the rows made here for a default source's own words, kept first in their pill
++    const makeRow = (text, n, own = null) => {
++      const row = [-1, text, text, dp.mId, placeYear(dp.mId), null, []];
++      PLACE_ROWS.add(row); if (own) DFLT_OWN.set(row, own);
++      const cr = dfltCredit(dp, n); if (cr) DFLT_MADE.set(row, cr);
++      made.add(row);
++      return row;
++    };
++    if (dp && sourcesOff.has(dp.mId)) off += 1;
++    else if (dp) groups.set(readingKey(dp.text), { text: dp.text, year: Infinity, ledger: -1, records: [makeRow(dp.text, 1, dp.own)] });
++    const kindsAct = kindsActOn(opts.bin || zone), resting = [];
++    for (const [i, x] of ((got && got.pills) || []).entries()) {
++      const mId = placePillM(x.src);
++      if (!mId || !index.m_sources[mId]) continue;
++      if (sourcesOff.has(mId)) { off += 1; continue; }
++      const row = [i, x.text, x.text, mId, placeYear(mId), null, []];
++      PLACE_PILLS.set(row, x);
++      // a pill of a kind the dictionary kinds record rests shut waits for the pills that stand (placeRests, below)
++      { const e = kindsAct ? placeRestsOf(x) : null; if (e) { PLACE_RESTS.set(row, e); resting.push(row); continue; } }
++      // STEP's and MACULA's words at this place are the place's own reading, credited as the line credits them
++      if (x.src === "step" || x.src === "macula") PLACE_ROWS.add(row);
++      const key = readingKey(x.text); const g = groups.get(key);
++      if (g) g.records.push(row); else groups.set(key, { text: x.text, year: Infinity, ledger: i, records: [row] });
++    }
++    // WHAT RESTS SHUT RESTS SHUT ON THE PLACE CARD TOO (the brief of 27 November 2026, F3; dictionary-kinds-rule-v1,
++    // the owner's ruling of 15 November). Of the place answers' sources the kinds record rests shut only UBS's own
++    // phrase mark (its kind «that the UBS dictionary gives under a collocation», by the fact collocations): a UBS gloss
++    // of a meaning under a collocation alone (the block's colloc), except where UBS cites this very word, the place
++    // its own pick names (stands_at). Every other source of the place answers is of the kind bible, and rests open.
++    // As on the older card: a reading a pill that stands also gives stands, credited to it, and is not counted; each
++    // reading is counted once; shut, the card says how many with the same press as today's (kindsSwitchFor); open,
++    // they stand among the rest, in the place answers' order, each wearing the dotted edge
++    const heldByKind = new Map(); let kindsShown = 0;
++    for (const row of resting) {
++      const e = PLACE_RESTS.get(row), key = readingKey(row[1]), g = groups.get(key);
++      if (g) { g.records.push(row); continue; }
++      if (kindsPref !== "open") {
++        const h = heldByKind.get(e.id) || heldByKind.set(e.id, { id: e.id, say: e.say, n: 0, keys: new Set() }).get(e.id);
++        if (!h.keys.has(key)) { h.keys.add(key); h.n += 1; }
++        continue;
++      }
++      groups.set(key, { text: row[1], year: Infinity, ledger: row[0], records: [row] });
++    }
++    if (kindsAct && kindsPref === "open") kindsShown = [...groups.values()].filter((g) => g.records.every((r) => PLACE_RESTS.has(r))).length;
++    // a pill's sources in the frame's own order (WHO CARRIES A READING, OLDEST FIRST), so the chip, the card's record
++    // and the export name one record
++    // (a row made for a default source's own words stays first in its pill: the pill is that source's pick)
++    for (const g of groups.values()) { g.records.sort(EARLIEST_FIRST); const m = g.records.findIndex((r) => made.has(r)); if (m > 0) g.records.unshift(g.records.splice(m, 1)[0]); }
++    // THE LINE'S OWN READING LEADS, as it leads the older card's pool (sortPool's placeLead): the reading the line
++    // reads at this place (opts.place: the place's own, or under a default source that source's pick) is first; under
++    // a source other than STEP its picks 2..n follow in its own order, each a pill of the place answers where one
++    // prints it, else made as the older card makes it, credited to that source; the rest keep the place answers' order
++    // (STEP, MACULA, UBS, the two BDB files, then the others). A source's other pills do not lead: where the line is
++    // not the source's own pick (it has none here, and its second or today's line fills the place), the line's
++    // reading leads (the review of 27 November 2026: under UBS at I Samuel 1:2:14 the card led with UBS's «almost»
++    // over the line's «not», UBS having no pick there)
++    // (and the line's own reading is credited as the line credits it: the record of the source the line names first
++    // in its pill, as the older card's pool does (its credit), so the card's record, the chip and the file name one)
++    if (opts.place && opts.place.text) { const g = groups.get(readingKey(opts.place.text)); if (g) { g.placeFirst = true; g.dfltRank = 1; if (dp) { g.dfltN = 1; g.dfltPill = dfltPill(dp.src); } const own = g.records.findIndex((r) => r[3] === opts.place.mId); if (own > 0) g.records.unshift(g.records.splice(own, 1)[0]); } }
++    if (dp) dfltPicks(dp.src, dp.n).filter((x) => x.n >= 2 && x.text).forEach((x, i) => {
++      const key = readingKey(x.text);
++      let g = groups.get(key);
++      if (!g) { g = { text: x.text, year: Infinity, ledger: 0, records: [makeRow(x.text, x.n, dp.src === "bdb" ? dfltSenseOwn(x.words, x.sense) : null)] }; groups.set(key, g); }
++      else if (!g.records.some((r) => r[3] === dp.mId)) g.records.unshift(makeRow(x.text, x.n, dp.src === "bdb" ? dfltSenseOwn(x.words, x.sense) : null));
++      if (!g.dfltRank) { g.dfltRank = i + 2; g.dfltN = x.n; g.dfltPill = dfltPill(dp.src); }
++    });
++    const list = sortPool(Object.assign([...groups.values()], { placeAnswers: true, signsLast: signsLastOn(opts.bin || zone) }), surface);
++    if (!opts.quiet) PLACE_SEEN.set(surface, list);
++    return Object.assign(list, {
++      withheld: 0, withheldUnpointed: 0, withheldBySources: off, withheldByStem: 0, stems: [], rows: ((got && got.pills) || []).length,
++      withheldByEntry: 0, entry: null, entryByLemma: false, withheldByName: 0, namesHeld: false, withheldHere: 0,
++      withheldBySense: 0, sensesShown: 0, withheldByKind: kindsAct ? [...heldByKind.values()].map(({ id, say, n }) => ({ id, say, n })) : [], kindsShown, notes: [], signsLast: false, spanHeld: { otherwise: 0, silent: 0 }, spanAt: null,
++      placeAnswers: true,
++      // a cell the card asks for once though its letters stand twice in the division, or a cell of several words,
++      // has no place of its own to read
++      placeWhy: got ? got.why : pp ? "The card’s files did not answer here." : "No source reads this part by itself here: its letters stand twice in this division, or it spans several words, and the card asks for it once.",
++    });
++  };
+   const poolFor = async (surface, opts = {}) => {
++    if (opts.pills && placeOpen && placeOpen.gen === hudGen && (opts.bin || zone) === zone && placeCardOn()) return placePool(surface, opts);
+     // A READING THE READER RULED STAYS WHEREVER THE RULING STANDS
+     // (ruled-reading-stands-rule-v1-a-reading-the-reader-ruled-stays-on-the-card-wherever-the-ruling-stands-whatever-its-points;
+     // 16 November 2026). A ruling is the form's, so it paints every place the
+@@ -9436,6 +10506,8 @@
+     // parts (the whole form of a word its place divides, below), so the card
+     // can say where they stand (parts-a-press-away-rule-v1)
+     to.inParts = from.inParts;
++    // and whether the pool is the place answers', and what a cell of no reading says (THE PLACE ANSWERS' PILLS)
++    to.placeAnswers = from.placeAnswers; to.placeWhy = from.placeWhy;
+     // and what a span place held back, and the place (span-grade-rule-v1)
+     to.spanHeld = from.spanHeld; to.spanAt = from.spanAt;
+     return to;
+@@ -9611,6 +10683,18 @@
+     const cmpN = (x, y) => (x === y ? 0 : x < y ? -1 : 1);
+     const kindLead = (a, b) => cmpN(a.pk ?? 1, b.pk ?? 1)
+       || (a.pk === 0 && b.pk === 0 ? cmpN(a.pky ?? Infinity, b.pky ?? Infinity) || cmpN(a.pkl ?? Infinity, b.pkl ?? Infinity) : 0);
++    // THE PLACE ANSWERS' PILLS (THE PLACE ANSWERS' PILLS, at placePool) keep their own order under every order of
++    // «reads first»: the line's own reading first (lineLead, set by the card on the reading its line reads), then the
++    // reading at this place and a default source's picks 2..n (dfltRank), then the place answers' order. An order
++    // that ranks the readings the catalog files under the word's letters (the lattice's grades and citations, the
++    // corpus lane's era and witnessed columns, the characters column, oldest first) stands behind «readings matched
++    // by spelling» and moves no pill here (CARD_ONLY). The license preference sorts by the sources' own licenses and
++    // the source signs by the reading's own marks, so both still sort these pills.
++    if (list.placeAnswers) {
++      const lead = (g) => (g.lineLead ? 0 : g.dfltRank || Infinity);
++      const licOnly = (a, b) => (wantClass === undefined ? 0 : (lic(a) === wantClass ? 0 : 1) - (lic(b) === wantClass ? 0 : 1));
++      return list.sort((a, b) => cmpN(lead(a), lead(b)) || licOnly(a, b) || signLast(a, b) || a.ledger - b.ledger);
++    }
+     return list.sort((a, b) => placeLead(a, b) || pieceLast(a, b) || kindLead(a, b) || licPref(a, b) || signLast(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
+   };
+ 
+@@ -10360,6 +11444,16 @@
+     closeHud(false);
+     const myGen = ++hudGen;
+     activeEl = el;
++    // THE PLACE ANSWERS UNDER TODAY'S CARD (below, after the head): on a book that has place answers, with the
++    // older card's switch off, a card of a word of this book takes its pills from the place answers and stands the
++    // listing under its frame; the sheet takes its whole height before it is first placed (#hud.place), so it is
++    // placed once for the size it keeps
++    const placeOn = (opts.bin || zone) === zone && !!(opts.word || region) && !(opts.word || region).mark && placeCardOn();
++    const placeT0 = placeOn ? performance.now() : 0;
++    placeOpen = null; window.__placeCard.pools = {};
++    hud.classList.toggle("place", placeOn);
++    // the place answers' index that a fault kept away is asked again by the next card (A FAULT IS NOT AN ABSENCE)
++    if (placeMissed) { placeMissed = false; placeIndexAsked().then(() => paintCardSwitch()); }
+     // what a fault kept away is asked for again by the next card (A FAULT IS
+     // NOT AN ABSENCE, beside fetchBin): the map of pointers (formOfReady), and
+     // the lattice, since under «the letters only», or a lattice order with
+@@ -10614,11 +11708,14 @@
+     // said, so a reader never takes a written form's readings for graded ones.
+     if (region && region.role === "KETIV") {
+       const roleLine = document.createElement("p"); roleLine.className = "kq-role"; roleLine.dataset.graded = "letters";
+-      roleLine.textContent = "ketiv \u2014 written \u00b7 no vowels of its own, so its readings are matched by letters only";
++      // under the place card nothing is matched by letters: the written form's readings are what each source gives
++      // for it at this word, by its own address (the brief of 27 November 2026, F7; the older card's sentence stays
++      // the older card's)
++      roleLine.textContent = placeOn ? "ketiv \u2014 written \u00b7 no vowels of its own; its readings are what each source gives for the written form at this word, by the source\u2019s own address" : "ketiv \u2014 written \u00b7 no vowels of its own, so its readings are matched by letters only";
+       head.append(roleLine);
+     } else if (region && region.role === "QERE") {
+       const roleLine = document.createElement("p"); roleLine.className = "kq-role"; roleLine.dataset.graded = "vowels";
+-      roleLine.textContent = "qere \u2014 read \u00b7 its vowels are the reading, so its readings are graded by them";
++      roleLine.textContent = placeOn ? "qere \u2014 read \u00b7 its vowels are the reading; its readings are what each source gives for the read form at this word, by the source\u2019s own address" : "qere \u2014 read \u00b7 its vowels are the reading, so its readings are graded by them";
+       head.append(roleLine);
+     }
+     // And beside the branch selector, the notation's key — the marks teaching
+@@ -10765,6 +11862,33 @@
+     // already said what the mark is
+     if (word.mark && !(region && region.k)) { status.remove(); placeHud(); return; }
+ 
++    // THE PLACE ANSWERS UNDER TODAY'S CARD (27 November 2026). On a book that has place answers, with the older
++    // card's switch off, the card is today's card in every part of its frame, and its pills come from the place
++    // answers (poolFor's placePool), so the chapter's file is fetched before the frame asks for a cell. Under the
++    // frame stands the listing (placeCardOf's draw): what each source says at this very word and each dictionary's
++    // own entry, the record of where each pill comes from. The word's place is named as the card's files name it:
++    // this book, the chapter its section stands in, the verse's label, and the word's place among the verse's
++    // entries with the marks counted (wordPos, as every tool of the tree counts them).
++    let placeAt = null;
++    if (placeOn) {
++      const sec = el && el.closest ? el.closest("section.seg") : null;
++      const s = sec && sec.__sec ? sec.__sec : null;
++      const node = s && Array.isArray(zone.nodes) ? zone.nodes[s.node] : null;
++      const chapterNo = node && Number.isInteger(node.num) ? node.num : s ? Number(String(s.label).split(":")[0]) : NaN;
++      window.__placeCard.open = { label: s ? s.label : null, i: wordPos, chapter: chapterNo, drawn: false };
++      let doc = null;
++      try { doc = await PLACE.chapter(BOOK, chapterNo); }
++      catch (e) {
++        window.__placeCard.faults.push(String((e && e.message) || e));
++        if (myGen === hudGen) { status.textContent = "What the sources say here did not arrive. Press the word again to ask once more."; placeHud(); }
++        return;
++      }
++      if (myGen !== hudGen) return;
++      placeOpen = { doc, gen: myGen };
++      placeAt = s && wordPos != null ? PLACE.entryAt(doc, s.label, wordPos) : null;
++      if (s && wordPos != null && !placeAt) window.__placeCard.faults.push(`no word at ${s.label} entry ${wordPos}`);
++    }
++
+     const span = spanOf(bin, region.k) || (bin === zone ? placeSpan(opts.word || word, region.k) : null);
+     // A DIVISION WE HAVE NOT ESTABLISHED IS NOT OFFERED.
+     //
+@@ -10995,7 +12119,31 @@
+       if (same.length !== 1) return null;
+       const c = same[0];
+       if (opts.run) {
+-        if (c.from !== c.to || !opts.run.words) return null;
++        if (!opts.run.words) return null;
++        // A HALF OF A PAIR WRITTEN AS SEVERAL WORDS (a run of a pair's branch: Exodus 4:2's read «what + is this?»): the
++        // place answers read the half whole at the pair's own number, so each cell is asked there, at its offset in
++        // the half (the brief of 27 November 2026, F6: such a card stood with no pill at all). The place card's
++        // alone (placeOn): the older card asks its piece store as it did, and these three asks are none of its own
++        if (placeOn && opts.run.kqBranch) {
++          const n = openSite.wordOf ? openSite.numberOf(openSite.wordOf) : 0;
++          const kr = String(opts.run.kqRole || "").toLowerCase();
++          if (!n || (kr !== "ketiv" && kr !== "qere")) return null;
++          // each word of the half is a form of its own in the place answers («qere:1», the block's formFor)
++          const words = []; for (let k = c.from; k <= c.to; k += 1) words.push(k);
++          const ts = words.map((k) => lettersIn((opts.run.words[k] || {}).k || "").length);
++          if (!ts.every(Boolean)) return null;
++          return words.length === 1 ? { ref: openSite.ref, n, a: 0, b: ts[0] - 1, t: ts[0], reading: `${kr}:${words[0]}` }
++            : { ref: openSite.ref, n, ns: words.map(() => n), ts, reads: words.map((k) => `${kr}:${k}`), a: 0, b: -1, reading: kr };
++        }
++        // A BLOCK OF SEVERAL WORDS OF A RUN (the brief of 27 November 2026, F5): no claim spans words, so the place
++        // card reads each of the block's words whole at its own address (ns, with each word's letters, ts), and its
++        // pills are the run's own words' readings in order (placePool)
++        if (c.from !== c.to) {
++          if (!placeOn) return null;
++          const ws = opts.run.words.slice(c.from, c.to + 1);
++          const ns = ws.map((x) => (x ? openSite.numberOf(x) : 0)), ts = ws.map((x) => (x ? lettersIn(x.k || "").length : 0));
++          return ns.length > 1 && ns.every(Boolean) && ts.every(Boolean) ? { ref: openSite.ref, n: ns[0], ns, ts, a: 0, b: -1, reading: "form" } : null;
++        }
+         const w = opts.run.words[c.from]; const n = w ? openSite.numberOf(w) : 0;
+         const L = lettersIn(surface).length;
+         return n && L ? { ref: openSite.ref, n, a: 0, b: L - 1, reading: "form" } : null;
+@@ -11003,11 +12151,23 @@
+       const n = openSite.wordOf ? openSite.numberOf(openSite.wordOf) : 0;
+       if (!n) return null;
+       const i = cover.indexOf(c);
+-      const a = cover.slice(0, i).reduce((t, x) => t + lettersIn(x.surface).length, 0);
++      let a = cover.slice(0, i).reduce((t, x) => t + lettersIn(x.surface).length, 0);
+       const L = lettersIn(surface).length;
+       const role = String((region && region.role) || "").toLowerCase();
+       // t: the word's letters, so a pool can tell a prefix from a suffix
+-      const t = cover.reduce((sum, x) => sum + lettersIn(x.surface).length, 0);
++      let t = cover.reduce((sum, x) => sum + lettersIn(x.surface).length, 0);
++      // A HALF OF SEVERAL WORDS (a read form written as two or three words, Exodus 4:2's «what + is this?»): the
++      // place answers read the half whole, every word of it, so a word of it is asked at its own offset in the half,
++      // after its earlier words' letters, and the half's letters are its length (the brief of 27 November 2026, F6:
++      // such a card stood with no pill at all)
++      if (placeOn && (role === "ketiv" || role === "qere") && word) {
++        const same = (word.kqw || word.w || []).filter((r) => r && r.role === region.role && r.k && !String(r.s || r.k).includes("\u05be"));
++        const at = same.indexOf(region);
++        if (same.length > 1 && at >= 0) {
++          a += same.slice(0, at).reduce((sum, r) => sum + lettersIn(r.k).length, 0);
++          t = same.reduce((sum, r) => sum + lettersIn(r.k).length, 0);
++        }
++      }
+       return L ? { ref: openSite.ref, n, a, b: a + L - 1, t, reading: role === "ketiv" || role === "qere" ? role : "form" } : null;
+     };
+     // THE PLACE A CELL STANDS AT FOR THE DICTIONARIES THAT REST SHUT (kindsAt):
+@@ -11044,7 +12204,7 @@
+     const poolKey = (surface) => {
+       const base = placeOfCell(surface) ? `${surface}\u0001set` : surface;
+       const pp = piecePlaceOf(surface);
+-      return pp ? `${base}\u0002${pp.n}:${pp.a}-${pp.b}:${pp.reading}` : base;
++      return pp ? `${base}\u0002${pp.ns ? pp.ns.join(",") : pp.n}:${pp.a}-${pp.b}:${pp.reads ? pp.reads.join(",") : pp.reading}` : base;
+     };
+     const tried = new Map();           // cell surface -> fetches that did not arrive
+     let pressedCut = null;             // a run's whole rung the reader pressed, remembered once read
+@@ -11114,7 +12274,7 @@
+           kept.push({ text: g.text, year: g.year, ledger: g.ledger, records: g.records, ov: g.ov, kqRead: read, kqKey: qk, ...(g.pointers ? { pointers: g.pointers, alias: g.alias } : {}) });
+         }
+       }
+-      const out = sortPool(Object.assign(kept, { signsLast: signsLastOn(bin) }), surface);
++      const out = sortPool(Object.assign(kept, { signsLast: signsLastOn(bin), placeAnswers: !!pool.placeAnswers }), surface);
+       carryWithheld(out, pool);
+       // the word senses are the read word's: its readings print here, and the
+       // written letters' are withheld by the weld itself (word-senses-rule-v1;
+@@ -11645,6 +12805,14 @@
+     // link, because nothing here opens
+     const volSlot = document.createElement("div"); volSlot.className = "vol-slot";
+     hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, partsSlot, hohSlot, volSlot, prov);
++    // the listing under the frame (THE PLACE ANSWERS UNDER TODAY'S CARD, above)
++    if (placeAt) {
++      const listing = document.createElement("div"); listing.className = "place-card";
++      hud.append(listing);
++      PLACE.draw(listing, placeOpen.doc, placeAt.v, placeAt.e, () => myGen === hudGen);
++      window.__placeCard.open.drawn = true;
++      window.__placeCard.times.push({ label: window.__placeCard.open.label, i: wordPos, ms: performance.now() - placeT0 });
++    }
+     hud.classList.remove("dict");
+     // the table stands on the card's own readings, which arrive after its head
+     let cardReadDone = () => {};
+@@ -12225,6 +13393,8 @@
+             ? "No dictionary on this shelf gives the run as written, maqaf and all. The words one by one are a press away."
+             : "No dictionary on this shelf gives the run joined as one word. The words one by one are a press away.")
+           : pool && pool.inParts ? "No dictionary on this shelf gives this form whole. The readings of its parts are a press away."
++          // and where the line reads a reading no source gives here, it says so, as a card of pills does (unoffered)
++          : pool && pool.placeAnswers ? (() => { const l = textOfCell(surface, cellIdx); return l && l !== "\u2014" && !opts.run ? `${pool.placeWhy} The line here, \u00ab${spanJoin(l)}\u00bb, is today\u2019s reading, which no source gives at this place.` : pool.placeWhy; })()
+           : pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
+         readRow.append(p);
+         { const nl = notesLine(); if (nl) readRow.append(nl); }
+@@ -12294,6 +13464,11 @@
+           const t = (c2.textContent || "").trim();
+           return t && t !== "\u2014" ? t.toLowerCase() : null;
+         }
++        // under the place card, a line read live under the source switches (placeLiveLine) is what it prints
++        if (pool.placeAnswers && !opts.run && glossEl && glossEl.dataset.live === "sources" && !glossEl.classList.contains("bare") && bin === zone && word && region && surface === region.k) {
++          const c = glossEl.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
++          const t = c.textContent.trim(); if (t) return spanJoin(t).toLowerCase();
++        }
+         { const at = placeOfCell(surface); if (at) return spanJoin(at.text).toLowerCase(); }
+         // A BLOCK OF THE DIVISION THE LINE READS IN PIECES opens on the line's
+         // own piece for it (the owner, 2026-10-19, at Daniel 1:1: the block
+@@ -12325,8 +13500,38 @@
+         return t ? spanJoin(t).toLowerCase() : null;
+       })();
+       // (a reading that took a pointer answers to the pointer's own words too: its alias, pointer-one-pill-rule-v1)
+-      const lineFirst = lineSaid ? pool.find((r) => spanJoin(r.text).toLowerCase() === lineSaid) || pool.find((r) => (r.alias || []).includes(lineSaid)) || null : null;
+-      let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || lemmaFirst || lineFirst || pool[0];
++      // (on the place answers' pills, a line the signs switch drew with a sign piece left as a gap, «<obj.>» drawn as
++      // nothing, «<the> + -lehemite» as «-lehemite», answers to the pill it draws: a pill read as the line draws it)
++      const drawnKey = (t) => String(t || "").replace(/\u200b/gu, "").replace(/\s+/gu, " ").trim().toLowerCase();
++      const lineFirst = lineSaid ? pool.find((r) => spanJoin(r.text).toLowerCase() === lineSaid) || pool.find((r) => (r.alias || []).includes(lineSaid))
++        || (pool.placeAnswers && signsPref === "off" ? pool.find((r) => drawnKey(signsOffLine(spanJoin(r.text))) === drawnKey(lineSaid)) : null) || null : null;
++      const rememberedHere = remembered ? pool.find((r) => routeKey(r) === remembered.key) || null : null;
++      // ON THE PLACE ANSWERS' PILLS THE LINE'S READING LEADS AND IS PRESSED (the brief of 27 November 2026, F1): the
++      // reading the line reads stands first among the pills wherever a source gives it here (lineLead, sortPool), so
++      // the pressed pill is the first. WHERE NO SOURCE GIVES IT (F6: today's line at a place the place answers read
++      // otherwise, 73 words of the thirty-nine books; its move is the next ship's) no pill is pressed: the line stays
++      // as it rests, and the record slot says in one plain sentence that the line is today's reading, which no source
++      // gives at this place, and what the place's own source reads. A press on any pill sets the line, as anywhere.
++      let unoffered = null;
++      if (pool.placeAnswers) {
++        for (const g of pool) g.lineLead = g === lineFirst;
++        if (lineFirst && pool[0] !== lineFirst) sortPool(pool, surface);
++        // (a half of a pair the line does not read from: what its letters' table reads is no line here, so the card
++        // opens as it did, on its first pill; only the line drawn under the word is said to be today's reading)
++        const lineHere = !(word && word.kq && glossEl) || (() => { const c = glossEl.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return spanJoin(c.textContent.trim()).toLowerCase().includes(lineSaid || "\u0000"); })();
++        if (lineSaid && lineSaid !== "—" && drawnKey(lineSaid) && lineHere && !lineFirst && !rememberedHere && !lemmaFirst && pool.length) {
++          const shown = textOfCell(surface, cellIdx);
++          const ownOf = (src) => pool.find((g) => g.records.some((r) => (PLACE_PILLS.get(r) || {}).src === src));
++          const ownStep = ownOf("step"), own = ownStep || ownOf("macula");
++          const whose = own ? (ownStep ? "STEP" : "MACULA") : null;
++          // under a remembered order of «reads first» other than the place's own (CARD_ONLY), the line is that order's
++          const ord = defOrder !== "place" ? (DEF_POS.find((q) => q.id === defOrder) || {}).lab || null : null;
++          unoffered = { line: spanJoin(shown).toLowerCase() === lineSaid ? spanJoin(shown) : lineSaid, own: own ? spanJoin(own.text) : null, whose, ord };
++          // (the last two hundred, for a check to read)
++          { const u = window.__placeCard.unoffered || (window.__placeCard.unoffered = []); u.push({ surface, ...unoffered }); if (u.length > 200) u.shift(); }
++        }
++      }
++      let selected = rememberedHere || lemmaFirst || lineFirst || pool[0];
+       const pills = document.createElement("div"); pills.className = "r-pills";
+       // what the sort put first, said on the row so a check can read the
+       // order's effect off the page: the first reading's licence class
+@@ -12350,6 +13555,15 @@
+         const body = document.createElement("div"); body.className = "d-body";
+         const foot = document.createElement("div"); foot.className = "d-foot";
+         dCard.replaceChildren(body, foot);
++        // the line no source gives at this place (unoffered, above): no record stands under a pill not pressed
++        if (unoffered) {
++          const say = document.createElement("p"); say.className = "d-text line-unoffered";
++          say.dataset.line = unoffered.line; if (unoffered.own) say.dataset.own = unoffered.own;
++          say.textContent = `The line here, \u00ab${unoffered.line}\u00bb, is ${unoffered.ord ? `the reading the order \u00ab${unoffered.ord}\u00bb puts first, an order of readings matched by spelling, and no source gives it` : "today\u2019s reading, which no source gives"} at this place${unoffered.own ? `; ${unoffered.whose} reads \u00ab${unoffered.own}\u00bb` : ""}.`;
++          body.append(say);
++          dCard.dataset.row = ""; dCard.dataset.key = surface;
++          return;
++        }
+         // A reading that is a piece cut out of the record beneath it says so.
+         // The provider wrote one sentence; this is part of that sentence, not a
+         // second thing the provider said, and attributing an arrangement to a
+@@ -12461,6 +13675,15 @@
+           // receipt, where the audit reads it.
+           if (m.licensePointer) lic.title = m.licensePointer;
+           att.append(lic, " ");
++          // a STEP record carries STEP's own credit and its link after the chip (stepCreditOf)
++          { const sc = stepCreditOf(mId);
++            if (sc) {
++              const cr = document.createElement("span"); cr.className = "step-credit";
++              // the link by the data's own name, its address on hover: the line is the card's foot, and has little room
++              const a = document.createElement("a"); a.href = sc.href; a.target = "_blank"; a.rel = "noreferrer"; a.textContent = sc.name; a.title = sc.text;
++              cr.append(`${sc.words.charAt(0).toUpperCase()}${sc.words.slice(1)}: `, a, ". ");
++              att.append(cr);
++            } }
+           // an overlay's record says which overlay it is, beside its year
+           const ovDef = m.overlay ? OVERLAY_DEFS.find((o) => o.id === m.overlay) : null;
+           if (ovDef) att.append(Object.assign(document.createElement("span"), { className: "ov-mark", textContent: ovDef.mark }), " ");
+@@ -12744,6 +13967,7 @@
+         // can hold it back from the line too (forgetSensePicks)
+         // a source's own words, ruled, print whole after the source is switched away (SOURCE_WORDS)
+         if (SOURCE_WORDS.has(String(route.text))) SOURCE_WORDS_RULED.add(String(route.text));
++        unoffered = null;
+         selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4],
+           ...(route.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}), ...kindPick(route.records, picked.get(surface), kindsAtCell),
+           // a place's own row stands on its pieces' line; a default source's own row made there keeps its own credit,
+@@ -12786,7 +14010,7 @@
+         // pill wears the page's purple and says so (word-senses-rule-v1)
+         if (route.records.every((row) => SENSE_ROWS.has(row))) { btn.classList.add("sense"); btn.dataset.sense = "1"; }
+         // a reading the dictionaries opened from rest brought wears a dotted edge (dictionary-kinds-rule-v1)
+-        if (kindsOn && route.records.length && route.records.every((row) => restsOff(row, kindsAtCell))) { btn.classList.add("rests"); btn.dataset.rests = "1"; }
++        if (kindsOn && route.records.length && route.records.every((row) => PLACE_RESTS.has(row) || restsOff(row, kindsAtCell))) { btn.classList.add("rests"); btn.dataset.rests = "1"; }
+         // and its grade against the open word — the best any record under
+         // it earned (m match · n silent · x otherwise · - ungraded), exposed
+         // so a check can ask the page how it graded rather than regrade
+@@ -12817,7 +14041,7 @@
+             for (const x of v) said.get(e.say).add(String(x));
+           }
+           for (const [say, xs] of said) btn.title += ` · a reading ${say}: ${[...xs].join(" · ")}`; }
+-        btn.setAttribute("aria-pressed", String(route === selected));
++        btn.setAttribute("aria-pressed", String(route === selected && !unoffered));
+         btn.addEventListener("click", () => {
+           pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
+           btn.setAttribute("aria-pressed", "true"); choose(route);
+@@ -12837,7 +14061,7 @@
+         // a copy is sorted each time, so returning to an order returns to
+         // exactly its pool — a sort in place would carry the previous
+         // order's tie-breaks along
+-        const every = sortPool(Object.assign([...pool], { signsLast: !!pool.signsLast, spanAt: pool.spanAt || null }), surface);
++        const every = sortPool(Object.assign([...pool], { signsLast: !!pool.signsLast, spanAt: pool.spanAt || null, placeAnswers: !!pool.placeAnswers }), surface);
+         // signs off: a reading carrying a source's own sign is not offered;
+         // a card whose every reading carries one keeps them all rather than
+         // stand empty, and says so
+@@ -12961,10 +14185,10 @@
+       // and the export read it under every source and at every place. The
+       // whole form only: a block of another division left alone reads the
+       // baked column on the card as on the line
+-      if (ruled && !opts.run && !wordsOwn && bin === zone && word && cover.length === 1 && surface === region.k && mem.cut === cutKey(cover) && !picked.get(surface)) remember(selected);
++      if (ruled && !opts.run && !wordsOwn && bin === zone && word && cover.length === 1 && surface === region.k && mem.cut === cutKey(cover) && !picked.get(surface) && !unoffered) remember(selected);
+       drawPills();
+       readRow.append(pills);
+-      selectedRecordRef.m = index.m_sources[selected.records[0][3]] || null;
++      selectedRecordRef.m = unoffered ? null : index.m_sources[selected.records[0][3]] || null;
+       renderDCard(); dSlot.replaceChildren(dCard);
+       paintGloss();
+       // AND FIT THE BANDS TO WHAT ARRIVED. The readings are fetched, so this
+@@ -16248,18 +17472,55 @@
+     if (Array.isArray(gm.by) && gm.by.length) return anyOff(gm.by);
+     return !!(gm.m && anyOff(idsOfLabel(gm.m)));
+   };
++  // A LINE READ LIVE UNDER THE PLACE CARD IS THE PLACE CARD'S FIRST PILL (the brief of 27 November 2026, F1 and F2).
++  // The source switches act on the place answers (each pill names its sources), so where a switched-off source stands
++  // behind a word's line and the line reads «at this place» (the order the page rests on, the place card's own), the
++  // word is asked as its card asks it: the place answers of its whole form at its own address (its chapter's file, its
++  // verse, its number, its letters), with the line's own reading first where a source still on gives it, and the line
++  // says the first pill that stands, with that pill's record on the chip. Under an order that stands behind «readings
++  // matched by spelling» (CARD_ONLY), a pair, a word of a run, or a word the place answers cannot place, the line is
++  // asked of the store as before. undefined: not asked here; null: asked, and nothing stands.
++  const placeLiveLine = async (st) => {
++    if (!placeCardOn() || defOrder !== "place" || !st.word || st.word.kq || st.ks.length !== 1) return undefined;
++    const wb = st.ge.parentElement && st.ge.parentElement.classList.contains("wb") ? st.ge.parentElement : null;
++    const sec = wb && !wb.closest(".wjoin") ? wb.closest("section.seg") : null;
++    if (!sec || !sec.__sec) return undefined;
++    const n = [...sec.querySelectorAll(".he-text .wb:not(.mark)")].indexOf(wb) + 1;
++    const node = Array.isArray(zone.nodes) ? zone.nodes[sec.__sec.node] : null;
++    const ch = node && Number.isInteger(node.num) ? node.num : Number(String(sec.__sec.label).split(":")[0]);
++    const t = lettersIn(st.word.k || "").length;
++    if (!n || !t) return undefined;
++    let doc = null;
++    try { doc = await PLACE.chapter(BOOK, ch); } catch { return undefined; }
++    const at = defaultAt(st.word) || dfltHeldLine(st.word) || placeLine(st.word);
++    const list = await placePool(`${st.word.k}\u0001live`, { piecePlace: { ref: sec.__sec.label, n, reading: "form", a: 0, b: t - 1, t }, doc, quiet: true, ...(at ? { place: at } : {}) });
++    if (at) for (const g of list) g.lineLead = readingKey(g.text) === readingKey(at.text);
++    sortPool(list, st.word.k);
++    return list.length ? { text: spanJoin(list[0].text), rows: [readingOfRow(list[0].records[0])] } : null;
++  };
+   const repaintLive = async (stands, again = false) => {
+     if (!sourcesOff.size || !zone.gloss) return;
++    // whether this book has place answers is known before a line is read live under the place card (placeLiveLine)
++    if (cardPref === "place" && !PLACE_BOOK) await placeIndexAsked();
+     const gen = switchGen;
+     const todo = [], failed = [];
+     for (const st of stands) {
+       if (!st.ge.isConnected) continue;
+       const moved = st.ks.length === 1 ? lineUnder(st.word, zone.gloss) : null;
++      // (a word whose place reading's own source is switched off, and whose baked line no switch has reached, reads
++      // the baked line, as it did: check-line-reads-the-place-v1 P5; only a line read live asks the place card)
+       const need = st.ks.map((k) => partNeedsLive(st, k, moved));
+       if (need.some(Boolean)) todo.push({ st, moved, need });
+     }
+     const one = async ({ st, moved, need }) => {
+       const parts = [], ms = [];
++      // under the place card, at this place: the place card's first pill (placeLiveLine)
++      { const pl = need[0] ? await placeLiveLine(st) : undefined;
++        if (pl !== undefined) {
++          if (gen !== switchGen || !st.ge.isConnected) return;
++          parts.push(pl ? pl.text : "\u2014"); ms.push(pl ? pl.rows : []);
++        } }
++      if (!parts.length)
+       for (let i = 0; i < st.ks.length; i += 1) {
+         const k = moved && moved.why === "headword" && st.word && st.word.h ? st.word.h : lookupKey(st.word, st.ks[i], zone.gloss);
+         if (!need[i]) {
+@@ -16913,6 +18174,8 @@
+     const back = !was ? null : was.dataset.kinds ? `.kinds-opt[data-kinds="${was.dataset.kinds}"]` : was.dataset.key ? `.kind-chip[data-key="${was.dataset.key}"]` : null;
+     host.replaceChildren();
+     const stamp = zone && zone.emitted_from && zone.emitted_from.rests_off;
++    // (it acts on the place card too since 27 November 2026: what the record rests shut rests shut there, THE PLACE
++    // ANSWERS' PILLS' placeRestsOf, so it stands under either card)
+     host.hidden = !stamp;
+     if (!stamp) return;
+     const head = document.createElement("div"); head.className = "kinds-head";
+@@ -17206,7 +18469,10 @@
+     // under ?rail=all, which the page about the switches links to; every
+     // check still reaches each row by its id.
+     const LEAD = new Set(["sources", "suggested"]);
+-    const waiting = TOGGLES.filter((t) => !LEAD.has(t.id));
++    // a switch that acts only on the older card is not offered while the place card stands (CARD_ONLY): its row
++    // is drawn and hidden, so the row is there again the moment the older card is switched on
++    const cardOnly = (t) => placeCardOn() && CARD_ONLY.rows.includes(t.id);
++    const waiting = TOGGLES.filter((t) => !LEAD.has(t.id) && !cardOnly(t));
+     moreSum.textContent = `${waiting.length} more switches, not yet fleshed out`;
+     more.append(moreSum);
+     more.hidden = QUERY.get("rail") !== "all";
+@@ -17229,6 +18495,7 @@
+       const why = document.createElement("span"); why.className = "why";
+       why.textContent = t.live() ? t.why : `${t.why} — waiting on ${t.waits}`;
+       row.append(lab, host, why);
++      if (cardOnly(t)) row.hidden = true;
+       (LEAD.has(t.id) ? rows : more).append(row);
+     }
+     // the scribes' marks wait under the fold with the rest (the owner,
+@@ -17568,6 +18835,33 @@
+     if (!hud.hidden) reopenCard();
+   });
+   paintDict();
++  // READINGS MATCHED BY SPELLING: the older card's one switch (the note above placeCardOf). The pill is drawn
++  // only on a book that has place answers. Off, where it rests, a word of the book opens the place card and the
++  // switches that act only on the older card are not offered (CARD_ONLY): their pills leave the row, and the
++  // Menu with it, and their rows are hidden on the rail. On, they stand again and the page is the page it was.
++  // Flipping it touches no line: the open card is opened again as the other card, and nothing else is drawn.
++  const cardPill = document.getElementById("cardPill"), cardState = document.getElementById("cardState"), cardPick = document.getElementById("cardPick");
++  paintCardSwitch = () => {
++    const here = !!PLACE_BOOK, on = here && cardPref === "spelling";
++    cardPick.hidden = !here;
++    cardPill.classList.toggle("on", on); cardPill.setAttribute("aria-pressed", String(on));
++    // the one line that says what it is, under the pill and beside it in the Menu
++    cardState.textContent = here ? "every reading any dictionary files under these letters" : "";
++    for (const id of CARD_ONLY.pills) { const pick = document.getElementById(id).closest(".mode-pick"); if (pick) pick.hidden = here && !on; }
++    window.__placeCard.here = here; window.__placeCard.on = here ? cardPref : "spelling";
++  };
++  const chooseCard = (id) => {
++    if (!CARDS.includes(id) || !PLACE_BOOK || id === cardPref) return;
++    cardPref = id;
++    try { localStorage.setItem(CARD_KEY, id); } catch { /* the choice still stands on this page */ }
++    paintCardSwitch();
++    if (document.getElementById("railRows")) railSwitch();
++    // an open card is the other kind of card now: it is opened again by a press on its word, as the word's own press
++    // chooses the card (a half of a pair the older card was moved to is that card's own way, and is not taken over)
++    if (!hud.hidden) { openNav = null; reopenCard(); }
++  };
++  cardPill.addEventListener("click", (e) => { e.stopPropagation(); chooseCard(cardPref === "spelling" ? "place" : "spelling"); });
++  paintCardSwitch();
+   // NO BLANKS: no pill in the row (the owner, 2026-10-24: "dont overworry about
+   // the no blanks toggle if anything we could move it to /toggles/ for now").
+   // The rail's row is the switch; reset still puts it back to off.
+@@ -17598,6 +18892,8 @@
+     && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs && nonamesPref === SWITCHES_DEFAULT.namelead && sensesPref === SWITCHES_DEFAULT.senses
+     // the dictionaries that rest shut, on a book where they do (dictionary-kinds-rule-v1); the reader's own source switches are theirs, and reset leaves them
+     && (!kindsHere || kindsPref === SWITCHES_DEFAULT.kinds)
++    // which card a word opens, on a book that has place answers: where this page rests (CARD_REST)
++    && (!PLACE_BOOK || cardPref === CARD_REST)
+     && dfltAtDefault();
+   const paintReset = () => {
+     const n = picksNow(), at = switchesAtDefault();
+@@ -17658,6 +18954,7 @@
+     if (nonamesPref !== SWITCHES_DEFAULT.namelead) chooseNames(SWITCHES_DEFAULT.namelead);
+     if (sensesPref !== SWITCHES_DEFAULT.senses) chooseSenses(SWITCHES_DEFAULT.senses);
+     if (kindsHere && kindsPref !== SWITCHES_DEFAULT.kinds) chooseKinds(SWITCHES_DEFAULT.kinds);
++    if (PLACE_BOOK && cardPref !== CARD_REST) chooseCard(CARD_REST);
+     // the default sources set back above: the row, the rail and the card
+     // answer, and the lines are repainted only where no relay drew them
+     if (dfltBack) reopenForDefaults(hadPicks);
