@@ -58,3 +58,8 @@ The tree checks that need them say so and are counted as not run here:
 - **C, G and H:** stand.
 
 The F6 reds close there.
+
+**How: a rebuild, not edits.** The lines ship does not patch the 141 lines group by group. It rebuilds the resting line at every word from the place answers, through the same pipeline: the line is the place card's default, drawn as the page draws a line. That is the principle the Hebrew text was rebuilt by.
+- The comparison tool already draws that line for all 305,431 words: 305,290 equal today's, and 141 differ, each with its cause.
+- So the rebuild's lines-diff against live must be exactly those 141, plus the D spans drawn once across their words.
+- A group's handling is a rule in the line's drawing, not a hand edit: how a name STEP cuts in two is joined, and a span drawn once across its words. A fault found later is mended in the pipeline and the lines are rebuilt again.
