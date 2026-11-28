@@ -74,3 +74,10 @@ The F6 reds close there.
 - The comparison tool already draws that line for all 305,431 words: 305,290 equal today's, and 141 differ, each with its cause.
 - So the rebuild's lines-diff against live must be exactly those 141, plus the D spans drawn once across their words.
 - A group's handling is a rule in the line's drawing, not a hand edit: how a name STEP cuts in two is joined, and a span drawn once across its words. A fault found later is mended in the pipeline and the lines are rebuilt again.
+
+## Ready after this ship: the numbers in gold
+
+The chapter number (and the 2:1 of a verse's address) is the added layer, not the Hebrew. Scarlet is the Hebrew proper, and blue is a source's reading of a word. Gold is the added layer through which the text reaches us: the vowels and accents, and the witnesses' own counts.
+- The page already draws a witness's own count in gold: the count stamp, `#stamp td.num.theirs`.
+- The word «Chapter» stays purple, because it is ours.
+- **Contrast.** Gold #967c26 on the linen #ebdec3 is 3.0:1. That passes for large text, so the chapter head's number can take it. The verse address is smaller and would fail at 4.5:1, so it needs a darker gold kept for small numerals. Measure that before laying it on the verse address.
