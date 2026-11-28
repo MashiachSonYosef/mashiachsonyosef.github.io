@@ -86,6 +86,13 @@ Gold is the layer laid over the bare text by those who handed it down: the Masor
   - In a verse's address, «Genesis» is the catalog's English name and stays as it is. The «2:1» is gold whole, its colon included, because that colon belongs to the address's own notation.
   - «25 verses» takes purple: it is our words, the count said in English.
 
+**Said on the page, so the color is not read as a claim of equal standing.** One sentence in the book's basis note, under «Chapters and verses are numbered as the source text numbers them…»:
+
+> «The numbers are in gold, the color of what was added to the written text as it was handed down. The verse divisions are the Masoretes', and their numbers came later. The chapters came from Latin Bibles of the thirteenth century and entered printed Hebrew Bibles in the sixteenth.»
+
+- The numbers' gold is the darker one their small size needs anyway (#6f5b1a). So the Masoretic signs, in the regular gold inside the letters, stay visibly their own.
+- STEP did not make the numbers. It carries the standing system, with both numberings where English and Hebrew differ («Psa.3.1(3.2)»). Our page prints the Hebrew one.
+
 **Ours, in three colors** (the page's metals rule, zone.html at «BRONZE is the structure»).
 - **Purple** is our language: anything we say in words, such as labels, notes, «Chapter:» and «25 verses».
 - **Bronze** is the structure that holds the page, a necessity rather than an addition: every frame and rule, the card and its outline, its lines to the held word, the verse labels, the buttons and the chips.
