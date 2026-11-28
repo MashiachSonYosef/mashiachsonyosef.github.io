@@ -82,5 +82,7 @@ Blue means one thing on the page: what a word means, a reading a source gives. N
 Gold is the layer laid over the bare text by those who handed it down: the Masoretes' vowels, accents and counts, and after them the chapter and verse numbers the editions added. The chapter number, and the 2:1 of a verse's address, take gold.
 - The Masorah keeps its place inside that layer by where it stands. Its marks sit in the Hebrew letters, and the numbers sit apart from the text, so the two are not confused.
 - Leningrad's count stays gold. The other witnesses' counts in the count table take gold too, from the default ink.
-- **The word «Chapter»** stays purple, because it is ours.
+- **The word «Chapter» takes a colon, both purple, because they are ours:** «Chapter: 2». The colon marks the turn from our label to their number, so the change of color does not catch the reader off guard.
+  - In a verse's address, «Genesis» is the catalog's English name and stays as it is. The «2:1» is gold whole, its colon included, because that colon belongs to the address's own notation.
+  - «25 verses» is our count. It takes silver, as the verses on the shut line already do.
 - **Contrast.** The page's gold #967c26 on the linen #ebdec3 is 3.0:1. That holds for the chapter head's large number. Small numerals, such as a verse's 2:1, take a darker gold of the same hue: #6f5b1a measures 4.9:1. Check it against the palette's bronze before laying it.
