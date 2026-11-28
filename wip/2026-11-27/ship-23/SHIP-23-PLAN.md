@@ -84,5 +84,10 @@ Gold is the layer laid over the bare text by those who handed it down: the Masor
 - Leningrad's count stays gold. The other witnesses' counts in the count table take gold too, from the default ink.
 - **The word «Chapter» takes a colon, both purple, because they are ours:** «Chapter: 2». The colon marks the turn from our label to their number, so the change of color does not catch the reader off guard.
   - In a verse's address, «Genesis» is the catalog's English name and stays as it is. The «2:1» is gold whole, its colon included, because that colon belongs to the address's own notation.
-  - «25 verses» is our count. It takes silver, as the verses on the shut line already do.
+  - «25 verses» takes purple: it is our words, the count said in English.
+
+**The two colors of ours, as they now stand.**
+- **Purple** is our language: anything we say in words, such as labels, notes, «Chapter:» and «25 verses».
+- **Silver** is our marking: frames, outlines, and the numbers we lay on the page as marks, such as the card numbers and the count table's «ours» column.
+- So a number we write inside a sentence is purple, and a number we set as a mark is silver.
 - **Contrast.** The page's gold #967c26 on the linen #ebdec3 is 3.0:1. That holds for the chapter head's large number. Small numerals, such as a verse's 2:1, take a darker gold of the same hue: #6f5b1a measures 4.9:1. Check it against the palette's bronze before laying it.
