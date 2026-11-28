@@ -75,11 +75,12 @@ The F6 reds close there.
 - So the rebuild's lines-diff against live must be exactly those 141, plus the D spans drawn once across their words.
 - A group's handling is a rule in the line's drawing, not a hand edit: how a name STEP cuts in two is joined, and a span drawn once across its words. A fault found later is mended in the pipeline and the lines are rebuilt again.
 
-## Ready after this ship: the numbers in blue
+## Ready after this ship: the numbers in gold (settled)
 
-The chapter number, and the 2:1 of a verse's address, are said by the sources (STEP's «Gen.2.1», the edition's numbering), not by the Hebrew text. So they take blue, the voice of what a source says beyond the text.
-- **Scarlet** stays the Hebrew proper.
-- **Gold** stays the Masorah's privileged layer: the vowels, the accents, and the count of the held edition, the Leningrad Codex, whose scribes kept the Masorah (`#stamp tr.held td.num.theirs`).
-- **The other witnesses' counts** in the count table take blue too, for the same reason. Today they wear the default ink.
+Blue means one thing on the page: what a word means, a reading a source gives. Nothing else takes it, so a reader can trust it at a glance.
+
+Gold is the layer laid over the bare text by those who handed it down: the Masoretes' vowels, accents and counts, and after them the chapter and verse numbers the editions added. The chapter number, and the 2:1 of a verse's address, take gold.
+- The Masorah keeps its place inside that layer by where it stands. Its marks sit in the Hebrew letters, and the numbers sit apart from the text, so the two are not confused.
+- Leningrad's count stays gold. The other witnesses' counts in the count table take gold too, from the default ink.
 - **The word «Chapter»** stays purple, because it is ours.
-- **Contrast.** Tekhelet #23558a on the linen #ebdec3 is 5.8:1, which passes for small text. So the verse address can take it at its size.
+- **Contrast.** The page's gold #967c26 on the linen #ebdec3 is 3.0:1. That holds for the chapter head's large number. Small numerals, such as a verse's 2:1, take a darker gold of the same hue: #6f5b1a measures 4.9:1. Check it against the palette's bronze before laying it.
