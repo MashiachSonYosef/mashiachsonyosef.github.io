@@ -46,8 +46,15 @@ The tree checks that need them say so and are counted as not run here:
 ## Next after it
 
 **The lines ship.** It moves the line at the words the place answers read otherwise, group by group, as `../accuracy-pass/the-124-words.md` sorts them:
-- A, B and E: the page lane mends;
-- D, F and I: for the corpus lane;
-- C, G and H: stand.
+- **A, B and E:** the page lane mends.
+- **D, the 46 places where our text writes two words and STEP's text one.** These are no longer for the corpus lane. STEP's one row is STEP's own address for the span, so at rest the span is one cell and one card across our words: STEP's reading is drawn once across them, as a default source's line over several words is already drawn. Each of our words stays its own card, a press away inside the run card, as in a maqaf run or a chain.
+  - Nothing new is built for this. The run-card system holds both cuts already.
+  - The default is the source's own unit, not the finest cut either side could make. Were another source to cut the span otherwise, its cut would stand inside the same card.
+  - Examples:
+    - 1 Chronicles 20:4 words 2–3, «after + this» (today «behind», «thus»);
+    - Isaiah 9:5 words 18–19, «father of + perpetuity»;
+    - 2 Kings 19:31 words 9–10, «Yahweh of hosts».
+- **F and I:** answered by the corpus lane in v223 (I was the lead's own miscount).
+- **C, G and H:** stand.
 
 The F6 reds close there.
