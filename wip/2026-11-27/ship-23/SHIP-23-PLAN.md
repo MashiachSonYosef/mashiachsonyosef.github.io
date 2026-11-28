@@ -16,6 +16,17 @@ The tree checks that need them say so and are counted as not run here:
 - check-place-answers-page-v1 skips without them;
 - the entries and places checks are `RUN: given`.
 
+## Two more mends in this ship (found 28 November)
+
+`tools/ship23-edits.py` applies these to the ship tree after the copy:
+
+- **The chapter head.** Every chapter of the 39 books printed «chapter title: no name is on record» over «commonly read as Chapter 2». That read as a title that failed to load, over a number nobody records.
+  - The Hebrew text names no chapter, and every source addresses a chapter by its number. So the head now prints «Chapter 2 · 25 verses» plainly, and a title row stands only where a record names the chapter.
+  - The basis note loses «No chapter carries a name here: no source on this shelf gives one.»
+- **The door's gloss under a book's title.** It was the store's oldest reading of the title's letters anywhere: «bee» under Deuteronomy's title, a dictionary's definition of the book under Leviticus', «Shamoth» under Exodus'.
+  - It is now STEP's reading where the title stands in the book's own first verse. Of the 39 books, 27 have one: Genesis «in/ beginning», Exodus «[are] [the] names of», Leviticus «and/ he called», Numbers «in/ [the] wilderness of», Deuteronomy «words», Proverbs «[the] proverbs of», Lamentations «how!», and the prophets by name.
+  - The other 12, whose titles do not stand in the first verse, carry no gloss: Judges, Samuel, Kings, Chronicles, Psalms, Ruth, Esther, Daniel, Ezra, and Obadiah (spelled otherwise in its verse).
+
 ## What must hold before the push
 
 1. **The builder's proofs**, from the ninth cut's merge and from the frame's laws (`../fresh-build/BRIEF-H2-CUT-9-MERGE.md`, `../fresh-build/BRIEF-H2-FRAME-LAWS.md`).
