@@ -75,23 +75,16 @@ The F6 reds close there.
 - So the rebuild's lines-diff against live must be exactly those 141, plus the D spans drawn once across their words.
 - A group's handling is a rule in the line's drawing, not a hand edit: how a name STEP cuts in two is joined, and a span drawn once across its words. A fault found later is mended in the pipeline and the lines are rebuilt again.
 
-## Ready after this ship: the numbers in gold (settled)
+## Ready after this ship: the chapter number in gold (settled: one gold, no shades)
 
-Blue means one thing on the page: what a word means, a reading a source gives. Nothing else takes it, so a reader can trust it at a glance.
-
-Gold is the layer laid over the bare text by those who handed it down: the Masoretes' vowels, accents and counts, and after them the chapter and verse numbers the editions added. The chapter number, and the 2:1 of a verse's address, take gold.
-- The Masorah keeps its place inside that layer by where it stands. Its marks sit in the Hebrew letters, and the numbers sit apart from the text, so the two are not confused.
-- Leningrad's count stays gold. The other witnesses' counts in the count table take gold too, from the default ink.
-- **The word «Chapter» takes a colon, both purple, because they are ours:** «Chapter: 2». The colon marks the turn from our label to their number, so the change of color does not catch the reader off guard.
-  - In a verse's address, «Genesis» is the catalog's English name and stays as it is. The «2:1» is gold whole, its colon included, because that colon belongs to the address's own notation.
-  - «25 verses» takes purple: it is our words, the count said in English.
-
-**Said on the page, so the color is not read as a claim of equal standing.** One sentence in the book's basis note, under «Chapters and verses are numbered as the source text numbers them…»:
-
-> «The numbers are in gold, the color of what was added to the written text as it was handed down. The verse divisions are the Masoretes', and their numbers came later. The chapters came from Latin Bibles of the thirteenth century and entered printed Hebrew Bibles in the sixteenth.»
-
-- The numbers' gold is the darker one their small size needs anyway (#6f5b1a). So the Masoretic signs, in the regular gold inside the letters, stay visibly their own.
-- STEP did not make the numbers. It carries the standing system, with both numberings where English and Hebrew differ («Psa.3.1(3.2)»). Our page prints the Hebrew one.
+- **Blue** means one thing on the page: what a word means. **Gold** is the layer laid over the bare text as it was handed down: the Masoretic signs and counts, and the editions' numbering.
+- **One gold, the page's own (#967c26).** No darker variant, so the page keeps its few colors.
+- **The chapter head's number takes it:** «Chapter: 2», where «Chapter:» is purple and the 2 is gold. The number is large there, and the gold reads 3.0:1 on the linen, which holds for large text.
+- **The verse label stays bronze, numbers included.** It is a button that holds the page, which is bronze's job. At its small size the one gold would fall below what small text needs (4.5:1), so it does not take gold.
+- **«25 verses»** is purple, because it is our words.
+- **The count table is as it is:** Leningrad's count is already gold, and the other witnesses' small figures keep their ink.
+- **The basis note** adds one sentence: «The chapter numbers are in gold, the color of what was added to the written text as it was handed down; the chapters came from Latin Bibles of the thirteenth century and entered printed Hebrew Bibles in the sixteenth.»
+- **The metals rule's line on gold** becomes «gold is the layer added to the bare text: the Masoretic signs and counts, and the chapter number», and the color contract and its checks change with it.
 
 **Ours, in three colors** (the page's metals rule, zone.html at «BRONZE is the structure»).
 - **Purple** is our language: anything we say in words, such as labels, notes, «Chapter:» and «25 verses».
