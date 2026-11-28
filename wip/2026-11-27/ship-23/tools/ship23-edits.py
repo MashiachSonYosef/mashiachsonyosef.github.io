@@ -87,6 +87,20 @@ edit("reader/zone.html",
               { className: "nh-lab", textContent: "commonly read as" }));
 ''')
 
+# 1c. a remembered order of «reads first» does not order the lines while the place card stands: those orders are of
+# readings matched by spelling and are offered only on the older card (CARD_ONLY), so at rest a reader could neither
+# see nor change one remembered from before; the choice is kept on the device for the older card
+edit("reader/zone.html",
+'''      defOrder = DEF_POS.some((p) => p.id === held && p.live) ? held : placeLive ? "place" : "oldest";
+''',
+'''      // A REMEMBERED ORDER WAITS FOR THE OLDER CARD (28 November 2026). Every position but the place's own orders
+      // readings matched by spelling and is offered only on the older card (CARD_ONLY); while the place card stands
+      // the reader can neither see nor change one remembered from before, so the page reads at the place and the
+      // remembered choice stays on the device for the older card.
+      const heldWaits = placeLive && cardPref === "place" && held !== "place";
+      defOrder = DEF_POS.some((p) => p.id === held && p.live) && !heldWaits ? held : placeLive ? "place" : "oldest";
+''')
+
 # 2. the door's gloss under a book's title
 edit("reader/tools/build-front-door-v1.mjs",
 '''  const titleKey = (z.work_he_tokens || []).map((t) => t.k).filter(Boolean)[0] || null;
