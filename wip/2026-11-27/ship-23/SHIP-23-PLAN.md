@@ -90,6 +90,3 @@ The F6 reds close there.
 - **Purple** is our language: anything we say in words, such as labels, notes, «Chapter:» and «25 verses».
 - **Bronze** is the structure that holds the page, a necessity rather than an addition: every frame and rule, the card and its outline, its lines to the held word, the verse labels, the buttons and the chips.
 - **Silver** is our layering: the line of every blob, the frame drawn round a run's words (the compspan boxes), and the card numbers.
-- A verse label is bronze. When the numbers turn gold, only the «2:1» inside it changes; its frame stays bronze.
-- The rule's last line, «GOLD is now only the Masoretic signs», becomes «gold is the layer added to the bare text: the Masoretic signs and counts, and the editions' numbering». The color contract (`data/color-contract-v1.json`) and its checks change with it.
-- **Contrast.** The page's gold #967c26 on the linen #ebdec3 is 3.0:1. That holds for the chapter head's large number. Small numerals, such as a verse's 2:1, take a darker gold of the same hue: #6f5b1a measures 4.9:1. Check it against the palette's bronze before laying it.
