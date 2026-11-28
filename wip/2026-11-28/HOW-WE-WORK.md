@@ -28,3 +28,9 @@ Only what the lane cannot do itself:
 - **Davidson** stands behind «readings matched by spelling». It files no reading at a place by its own address, so the one rule cannot seat it at rest.
 - **check-record-pinned-v1 and check-gloss-whole-v1** go red at rest because what they test is gone. A card with more than 100 readings, or a reading more than 40 characters past the line, exists at rest only once the shut dictionaries are opened. Both pass with the old card forced. They ship as known reds, with that cause written beside them.
 - **The unfoldingWord title** («Unlocked Hebrew and Aramaic Lexicon» in the lexicon's own manifest) is a name both lanes' files must match. It is settled with Moses, lane to lane.
+
+## The lane's design principle: room for everything, the source's own cut by default
+
+The reader is built to hold every cut a source makes: a word's divisions, a run's card across words, each word a press away inside it. That is its capacity, and the capacity is as large as it can be. It is not the default.
+
+At rest the page shows the cut the place's own source makes, its own unit, whether that is finer or coarser than our text's. Another source's cut stands inside the same card as an option. Capacity is what lets the default stay simple and true. Forcing the finest cut everywhere is the mistake to avoid.
