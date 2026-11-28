@@ -24,8 +24,8 @@ The tree checks that need them say so and are counted as not run here:
   - The Hebrew text names no chapter, and every source addresses a chapter by its number. So the head now prints «Chapter 2 · 25 verses» plainly, and a title row stands only where a record names the chapter.
   - The basis note loses «No chapter carries a name here: no source on this shelf gives one.»
 - **The door's gloss under a book's title.** It was the store's oldest reading of the title's letters anywhere: «bee» under Deuteronomy's title, a dictionary's definition of the book under Leviticus', «Shamoth» under Exodus'.
-  - It is now STEP's reading where the title stands in the book's own first verse. Of the 39 books, 27 have one: Genesis «in/ beginning», Exodus «[are] [the] names of», Leviticus «and/ he called», Numbers «in/ [the] wilderness of», Deuteronomy «words», Proverbs «[the] proverbs of», Lamentations «how!», and the prophets by name.
-  - The other 12, whose titles do not stand in the first verse, carry no gloss: Judges, Samuel, Kings, Chronicles, Psalms, Ruth, Esther, Daniel, Ezra, and Obadiah (spelled otherwise in its verse).
+  - It is now STEP's reading where the title stands in the book's own first verse. Of the 39 books, 25 have one: Genesis «in/ beginning», Exodus «[are] [the] names of», Leviticus «and/ he called», Numbers «in/ [the] wilderness of», Deuteronomy «words», Proverbs «[the] proverbs of», Lamentations «how!», and the prophets by name.
+  - The other 14, whose titles do not stand in the first verse, carry no gloss: Judges, the two of Samuel, the two of Kings, the two of Chronicles, Psalms, Ruth, Esther, Daniel, Ezra, Ezekiel, and Obadiah (spelled otherwise in its verse).
 
 ## What must hold before the push
 
