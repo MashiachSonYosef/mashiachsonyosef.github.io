@@ -86,8 +86,10 @@ Gold is the layer laid over the bare text by those who handed it down: the Masor
   - In a verse's address, «Genesis» is the catalog's English name and stays as it is. The «2:1» is gold whole, its colon included, because that colon belongs to the address's own notation.
   - «25 verses» takes purple: it is our words, the count said in English.
 
-**The two colors of ours, as they now stand.**
+**Ours, in three colors** (the page's metals rule, zone.html at «BRONZE is the structure»).
 - **Purple** is our language: anything we say in words, such as labels, notes, «Chapter:» and «25 verses».
-- **Silver** is our marking: frames, outlines, and the numbers we lay on the page as marks, such as the card numbers and the count table's «ours» column.
-- So a number we write inside a sentence is purple, and a number we set as a mark is silver.
+- **Bronze** is the structure that holds the page, a necessity rather than an addition: every frame and rule, the card and its outline, its lines to the held word, the verse labels, the buttons and the chips.
+- **Silver** is our layering: the line of every blob, the frame drawn round a run's words (the compspan boxes), and the card numbers.
+- A verse label is bronze. When the numbers turn gold, only the «2:1» inside it changes; its frame stays bronze.
+- The rule's last line, «GOLD is now only the Masoretic signs», becomes «gold is the layer added to the bare text: the Masoretic signs and counts, and the editions' numbering». The color contract (`data/color-contract-v1.json`) and its checks change with it.
 - **Contrast.** The page's gold #967c26 on the linen #ebdec3 is 3.0:1. That holds for the chapter head's large number. Small numerals, such as a verse's 2:1, take a darker gold of the same hue: #6f5b1a measures 4.9:1. Check it against the palette's bronze before laying it.
