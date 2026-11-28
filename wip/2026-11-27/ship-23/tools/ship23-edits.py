@@ -58,6 +58,35 @@ edit("reader/zone.html",
      "Chapters and verses are numbered as the source text numbers them, in the order of this book\\u2019s contents record. No chapter carries a name here: no source on this shelf gives one.",
      "Chapters and verses are numbered as the source text numbers them, in the order of this book\\u2019s contents record.")
 
+# 1b. a part head, by the same rule: a title row only where a record names the part; a bare part number
+# is the sources' own address and wears no label
+edit("reader/zone.html",
+'''          const p1 = document.createElement("div"); p1.className = "nh-row";
+          p1.append(Object.assign(document.createElement("span"),
+            { className: "nh-lab", textContent: "part title" }));
+          if ((n.part_tokens && n.part_tokens.length) || n.part_he) p1.append(titleRow(n.part_tokens, n.part_he));
+          else p1.append(Object.assign(document.createElement("span"),
+            { className: "nh-he unnamed", textContent: "no name is on record" }));
+          ph.append(p1);
+          if (n.part_num) {
+            const p2 = document.createElement("div"); p2.className = "nh-row";
+            p2.append(Object.assign(document.createElement("span"),
+              { className: "nh-lab", textContent: "commonly read as" }));
+''',
+'''          const partNamed = !!((n.part_tokens && n.part_tokens.length) || n.part_he);
+          if (partNamed) {
+            const p1 = document.createElement("div"); p1.className = "nh-row";
+            p1.append(Object.assign(document.createElement("span"),
+              { className: "nh-lab", textContent: "part title" }));
+            p1.append(titleRow(n.part_tokens, n.part_he));
+            ph.append(p1);
+          }
+          if (n.part_num) {
+            const p2 = document.createElement("div"); p2.className = "nh-row";
+            if (partNamed) p2.append(Object.assign(document.createElement("span"),
+              { className: "nh-lab", textContent: "commonly read as" }));
+''')
+
 # 2. the door's gloss under a book's title
 edit("reader/tools/build-front-door-v1.mjs",
 '''  const titleKey = (z.work_he_tokens || []).map((t) => t.k).filter(Boolean)[0] || null;
